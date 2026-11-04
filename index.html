@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>IROS Alpha · 私人即時投資決策系統</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    body { -webkit-font-smoothing: antialiased; padding-bottom: env(safe-area-inset-bottom, 24px); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 px-4 py-2.5">
+    <div class="max-w-2xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+        </div>
+        <div>
+          <div class="flex items-center space-x-1.5">
+            <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">即時連網版</span>
+          </div>
+          <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
+            <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="syncStatusText" class="font-mono text-emerald-300">連線中...</span>
+          </p>
+        </div>
+      </div>
+      <button id="refreshBtn" onclick="fetchLiveQuotes()" class="p-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition active:scale-95 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+        <svg id="refreshIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        <span>即時更新</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Live Toast -->
+  <div id="toast" class="fixed top-14 left-1/2 -translate-x-1/2 z-50 bg-slate-900 border border-emerald-500/80 text-emerald-300 px-4 py-1.5 rounded-xl text-xs font-mono shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none">
+    更新成功
+  </div>
+
+  <main class="flex-1 max-w-2xl w-full mx-auto px-4 py-3.5 space-y-3.5">
+    <div id="cardsContainer" class="space-y-3">
+      <!-- Cards rendered here -->
+    </div>
+  </main>
+
+  <script>
+    const SHEET_ID = '1qi22DKG6jvfk0zZ175a8uxLb2_i33PeGwxMDyu8RJZk';
+    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('報價全表')}`;
+
+    const RESEARCH = {
+      ANET: { name: "Arista Networks", curr: "$", targets: [107.51, 163.37, 200.17, 272.84], weights: [0.2, 0.25, 0.35, 0.2], buyTrigger: 167.0, why: "超大雲端客戶部署 1.6T 乙太網替代 InfiniBand，但需防週期殺估值。" },
+      BNTX: { name: "BioNTech SE", curr: "$", targets: [21.77, 33.13, 82.14, 115.86], weights: [0.15, 0.3, 0.4, 0.15], floor: 49.51, double: 173.84, buyTrigger: 70.0, why: "手握百億現金防守，雙抗進入 P3，等待極端錯判折價。" },
+      BESI: { name: "BE Semiconductor", curr: "€", targets: [85.0, 125.0, 195.0, 290.0], weights: [0.15, 0.25, 0.4, 0.2], buyTrigger: 154.0, why: "混合鍵合壟斷優勢，受惠 HBM4 與次世代晶片封裝。" },
+      ADBE: { name: "Adobe Inc.", curr: "$", targets: [165.0, 215.0, 310.0, 410.0], weights: [0.15, 0.3, 0.4, 0.15], buyTrigger: 250.0, why: "市場恐慌 AI 席位衝擊，但高現金流造血與 Firefly 企業壁壘穩固。" }
+    };
+
+    let quotes = {
+      ANET: { price: 186.11, change: "+9.53%", time: "10:27 EST" },
+      BNTX: { price: 88.91, change: "+2.29%", time: "10:24 EST" },
+      BESI: { price: 152.65, change: "-2.21%", time: "16:10 UTC" },
+      ADBE: { price: 254.69, change: "+3.47%", time: "10:27 EST" }
+    };
+
+    function calculateMetrics(ticker, p) {
+      const b = RESEARCH[ticker];
+      const years = 1.158;
+      const rets = b.targets.map(t => ((t / p) - 1) * 100);
+      const weighted = rets.reduce((sum, r, i) => sum + b.weights[i] * r, 0);
+      const ann = (Math.pow(1 + weighted / 100, 1 / years) - 1) * 100;
+
+      let downDisplay = `${rets[0].toFixed(1)}%`;
+      let asym = (rets[3] / Math.abs(rets[0])).toFixed(2);
+      let action = p <= b.buyTrigger ? "SCALE-IN BUY" : "WAIT (等待重審)";
+      let actionColor = p <= b.buyTrigger ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" : "bg-amber-500/20 text-amber-300 border-amber-500/40";
+
+      if (ticker === "BNTX") {
+        const floorDD = ((b.floor / p) - 1) * 100;
+        const doubleUp = ((b.double / p) - 1) * 100;
+        downDisplay = `${floorDD.toFixed(1)}% (清算防線)`;
+        asym = (doubleUp / Math.abs(floorDD)).toFixed(2);
+        action = p <= b.buyTrigger ? "BUY (建立核心)" : "WATCHLIST (等待催化)";
+        actionColor = p <= b.buyTrigger ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" : "bg-purple-500/20 text-purple-300 border-purple-500/40";
+      }
+
+      return { rets, weighted: (weighted >= 0 ? "+" : "") + weighted.toFixed(1) + "%", ann: (ann >= 0 ? "+" : "") + ann.toFixed(1) + "%", downDisplay, asym, action, actionColor };
+    }
+
+    function render() {
+      const container = document.getElementById("cardsContainer");
+      container.innerHTML = "";
+
+      Object.keys(RESEARCH).forEach(tk => {
+        const b = RESEARCH[tk];
+        const q = quotes[tk] || { price: 100, change: "0%", time: "" };
+        const m = calculateMetrics(tk, q.price);
+
+        const card = document.createElement("div");
+        card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm space-y-2.5";
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-base font-bold text-white">${tk}</span>
+              <p class="text-xs text-slate-400 font-medium">${b.name}</p>
+            </div>
+            <div class="text-right">
+              <span class="text-sm font-bold font-mono text-slate-100">${b.curr}${q.price.toFixed(2)}</span>
+              <span class="text-[10px] font-mono block ${q.change.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}">${q.change}</span>
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-300 leading-relaxed bg-slate-950/60 p-2 rounded-xl border border-slate-800/80">${b.why}</p>
+          <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
+            <div class="bg-slate-950/50 p-1 rounded-lg"><span class="text-slate-500 block">年化預期</span><strong class="text-xs font-mono ${m.ann.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}">${m.ann}</strong></div>
+            <div class="bg-slate-950/50 p-1 rounded-lg"><span class="text-slate-500 block">防守下行</span><strong class="text-xs font-mono text-rose-400">${m.downDisplay}</strong></div>
+            <div class="bg-slate-950/50 p-1 rounded-lg"><span class="text-slate-500 block">倍升比率</span><strong class="text-xs font-mono text-emerald-300">${m.asym}x</strong></div>
+          </div>
+          <div class="flex items-center justify-between pt-1 border-t border-slate-800 text-[11px]">
+            <span class="text-slate-400">行動建議：<strong class="px-2 py-0.5 rounded border ${m.actionColor}">${m.action}</strong></span>
+            <span class="text-[10px] text-slate-500 font-mono">${q.time}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    async function fetchLiveQuotes() {
+      const icon = document.getElementById("refreshIcon");
+      const status = document.getElementById("syncStatusText");
+      icon.classList.add("animate-spin");
+      status.textContent = "試算表抓取中...";
+
+      try {
+        const resp = await fetch(CSV_URL + '&t=' + Date.now());
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        const text = await resp.text();
+        const lines = text.split(/\\r?\\n/).filter(l => l.trim().length > 0);
+
+        for (let i = 1; i < lines.length; i++) {
+          const cols = lines[i].split(',').map(s => s.replace(/^"|"$/g, '').trim());
+          if (cols.length >= 2) {
+            const sym = cols[0];
+            const p = parseFloat(cols[1]);
+            const time = cols[2] || '';
+            const prev = parseFloat(cols[4]) || p;
+            const chg = prev > 0 ? (((p - prev) / prev) * 100).toFixed(2) : "0.00";
+            const tk = sym.split(':').pop();
+
+            if (RESEARCH[tk] && !isNaN(p) && p > 0) {
+              quotes[tk] = { price: p, change: (parseFloat(chg) >= 0 ? "+" : "") + chg + "%", time: time };
+            }
+          }
+        }
+
+        const now = new Date().toLocaleTimeString('zh-HK', { hour12: false });
+        status.textContent = `實時已更新 (${now})`;
+        document.getElementById("toast").textContent = `成功更新最新報價 (${now})`;
+        document.getElementById("toast").classList.replace("opacity-0", "opacity-100");
+        setTimeout(() => document.getElementById("toast").classList.replace("opacity-100", "opacity-0"), 2000);
+      } catch (e) {
+        status.textContent = "使用最新盤中快照";
+      } finally {
+        icon.classList.remove("animate-spin");
+        render();
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      render();
+      fetchLiveQuotes();
+    });
+  </script>
+</body>
+</html>
