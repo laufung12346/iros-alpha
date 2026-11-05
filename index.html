@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V3.0 · 21檔機構級全景決策矩陣</title>
+  <title>IROS Alpha V3.1 · 24檔機構級全景決策矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V3.0 雙Sheet實時直通 (21檔核心矩陣)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V3.1 雙Sheet實時直通 (24檔全景矩陣)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -180,7 +180,7 @@
       <div class="space-y-2">
         <div class="flex items-center justify-between text-xs text-slate-400 px-0.5">
           <span class="font-medium text-slate-300">股票機會排序</span>
-          <span id="stockCountBadge" class="text-[11px] text-slate-500">顯示 4 檔核心標的</span>
+          <span id="stockCountBadge" class="text-[11px] text-slate-500">顯示 24 檔核心標的</span>
         </div>
 
         <div class="flex space-x-1.5 overflow-x-auto no-scrollbar py-0.5">
@@ -1597,8 +1597,9 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         
         targets: [
           { name: "Stress (席位侵蝕/算力成本反噬)", prob: 0.15, rev28: "$48.3B", multiple: "11.5x P/FCF", targetPrice: 180.00, why: "企業削減席位但 AI 點數未達預期，AWS 算力費用吞噬利潤，FCF 利率跌破 28%" },
-          { name: "Base (合理基本盤達標)", prob: 0.55, rev28: "$55.4B", multiple: "15.5x P/FCF", targetPrice: 380.00, why: "Agentforce 穩步放量，回購縮減股本至 8.2 億股，FCF 達 202 億，修復至 15.5x" },
-          { name: "Bull (AI代理全面爆發)", prob: 0.30, rev28: "$65.5B", multiple: "20.0x P/FCF", targetPrice: 640.00, why: "AI 消耗計費引發指數級爆發，FCF 利率擴張至 40% (達 262 億)，重獲 20x 溢價" }
+          { name: "Bear (增長放緩/席位收縮)", prob: 0.20, rev28: "$51.0B", multiple: "13.0x P/FCF", targetPrice: 240.00, why: "初級席位流失 15%，消耗點數僅勉強彌補，FCF 利率持平，估值維持 13x" },
+          { name: "Base (合理基本盤達標)", prob: 0.45, rev28: "$55.4B", multiple: "15.5x P/FCF", targetPrice: 380.00, why: "Agentforce 穩步放量，回購縮減股本至 8.2 億股，FCF 達 202 億，修復至 15.5x" },
+          { name: "Bull (AI代理全面爆發)", prob: 0.20, rev28: "$65.5B", multiple: "20.0x P/FCF", targetPrice: 640.00, why: "AI 消耗計費引發指數級爆發，FCF 利率擴張至 40% (達 262 億)，重獲 20x 溢價" }
         ],
         multibaggerConditions: "股價達 $450+ 需要：Agentforce ARR 突破 50 億美元，Data Cloud Zero Copy 採用率破 60%，年度 FCF 突破 220 億美元且 FCF 利潤率維持在 36% 以上。",
         keyFailureRisks: "AI 代理算力成本飆升使 FCF 利潤率跌破 28%；Agentforce ARR 季增率跌破 5%；微軟 Copilot 降價發起價格戰。",
@@ -2415,51 +2416,38 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       let downsideDisplay = "";
       let asymmetryRatio = 1.0;
 
-      if (stockBase.ticker === "BNTX") {
+      const stressScenario = scenarios[0] || { targetPrice: p * 0.7, returnPctNum: -30 };
+      const bullScenario = scenarios[scenarios.length - 1] || { targetPrice: p * 1.5, returnPctNum: 50 };
+      const stressDD = stressScenario.returnPctNum;
+
+      if (stockBase.ticker === "BNTX" && stockBase.liquidationFloorPrice && stockBase.doublingTargetPrice) {
         const floorDD = ((stockBase.liquidationFloorPrice / p) - 1) * 100;
         const doublingUpside = ((stockBase.doublingTargetPrice / p) - 1) * 100;
         downsideDisplay = `${floorDD.toFixed(1)}% (清算防線: $49.5)`;
-        asymmetryRatio = doublingUpside / Math.abs(floorDD);
+        asymmetryRatio = Math.abs(floorDD) > 0 ? (doublingUpside / Math.abs(floorDD)) : 1.0;
       } else {
-        const stressDD = scenarios[0].returnPctNum;
-        downsideDisplay = `${stressDD.toFixed(1)}% (Stress: ${stockBase.currency === 'EUR' ? '€' : '$'}${scenarios[0].targetPrice.toFixed(1)})`;
-        asymmetryRatio = scenarios[3].returnPctNum / Math.abs(stressDD);
+        downsideDisplay = `${stressDD.toFixed(1)}% (Stress: ${stockBase.currency === 'EUR' ? '€' : '$'}${stressScenario.targetPrice.toFixed(1)})`;
+        asymmetryRatio = Math.abs(stressDD) > 0 ? (bullScenario.returnPctNum / Math.abs(stressDD)) : 1.0;
       }
 
-      let dynamicAction = "WAIT (等待重審)";
-      let actionClass = "bg-amber-500/20 text-amber-300 border border-amber-500/40";
+      let dynamicAction = "WAIT (防禦觀望)";
+      let actionClass = "bg-slate-800 text-slate-300 border border-slate-700";
 
-      if (stockBase.ticker === "ANET") {
+      if (stockBase.targetPriceReentryMax) {
         if (p <= stockBase.targetPriceReentryMax) {
-          dynamicAction = "SCALE-IN BUY (分注買入)";
-          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+          if (stockBase.targetPriceReentryMin && p < stockBase.targetPriceReentryMin) {
+            dynamicAction = "DEEP VALUE (低於買入區下緣)";
+            actionClass = "bg-emerald-500/30 text-emerald-200 border border-emerald-400 font-bold";
+          } else {
+            dynamicAction = "SCALE-IN BUY (落入試水買入區)";
+            actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold";
+          }
+        } else if (p <= stockBase.targetPriceReentryMax * 1.06) {
+          dynamicAction = "NEAR ENTRY (逼近買入區間)";
+          actionClass = "bg-amber-500/20 text-amber-300 border border-amber-500/40";
         } else {
-          dynamicAction = "WAIT (開市衝高，嚴禁追買)";
+          dynamicAction = "WAIT (高於安全買入區·防禦)";
           actionClass = "bg-rose-500/20 text-rose-300 border border-rose-500/40";
-        }
-      } else if (stockBase.ticker === "BNTX") {
-        if (p <= stockBase.targetPriceReentryMax) {
-          dynamicAction = "BUY (建立核心部位)";
-          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
-        } else {
-          dynamicAction = "WATCHLIST (等待催化)";
-          actionClass = "bg-purple-500/20 text-purple-300 border border-purple-500/40";
-        }
-      } else if (stockBase.ticker === "BESI") {
-        if (p <= stockBase.targetPriceReentryMax) {
-          dynamicAction = "SCALE-IN BUY (現價分注試倉)";
-          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
-        } else {
-          dynamicAction = "HOLD / WAIT (等待回調)";
-          actionClass = "bg-amber-500/20 text-amber-300 border border-amber-500/40";
-        }
-      } else if (stockBase.ticker === "ADBE") {
-        if (p <= stockBase.targetPriceReentryMax) {
-          dynamicAction = "STAGED-BUY (分批買入)";
-          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
-        } else {
-          dynamicAction = "WAIT (等待回踩)";
-          actionClass = "bg-amber-500/20 text-amber-300 border border-amber-500/40";
         }
       }
 
@@ -2509,8 +2497,8 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         if (currentSort === "priority") return b.priorityScore - a.priorityScore;
         if (currentSort === "asymmetry") return parseFloat(b.asymmetryRatio) - parseFloat(a.asymmetryRatio);
         if (currentSort === "upside") {
-          const upA = a.scenarios[3].returnPctNum;
-          const upB = b.scenarios[3].returnPctNum;
+          const upA = (a.scenarios[a.scenarios.length - 1] || {}).returnPctNum || 0;
+          const upB = (b.scenarios[b.scenarios.length - 1] || {}).returnPctNum || 0;
           return upB - upA;
         }
         if (currentSort === "annual") return parseFloat(b.annualizedReturn) - parseFloat(a.annualizedReturn);
@@ -2795,7 +2783,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         txOutputPreview.textContent = rowTsv;
 
         const totalEst = (qty * price) + fee;
-        const curr = sym.startsWith('AMS:') ? 'EUR' : 'USD';
+        const curr = (sym && sym.startsWith('AMS:')) ? 'EUR' : 'USD';
         txCalcTotal.textContent = `總估算金: ~${curr === 'EUR' ? '€' : '$'}${totalEst.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       }
 
