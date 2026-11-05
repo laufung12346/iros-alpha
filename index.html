@@ -3,175 +3,1427 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha · 私人即時投資決策系統</title>
+  <title>IROS Alpha V1.5 · 真實實時報價連動版</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+              950: '#052e16'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"SF Pro Display"', '"Segoe UI"', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    body { -webkit-font-smoothing: antialiased; padding-bottom: env(safe-area-inset-bottom, 24px); }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body {
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: env(safe-area-inset-bottom, 24px);
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+    .tap-highlight-transparent {
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes flashGreen {
+      0% { background-color: rgba(34, 197, 94, 0.4); }
+      100% { background-color: transparent; }
+    }
+    .price-flash {
+      animation: flashGreen 1.2s ease-out;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen antialiased flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 px-4 py-2.5">
+  <!-- Top Sticky App Bar -->
+  <header class="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 px-4 py-2.5">
     <div class="max-w-2xl mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-2.5">
         <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+          </svg>
         </div>
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">即時連網版</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V1.5 實時直通</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="syncStatusText" class="font-mono text-emerald-300">連線中...</span>
+            <span id="syncStatusText" class="font-mono text-emerald-300">連線就緒</span>
           </p>
         </div>
       </div>
-      <button id="refreshBtn" onclick="fetchLiveQuotes()" class="p-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition active:scale-95 text-xs font-bold flex items-center gap-1.5 shadow-sm">
-        <svg id="refreshIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-        <span>即時更新</span>
+      
+      <!-- Right Controls: Live Sync Trigger & Simulator -->
+      <div class="flex items-center space-x-1.5">
+        <button id="refreshQuotesBtn" class="p-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition active:scale-95 text-xs font-bold flex items-center gap-1.5 shadow-sm tap-highlight-transparent">
+          <svg id="refreshIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          <span>重讀試算表</span>
+        </button>
+
+        <button id="toggleSimulatorBtn" class="p-1.5 px-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition active:scale-95 text-xs flex items-center gap-1 tap-highlight-transparent">
+          <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+          </svg>
+          <span class="text-[11px]">模擬</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-2xl mx-auto mt-2 flex space-x-1 border-t border-slate-800/60 pt-2">
+      <button id="tabDashboard" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-emerald-600 text-white transition tap-highlight-transparent text-center shadow">
+        機會看板
+      </button>
+      <button id="tabPortfolio" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center">
+        💼 實時持倉·雙AI
+      </button>
+      <button id="tabSheetViewer" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center">
+        行情(111檔)
+      </button>
+      <button id="tabPrinciples" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center">
+        決策憲律
       </button>
     </div>
   </header>
 
-  <!-- Live Toast -->
-  <div id="toast" class="fixed top-14 left-1/2 -translate-x-1/2 z-50 bg-slate-900 border border-emerald-500/80 text-emerald-300 px-4 py-1.5 rounded-xl text-xs font-mono shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none">
-    更新成功
+  <!-- Live Toast Notification -->
+  <div id="liveToast" class="fixed top-14 left-1/2 -translate-x-1/2 z-50 bg-slate-900 border border-emerald-500/80 text-emerald-300 px-4 py-2 rounded-xl text-xs font-mono shadow-2xl flex items-center space-x-2 transition-all duration-300 opacity-0 pointer-events-none">
+    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+    <span id="toastMessage">已成功重讀試算表最新數據！</span>
   </div>
 
+  <!-- Main Container -->
   <main class="flex-1 max-w-2xl w-full mx-auto px-4 py-3.5 space-y-3.5">
-    <div id="cardsContainer" class="space-y-3">
-      <!-- Cards rendered here -->
+
+    <!-- REAL-TIME STATUS BAR -->
+    <div class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-950 border border-slate-800 rounded-2xl p-3 shadow-sm flex items-center justify-between text-xs">
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">盤中實時行情</span>
+          <span class="text-[10px] text-slate-500">·</span>
+          <span id="lastUpdatedTimeLabel" class="text-[11px] text-slate-300 font-mono">10:27:06 EST (美股開市中)</span>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-0.5">
+          ANET <strong id="barPriceANET" class="text-white font-mono">$186.11</strong> (+9.53%) · 
+          BNTX <strong id="barPriceBNTX" class="text-white font-mono">$88.91</strong> (+2.29%) · 
+          BESI <strong id="barPriceBESI" class="text-white font-mono">€152.65</strong> (-2.21%)
+        </p>
+      </div>
+      <button id="forceSyncSheetBtn" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-emerald-400 text-[11px] font-semibold border border-slate-700 active:scale-95 transition">
+        即時拉取
+      </button>
     </div>
+
+    <!-- SIMULATOR DRAWER -->
+    <div id="simulatorDrawer" class="hidden bg-slate-900 border border-amber-500/40 rounded-2xl p-3.5 space-y-2.5 shadow-lg shadow-black/40">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <div class="flex items-center space-x-1.5">
+          <span class="text-amber-400 text-xs">⚡</span>
+          <h3 class="text-xs font-bold text-white">價格敏感度試算器 (測試價格如何改變決策)</h3>
+        </div>
+        <button id="resetPricesBtn" class="text-[10px] text-slate-400 hover:text-emerald-400 underline">恢復最新盤中價</button>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-xs font-mono">
+        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+          <span class="text-[10px] text-slate-500 block">ANET (買入線 $160-167)</span>
+          <div class="flex items-center space-x-1 mt-1">
+            <span class="text-slate-400">$</span>
+            <input id="simPriceANET" type="number" step="0.5" class="w-full bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-emerald-400 font-bold focus:outline-none">
+          </div>
+        </div>
+        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+          <span class="text-[10px] text-slate-500 block">BNTX (買入線 $65-70)</span>
+          <div class="flex items-center space-x-1 mt-1">
+            <span class="text-slate-400">$</span>
+            <input id="simPriceBNTX" type="number" step="0.5" class="w-full bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-emerald-400 font-bold focus:outline-none">
+          </div>
+        </div>
+        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+          <span class="text-[10px] text-slate-500 block">BESI (試倉線 €150-154)</span>
+          <div class="flex items-center space-x-1 mt-1">
+            <span class="text-slate-400">€</span>
+            <input id="simPriceBESI" type="number" step="0.5" class="w-full bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-emerald-400 font-bold focus:outline-none">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 1: DASHBOARD & STOCKS -->
+    <section id="viewDashboard" class="space-y-3.5">
+      
+      <!-- Quick Filter & Sorting Controls -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between text-xs text-slate-400 px-0.5">
+          <span class="font-medium text-slate-300">股票機會排序</span>
+          <span id="stockCountBadge" class="text-[11px] text-slate-500">顯示 4 檔核心標的</span>
+        </div>
+
+        <div class="flex space-x-1.5 overflow-x-auto no-scrollbar py-0.5">
+          <button data-filter="all" class="filter-btn active text-xs font-medium px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 whitespace-nowrap tap-highlight-transparent">
+            全部標的
+          </button>
+          <button data-filter="multibagger" class="filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap tap-highlight-transparent">
+            🚀 倍升候選 (1x-10x)
+          </button>
+          <button data-filter="quality" class="filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap tap-highlight-transparent">
+            🛡️ 卓越等待 (等好價)
+          </button>
+          <button data-filter="rerating" class="filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap tap-highlight-transparent">
+            ⚖️ 錯判修復 (被超賣)
+          </button>
+        </div>
+
+        <!-- Sorting Selector -->
+        <div class="flex items-center justify-between bg-slate-900/90 border border-slate-800/80 rounded-xl px-3 py-2 text-xs">
+          <span class="text-slate-400">排序規則：</span>
+          <select id="sortSelector" class="bg-transparent text-emerald-400 font-semibold focus:outline-none cursor-pointer">
+            <option value="priority" class="bg-slate-900 text-slate-200">留意優先指數 (非對稱比 × 錯判差)</option>
+            <option value="asymmetry" class="bg-slate-900 text-slate-200">非對稱賠率比 (上行 ÷ 下行)</option>
+            <option value="upside" class="bg-slate-900 text-slate-200">樂觀倍升潛力 (Bull Upside)</option>
+            <option value="annual" class="bg-slate-900 text-slate-200">年化預期回報 (Annual Return)</option>
+            <option value="expectation" class="bg-slate-900 text-slate-200">市場預期水位 (低至高)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Stock Cards Container -->
+      <div id="stocksContainer" class="space-y-3">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- VIEW 4: SHARED PORTFOLIO & DUAL-AI COLLABORATION -->
+    <section id="viewPortfolio" class="hidden space-y-3.5">
+      <!-- Portfolio Overview Card -->
+      <div class="bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-950 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">SHARED PORTFOLIO V1.0</span>
+              <span class="text-[10px] text-slate-400">雙 AI 共享帳本</span>
+            </div>
+            <h2 class="text-base font-bold text-white mt-1">40 萬美元總資產監控儀表板</h2>
+          </div>
+          <a href="https://docs.google.com/spreadsheets/d/1LDSj8aq7GpuuIX_11HzfoUXvNLAgzKNS1nhi3s2qnnE/edit" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-emerald-400 hover:text-emerald-300 transition text-xs flex items-center gap-1.5 border border-slate-700">
+            <span>開啟 Google 試算表</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </a>
+        </div>
+
+        <!-- 4 Key Capital Figures -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-3.5">
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+            <span class="text-[10px] uppercase font-mono text-slate-400 block">總組合淨值 (Equity)</span>
+            <span class="text-lg font-bold font-mono text-white mt-0.5 block">$400,000.00</span>
+            <span class="text-[10px] text-emerald-400 font-mono">基準資金 100%</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+            <span class="text-[10px] uppercase font-mono text-slate-400 block">可用現金 (Cash USD)</span>
+            <span class="text-lg font-bold font-mono text-emerald-400 mt-0.5 block">$400,000.00</span>
+            <span class="text-[10px] text-slate-400 font-mono">100.0% 待配置</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+            <span class="text-[10px] uppercase font-mono text-slate-400 block">已建倉部位 (Invested)</span>
+            <span class="text-lg font-bold font-mono text-slate-300 mt-0.5 block">$0.00</span>
+            <span class="text-[10px] text-slate-500 font-mono">0 檔持倉 · 等待觸發</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+            <span class="text-[10px] uppercase font-mono text-slate-400 block">峰值水位 (HWM)</span>
+            <span class="text-lg font-bold font-mono text-blue-400 mt-0.5 block">$400,000.00</span>
+            <span class="text-[10px] text-blue-400/80 font-mono">歷史最高水位</span>
+          </div>
+        </div>
+
+        <!-- 30% Max Drawdown Circuit Breaker Bar -->
+        <div class="mt-3.5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30">
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-bold text-amber-200">30% 最大回撤斷路警報閥 (Circuit Breaker)</span>
+            </div>
+            <span class="font-mono text-emerald-300 font-bold">目前處於 100% 安全區</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden flex">
+            <div class="bg-emerald-500 h-2.5 transition-all duration-500" style="width: 100%"></div>
+          </div>
+          <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mt-1.5">
+            <span>強制停損防禦線: <strong class="text-rose-400">$280,000.00</strong> (-30%)</span>
+            <span>安全防守緩衝: <strong class="text-emerald-400">$120,000.00</strong></span>
+            <span>最高容許損失: 30.0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-Time Sizing & Execution Matrix -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3">
+          <div>
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <span>🎯 核心觀察標的·40萬美元倉位建議矩陣</span>
+            </h3>
+            <p class="text-xs text-slate-400">第一階段試水倉嚴格控制在 2.5%–5.0% ($10,000–$20,000)</p>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">連動盤中價</span>
+        </div>
+
+        <div class="space-y-2.5">
+          <!-- BESI (ACTIONABLE NOW) -->
+          <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded-bl">
+              現價進入試水區 (SCALE-IN ZONE)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">AMS:BESI</span>
+                  <span class="text-xs text-slate-300">BE Semiconductor</span>
+                  <span class="text-xs font-mono font-bold text-emerald-400">€152.65</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：混合鍵合 (Hybrid Bonding) 訂單年增兩倍，HBM4/2nm 先進封裝近壟斷
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-emerald-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-emerald-300">3.0% ($12,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">約 72 股 (~€11,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">買入觸發區間</span>
+                <span class="font-mono text-emerald-400">€150.0 – €154.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽出場條件</span>
+                <span class="text-[11px] text-rose-300">HB 訂單連兩季跌 >20%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADBE (ACTIONABLE NOW) -->
+          <div class="p-3 rounded-xl bg-blue-950/30 border border-blue-500/40 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-blue-500 text-white font-bold text-[9px] px-2 py-0.5 rounded-bl">
+              分批低吸底倉 (STAGED-BUY)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:ADBE</span>
+                  <span class="text-xs text-slate-300">Adobe Inc.</span>
+                  <span class="text-xs font-mono font-bold text-blue-400">$254.69</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：P/E 僅 18x 歷史低檔，年造血 FCF $80 億美元，Firefly 企業授權合規優勢
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-blue-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-blue-300">3.0% ($12,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">47 股 ($11,970)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">買入觸發區間</span>
+                <span class="font-mono text-blue-400">$240.0 – $250.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽出場條件</span>
+                <span class="text-[11px] text-rose-300">企業 ARR 連續兩季衰退 >10%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BNTX (WATCHLIST) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:BNTX</span>
+                  <span class="text-xs text-slate-400">BioNTech SE</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$88.91</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">等待回踩</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：每股淨現金約 $68，BNT327 (PD-L1xVEGF) 雙抗潛在百億峰值；年燒錢 €1.5B 需高安全邊際
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-slate-400">0.0% (觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3% ($12,000 / ~170股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">嚴格買入區</span>
+                <span class="font-mono text-amber-400 font-bold">$65.0 – $70.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-400">BNT327 出現致死脫靶毒性</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ANET (WAIT) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:ANET</span>
+                  <span class="text-xs text-slate-400">Arista Networks</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$186.11</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">極度透支·禁買</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  原因：現價透支至 2028 年 34x 估值，雙重打擊壓力價為 $107，絕對禁止高位追高
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (禁買)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區</span>
+                <span class="font-mono text-emerald-400 font-bold">$160.0 – $167.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">壓力回撤點</span>
+                <span class="font-mono text-rose-400">$107.51 (-42%)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">連續兩季毛利率跌破 62%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction Generator Tool -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <div class="border-b border-slate-800 pb-2.5 mb-3">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span>📝 交易記帳生成器 (Transactions Generator)</span>
+          </h3>
+          <p class="text-xs text-slate-400">生成符合試算表標準格式的交易記錄，一鍵複製並直接貼上至 Transactions 表格</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-1">交易股票</label>
+            <select id="txSymbol" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
+              <option value="AMS:BESI" data-price="152.65" data-shares="72">AMS:BESI (72股 / €152.65)</option>
+              <option value="NASDAQ:ADBE" data-price="254.69" data-shares="47">NASDAQ:ADBE (47股 / $254.69)</option>
+              <option value="NASDAQ:BNTX" data-price="88.91" data-shares="135">NASDAQ:BNTX (135股 / $88.91)</option>
+              <option value="NYSE:ANET" data-price="186.11" data-shares="64">NYSE:ANET (64股 / $186.11)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-1">方向 (Side)</label>
+            <select id="txSide" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
+              <option value="BUY">BUY (買入)</option>
+              <option value="SELL">SELL (賣出)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-1">股數 (Quantity)</label>
+            <input type="number" id="txQuantity" value="72" min="1" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
+          </div>
+
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-1">成交價格 (Price USD/EUR)</label>
+            <input type="number" step="0.01" id="txPrice" value="152.65" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
+          </div>
+
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-1">手續費 (Fee USD)</label>
+            <input type="number" step="0.01" id="txFee" value="1.00" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
+          </div>
+
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-1">建議來源 (Source)</label>
+            <select id="txSource" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
+              <option value="GEMINI">GEMINI (雙AI共識)</option>
+              <option value="CHATGPT">CHATGPT</option>
+              <option value="MANUAL">MANUAL (個人自主決策)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-3 p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+            <span class="font-mono text-[10px] uppercase">生成預覽 (複製後直接粘貼到 Transactions!A 欄)</span>
+            <span id="txCalcTotal" class="text-emerald-400 font-mono font-bold">總支出估算: ~$10,991.80</span>
+          </div>
+          <div id="txOutputPreview" class="p-2 bg-slate-900 border border-slate-700 rounded font-mono text-[11px] text-emerald-300 select-all overflow-x-auto whitespace-pre">
+TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
+          </div>
+          <div class="mt-2.5 flex items-center justify-between">
+            <button id="btnCopyTxRow" class="w-full py-2 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30 active:scale-[0.98]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+              <span>複製記錄行 (Copy Row to Clipboard)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dual AI Prompt for ChatGPT Card -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-2.5">
+          <div>
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <span>🤖 雙 AI 協同專用指令 (ChatGPT Prompt)</span>
+            </h3>
+            <p class="text-xs text-slate-400">複製此指令發送給 ChatGPT，確保其與 Gemini 具備完全相同的持倉、規則與風控限制</p>
+          </div>
+          <button id="btnCopyChatGPTPrompt" class="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold">
+            <span>複製指令</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+          </button>
+        </div>
+
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 leading-relaxed max-h-48 overflow-y-auto" id="chatgptPromptText">
+你現在是我的私人獨立投資決策副官。我們共同管理一個起始資金為 400,000 美元的私人證券組合。
+請嚴格遵循以下制度約束：
+1. 【單一真實帳本】：請參照我的 Google 試算表 (ID: 1LDSj8aq7GpuuIX_11HzfoUXvNLAgzKNS1nhi3s2qnnE)。目前初始現金為 $400,000.00 USD，無持倉。
+2. 【30% 最大回撤斷路器】：若組合淨值自歷史最高水位跌幅達到 30%（防禦底線 $280,000），必須立刻停止任何新增買入，啟動防守清算機制。
+3. 【嚴格分批建倉】：單一股票最終持倉上限 10%–15% ($40k–$60k)。第一階段試水買入（Stage 1）上限嚴格鎖定在 2.5%–5% ($10,000–$20,000)。
+4. 【核心跟蹤標的標準】：
+   - AMS:BESI：混合鍵合 (Hybrid Bonding) 壟斷地位，合理試水區間 €150–€154。
+   - NASDAQ:ADBE：P/E 18x 錯判修復，企業 ARR 與 FCF 現金流支撐，合理試水區間 $240–$250。
+   - NASDAQ:BNTX：雙抗 BNT327 百億潛在期權，但年燒錢 €1.5B，嚴格等待回踩 $65–$70 才可買入。
+   - NYSE:ANET：現價 $186+ 極度透支，禁止買入，等待回踩 $160–$167。
+5. 【交易輸出格式】：當你給出買賣建議時，必須同時給出可粘貼至 Transactions 表格 A:H 欄的標準數據格式：[txn_id, timestamp_utc, symbol, side, quantity, price_usd, fee_usd, CHATGPT]。
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: GOOGLE SHEET LIVE DATA VIEWER -->
+    <section id="viewSheetViewer" class="hidden space-y-3.5">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div>
+            <h2 class="text-sm font-bold text-white flex items-center gap-2">
+              <span>Google 試算表即時連線</span>
+              <span id="sheetFetchBadge" class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-mono">連線正常</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">來源表：IROS 報價測試 (共 111 筆即時報價)</p>
+          </div>
+          <a href="https://docs.google.com/spreadsheets/d/1qi22DKG6jvfk0zZ175a8uxLb2_i33PeGwxMDyu8RJZk/edit" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:underline flex items-center gap-1">
+            <span>開啟原表</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </a>
+        </div>
+
+        <div class="mt-3 text-xs text-slate-300 space-y-1.5 leading-relaxed">
+          <p><strong class="text-emerald-300">真實盤中跳動核對：</strong> 系統直接讀取試算表，當前顯示為美股盤中最新撮合數據（ANET: $186.11, BNTX: $88.91, BESI: €152.65）。</p>
+        </div>
+      </div>
+
+      <!-- Quick Search inside Sheet -->
+      <div class="relative">
+        <input id="sheetSearchInput" type="text" placeholder="搜尋 111 檔股票代碼 (如 ANET, BNTX, BESI, NVDA)..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition">
+        <span class="absolute right-3 top-2.5 text-slate-500 text-xs">即時過濾</span>
+      </div>
+
+      <!-- Sheet Table Container -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm">
+        <div class="overflow-x-auto max-h-[500px] no-scrollbar">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead class="sticky top-0 bg-slate-800/90 backdrop-blur text-slate-300 text-[11px] uppercase tracking-wider border-b border-slate-700">
+              <tr>
+                <th class="py-2.5 px-3 font-semibold">代碼</th>
+                <th class="py-2.5 px-3 font-semibold text-right">現價</th>
+                <th class="py-2.5 px-3 font-semibold text-right">前收</th>
+                <th class="py-2.5 px-3 font-semibold text-right">漲跌幅</th>
+                <th class="py-2.5 px-3 font-semibold text-center">幣別</th>
+                <th class="py-2.5 px-3 font-semibold text-right">交易時間 (EST)</th>
+              </tr>
+            </thead>
+            <tbody id="sheetTableBody" class="divide-y divide-slate-800 text-slate-300 font-mono">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: METHODOLOGY -->
+    <section id="viewPrinciples" class="hidden space-y-3.5">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3">
+        <h2 class="text-sm font-bold text-white flex items-center gap-1.5">
+          <span class="text-emerald-400">❖</span>
+          <span>動態連動機制：ANET 升至 $186.11 為何加權回報被壓平？</span>
+        </h2>
+        <div class="text-xs text-slate-300 space-y-2.5 leading-relaxed">
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3 space-y-2">
+            <h3 class="font-bold text-amber-300 text-xs">ANET 價格從 $169.91 跳至 $186.11 的決策連動：</h3>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-slate-300">
+              <li><strong>業務目標固定：</strong> 2028 年目標價格依舊為 Stress $107.51、Bear $163.37、Base $200.17、Bull $272.84。</li>
+              <li><strong>回報率隨現價動態壓縮：</strong>
+                <br>• 樂觀上行 (Bull) 從前收的 +60.6% 壓縮至 <strong>+46.6%</strong>；
+                <br>• 壓力下行 (Stress) 從 -36.7% 擴大至 <strong>-42.2%</strong>；
+                <br>• 加權總回報從 +10.0% 跌落至 <strong class="text-rose-400 font-mono">+0.46%</strong>（接近零回報！）。
+              </li>
+              <li><strong>決策強制阻斷：</strong> 系統行動絕對維持 <code class="text-amber-300 font-bold">WAIT (等待重審)</code>，嚴防追高被套在週期頂部！</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- MODAL: DETAILED SINGLE STOCK DECISION VIEW -->
+  <div id="stockDetailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-t-3xl sm:rounded-2xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-200">
+      
+      <!-- Modal Header -->
+      <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+        <div class="flex items-center space-x-2.5">
+          <button id="closeModalBtn" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition tap-highlight-transparent">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span id="modalTicker" class="text-base font-bold text-white">TICKER</span>
+              <span id="modalCategoryBadge" class="text-[10px] px-2 py-0.5 rounded-full font-bold">Category</span>
+            </div>
+            <p id="modalName" class="text-xs text-slate-400">Company Full Name</p>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <div id="modalPrice" class="text-base font-bold text-emerald-400 font-mono">$0.00</div>
+          <div id="modalChange" class="text-[10px] text-slate-400 font-mono">+0.00%</div>
+        </div>
+      </div>
+
+      <!-- Modal Scrollable Body -->
+      <div id="modalContent" class="overflow-y-auto p-4 space-y-3.5 no-scrollbar text-xs">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+
+      <!-- Modal Bottom Action Bar -->
+      <div class="p-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] text-slate-500 uppercase tracking-wider block">當前連動行動</span>
+          <span id="modalBottomAction" class="text-xs font-bold text-emerald-400">WAIT / WATCHLIST</span>
+        </div>
+        <button id="modalActionClose" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold transition tap-highlight-transparent">
+          返回看板
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Application Logic -->
   <script>
+    // --- 1. BASELINE IMMUTABLE RESEARCH & TARGETS ---
+    const RESEARCH_DATABASE = {
+      ANET: {
+        ticker: "ANET",
+        name: "Arista Networks, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-04",
+        category: "quality",
+        categoryLabel: "🛡️ 卓越等待",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 160.0,
+        targetPriceReentryMax: 167.0,
+        
+        marketExpectationScore: 4.8,
+        marketExpectationLabel: "極度透支 (4.8 / 5)",
+        marketExpectationWhy: "現價大漲至 $186+！不僅透支 2027 年 185 億美元營收指引，更要求 2028 年後仍維持 34x 歷史最高估值倍數。容錯空間為零。",
+        businessPathAndMispricing: "最可能路徑：超大雲端客戶 (Meta/MSFT) 加速部署 1.6T 交換機，以 UEC 乙太網替代 InfiniBand。市場盲點：只見 AI 硬體爆發，忽視資本支出週期過峰後『業務達標但殺估值』(倍數由 34x 降至 24x 虧損達 12%) 的收縮風險。",
+        
+        targets: [
+          { name: "A. 雙重打擊 (Stress)", prob: 0.20, rev28: "$18.0B", multiple: "22x", targetPrice: 107.51, why: "雲端支出放緩，Scale-up 未放量，光學成本侵蝕毛利" },
+          { name: "B. 價值陷阱 (Bear)", prob: 0.25, rev28: "$22.6B", multiple: "24x", targetPrice: 163.37, why: "營收如期達標，但成長退坡使估值倍數回歸歷史均值 24x" },
+          { name: "C. 合理延續 (Base)", prob: 0.35, rev28: "$22.6B", multiple: "30x", targetPrice: 200.17, why: "AI 網路高景氣延續，市場維持 30x 溢價" },
+          { name: "D. 顛覆超前 (Bull)", prob: 0.20, rev28: "$26.6B", multiple: "34x", targetPrice: 272.84, why: "Scale-up 成功跨入 GPU 機架互聯，全面超預期" }
+        ],
+        multibaggerConditions: "倍升需要 2028 年營收突破 300 億美元，且成功侵入 Nvidia NVLink 的伺服器內部 Scale-up 領地，營收佔比達 20% 以上。",
+        keyFailureRisks: "微軟推動開源 SONiC 白盒化；兩大客戶集中度逾 42%；光學與 CPO 過渡期毛利跌破 62%。",
+        falsificationTriggers: "若股價跌至 $164 且營收動能無虞則觸發 SCALE-IN BUY；若連續兩季毛利率跌破 62% 則徹底下調評級。"
+      },
+
+      BNTX: {
+        ticker: "BNTX",
+        name: "BioNTech SE",
+        currency: "USD",
+        researchDate: "2026-11-04",
+        category: "multibagger",
+        categoryLabel: "🚀 倍升候選",
+        researchPriority: "TOP PRIORITY (最高優先)",
+        targetPriceReentryMin: 65.0,
+        targetPriceReentryMax: 70.0,
+        
+        marketExpectationScore: 2.6,
+        marketExpectationLabel: "悲觀冷落 (2.6 / 5)",
+        marketExpectationWhy: "現價扣除每股淨現金約 $68 後，市場給予其全套雙抗 (BNT327)、CTLA-4 (Gotistobart)、ADC 及 AI/mRNA 平台的 Enterprise Value 僅約 52 億美元 ($21/股)。",
+        businessPathAndMispricing: "最可能路徑：BNT327 (PD-L1xVEGF) 在三陰性乳癌與小細胞肺癌複製突破性數據，轉型為多產品腫瘤巨頭。市場錯判：將全公司 €2B 研發成本全額扣除，卻因早期資產未確定而直接將創新終值歸零。",
+        
+        targets: [
+          { name: "Stress (失控持續燒錢)", prob: 0.15, rev28: "無新藥", multiple: "清算", targetPrice: 21.77, why: "管線全軍覆沒，且管理層拒絕止血持續燒錢至 2031 年發股" },
+          { name: "Bear (僅SCLC獲批)", prob: 0.30, rev28: "€0.08B", multiple: "15x", targetPrice: 33.13, why: "僅一項小適應症通過，研發持續消耗現金儲備" },
+          { name: "Base (327達標+平台)", prob: 0.40, rev28: "€2.24B", multiple: "25x", targetPrice: 82.14, why: "肺癌與乳癌放量，加計 15 年合理平台年金增量 (€4.5B / $20.5/ADS)" },
+          { name: "Bull (百億峰值霸主)", prob: 0.15, rev28: "€4.07B", multiple: "30x", targetPrice: 115.86, why: "BNT327 成一線基石，ADC 順利商業化，AI 平台釋放協同" }
+        ],
+        liquidationFloorPrice: 49.51,
+        doublingTargetPrice: 173.84,
+        multibaggerConditions: "股價翻倍 ($173.84) 需要 BNT327 在全球肺癌一線展現優於 Keytruda 的隨機對照總生存期 (OS) 獲益，峰值銷售突破 140 億歐元，且公司年營運 FCF 轉正達到 15-20 億歐元。",
+        keyFailureRisks: "早期高 ORR (70%+) 無法轉化為隨機生存利益；每年淨燒錢 €1.5B–€1.8B 侵蝕現金護城河；雙抗出現嚴重肺出血或 ILD 脫靶毒性。",
+        falsificationTriggers: "若跌至 $68 觸發買入評估；若 BNT327 出現致死性脫靶毒性或遭 FDA 叫停，立即徹底剔除名單。"
+      },
+
+      BESI: {
+        ticker: "BESI",
+        name: "BE Semiconductor Industries N.V.",
+        currency: "EUR",
+        researchDate: "2026-11-04",
+        category: "multibagger",
+        categoryLabel: "🚀 倍升候選",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 150.0,
+        targetPriceReentryMax: 154.0,
+        
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "溫和樂觀 (3.5 / 5)",
+        marketExpectationWhy: "現價反映混合鍵合在先進封裝中的龍頭地位，但對主流晶粒接合傳統週期的復甦節奏存在疑慮，估值倍數處於歷史中位數 (P/E ~37x)。",
+        businessPathAndMispricing: "最可能路徑：2026 年前九個月 Hybrid Bonding 訂單已達 2025 全年兩倍，客戶數擴展至 23 家。隨著 HBM4 與 2nm/A16 晶片全面導入微米級晶圓對晶圓/晶粒對晶圓互連，BESI 幾乎享有 80%+ 的準壟斷市場。市場錯判：將其視為傳統週期硬體廠，低估了專利耗材與服務收入的經常性結構提升。",
+        
+        targets: [
+          { name: "Stress (技術推遲/競爭)", prob: 0.15, rev28: "€0.80B", multiple: "20x", targetPrice: 85.00, why: "晶圓廠延後 3D 堆疊進程，競品進入搶佔中階市場" },
+          { name: "Bear (週期緩慢復甦)", prob: 0.25, rev28: "€1.10B", multiple: "28x", targetPrice: 125.00, why: "主流封裝平淡，Hybrid Bonding 僅限頂級伺服器晶片" },
+          { name: "Base (HBM4全面爆發)", prob: 0.40, rev28: "€1.60B", multiple: "35x", targetPrice: 195.00, why: "臺積電/英特爾擴產，HB 出貨量突破每年 150 台" },
+          { name: "Bull (先進封裝大標準)", prob: 0.20, rev28: "€2.20B", multiple: "42x", targetPrice: 290.00, why: "次世代旗艦手機與 AI 加速器全面標配，毛利突破 66%" }
+        ],
+        multibaggerConditions: "5 倍至 10 倍潛力需要：Hybrid Bonding 走出頂級 AI 晶片圈，向下滲透至主流智慧型手機 AP 與車用晶片，市場規模擴大 5 倍以上，BESI 淨利突破 10 億歐元。",
+        keyFailureRisks: "ASMI 或 Kulicke & Soffa 等競爭者突破專利壁壘推出低價替代方案；半導體先進製程資本支出因總經衰退而急凍。",
+        falsificationTriggers: "季度 Hybrid Bonding 新增訂單連續兩季下滑超過 20% 則暫停加碼。"
+      },
+
+      ADBE: {
+        ticker: "ADBE",
+        name: "Adobe Inc.",
+        currency: "USD",
+        researchDate: "2026-11-04",
+        category: "rerating",
+        categoryLabel: "⚖️ 錯判修復",
+        researchPriority: "MEDIUM (中度研究)",
+        targetPriceReentryMin: 240.0,
+        targetPriceReentryMax: 250.0,
+        
+        marketExpectationScore: 2.1,
+        marketExpectationLabel: "極度悲觀 (2.1 / 5)",
+        marketExpectationWhy: "市場極度恐慌生成式 AI 顛覆創意軟體席位，本益比仍處於 18x 歷史低檔。",
+        businessPathAndMispricing: "最可能路徑：Firefly 商業安全授權成為大型企業唯一合規標配，企業工作流整合黏著度極高。市場錯判：將消費級生圖工具與專業端混為一談，忽略了每年近 80 億美元的自由現金流造血能力與積極庫藏股回購。",
+        
+        targets: [
+          { name: "Stress (席位永久侵蝕)", prob: 0.15, rev28: "$22.0B", multiple: "14x", targetPrice: 165.00, why: "低階設計師席位流失 25%，定價被迫大幅折扣" },
+          { name: "Bear (微幅增長無溢價)", prob: 0.30, rev28: "$24.5B", multiple: "17x", targetPrice: 215.00, why: "收入維持 5-7% 增長，但市場不再給予軟體溢價" },
+          { name: "Base (企業工作流穩固)", prob: 0.40, rev28: "$27.5B", multiple: "24x", targetPrice: 310.00, why: "Firefly 企業版變現順利，毛利維持 88%，回購支撐 EPS" },
+          { name: "Bull (AI創作核心中樞)", prob: 0.15, rev28: "$31.0B", multiple: "28x", targetPrice: 410.00, why: "3D、影片生成全面商業化，企業訂閱 ARPU 提升 20%" }
+        ],
+        multibaggerConditions: "Adobe 具備 1 倍（翻倍至 $500）的修復潛力：需要企業 Creative Cloud ARPU 恢復兩位數增長，且大額現金流持續註銷 5% 流通股數。",
+        keyFailureRisks: "開放模型開源影片生成工具達到廣播級水準，且使用者介面門檻降至零，使 Adobe 工作流被徹底繞過。",
+        falsificationTriggers: "若企業端淨新增 ARR 連續兩季衰退超過 10% 則停損退出。"
+      }
+    };
+
+    // --- 2. CURRENT IN-MEMORY QUOTES (Initial state: 10:27 EST Live Snapshot) ---
+    let currentQuotes = {
+      ANET: { symbol: "NYSE:ANET", price: 186.11, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "2026-11-04 10:27:06 EST" },
+      BNTX: { symbol: "NASDAQ:BNTX", price: 88.91, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "2026-11-04 10:24:46 EST" },
+      BESI: { symbol: "AMS:BESI", price: 152.65, prevClose: 156.10, change: "-2.21%", currency: "EUR", time: "2026-11-04 16:10:06 UTC" },
+      ADBE: { symbol: "NASDAQ:ADBE", price: 254.69, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
+    };
+
+    let allSheetRows = [
+      { symbol: "NYSE:ANET", price: 186.11, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "10:27 EST" },
+      { symbol: "NASDAQ:BNTX", price: 88.91, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "10:24 EST" },
+      { symbol: "AMS:BESI", price: 152.65, prevClose: 156.10, change: "-2.21%", currency: "EUR", time: "16:10 UTC" },
+      { symbol: "NASDAQ:ADBE", price: 254.69, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "10:27 EST" },
+      { symbol: "NYSE:ACN", price: 263.65, prevClose: 254.48, change: "+3.60%", currency: "USD", time: "10:26 EST" },
+      { symbol: "NASDAQ:NVDA", price: 204.32, prevClose: 206.69, change: "-1.15%", currency: "USD", time: "10:27 EST" },
+      { symbol: "NASDAQ:MSFT", price: 553.78, prevClose: 520.99, change: "+6.29%", currency: "USD", time: "10:27 EST" },
+      { symbol: "NASDAQ:AMZN", price: 269.45, prevClose: 250.69, change: "+7.48%", currency: "USD", time: "10:24 EST" },
+      { symbol: "NASDAQ:META", price: 631.79, prevClose: 621.03, change: "+1.73%", currency: "USD", time: "10:24 EST" },
+      { symbol: "NASDAQ:AMD", price: 489.63, prevClose: 483.90, change: "+1.18%", currency: "USD", time: "10:25 EST" },
+      { symbol: "NYSE:TSM", price: 402.63, prevClose: 404.76, change: "-0.53%", currency: "USD", time: "10:26 EST" },
+      { symbol: "NASDAQ:ASML", price: 1511.85, prevClose: 1552.14, change: "-2.59%", currency: "USD", time: "10:24 EST" }
+    ];
+
+    // --- 3. GOOGLE VISUALIZATION JSONP 直連引擎 (CORS 免死金牌) ---
     const SHEET_ID = '1qi22DKG6jvfk0zZ175a8uxLb2_i33PeGwxMDyu8RJZk';
-    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('報價全表')}`;
-
-    const RESEARCH = {
-      ANET: { name: "Arista Networks", curr: "$", targets: [107.51, 163.37, 200.17, 272.84], weights: [0.2, 0.25, 0.35, 0.2], buyTrigger: 167.0, why: "超大雲端客戶部署 1.6T 乙太網替代 InfiniBand，但需防週期殺估值。" },
-      BNTX: { name: "BioNTech SE", curr: "$", targets: [21.77, 33.13, 82.14, 115.86], weights: [0.15, 0.3, 0.4, 0.15], floor: 49.51, double: 173.84, buyTrigger: 70.0, why: "手握百億現金防守，雙抗進入 P3，等待極端錯判折價。" },
-      BESI: { name: "BE Semiconductor", curr: "€", targets: [85.0, 125.0, 195.0, 290.0], weights: [0.15, 0.25, 0.4, 0.2], buyTrigger: 154.0, why: "混合鍵合壟斷優勢，受惠 HBM4 與次世代晶片封裝。" },
-      ADBE: { name: "Adobe Inc.", curr: "$", targets: [165.0, 215.0, 310.0, 410.0], weights: [0.15, 0.3, 0.4, 0.15], buyTrigger: 250.0, why: "市場恐慌 AI 席位衝擊，但高現金流造血與 Firefly 企業壁壘穩固。" }
+    
+    // Global JSONP Response Handlers
+    window.handleSheetJSONP = function(json) {
+      if (!json || json.status !== 'ok' || !json.table || !json.table.rows) {
+        showToast("試算表回傳格式錯誤，保留當前報價", "error");
+        return;
+      }
+      parseGVizTable(json.table);
     };
 
-    let quotes = {
-      ANET: { price: 186.11, change: "+9.53%", time: "10:27 EST" },
-      BNTX: { price: 88.91, change: "+2.29%", time: "10:24 EST" },
-      BESI: { price: 152.65, change: "-2.21%", time: "16:10 UTC" },
-      ADBE: { price: 254.69, change: "+3.47%", time: "10:27 EST" }
+    // Google default fallback handler
+    window.google = window.google || {};
+    window.google.visualization = window.google.visualization || {};
+    window.google.visualization.Query = window.google.visualization.Query || {};
+    window.google.visualization.Query.setResponse = function(json) {
+      window.handleSheetJSONP(json);
     };
 
-    function calculateMetrics(ticker, p) {
-      const b = RESEARCH[ticker];
-      const years = 1.158;
-      const rets = b.targets.map(t => ((t / p) - 1) * 100);
-      const weighted = rets.reduce((sum, r, i) => sum + b.weights[i] * r, 0);
-      const ann = (Math.pow(1 + weighted / 100, 1 / years) - 1) * 100;
+    function parseGVizTable(table) {
+      const rows = table.rows;
+      const parsedRows = [];
+      let updatedCount = 0;
 
-      let downDisplay = `${rets[0].toFixed(1)}%`;
-      let asym = (rets[3] / Math.abs(rets[0])).toFixed(2);
-      let action = p <= b.buyTrigger ? "SCALE-IN BUY" : "WAIT (等待重審)";
-      let actionColor = p <= b.buyTrigger ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" : "bg-amber-500/20 text-amber-300 border-amber-500/40";
+      rows.forEach(r => {
+        if (!r.c || r.c.length < 2) return;
+        const sym = r.c[0] ? String(r.c[0].v || '').trim() : '';
+        const p = r.c[1] ? parseFloat(r.c[1].v) : NaN;
+        const time = r.c[2] ? String(r.c[2].v || '').trim() : '';
+        const prev = r.c[4] ? parseFloat(r.c[4].v) : p;
+        const curr = r.c[5] ? String(r.c[5].v || '').trim() : 'USD';
 
-      if (ticker === "BNTX") {
-        const floorDD = ((b.floor / p) - 1) * 100;
-        const doubleUp = ((b.double / p) - 1) * 100;
-        downDisplay = `${floorDD.toFixed(1)}% (清算防線)`;
-        asym = (doubleUp / Math.abs(floorDD)).toFixed(2);
-        action = p <= b.buyTrigger ? "BUY (建立核心)" : "WATCHLIST (等待催化)";
-        actionColor = p <= b.buyTrigger ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" : "bg-purple-500/20 text-purple-300 border-purple-500/40";
+        if (!sym || isNaN(p) || p <= 0) return;
+
+        const chg = prev > 0 ? (((p - prev) / prev) * 100).toFixed(2) : "0.00";
+        parsedRows.push({
+          symbol: sym,
+          price: p,
+          prevClose: prev,
+          change: (parseFloat(chg) >= 0 ? "+" : "") + chg + "%",
+          currency: curr,
+          time: time
+        });
+
+        const ticker = sym.split(':').pop();
+        if (RESEARCH_DATABASE[ticker]) {
+          currentQuotes[ticker] = {
+            symbol: sym,
+            price: p,
+            prevClose: prev,
+            change: (parseFloat(chg) >= 0 ? "+" : "") + chg + "%",
+            currency: curr,
+            time: time || new Date().toLocaleTimeString()
+          };
+          updatedCount++;
+        }
+      });
+
+      if (parsedRows.length > 0) {
+        allSheetRows = parsedRows;
       }
 
-      return { rets, weighted: (weighted >= 0 ? "+" : "") + weighted.toFixed(1) + "%", ann: (ann >= 0 ? "+" : "") + ann.toFixed(1) + "%", downDisplay, asym, action, actionColor };
+      // Update Top Status Bar
+      document.getElementById("syncDot").className = "inline-block w-2 h-2 rounded-full bg-emerald-400";
+      const nowStr = new Date().toLocaleTimeString('zh-HK', { hour12: false });
+      document.getElementById("syncStatusText").textContent = `實時連線正常 (${nowStr}) · 111檔`;
+      document.getElementById("lastUpdatedTimeLabel").textContent = `${nowStr} 實時已同步`;
+      document.getElementById("sheetFetchBadge").textContent = `實時直通成功 (${nowStr})`;
+
+      updateQuickBar();
+      renderStockCards();
+      renderSheetTable();
+
+      showToast(`成功讀取試算表！ANET: $${currentQuotes.ANET.price.toFixed(2)} | BNTX: $${currentQuotes.BNTX.price.toFixed(2)}`);
     }
 
-    function render() {
-      const container = document.getElementById("cardsContainer");
+    function triggerLiveJSONPFetch() {
+      const icon = document.getElementById("refreshIcon");
+      icon.classList.add("animate-spin");
+      document.getElementById("syncStatusText").textContent = "正在連線 Google 試算表...";
+
+      // Remove existing script tag if any
+      const oldScript = document.getElementById("gviz-script-tag");
+      if (oldScript) oldScript.remove();
+
+      // JSONP bypasses CORS completely!
+      const script = document.createElement("script");
+      script.id = "gviz-script-tag";
+      const nocache = Date.now();
+      script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=responseHandler:handleSheetJSONP&sheet=${encodeURIComponent('報價全表')}&t=${nocache}`;
+      
+      script.onerror = function() {
+        console.warn("JSONP script failed, attempting fetch API fallback...");
+        fallbackFetchAPI();
+      };
+
+      document.head.appendChild(script);
+
+      setTimeout(() => {
+        icon.classList.remove("animate-spin");
+      }, 1000);
+    }
+
+    // Fallback Fetch
+    async function fallbackFetchAPI() {
+      try {
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('報價全表')}&t=${Date.now()}`;
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error("Fetch failed");
+        const text = await resp.text();
+        const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+        
+        for (let i = 1; i < lines.length; i++) {
+          const parts = lines[i].split(',').map(s => s.replace(/^"|"$/g, '').trim());
+          if (parts.length >= 2) {
+            const sym = parts[0];
+            const p = parseFloat(parts[1]);
+            const ticker = sym.split(':').pop();
+            if (RESEARCH_DATABASE[ticker] && !isNaN(p) && p > 0) {
+              currentQuotes[ticker].price = p;
+            }
+          }
+        }
+        updateQuickBar();
+        renderStockCards();
+        renderSheetTable();
+        showToast("已由備用通道更新試算表數據！");
+      } catch (e) {
+        showToast("跨域請求受限，已使用最新盤中快照", "warn");
+      }
+    }
+
+    function updateQuickBar() {
+      if (currentQuotes.ANET) document.getElementById("barPriceANET").textContent = `$${currentQuotes.ANET.price.toFixed(2)}`;
+      if (currentQuotes.BNTX) document.getElementById("barPriceBNTX").textContent = `$${currentQuotes.BNTX.price.toFixed(2)}`;
+      if (currentQuotes.BESI) document.getElementById("barPriceBESI").textContent = `€${currentQuotes.BESI.price.toFixed(2)}`;
+    }
+
+    function showToast(msg, type = "success") {
+      const toast = document.getElementById("liveToast");
+      const text = document.getElementById("toastMessage");
+      text.textContent = msg;
+      
+      if (type === "warn" || type === "error") {
+        toast.className = "fixed top-14 left-1/2 -translate-x-1/2 z-50 bg-slate-900 border border-amber-500/80 text-amber-300 px-4 py-2 rounded-xl text-xs font-mono shadow-2xl flex items-center space-x-2 transition-all duration-300 opacity-100";
+      } else {
+        toast.className = "fixed top-14 left-1/2 -translate-x-1/2 z-50 bg-slate-900 border border-emerald-500/80 text-emerald-300 px-4 py-2 rounded-xl text-xs font-mono shadow-2xl flex items-center space-x-2 transition-all duration-300 opacity-100";
+      }
+
+      setTimeout(() => {
+        toast.classList.replace("opacity-100", "opacity-0");
+      }, 2500);
+    }
+
+    // --- 4. DYNAMIC RECALCULATION ENGINE ---
+    function calculateDynamicMetrics(stockBase, currentPrice) {
+      const p = currentPrice;
+      const years = 1.158;
+
+      const scenarios = stockBase.targets.map(sc => {
+        const retPct = ((sc.targetPrice / p) - 1) * 100;
+        return {
+          ...sc,
+          price: sc.targetPrice,
+          returnPctNum: retPct,
+          returnPct: (retPct >= 0 ? "+" : "") + retPct.toFixed(1) + "%"
+        };
+      });
+
+      const weightedReturnNum = scenarios.reduce((sum, sc) => sum + sc.prob * sc.returnPctNum, 0);
+      const annualizedReturnNum = (Math.pow(1 + weightedReturnNum / 100, 1 / years) - 1) * 100;
+
+      let downsideDisplay = "";
+      let asymmetryRatio = 1.0;
+
+      if (stockBase.ticker === "BNTX") {
+        const floorDD = ((stockBase.liquidationFloorPrice / p) - 1) * 100;
+        const doublingUpside = ((stockBase.doublingTargetPrice / p) - 1) * 100;
+        downsideDisplay = `${floorDD.toFixed(1)}% (清算防線: $49.5)`;
+        asymmetryRatio = doublingUpside / Math.abs(floorDD);
+      } else {
+        const stressDD = scenarios[0].returnPctNum;
+        downsideDisplay = `${stressDD.toFixed(1)}% (Stress: ${stockBase.currency === 'EUR' ? '€' : '$'}${scenarios[0].targetPrice.toFixed(1)})`;
+        asymmetryRatio = scenarios[3].returnPctNum / Math.abs(stressDD);
+      }
+
+      let dynamicAction = "WAIT (等待重審)";
+      let actionClass = "bg-amber-500/20 text-amber-300 border border-amber-500/40";
+
+      if (stockBase.ticker === "ANET") {
+        if (p <= stockBase.targetPriceReentryMax) {
+          dynamicAction = "SCALE-IN BUY (分注買入)";
+          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+        } else {
+          dynamicAction = "WAIT (開市衝高，嚴禁追買)";
+          actionClass = "bg-rose-500/20 text-rose-300 border border-rose-500/40";
+        }
+      } else if (stockBase.ticker === "BNTX") {
+        if (p <= stockBase.targetPriceReentryMax) {
+          dynamicAction = "BUY (建立核心部位)";
+          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+        } else {
+          dynamicAction = "WATCHLIST (等待催化)";
+          actionClass = "bg-purple-500/20 text-purple-300 border border-purple-500/40";
+        }
+      } else if (stockBase.ticker === "BESI") {
+        if (p <= stockBase.targetPriceReentryMax) {
+          dynamicAction = "SCALE-IN BUY (現價分注試倉)";
+          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+        } else {
+          dynamicAction = "HOLD / WAIT (等待回調)";
+          actionClass = "bg-amber-500/20 text-amber-300 border border-amber-500/40";
+        }
+      } else if (stockBase.ticker === "ADBE") {
+        if (p <= stockBase.targetPriceReentryMax) {
+          dynamicAction = "STAGED-BUY (分批買入)";
+          actionClass = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+        } else {
+          dynamicAction = "WAIT (等待回踩)";
+          actionClass = "bg-amber-500/20 text-amber-300 border border-amber-500/40";
+        }
+      }
+
+      const priorityScore = Math.round(asymmetryRatio * 35 + (weightedReturnNum > 0 ? weightedReturnNum : 0) * 0.5);
+
+      return {
+        price: p,
+        scenarios,
+        weightedReturn: (weightedReturnNum >= 0 ? "+" : "") + weightedReturnNum.toFixed(2) + "%",
+        annualizedReturn: (annualizedReturnNum >= 0 ? "+" : "") + annualizedReturnNum.toFixed(2) + "%",
+        downsideDisplay,
+        asymmetryRatio: asymmetryRatio.toFixed(2),
+        dynamicAction,
+        actionClass,
+        priorityScore
+      };
+    }
+
+    // --- 5. UI STATE & RENDERING ---
+    let currentFilter = "all";
+    let currentSort = "priority";
+
+    function getCombinedStockData() {
+      return Object.keys(RESEARCH_DATABASE).map(ticker => {
+        const base = RESEARCH_DATABASE[ticker];
+        const quote = currentQuotes[ticker] || { price: 100.0, change: "+0.00%", time: "未知" };
+        const calc = calculateDynamicMetrics(base, quote.price);
+        return {
+          ...base,
+          ...quote,
+          ...calc
+        };
+      });
+    }
+
+    function renderStockCards() {
+      const container = document.getElementById("stocksContainer");
       container.innerHTML = "";
 
-      Object.keys(RESEARCH).forEach(tk => {
-        const b = RESEARCH[tk];
-        const q = quotes[tk] || { price: 100, change: "0%", time: "" };
-        const m = calculateMetrics(tk, q.price);
+      let stocks = getCombinedStockData();
 
+      if (currentFilter !== "all") {
+        stocks = stocks.filter(s => s.category === currentFilter);
+      }
+
+      stocks.sort((a, b) => {
+        if (currentSort === "priority") return b.priorityScore - a.priorityScore;
+        if (currentSort === "asymmetry") return parseFloat(b.asymmetryRatio) - parseFloat(a.asymmetryRatio);
+        if (currentSort === "upside") {
+          const upA = a.scenarios[3].returnPctNum;
+          const upB = b.scenarios[3].returnPctNum;
+          return upB - upA;
+        }
+        if (currentSort === "annual") return parseFloat(b.annualizedReturn) - parseFloat(a.annualizedReturn);
+        if (currentSort === "expectation") return a.marketExpectationScore - b.marketExpectationScore;
+        return 0;
+      });
+
+      document.getElementById("stockCountBadge").textContent = `顯示 ${stocks.length} 檔核心標的`;
+
+      stocks.forEach(stock => {
         const card = document.createElement("div");
-        card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm space-y-2.5";
+        card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-4 transition active:scale-[0.99] hover:border-slate-700 cursor-pointer shadow-sm relative overflow-hidden tap-highlight-transparent";
+        
+        let expBg = "bg-slate-800 text-slate-300";
+        if (stock.marketExpectationScore >= 4.0) expBg = "bg-rose-500/15 text-rose-300 border border-rose-500/30";
+        else if (stock.marketExpectationScore <= 2.5) expBg = "bg-amber-500/15 text-amber-300 border border-amber-500/30";
+        else expBg = "bg-blue-500/15 text-blue-300 border border-blue-500/30";
+
         card.innerHTML = `
           <div class="flex items-start justify-between">
-            <div>
-              <span class="text-base font-bold text-white">${tk}</span>
-              <p class="text-xs text-slate-400 font-medium">${b.name}</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-base font-bold text-white tracking-tight">${stock.ticker}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full font-bold ${expBg}">${stock.marketExpectationLabel}</span>
             </div>
             <div class="text-right">
-              <span class="text-sm font-bold font-mono text-slate-100">${b.curr}${q.price.toFixed(2)}</span>
-              <span class="text-[10px] font-mono block ${q.change.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}">${q.change}</span>
+              <span class="text-sm font-bold font-mono text-slate-100 price-flash">${stock.currency === 'EUR' ? '€' : '$'}${stock.price.toFixed(2)}</span>
+              <span class="text-[10px] font-mono block ${stock.change.startsWith('+') ? 'text-emerald-400' : stock.change.startsWith('-') ? 'text-rose-400' : 'text-slate-400'}">${stock.change}</span>
             </div>
           </div>
-          <p class="text-[11px] text-slate-300 leading-relaxed bg-slate-950/60 p-2 rounded-xl border border-slate-800/80">${b.why}</p>
-          <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
-            <div class="bg-slate-950/50 p-1 rounded-lg"><span class="text-slate-500 block">年化預期</span><strong class="text-xs font-mono ${m.ann.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}">${m.ann}</strong></div>
-            <div class="bg-slate-950/50 p-1 rounded-lg"><span class="text-slate-500 block">防守下行</span><strong class="text-xs font-mono text-rose-400">${m.downDisplay}</strong></div>
-            <div class="bg-slate-950/50 p-1 rounded-lg"><span class="text-slate-500 block">倍升比率</span><strong class="text-xs font-mono text-emerald-300">${m.asym}x</strong></div>
+
+          <p class="text-xs text-slate-400 mt-0.5 font-medium line-clamp-1">${stock.name}</p>
+
+          <div class="mt-2 bg-slate-950/60 rounded-xl p-2.5 border border-slate-800/80">
+            <div class="flex items-center justify-between text-[11px] mb-1">
+              <span class="text-slate-400">市場錯判核心：</span>
+              <span class="text-emerald-400 font-semibold">${stock.categoryLabel}</span>
+            </div>
+            <p class="text-xs text-slate-200 line-clamp-2 leading-relaxed">
+              ${stock.businessPathAndMispricing}
+            </p>
           </div>
-          <div class="flex items-center justify-between pt-1 border-t border-slate-800 text-[11px]">
-            <span class="text-slate-400">行動建議：<strong class="px-2 py-0.5 rounded border ${m.actionColor}">${m.action}</strong></span>
-            <span class="text-[10px] text-slate-500 font-mono">${q.time}</span>
+
+          <div class="grid grid-cols-3 gap-2 mt-2.5 pt-2 border-t border-slate-800/80 text-center">
+            <div class="bg-slate-950/40 rounded-lg py-1 px-1">
+              <span class="text-[10px] text-slate-500 block">年化預期 (實時)</span>
+              <span class="text-xs font-bold font-mono ${stock.annualizedReturn.startsWith('+') ? 'text-emerald-400' : 'text-slate-400'}">${stock.annualizedReturn}</span>
+            </div>
+            <div class="bg-slate-950/40 rounded-lg py-1 px-1">
+              <span class="text-[10px] text-slate-500 block">防守下行 (實時)</span>
+              <span class="text-xs font-bold font-mono text-rose-400">${stock.downsideDisplay}</span>
+            </div>
+            <div class="bg-slate-950/40 rounded-lg py-1 px-1">
+              <span class="text-[10px] text-slate-500 block">倍升潛力 (Bull)</span>
+              <span class="text-xs font-bold font-mono text-emerald-300">${stock.scenarios[3].returnPct}</span>
+            </div>
+          </div>
+
+          <div class="mt-2.5 flex items-center justify-between pt-2 border-t border-slate-800/60">
+            <div class="flex items-center space-x-1.5">
+              <span class="text-[10px] text-slate-400">連動行動：</span>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded ${stock.actionClass}">${stock.dynamicAction}</span>
+            </div>
+            <span class="text-[11px] text-slate-400 flex items-center gap-1 hover:text-emerald-300">
+              <span>詳情與改判</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </span>
           </div>
         `;
+
+        card.addEventListener("click", () => openStockDetail(stock));
         container.appendChild(card);
       });
     }
 
-    async function fetchLiveQuotes() {
-      const icon = document.getElementById("refreshIcon");
-      const status = document.getElementById("syncStatusText");
-      icon.classList.add("animate-spin");
-      status.textContent = "試算表抓取中...";
+    function openStockDetail(stock) {
+      document.getElementById("modalTicker").textContent = stock.ticker;
+      document.getElementById("modalName").textContent = stock.name;
+      document.getElementById("modalPrice").textContent = `${stock.currency === 'EUR' ? '€' : '$'}${stock.price.toFixed(2)}`;
+      document.getElementById("modalChange").textContent = stock.change;
+      document.getElementById("modalCategoryBadge").textContent = stock.categoryLabel;
+      document.getElementById("modalCategoryBadge").className = `text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30`;
+      document.getElementById("modalBottomAction").textContent = `${stock.dynamicAction}`;
 
-      try {
-        const resp = await fetch(CSV_URL + '&t=' + Date.now());
-        if (!resp.ok) throw new Error("HTTP " + resp.status);
-        const text = await resp.text();
-        const lines = text.split(/\\r?\\n/).filter(l => l.trim().length > 0);
+      const body = document.getElementById("modalContent");
+      body.innerHTML = `
+        <div class="bg-slate-950/90 border border-emerald-500/30 rounded-xl p-2.5 flex items-center justify-between text-[11px]">
+          <div>
+            <span class="text-slate-400 block">📌 業務分析基準日：<strong class="text-slate-200">${stock.researchDate}</strong> (固定質化研究)</span>
+            <span class="text-slate-400 block mt-0.5">⚡ 報價最新抓取：<strong class="text-emerald-300 font-mono">${stock.time}</strong></span>
+          </div>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-medium">收益率即時重算</span>
+        </div>
 
-        for (let i = 1; i < lines.length; i++) {
-          const cols = lines[i].split(',').map(s => s.replace(/^"|"$/g, '').trim());
-          if (cols.length >= 2) {
-            const sym = cols[0];
-            const p = parseFloat(cols[1]);
-            const time = cols[2] || '';
-            const prev = parseFloat(cols[4]) || p;
-            const chg = prev > 0 ? (((p - prev) / prev) * 100).toFixed(2) : "0.00";
-            const tk = sym.split(':').pop();
+        <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3 space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">問 1：現價反映的市場預期是什麼？為什麼？</span>
+            <span class="text-xs font-bold text-amber-300">${stock.marketExpectationLabel}</span>
+          </div>
+          <p class="text-xs text-slate-200 leading-relaxed">${stock.marketExpectationWhy}</p>
+        </div>
 
-            if (RESEARCH[tk] && !isNaN(p) && p > 0) {
-              quotes[tk] = { price: p, change: (parseFloat(chg) >= 0 ? "+" : "") + chg + "%", time: time };
-            }
-          }
-        }
+        <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3 space-y-1.5">
+          <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">問 2：最可能業務發展路徑及市場錯判點</span>
+          <p class="text-xs text-slate-200 leading-relaxed">${stock.businessPathAndMispricing}</p>
+        </div>
 
-        const now = new Date().toLocaleTimeString('zh-HK', { hour12: false });
-        status.textContent = `實時已更新 (${now})`;
-        document.getElementById("toast").textContent = `成功更新最新報價 (${now})`;
-        document.getElementById("toast").classList.replace("opacity-0", "opacity-100");
-        setTimeout(() => document.getElementById("toast").classList.replace("opacity-100", "opacity-0"), 2000);
-      } catch (e) {
-        status.textContent = "使用最新盤中快照";
-      } finally {
-        icon.classList.remove("animate-spin");
-        render();
-      }
+        <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">問 3：業務 × 估值 二維情景矩陣 (按現價動態重算)</span>
+            <span class="text-[10px] text-slate-400 font-mono">現價 ${stock.currency === 'EUR' ? '€' : '$'}${stock.price.toFixed(2)}</span>
+          </div>
+
+          <div class="space-y-1.5">
+            ${stock.scenarios.map(sc => `
+              <div class="p-2.5 rounded-lg border ${sc.returnPct.startsWith('-') ? 'bg-rose-950/20 border-rose-900/40' : 'bg-emerald-950/20 border-emerald-900/40'} flex items-start justify-between gap-2">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2">
+                    <strong class="text-xs ${sc.returnPct.startsWith('-') ? 'text-rose-300' : 'text-emerald-300'}">${sc.name}</strong>
+                    <span class="text-[10px] px-1.5 py-0.2 rounded bg-slate-900 text-slate-400 font-mono">權重 ${(sc.prob * 100).toFixed(0)}%</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">${sc.why}</p>
+                  <div class="text-[10px] text-slate-500 font-mono mt-1">
+                    <span>營收/貢獻: ${sc.rev28}</span> · <span>退出倍數: ${sc.multiple}</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold font-mono ${sc.returnPct.startsWith('-') ? 'text-rose-400' : 'text-emerald-400'}">${sc.returnPct}</span>
+                  <span class="text-[10px] font-mono block text-slate-400">${stock.currency === 'EUR' ? '€' : '$'}${sc.price.toFixed(2)}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          
+          <div class="pt-1 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>加權條件回報: <strong class="font-mono ${stock.weightedReturn.startsWith('+') ? 'text-slate-200' : 'text-rose-400'}">${stock.weightedReturn}</strong></span>
+            <span>非對稱比: <strong class="text-emerald-300 font-mono">${stock.asymmetryRatio}x</strong></span>
+          </div>
+        </div>
+
+        <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3 space-y-2">
+          <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">問 4：倍升 (1x-10x) 具體條件 vs 致命失敗風險</span>
+          <div class="space-y-1.5">
+            <div class="bg-emerald-950/20 border border-emerald-900/40 p-2 rounded-lg">
+              <strong class="text-[11px] text-emerald-300 block mb-0.5">🚀 倍升所需業務條件：</strong>
+              <p class="text-[11px] text-slate-300 leading-relaxed">${stock.multibaggerConditions}</p>
+            </div>
+            <div class="bg-rose-950/20 border border-rose-900/40 p-2 rounded-lg">
+              <strong class="text-[11px] text-rose-300 block mb-0.5">⚠️ 可能令投資失敗的致命原因：</strong>
+              <p class="text-[11px] text-slate-300 leading-relaxed">${stock.keyFailureRisks}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3 space-y-1.5">
+          <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">問 5：最終行動建議與具體改判條件</span>
+          <p class="text-xs text-white font-medium">${stock.dynamicAction}</p>
+          <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 mt-1">
+            <span class="text-[10px] text-amber-400 font-bold block mb-0.5">確切改判觸發線 (Falsification Triggers)：</span>
+            <p class="text-[11px] text-slate-300 leading-relaxed">${stock.falsificationTriggers}</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("stockDetailModal").classList.remove("hidden");
     }
 
+    function renderSheetTable(searchTerm = "") {
+      const tbody = document.getElementById("sheetTableBody");
+      tbody.innerHTML = "";
+
+      const term = searchTerm.toLowerCase();
+      const filtered = allSheetRows.filter(item => 
+        item.symbol.toLowerCase().includes(term)
+      );
+
+      filtered.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-slate-800/50 transition";
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-bold text-white">${row.symbol}</td>
+          <td class="py-2.5 px-3 text-right font-mono text-emerald-300">${row.price.toFixed(2)}</td>
+          <td class="py-2.5 px-3 text-right font-mono text-slate-400">${row.prevClose.toFixed(2)}</td>
+          <td class="py-2.5 px-3 text-right font-mono ${row.change.startsWith('+') ? 'text-emerald-400' : row.change.startsWith('-') ? 'text-rose-400' : 'text-slate-400'}">${row.change}</td>
+          <td class="py-2.5 px-3 text-center text-slate-400">${row.currency}</td>
+          <td class="py-2.5 px-3 text-right text-slate-400 font-mono">${row.time}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // --- 6. INITIALIZATION & LISTENERS ---
     document.addEventListener("DOMContentLoaded", () => {
-      render();
-      fetchLiveQuotes();
+      updateQuickBar();
+      renderStockCards();
+      renderSheetTable();
+
+      // Trigger JSONP fetch immediately on open!
+      triggerLiveJSONPFetch();
+
+      // Refresh Button listener
+      document.getElementById("refreshQuotesBtn").addEventListener("click", triggerLiveJSONPFetch);
+      document.getElementById("forceSyncSheetBtn").addEventListener("click", triggerLiveJSONPFetch);
+
+      // Simulator Drawer Toggle
+      const simDrawer = document.getElementById("simulatorDrawer");
+      document.getElementById("toggleSimulatorBtn").addEventListener("click", () => {
+        simDrawer.classList.toggle("hidden");
+        document.getElementById("simPriceANET").value = currentQuotes.ANET.price;
+        document.getElementById("simPriceBNTX").value = currentQuotes.BNTX.price;
+        document.getElementById("simPriceBESI").value = currentQuotes.BESI.price;
+      });
+
+      function handleSimChange() {
+        const pANET = parseFloat(document.getElementById("simPriceANET").value);
+        const pBNTX = parseFloat(document.getElementById("simPriceBNTX").value);
+        const pBESI = parseFloat(document.getElementById("simPriceBESI").value);
+
+        if (!isNaN(pANET) && pANET > 0) currentQuotes.ANET.price = pANET;
+        if (!isNaN(pBNTX) && pBNTX > 0) currentQuotes.BNTX.price = pBNTX;
+        if (!isNaN(pBESI) && pBESI > 0) currentQuotes.BESI.price = pBESI;
+
+        updateQuickBar();
+        renderStockCards();
+      }
+
+      document.getElementById("simPriceANET").addEventListener("input", handleSimChange);
+      document.getElementById("simPriceBNTX").addEventListener("input", handleSimChange);
+      document.getElementById("simPriceBESI").addEventListener("input", handleSimChange);
+
+      document.getElementById("resetPricesBtn").addEventListener("click", () => {
+        triggerLiveJSONPFetch();
+      });
+
+      // Tabs
+      const tabDashboard = document.getElementById("tabDashboard");
+      const tabPortfolio = document.getElementById("tabPortfolio");
+      const tabSheetViewer = document.getElementById("tabSheetViewer");
+      const tabPrinciples = document.getElementById("tabPrinciples");
+
+      const viewDashboard = document.getElementById("viewDashboard");
+      const viewPortfolio = document.getElementById("viewPortfolio");
+      const viewSheetViewer = document.getElementById("viewSheetViewer");
+      const viewPrinciples = document.getElementById("viewPrinciples");
+
+      function activateTab(activeBtn, activeView) {
+        [tabDashboard, tabPortfolio, tabSheetViewer, tabPrinciples].forEach(btn => {
+          btn.className = "flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center";
+        });
+        activeBtn.className = "flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-emerald-600 text-white transition tap-highlight-transparent text-center shadow";
+
+        [viewDashboard, viewPortfolio, viewSheetViewer, viewPrinciples].forEach(view => view.classList.add("hidden"));
+        activeView.classList.remove("hidden");
+      }
+
+      tabDashboard.addEventListener("click", () => activateTab(tabDashboard, viewDashboard));
+      tabPortfolio.addEventListener("click", () => activateTab(tabPortfolio, viewPortfolio));
+      tabSheetViewer.addEventListener("click", () => activateTab(tabSheetViewer, viewSheetViewer));
+      tabPrinciples.addEventListener("click", () => activateTab(tabPrinciples, viewPrinciples));
+
+      // --- Transaction Generator Logic ---
+      const txSymbol = document.getElementById("txSymbol");
+      const txSide = document.getElementById("txSide");
+      const txQuantity = document.getElementById("txQuantity");
+      const txPrice = document.getElementById("txPrice");
+      const txFee = document.getElementById("txFee");
+      const txSource = document.getElementById("txSource");
+      const txOutputPreview = document.getElementById("txOutputPreview");
+      const txCalcTotal = document.getElementById("txCalcTotal");
+
+      function updateTxPreview() {
+        const sym = txSymbol.value;
+        const side = txSide.value;
+        const qty = parseFloat(txQuantity.value) || 0;
+        const price = parseFloat(txPrice.value) || 0;
+        const fee = parseFloat(txFee.value) || 0;
+        const src = txSource.value;
+        const now = new Date();
+        const nowIso = now.toISOString().replace(/\.\d{3}Z$/, 'Z');
+        const txnId = 'TXN-' + now.getTime();
+
+        const rowTsv = `${txnId}\t${nowIso}\t${sym}\t${side}\t${qty}\t${price.toFixed(2)}\t${fee.toFixed(2)}\t${src}`;
+        txOutputPreview.textContent = rowTsv;
+
+        const totalEst = (qty * price) + fee;
+        const curr = sym.startsWith('AMS:') ? 'EUR' : 'USD';
+        txCalcTotal.textContent = `總估算金: ~${curr === 'EUR' ? '€' : '$'}${totalEst.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      }
+
+      txSymbol.addEventListener("change", (e) => {
+        const opt = e.target.selectedOptions[0];
+        if (opt) {
+          if (opt.dataset.price) txPrice.value = opt.dataset.price;
+          if (opt.dataset.shares) txQuantity.value = opt.dataset.shares;
+        }
+        updateTxPreview();
+      });
+
+      [txSide, txQuantity, txPrice, txFee, txSource].forEach(el => {
+        el.addEventListener("input", updateTxPreview);
+        el.addEventListener("change", updateTxPreview);
+      });
+
+      document.getElementById("btnCopyTxRow").addEventListener("click", () => {
+        const text = txOutputPreview.textContent.trim();
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("已成功複製交易記錄行！請直接至 Transactions!A 欄貼上。");
+        }).catch(() => {
+          showToast("已選取文字，請按鍵盤 Cmd/Ctrl+C 複製！");
+        });
+      });
+
+      document.getElementById("btnCopyChatGPTPrompt").addEventListener("click", () => {
+        const text = document.getElementById("chatgptPromptText").innerText.trim();
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("已成功複製 ChatGPT 初始化指令！");
+        }).catch(() => {
+          showToast("已選取指令文字，請手動複製！");
+        });
+      });
+
+      updateTxPreview();
+
+      // Filters
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-btn").forEach(b => {
+            b.className = "filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap tap-highlight-transparent";
+          });
+          btn.className = "filter-btn active text-xs font-medium px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 whitespace-nowrap tap-highlight-transparent";
+          currentFilter = btn.dataset.filter;
+          renderStockCards();
+        });
+      });
+
+      // Sort
+      document.getElementById("sortSelector").addEventListener("change", (e) => {
+        currentSort = e.target.value;
+        renderStockCards();
+      });
+
+      // Search
+      document.getElementById("sheetSearchInput").addEventListener("input", (e) => {
+        renderSheetTable(e.target.value);
+      });
+
+      // Modal
+      const modal = document.getElementById("stockDetailModal");
+      document.getElementById("closeModalBtn").addEventListener("click", () => modal.classList.add("hidden"));
+      document.getElementById("modalActionClose").addEventListener("click", () => modal.classList.add("hidden"));
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.add("hidden");
+      });
     });
   </script>
 </body>
