@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V2.4 · 15檔機構級決策矩陣</title>
+  <title>IROS Alpha V3.0 · 21檔機構級全景決策矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V2.4 實時直通 (15檔核心)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V3.0 雙Sheet實時直通 (21檔核心矩陣)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -224,8 +224,8 @@
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
             <div class="flex items-center gap-2">
-              <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">SHARED PORTFOLIO V1.0</span>
-              <span class="text-[10px] text-slate-400">雙 AI 共享帳本</span>
+              <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">SHARED PORTFOLIO V2.6</span>
+              <span id="portfolioSyncBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">正在連線持倉表...</span>
             </div>
             <h2 class="text-base font-bold text-white mt-1">40 萬美元總資產監控儀表板</h2>
           </div>
@@ -235,31 +235,40 @@
           </a>
         </div>
 
-        <!-- 4 Key Capital Figures -->
+        <!-- 4 Key Capital Figures (Live Connected to Google Sheets) -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-3.5">
           <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
             <span class="text-[10px] uppercase font-mono text-slate-400 block">總組合淨值 (Equity)</span>
-            <span class="text-lg font-bold font-mono text-white mt-0.5 block">$400,000.00</span>
-            <span class="text-[10px] text-emerald-400 font-mono">基準資金 100%</span>
+            <span id="portfolioTotalEquity" class="text-lg font-bold font-mono text-white mt-0.5 block">$400,000.00</span>
+            <span id="portfolioEquitySub" class="text-[10px] text-emerald-400 font-mono">實時動態淨值</span>
           </div>
 
           <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
             <span class="text-[10px] uppercase font-mono text-slate-400 block">可用現金 (Cash USD)</span>
-            <span class="text-lg font-bold font-mono text-emerald-400 mt-0.5 block">$400,000.00</span>
-            <span class="text-[10px] text-slate-400 font-mono">100.0% 待配置</span>
+            <span id="portfolioAvailableCash" class="text-lg font-bold font-mono text-emerald-400 mt-0.5 block">$400,000.00</span>
+            <span id="portfolioCashRatio" class="text-[10px] text-slate-400 font-mono">來自 Portfolio!B6</span>
           </div>
 
           <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
             <span class="text-[10px] uppercase font-mono text-slate-400 block">已建倉部位 (Invested)</span>
-            <span class="text-lg font-bold font-mono text-slate-300 mt-0.5 block">$0.00</span>
-            <span class="text-[10px] text-slate-500 font-mono">0 檔持倉 · 等待觸發</span>
+            <span id="portfolioInvestedAmount" class="text-lg font-bold font-mono text-slate-300 mt-0.5 block">$0.00</span>
+            <span id="portfolioPositionsCount" class="text-[10px] text-slate-500 font-mono">0 檔持倉 · 連動行情</span>
           </div>
 
           <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
             <span class="text-[10px] uppercase font-mono text-slate-400 block">峰值水位 (HWM)</span>
-            <span class="text-lg font-bold font-mono text-blue-400 mt-0.5 block">$400,000.00</span>
+            <span id="portfolioHWM" class="text-lg font-bold font-mono text-blue-400 mt-0.5 block">$400,000.00</span>
             <span class="text-[10px] text-blue-400/80 font-mono">歷史最高水位</span>
           </div>
+        </div>
+
+        <!-- Live Holdings Mini List Container -->
+        <div id="liveHoldingsContainer" class="mt-3 hidden p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs">
+          <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono mb-1.5 pb-1 border-b border-slate-800">
+            <span>真實持倉明細 (來自 Portfolio!A13:B)</span>
+            <span>市值 (USD)</span>
+          </div>
+          <div id="liveHoldingsList" class="space-y-1"></div>
         </div>
 
         <!-- 30% Max Drawdown Circuit Breaker Bar -->
@@ -369,40 +378,7 @@
             </div>
           </div>
 
-          <!-- BNTX (WATCHLIST) -->
-          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-            <div class="flex items-start justify-between">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-sm font-bold text-white font-mono">NASDAQ:BNTX</span>
-                  <span class="text-xs text-slate-400">BioNTech SE</span>
-                  <span class="text-xs font-mono font-bold text-slate-300">$88.91</span>
-                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">等待回踩</span>
-                </div>
-                <div class="text-xs text-slate-400 mt-1">
-                  入選理由：每股淨現金約 $68，BNT327 (PD-L1xVEGF) 雙抗潛在百億峰值；年燒錢 €1.5B 需高安全邊際
-                </div>
-              </div>
-            </div>
-            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-              <div>
-                <span class="text-[10px] text-slate-400 block">當前配置</span>
-                <span class="font-mono font-bold text-slate-400">0.0% (觀望)</span>
-              </div>
-              <div>
-                <span class="text-[10px] text-slate-400 block">首批規劃</span>
-                <span class="font-mono text-slate-300">3% ($12,000 / ~170股)</span>
-              </div>
-              <div>
-                <span class="text-[10px] text-slate-400 block">嚴格買入區</span>
-                <span class="font-mono text-amber-400 font-bold">$65.0 – $70.0</span>
-              </div>
-              <div>
-                <span class="text-[10px] text-slate-400 block">證偽條件</span>
-                <span class="text-[11px] text-rose-400">BNT327 出現致死脫靶毒性</span>
-              </div>
-            </div>
-          </div>
+
           <!-- CRDO (NEAR SCALE-IN ZONE) -->
           <div class="p-3 rounded-xl bg-amber-950/20 border border-amber-500/30 relative overflow-hidden">
             <div class="absolute top-0 right-0 bg-amber-500/30 text-amber-300 font-bold text-[9px] px-2 py-0.5 rounded-bl border-b border-l border-amber-500/40">
@@ -474,6 +450,116 @@
               </div>
             </div>
           </div>
+          <!-- BNTX (ACTIONABLE SCALE-IN ZONE) -->
+          <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded-bl">
+              落入安全邊際試水區 ($80–$92)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:BNTX</span>
+                  <span class="text-xs text-slate-300">BioNTech SE</span>
+                  <span class="text-xs font-mono font-bold text-emerald-400">$88.91</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：每股淨現金約 $70 鎖死下行；BNT327 雙抗百億期權；現價 $88.91 落入 $80–$92 安全試水區間
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-emerald-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-emerald-300">3.0% ($12,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">135 股 ($12,003)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">試水買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$80.0 – $92.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-300">BNT327 Phase3 OS HR>0.85 或現金跌破 120 億歐元</span>
+              </div>
+            </div>
+          </div>
+          <!-- CRM (ACTIONABLE STAGE 1 ZONE) -->
+          <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded-bl">
+              落入首批試水區 ($220–$225)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:CRM</span>
+                  <span class="text-xs text-slate-300">Salesforce, Inc.</span>
+                  <span class="text-xs font-mono font-bold text-emerald-400">$227.11</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：Agentforce 轉型效用計費，FCF 利潤率高達 34.7%；發行 250 億回購 14% 總股本；落入安全防禦邊界
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-emerald-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-emerald-300">3.0% ($12,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">52 股 ($11,810)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">試水買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$220.0 – $225.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-300">FCF 利潤率連兩季 <28% 或 Agentforce ARR 季增 <5%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- NOW (ACTIONABLE SCALE-IN ZONE AFTER 27% CRASH) -->
+          <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded-bl">
+              財報暴跌 27% 殺入試水區 ($95–$106.5)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:NOW</span>
+                  <span class="text-xs text-slate-300">ServiceNow, Inc.</span>
+                  <span class="text-xs font-mono font-bold text-emerald-400">$108.81</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：工作流自動化霸主，續約率 98%；因 cRPO 指引放緩單日暴跌 27%，落入首批試水佈局區 ($95–$106.5)
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-emerald-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-emerald-300">2.5% ($10,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">95 股 ($10,336)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批試水區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$95.0 – $106.5</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-300">cRPO 年增連兩季 <17% 或毛利跌破 70%</span>
+              </div>
+            </div>
+          </div>
+
                     <!-- AVGO (ACTIONABLE STAGE 1 ZONE) -->
           <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
             <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded-bl">
@@ -758,6 +844,251 @@
               </div>
             </div>
           </div>
+          <!-- GOOG (WAIT FOR ENTRY ZONE) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:GOOG</span>
+                  <span class="text-xs text-slate-400">Alphabet Inc.</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$287.30</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">TPU算力霸主·等待回調</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：TPU v7 推論成本優勢顯著，Cloud 訂單破 $5,600 億；惟單季 CapEx $514 億擠壓現金流；安全買入區 $235–$255
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-slate-400">0.0% (耐心觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3.75% ($15,000 / 60 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$235.0 – $255.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">Cloud 季增 <5% 且利潤率 <25%，或搜索營收 YoY 負增長</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- OSCR (WAIT FOR SUBSIDY CLIFF PANIC) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:OSCR</span>
+                  <span class="text-xs text-slate-400">Oscar Health, Inc.</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$32.40</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">補貼懸崖風險·等待錯殺</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：CHOICE (ICHRA) 企業福利轉型潛力大；惟 2025 底 eAPTC 補貼到期面臨健康人退保逆向選擇；安全買入區 $22.5–$26.0
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (防禦等待)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">2.5% ($10,000 / 390 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$22.5 – $26.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">風險調整應付佔保費 >22% 且 MLR >85%，或佛州/德州會員年減 >15%</span>
+              </div>
+            </div>
+          </div>
+          <!-- TEAM (WAIT FOR ENTRY ZONE) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:TEAM</span>
+                  <span class="text-xs text-slate-400">Atlassian Corporation</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$189.88</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">JSM搶市·等待安全邊際</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：JSM 便宜 70% 搶攻 ServiceNow 份額，Rovo AI 協作圖譜；惟 SBC 佔營收高達 24.5%；安全買入區 $140–$165
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-slate-400">0.0% (觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3.5% ($14,000 / 85 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$140.0 – $165.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">Cloud NRR 連續兩季 <110% 或大型客戶數單季零增長</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- QCOM (WAIT FOR APPLE MODEM NOISE) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:QCOM</span>
+                  <span class="text-xs text-slate-400">QUALCOMM Inc.</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$173.19</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">邊緣AI錯判·等待蘋果利空</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：Snapdragon 汽車在手訂單 450 億，Oryon 資料中心推論 TCO 優勢；惟蘋果訂單即將面臨斷崖；安全買入區 $140–$155
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-slate-400">0.0% (觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3.0% ($12,000 / 75 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$140.0 – $155.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">汽車業務年增連兩季 <15% 或 QCT 稅前利潤率跌破 20%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ORCL (WAIT FOR FCF TURNAROUND) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:ORCL</span>
+                  <span class="text-xs text-slate-400">Oracle Corporation</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$123.73</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">重資產轉型·等待FCF拐點</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：Acceleron RoCE v2 乙太網霸主，RPO 6,640 億；惟 CapEx 557 億致 FCF 虧損 237 億，表外 SPV 負債 2,880 億；安全買入區 $105–$115
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (防禦等待)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">2.5% ($10,000 / 90 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$105.0 – $115.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">信評降至垃圾級 (BB+) 或 5 年期 CDS 連續 30 天 >400 bps</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- APP (OVEREXTENDED / WAIT FOR PULLBACK) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:APP</span>
+                  <span class="text-xs text-slate-400">AppLovin Corporation</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$330.00</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">極度亢奮·禁買防守</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：AXON 2.0 廣告飛輪，毛利率 88%；惟現價透支且面臨 SEC 吹哨者數據合規性調查；安全買入區 $215–$245
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (嚴格禁買)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">2.5% ($10,000 / 35 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$215.0 – $245.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">FCF/EBITDA 連兩季 <60% 或 Apple/Google 限制 MAX API</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- OUST (WAIT FOR HARDWARE PULLBACK) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:OUST</span>
+                  <span class="text-xs text-slate-400">Ouster, Inc.</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$33.54</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">專利紅利退潮·等待回調</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：全數位 L4 晶片，NDAA 禁令保護北美軍工；惟 2026 專利懸崖致毛利稀釋，SBC 佔營收 31%；安全買入區 $17.5–$21.5
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (防禦等待)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">2.5% ($10,000 / 500 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$17.5 – $21.5</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">Non-GAAP 毛利連兩季 <35% 或單季現金流出 >$3,000 萬</span>
+              </div>
+            </div>
+          </div>
+
+
 
 
 
@@ -849,6 +1180,17 @@
             <select id="txSymbol" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
               <option value="AMS:BESI" data-price="152.65" data-shares="72">AMS:BESI (72股 / €152.65)</option>
               <option value="NASDAQ:ADBE" data-price="254.69" data-shares="47">NASDAQ:ADBE (47股 / $254.69)</option>
+              <option value="NYSE:CRM" data-price="227.11" data-shares="52">NYSE:CRM (52股 / $227.11)</option>
+              <option value="NASDAQ:TEAM" data-price="189.88" data-shares="85">NASDAQ:TEAM (85股 / $189.88)</option>
+              <option value="NASDAQ:QCOM" data-price="173.19" data-shares="75">NASDAQ:QCOM (75股 / $173.19)</option>
+              <option value="NYSE:ORCL" data-price="123.73" data-shares="90">NYSE:ORCL (90股 / $123.73)</option>
+              <option value="NASDAQ:APP" data-price="330.00" data-shares="35">NASDAQ:APP (35股 / $330.00)</option>
+              <option value="NASDAQ:OUST" data-price="33.54" data-shares="500">NASDAQ:OUST (500股 / $33.54)</option>
+
+              <option value="NASDAQ:NOW" data-price="108.81" data-shares="95">NASDAQ:NOW (95股 / $108.81)</option>
+              <option value="NASDAQ:GOOG" data-price="287.30" data-shares="60">NASDAQ:GOOG (60股 / $287.30)</option>
+              <option value="NYSE:OSCR" data-price="32.40" data-shares="390">NYSE:OSCR (390股 / $32.40)</option>
+
               <option value="NASDAQ:SNDK" data-price="129.67" data-shares="80">NASDAQ:SNDK (80股 / $129.67)</option>
               <option value="NYSE:ACN" data-price="264.27" data-shares="55">NYSE:ACN (55股 / $264.27)</option>
               <option value="NASDAQ:NVDA" data-price="200.13" data-shares="100">NASDAQ:NVDA (100股 / $200.13)</option>
@@ -1091,10 +1433,10 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         businessPathAndMispricing: "最可能路徑：超大雲端客戶 (Meta/MSFT) 加速部署 1.6T 交換機，以 UEC 乙太網替代 InfiniBand。市場盲點：只見 AI 硬體爆發，忽視資本支出週期過峰後『業務達標但殺估值』(倍數由 34x 降至 24x 虧損達 12%) 的收縮風險。",
         
         targets: [
-          { name: "A. 雙重打擊 (Stress)", prob: 0.20, rev28: "$18.0B", multiple: "22x", targetPrice: 107.51, why: "雲端支出放緩，Scale-up 未放量，光學成本侵蝕毛利" },
-          { name: "B. 價值陷阱 (Bear)", prob: 0.25, rev28: "$22.6B", multiple: "24x", targetPrice: 163.37, why: "營收如期達標，但成長退坡使估值倍數回歸歷史均值 24x" },
-          { name: "C. 合理延續 (Base)", prob: 0.35, rev28: "$22.6B", multiple: "30x", targetPrice: 200.17, why: "AI 網路高景氣延續，市場維持 30x 溢價" },
-          { name: "D. 顛覆超前 (Bull)", prob: 0.20, rev28: "$26.6B", multiple: "34x", targetPrice: 272.84, why: "Scale-up 成功跨入 GPU 機架互聯，全面超預期" }
+          { name: "Stress (白牌替代/114億庫存反噬)", prob: 0.10, rev28: "$13.5B", multiple: "15x P/E", targetPrice: 50.55, why: "客戶轉向自研 FBOSS/SONiC 白牌，114 億採購承諾爆發巨額庫存減值，淨利跌穿 32%" },
+          { name: "Bear (算力消化期/估值回歸)", prob: 0.20, rev28: "$16.5B", multiple: "22x P/E", targetPrice: 99.22, why: "雲端巨頭進入算力消化期 CapEx 驟降，園區網絡面臨 Cisco 競爭，估值回歸 22x" },
+          { name: "Base (1.6T如期放量/Scale-Out霸主)", prob: 0.50, rev28: "$22.5B", multiple: "30x P/E", targetPrice: 200.40, why: "1.6T 交換機如期放量，Scale-out 市佔穩固，年均增長 ~30%，淨利率維持 38%" },
+          { name: "Bull (打入NVLink機櫃內Scale-Up)", prob: 0.20, rev28: "$28.0B", multiple: "35x P/E", targetPrice: 306.25, why: "UALink/ESUN 乙太網攻入機櫃內打破 NVLink 壟斷，2028 年 FCF 突破 100 億美元" }
         ],
         multibaggerConditions: "倍升需要 2028 年營收突破 300 億美元，且成功侵入 Nvidia NVLink 的伺服器內部 Scale-up 領地，營收佔比達 20% 以上。",
         keyFailureRisks: "微軟推動開源 SONiC 白盒化；兩大客戶集中度逾 42%；光學與 CPO 過渡期毛利跌破 62%。",
@@ -1118,10 +1460,10 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         businessPathAndMispricing: "最可能路徑：BNT327 (PD-L1xVEGF) 在三陰性乳癌與小細胞肺癌複製突破性數據，轉型為多產品腫瘤巨頭。市場錯判：將全公司 €2B 研發成本全額扣除，卻因早期資產未確定而直接將創新終值歸零。",
         
         targets: [
-          { name: "Stress (失控持續燒錢)", prob: 0.15, rev28: "無新藥", multiple: "清算", targetPrice: 21.77, why: "管線全軍覆沒，且管理層拒絕止血持續燒錢至 2031 年發股" },
-          { name: "Bear (僅SCLC獲批)", prob: 0.30, rev28: "€0.08B", multiple: "15x", targetPrice: 33.13, why: "僅一項小適應症通過，研發持續消耗現金儲備" },
-          { name: "Base (327達標+平台)", prob: 0.40, rev28: "€2.24B", multiple: "25x", targetPrice: 82.14, why: "肺癌與乳癌放量，加計 15 年合理平台年金增量 (€4.5B / $20.5/ADS)" },
-          { name: "Bull (百億峰值霸主)", prob: 0.15, rev28: "€4.07B", multiple: "30x", targetPrice: 115.86, why: "BNT327 成一線基石，ADC 順利商業化，AI 平台釋放協同" }
+          { name: "Stress (ROSETTA失敗/雙抗折戟)", prob: 0.15, rev28: "$1.2B", multiple: "1.0x EV/S + 現金", targetPrice: 45.00, why: "BNT327 Phase 3 SCLC/NSCLC 失敗，DB-1303 出現 ILD 毒性拒批，燒錢至剩 100 億現金" },
+          { name: "Bear (審查延長/競爭加劇)", prob: 0.25, rev28: "$1.8B", multiple: "2.0x EV/S + 現金", targetPrice: 70.00, why: "FDA 要求延長隨訪，DB-1303 面臨 Enhertu 競爭銷售疲弱，股價等同淨現金 $70" },
+          { name: "Base (DB1303獲批/327達標)", prob: 0.45, rev28: "$3.5B", multiple: "4.0x EV/S + 現金", targetPrice: 116.00, why: "DB-1303 美國獲批放量，BNT327 在 SCLC 達優效，新 CEO 控費省 5 億歐元" },
+          { name: "Bull (BNT327百億峰值/輾壓Keytruda)", prob: 0.15, rev28: "$6.5B", multiple: "7.0x EV/S + 現金", targetPrice: 250.00, why: "BNT327 OS 數據輾壓 Keytruda 與化療，成一線新基石，胰臟癌 mRNA 突破" }
         ],
         liquidationFloorPrice: 49.51,
         doublingTargetPrice: 173.84,
@@ -1156,6 +1498,248 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         keyFailureRisks: "ASMI 或 Kulicke & Soffa 等競爭者突破專利壁壘推出低價替代方案；半導體先進製程資本支出因總經衰退而急凍。",
         falsificationTriggers: "季度 Hybrid Bonding 新增訂單連續兩季下滑超過 20% 則暫停加碼。"
       },
+      ORCL: {
+        ticker: "ORCL",
+        name: "Oracle Corporation",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ AI算力重資產轉型",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 105.0,
+        targetPriceReentryMax: 115.0,
+        
+        marketExpectationScore: 4.2,
+        marketExpectationLabel: "極度興奮 (4.2 / 5)",
+        marketExpectationWhy: "現價約 $123-$130，市場過度透支 2030 年 2,250 億營收願景，忽視 2026 年 CapEx 飆至 $557 億致 FCF 虧損 237 億美元的流動性黑洞。",
+        businessPathAndMispricing: "最可能路徑：Acceleron RoCE v2 乙太網低延遲打破 InfiniBand 壟斷，RPO 達 6,640 億美元。市場盲點：錯將 IaaS 重資產算力建設等同於高毛利 SaaS，忽視 OpenAI 佔比高達 45% 的致命單點故障；且隱藏了高達 2,880 億美元包含 Hell-or-High-Water 條款的表外 SPV 租賃債務，評等離垃圾級僅差一階。",
+        
+        targets: [
+          { name: "Stress (OpenAI砍單/評等降垃圾級)", prob: 0.15, rev28: "$110.0B", multiple: "12x P/E", targetPrice: 60.00, why: "OpenAI 縮減合約，表外 SPV 負債轉入表內，信評降至垃圾級引發被動拋售與流動性螺旋" },
+          { name: "Bear (電網延遲/公用事業化)", prob: 0.25, rev28: "$135.0B", multiple: "15x P/E", targetPrice: 95.00, why: "新墨西哥州等電網互連延遲常態化使 RPO 轉化遞延，龐大債務利息吞噬利潤，給予 15x" },
+          { name: "Base (合理基本盤達標)", prob: 0.45, rev28: "$165.0B", multiple: "18x P/E", targetPrice: 155.00, why: "營收維持 ~30% 複合增長，FCF 於 2028 下半年轉正，Zettascale10 穩固市場，守住投資級" },
+          { name: "Bull (AI算力地主/FCF爆發)", prob: 0.15, rev28: "$185.0B", multiple: "25x P/E", targetPrice: 240.00, why: "OpenAI 合約滿載，CapEx 於 2027 觸頂，2028 初 FCF 爆發性轉正，重獲 25x 溢價" }
+        ],
+        multibaggerConditions: "股價突破 $260+ 需要：2028 財年 FCF 實質轉正突破 150 億美元，ROIC 結構性跨越 14.16% WACC 死亡交叉達到 15%+，OpenAI 在總 RPO 佔比降至 25% 以下，且不啟動超額股權增發。",
+        keyFailureRisks: "標普或穆迪將信評降至非投資級 (BB+)；5年期 CDS 利差突破 400 bps 且 OCF 跌破 CapEx 的 40%；電網供電延遲引發大量 Force Majeure 不可抗力停滯。",
+        falsificationTriggers: "主權信用評等遭降級至非投資級 (Junk Status)，或 5 年期 CDS 利差持續 30 天站上 400 bps 且真實 OCF 低於當季 CapEx 的 40%。"
+      },
+
+      APP: {
+        ticker: "APP",
+        name: "AppLovin Corporation",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "multibagger",
+        categoryLabel: "🚀 AXON2.0電商廣告爆發",
+        researchPriority: "HIGH (高賠率追蹤)",
+        targetPriceReentryMin: 215.0,
+        targetPriceReentryMax: 245.0,
+        
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "極度亢奮 (4.5 / 5)",
+        marketExpectationWhy: "現價約 $300-$330，市值破千億，Rule of 40 高達 139，市場將其從遊戲廣告網絡重估為 AI 通用電商行銷巨頭，隱含未來三年營收年增 >25% 的完美預期。",
+        businessPathAndMispricing: "最可能路徑：AXON 2.0 雙邊數據飛輪，AppDiscovery 與 MAX 壟斷手遊，向 DTC 電商與 CTV 拓展。市場盲點：嚴重低估 Muddy Waters 吹哨者舉報的數據追蹤合規性風險 (Persistent Identity Graph 涉嫌違反 Apple/Google 隱私規範)；且 CEO 持有 60.9% 投票權，遷冊內華達州削弱董事信託責任；在電商領域面臨 Meta Advantage+ 的強烈反撲。",
+        
+        targets: [
+          { name: "Stress (監管處罰/API權限被封)", prob: 0.15, rev28: "$6.50B", multiple: "12x P/FCF", targetPrice: 65.89, why: "SEC 調查坐實違規，Apple/Google 限制 MAX API，電商廣告主拋棄 AppLovin" },
+          { name: "Bear (電商進展放緩/競爭加劇)", prob: 0.30, rev28: "$9.80B", multiple: "16x P/FCF", targetPrice: 186.03, why: "生成式影片工具受阻難搶 DTC 預算，Unity 等同業壓縮 MAX 抽成，FCF 利潤率回歸 35%" },
+          { name: "Base (合理基本盤達標)", prob: 0.40, rev28: "$12.80B", multiple: "20x P/FCF", targetPrice: 347.11, why: "電商成第二曲線，AXON 2.0 精準度維持，FCF 利潤率維持 40% (達 51 億)，維持 20x" },
+          { name: "Bull (AXON全面接管開放網絡)", prob: 0.15, rev28: "$16.50B", multiple: "25x P/FCF", targetPrice: 628.81, why: "AXON 在電商意圖預測革命性突破，CTV 與開放網絡大爆發，FCF 達 74 億，給予 25x" }
+        ],
+        multibaggerConditions: "股價達 $660+ (翻倍) 需要：非遊戲類營收突破 60 億美元，年度 FCF 絕對值突破 75 億美元且 FCF 轉換率維持 >70%，MAX 在手遊聚合市佔穩居 60% 以上。",
+        keyFailureRisks: "Apple 或 Google 官方限制 MAX SDK 關鍵 API 權限；FCF/EBITDA 轉換率失控跌破 60%；電商廣告主僅做短期測試未形成復購。",
+        falsificationTriggers: "FCF / 調整後 EBITDA 轉換率連續兩季跌破 60%，或軟體平台季增率 (QoQ) 跌破 5%，或 SEC 發布正式處罰令/OS 限制 API 權限。"
+      },
+
+      QCOM: {
+        ticker: "QCOM",
+        name: "QUALCOMM Incorporated",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "rerating",
+        categoryLabel: "⚖️ 邊緣AI/資料中心錯判",
+        researchPriority: "HIGH (高賠率修復)",
+        targetPriceReentryMin: 140.0,
+        targetPriceReentryMax: 155.0,
+        
+        marketExpectationScore: 2.5,
+        marketExpectationLabel: "過度悲觀 (2.5 / 5)",
+        marketExpectationWhy: "現價約 $173，P/E 僅 15.9x，市場過度恐慌 Apple 自研基帶將引發 50 億+ 營收斷崖，將其視為衰退的手機硬體廠，忽視汽車與資料中心的龐大期權。",
+        businessPathAndMispricing: "最可能路徑：汽車 Snapdragon 數位底盤 (在手訂單 450 億) 與 Dragonfly AI 推論晶片 (AWS 潛在 600 億長協) 接棒，QCT 非手機營收超越 50%。市場盲點：市場將 Oryon 自研架構視為實驗品，忽視其低功耗能效比在推論伺服器對傳統 x86/GPU 的 TCO 降維打擊；但需警惕台積電代工漲價侵蝕毛利及 Arm 訴訟案對指令集的干擾。",
+        
+        targets: [
+          { name: "Stress (蘋果斷單/聯發科夾擊)", prob: 0.15, rev28: "$37.5B", multiple: "11x P/E", targetPrice: 90.20, why: "Apple 提前全面停用高通基帶，聯發科搶走 40% 中國旗艦機，Snapdragon X PC 失敗" },
+          { name: "Bear (汽車放緩/轉型未達標)", prob: 0.25, rev28: "$41.0B", multiple: "13.5x P/E", targetPrice: 129.60, why: "汽車增速降至個位數難補手機缺口，PC 市佔徘徊在 5% 以下，維持 13.5x 低增長定價" },
+          { name: "Base (合理基本盤達標)", prob: 0.45, rev28: "$53.5B", multiple: "16.5x P/E", targetPrice: 227.70, why: "非手機營收佔比破 50%，汽車年化破百億，Dragonfly 資料中心貢獻 80 億，EPS 達 $13.8" },
+          { name: "Bull (Oryon橫掃PC與資料中心)", prob: 0.15, rev28: "$66.0B", multiple: "20x P/E", targetPrice: 390.00, why: "Dragonfly 獲雲端巨頭大舉採購破 120 億，AI PC 獲 20% 高階份額，重估為 AI 平台給予 20x" }
+        ],
+        multibaggerConditions: "股價達 $350+ 需要：資料中心營收在 2028 財年突破 100 億美元，Windows AI PC 市佔率強勢突破 20%，年度 FCF 突破 150 億美元且毛利率重返 56% 以上。",
+        keyFailureRisks: "QCT 汽車業務年增率連續兩季跌破 15%；台積電晶圓漲價使 QCT 稅前利潤率跌破 20%；資料中心年化 70 億指引跳票。",
+        falsificationTriggers: "QCT 汽車業務營收年增率連續兩季跌破 15%，或 QCT 部門 EBT 利潤率連續兩季跌破 20%/公司毛利率跌破 50%，或資料中心業務未達 70 億指引軌跡。"
+      },
+
+      CRM: {
+        ticker: "CRM",
+        name: "Salesforce, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "rerating",
+        categoryLabel: "🎯 Agentforce消耗轉型",
+        researchPriority: "TOP PRIORITY (高性價比)",
+        targetPriceReentryMin: 190.0,
+        targetPriceReentryMax: 215.0,
+        
+        marketExpectationScore: 2.5,
+        marketExpectationLabel: "偏向悲觀 (2.5 / 5)",
+        marketExpectationWhy: "現價約 $227，EV/FCF 僅 14.1x 處於歷史低谷，市場將其定價為低增長傳統價值股，恐慌 AI 代理將消滅軟體席位，忽視 FCF 利潤率高達 34.7% 的印鈔能力。",
+        businessPathAndMispricing: "最可能路徑：Agentforce 轉型按效用計費 (每次任務 $2 或微型交易 $0.10)，Data Cloud Zero Copy 無需搬移資料打破席位天花板。市場盲點：市場誤以為 AI 代理消滅席位會毀滅 SaaS，實則是將企業『人力薪資預算』轉化為『AI 軟體預算』擴大 TAM；且發行 250 億債券回購 14% 總股本，為每股 FCF 注入極大非對稱上行彈性。",
+        
+        targets: [
+          { name: "Stress (席位侵蝕/算力成本反噬)", prob: 0.15, rev28: "$48.3B", multiple: "11.5x P/FCF", targetPrice: 180.00, why: "企業削減席位但 AI 點數未達預期，AWS 算力費用吞噬利潤，FCF 利率跌破 28%" },
+          { name: "Base (合理基本盤達標)", prob: 0.55, rev28: "$55.4B", multiple: "15.5x P/FCF", targetPrice: 380.00, why: "Agentforce 穩步放量，回購縮減股本至 8.2 億股，FCF 達 202 億，修復至 15.5x" },
+          { name: "Bull (AI代理全面爆發)", prob: 0.30, rev28: "$65.5B", multiple: "20.0x P/FCF", targetPrice: 640.00, why: "AI 消耗計費引發指數級爆發，FCF 利率擴張至 40% (達 262 億)，重獲 20x 溢價" }
+        ],
+        multibaggerConditions: "股價達 $450+ 需要：Agentforce ARR 突破 50 億美元，Data Cloud Zero Copy 採用率破 60%，年度 FCF 突破 220 億美元且 FCF 利潤率維持在 36% 以上。",
+        keyFailureRisks: "AI 代理算力成本飆升使 FCF 利潤率跌破 28%；Agentforce ARR 季增率跌破 5%；微軟 Copilot 降價發起價格戰。",
+        falsificationTriggers: "FCF 利潤率連續兩季跌破 28.0%，或 Data Cloud / Agentforce ARR 季度環比 (QoQ) 增速降至 5% 以下。"
+      },
+
+      TEAM: {
+        ticker: "TEAM",
+        name: "Atlassian Corporation",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "rerating",
+        categoryLabel: "🎯 JSM/Rovo工作流轉型",
+        researchPriority: "HIGH (高賠率修復)",
+        targetPriceReentryMin: 140.0,
+        targetPriceReentryMax: 165.0,
+        
+        marketExpectationScore: 2.5,
+        marketExpectationLabel: "偏向悲觀 (2.5 / 5)",
+        marketExpectationWhy: "現價約 $189-$195，市場過度擔憂工程師使用 Cursor/Copilot 提升效率後縮減 Jira 席位，給予 35x P/FCF (歷史低檔)，忽視 Rovo Credits 消耗轉型。",
+        businessPathAndMispricing: "最可能路徑：Jira Service Management (JSM) 憑藉便宜 70% 的三年 TCO 搶奪 ServiceNow 中階市場，Rovo AI 協作圖譜導入 Credits 消耗模型。市場盲點：市場擔憂人類席位縮減，忽視 Rovo 正在將計費單位轉為『AI 代理檢索與執行次數』；但需警惕股權激勵 (SBC) 佔營收高達 24.5% 對真實 GAAP 淨利的嚴重侵蝕。",
+        
+        targets: [
+          { name: "Stress (席位流失超20%/雙殺)", prob: 0.10, rev28: "$7.61B", multiple: "15x P/FCF", targetPrice: 65.00, why: "Cursor/Devin 導致席位流失 >20%，Rovo Credits 遭拒買，FCF 利潤率跌至 15%" },
+          { name: "Bear (雲端遷移紅利耗盡)", prob: 0.20, rev28: "$9.23B", multiple: "22x P/FCF", targetPrice: 155.00, why: "雲端遷移紅利於 2027 耗盡，Linear 搶奪中小型市場，營收 CAGR 降至 12%，估值降至 22x" },
+          { name: "Base (JSM達標/Rovo放量)", prob: 0.50, rev28: "$11.31B", multiple: "30x P/FCF", targetPrice: 339.00, why: "JSM 突破 25 億，Rovo 帶動 Enterprise 升級，Cloud NRR 穩在 120%，FCF 利率達 26%" },
+          { name: "Bull (AI代理全面爆發/SBC壓縮)", prob: 0.20, rev28: "$12.85B", multiple: "38x P/FCF", targetPrice: 600.00, why: "Rovo 消耗收入指數爆發，SBC 佔比降至 12%，FCF 破 41 億，38x 估值推升突破 $600" }
+        ],
+        multibaggerConditions: "股價達 $380+ (翻倍) 需要：JSM 所在的 Service Collection ARR 突破 25 億美元，AI 消耗型營收佔雲端 ARR >15%，且 SBC 佔比壓縮至 15% 以下使 GAAP 營業利益率達 15%-20%。",
+        keyFailureRisks: "雲端淨收入留存率 (Cloud NRR) 連續兩季跌破 110%；ARR > 100 萬美元的大型企業客戶數單季環比零增長；AWS 雲端底層服務中斷。",
+        falsificationTriggers: "雲端淨收入留存率 (Cloud NRR) 連續兩季跌破 110.0%，或 ARR > $100 萬的大型企業客戶數單季環比 (QoQ) 出現零增長。"
+      },
+
+      OUST: {
+        ticker: "OUST",
+        name: "Ouster, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "multibagger",
+        categoryLabel: "🚀 實體AI/數位光達壟斷",
+        researchPriority: "HIGH (高賠率投機)",
+        targetPriceReentryMin: 17.5,
+        targetPriceReentryMax: 21.5,
+        
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "結構性高估 (3.5 / 5)",
+        marketExpectationWhy: "現價約 $33.5，市值逾 21 億美元，EV/Sales 高達 7.6x，市場過度透支實體 AI 願景，忽視 2025 年 49% 毛利中有近半是一次性和解金，且前三季現金流出近 5,000 萬美元。",
+        businessPathAndMispricing: "最可能路徑：全數位 L4 晶片架構，收購 Stereolabs 補齊視覺與 NVIDIA 邊緣算力，受惠美國 NDAA 禁令排他性壟斷北美軍工與智慧城市。市場盲點：市場忽視 2026 年專利授權金斷崖 (自 2,300 萬降至 300 萬) 對毛利的打擊；且低單價相機佔出貨 70% 稀釋毛利；更關鍵的是單季股票激勵 (SBC) 高達 1,874 萬 (佔營收 31%) 瘋狂稀釋股本。",
+        
+        targets: [
+          { name: "Stress (SAFE法案流產/價格戰)", prob: 0.15, rev28: "$260M", multiple: "1.5x EV/S", targetPrice: 4.11, why: "法案流產，禾賽海外殺價使毛利跌破 25%，固態 DF 失敗，折價增資稀釋" },
+          { name: "Bear (估值回歸/成長放緩)", prob: 0.30, rev28: "$400M", multiple: "3.0x EV/S", targetPrice: 13.41, why: "車載 L3 遭瓜分，客戶拒絕訂閱 Gemini 軟體，淪為傳統硬體零組件廠，估值回歸 3x" },
+          { name: "Base (NDAA紅利/基本盤達標)", prob: 0.40, rev28: "$550M", multiple: "40.0x P/FCF", targetPrice: 31.05, why: "壟斷北美軍工與智慧城市，德州廠達 10 萬規模，毛利穩守 40%，FCF 達 6600 萬" },
+          { name: "Bull (超預期爆發/車載破冰)", prob: 0.15, rev28: "$850M", multiple: "45.0x P/FCF", targetPrice: 90.00, why: "SAFE 法案通過全面淘汰中國光達，DF 全固態獲 Top-5 車廠十億大單，FCF 破 1.7 億" }
+        ],
+        multibaggerConditions: "股價達 $60+ 需要：純軟體 ARR 突破 1.2 億美元 (佔比 >15%) 且毛利率 >80%，單季 OCF 於 2027 Q2 前轉正且 2028 全年 FCF 破 1.5 億美元，DF 固態光達獲全球跨國車廠 10 億量產訂單。",
+        keyFailureRisks: "Non-GAAP 毛利率連續兩季跌破 35%；單季營業現金流出連續兩季超過 3,000 萬美元；美國國防部 Blue UAS 白名單移除 Ouster OS1。",
+        falsificationTriggers: "Non-GAAP 毛利率連續兩季跌破 35.0%，或單季營業現金流出連續兩季超過 $3,000 萬美元，或總出貨量連續兩季 QoQ 下滑超過 15%。"
+      },
+
+      NOW: {
+        ticker: "NOW",
+        name: "ServiceNow, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "rerating",
+        categoryLabel: "🎯 工作流AI·暴跌修復",
+        researchPriority: "TOP PRIORITY (高性價比)",
+        targetPriceReentryMin: 95.0,
+        targetPriceReentryMax: 106.5,
+        
+        marketExpectationScore: 2.5,
+        marketExpectationLabel: "偏向悲觀 (2.5 / 5)",
+        marketExpectationWhy: "現價約 $106-$109 (1拆5後)，因 Q4 cRPO 指引放緩至 18.5% 引發單日暴跌 27%，遠期 P/E 壓縮至 22x-26x，市場過度恐慌增長放緩，提供極佳非對稱賠率。",
+        businessPathAndMispricing: "最可能路徑：CMDB 護城河極深 (續約率 98%)，Agentic AI 專有『Assists 消耗模型』將引發超額收入 (Overage) 遞延爆發。市場盲點：看空者將商業模式轉型為消耗計費造成的 cRPO 遞延認列，誤判為終局需求衰退；但需嚴格防範 SBC 股權激勵高達 16 億及 75 億債務對真實 FCF 的稀釋。",
+        
+        targets: [
+          { name: "Stress (AI項目失敗/降價)", prob: 0.10, rev28: "$18.0B", multiple: "15x P/FCF", targetPrice: 72.00, why: "Agentic AI 失敗率高客戶拒絕續約，微軟價格戰搶市，FCF 利率跌破 25%" },
+          { name: "Bear (週期減速/傳統化)", prob: 0.25, rev28: "$20.5B", multiple: "20x P/FCF", targetPrice: 122.00, why: "GSI 推廣意願降，ITSM 飽和，Armis/Veza 交叉銷售不及預期，倍數降至 20x" },
+          { name: "Base (合理基本盤達標)", prob: 0.45, rev28: "$23.0B", multiple: "28x P/FCF", targetPrice: 216.00, why: "Now Assist 滲透率穩升，98% 續約率保底，FCF 達 80 億，修復至 28x" },
+          { name: "Bull (超級週期/代理爆發)", prob: 0.20, rev28: "$25.5B", multiple: "35x P/FCF", targetPrice: 326.00, why: "Agentic AI 大規模商用，Assists 超額消耗爆發，FCF 利率擴張至 38%" }
+        ],
+        multibaggerConditions: "股價達 $218+ (翻倍) 需要：AI 純增量 ACV 突破 45 億美元 (佔訂閱營收 >20%)，FCF 利潤率剛性擴張至 38% 以上，且超額購買收入 (Overage) 佔 AI 營收 >10%。",
+        keyFailureRisks: "GAAP 訂閱毛利因第三方 LLM 算力成本飆升跌破 70%；SBC 股權激勵稀釋股東權益；高達 75 億債務利息負擔。",
+        falsificationTriggers: "cRPO 恆定匯率年增率連續兩季跌破 17.0%，或 GAAP 訂閱毛利率連續兩季跌破 70.0%。"
+      },
+
+      GOOG: {
+        ticker: "GOOG",
+        name: "Alphabet Inc.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ TPU算力/認知全棧霸主",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 235.0,
+        targetPriceReentryMax: 255.0,
+        
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "偏向防禦 (3.5 / 5)",
+        marketExpectationWhy: "現價約 $278-$287，遠期 P/E 約 18x-20x，市場深陷『折舊恐懼症』，過度放大單季 CapEx $514 億致 FCF 轉負，卻忽視 Cloud 訂單破 $5,600 億。",
+        businessPathAndMispricing: "最可能路徑：TPU v7 (Ironwood) 將大模型推論成本降至每次 $0.0061 (低於傳統搜索)，AI Overviews 驅動商業搜索 RPM 提升 50% 達 $90，Cloud 營收突破千億。市場盲點：錯將短期會計現金流損耗視為模式劣化，忽視 5,610 億 RPO 在手訂單支撐；且完全無視 Waymo 無人計程車商業化爆發的數千億期權價值；但需防範博通協同設計依賴及 Apple Safari 預設入口的反壟斷裁決。",
+        
+        targets: [
+          { name: "Stress (DOJ分拆/折舊雙殺)", prob: 0.15, rev28: "$495.0B", multiple: "15x", targetPrice: 118.80, why: "DOJ 強制剝離 Chrome，巨額 CapEx 折舊吞噬利潤，淨利率跌至 20%" },
+          { name: "Bear (資本回報不及預期)", prob: 0.25, rev28: "$550.0B", multiple: "18x", targetPrice: 182.16, why: "龐大 CapEx 拖垮資本回報，搜索廣告受零點擊影響增速降至個位數" },
+          { name: "Base (合理雙引擎達標)", prob: 0.45, rev28: "$650.0B", multiple: "22x", targetPrice: 320.32, why: "Cloud 營業利潤率穩定在 35%+，AI 商業搜索溢價兌現，淨利達 1,820 億" },
+          { name: "Bull (TPU霸權/Waymo全面變現)", prob: 0.15, rev28: "$750.0B", multiple: "28x", targetPrice: 504.00, why: "TPU 瓦解 CUDA 護城河，AI 推論市佔破 30%，Waymo 獨立估值數千億" }
+        ],
+        multibaggerConditions: "股價達 $550+ 需要：Google Cloud 營收突破 2,000 億美元且營業利益率站穩 40%，AI Overviews 商業搜索 RPM 突破 100 美元，且 FCF 於 2027 年底前 V 型反轉突破 1,300 億美元。",
+        keyFailureRisks: "Broadcom TPU 協同設計技術扼流圈；DOJ 反壟斷裁決限制 Apple Safari 預設搜尋；巨額 CapEx 導致 ROIC 跌破 18%。",
+        falsificationTriggers: "Google Cloud 營收季增率 (QoQ) 連續兩季 <5% 且營業利益率跌破 25%，或 Google Search 營收連續兩季 YoY 實質負增長超過 -3%，或 ROIC 連續四季持續低於 18%。"
+      },
+
+      OSCR: {
+        ticker: "OSCR",
+        name: "Oscar Health, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "multibagger",
+        categoryLabel: "🚀 醫療福利ICHRA期權",
+        researchPriority: "HIGH (高賠率投機)",
+        targetPriceReentryMin: 22.5,
+        targetPriceReentryMax: 26.0,
+        
+        marketExpectationScore: 4.0,
+        marketExpectationLabel: "高度樂觀 (4.0 / 5)",
+        marketExpectationWhy: "現價約 $31-$34，市值破百億，遠期 P/E 達 16x-18x，市場將其包裝為 SaaS 醫療科技股，忽視其 98% 依賴傳統 ACA 個人險與 80/20 法定毛利天花板。",
+        businessPathAndMispricing: "最可能路徑：向 CHOICE (ICHRA 企業員工定額福利) 平台及 Lucie 補充醫療市集轉型，繞過 80/20 毛利限制收取技術服務費。市場盲點：極度致命的『eAPTC 聯邦補貼懸崖』——2025 年底擴大補貼到期，93% 依賴政府補貼的會員面臨自付保費翻倍，將引發年輕健康族退保、留下重病患的『逆向選擇』理賠海嘯；且佛州單一市場佔 58% 營收形成極端單點故障。",
+        
+        targets: [
+          { name: "Stress (補貼中斷/逆向選擇)", prob: 0.15, rev28: "$14.5B", multiple: "8x", targetPrice: 10.00, why: "補貼退潮引發健康人退保，MLR 惡化至 88%，逆向選擇吞噬利潤，殺至 8x 殘值" },
+          { name: "Bear (CHOICE不及預期/估值破裂)", prob: 0.30, rev28: "$19.5B", multiple: "12x", targetPrice: 21.60, why: "雇主轉向 ICHRA 速度緩慢，AI 自動化邊際效益見頂，估值回歸 12x 傳統險企" },
+          { name: "Base (合理基本盤達標)", prob: 0.45, rev28: "$24.2B", multiple: "14x", targetPrice: 53.20, why: "CHOICE 轉化 150 萬雇員會員對沖退潮，MLR 穩在 82%，EPS 達 $3.80" },
+          { name: "Bull (Lucie平台爆發/純科技溢價)", prob: 0.10, rev28: "$30.5B", multiple: "18x", targetPrice: 108.00, why: "Lucie 技術授權突破 5 億高毛利營收，CHOICE 會員破 250 萬，重獲 18x 科技溢價" }
+        ],
+        multibaggerConditions: "股價翻倍至 $64+ 需要：ICHRA (CHOICE) 會員突破 180 萬人，SG&A 費用率結構性跌破 13.0%，Lucie 非保險技術服務收入破 5 億美元，且風險調整應付款佔保費降至 18% 以下。",
+        keyFailureRisks: "eAPTC 聯邦補貼終止引發健康會員大逃亡與逆向選擇；佛州 (佔 58%) 颶風或監管凍結保費；雙層股權結構 (Kushner 掌控 67% 投票權) 治理風險。",
+        falsificationTriggers: "淨風險調整轉移應付款連續兩季突破直接保費的 22% 且底層真實 MLR 連兩季突破 85%，或佛州/德州生效會員數同比下滑超過 15%。"
+      },
+
       NVDA: {
         ticker: "NVDA",
         name: "NVIDIA Corporation",
@@ -1227,10 +1811,10 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         businessPathAndMispricing: "最可能路徑：AI 推論 KV 快取 eSSD 爆發，BiCS8 CBA 混合鍵合成本優勢，NBM 長協模式收取百億保證金將週期大宗商品轉化為高毛利基礎設施收租。市場盲點：市場看空者將現貨價格波動生搬硬套於已被長約鎖定的資產，忽視客戶已質押 165 億美元實質擔保金的反身性履約約束力；但需高度警惕前段晶圓完全依賴日本鎧俠 (Kioxia) 合資工廠的單點故障風險。",
         
         targets: [
-          { name: "Stress (合約違約/週期暴跌)", prob: 0.10, rev28: "$24.0B", multiple: "5.0x", targetPrice: 55.00, why: "現貨崩盤引發雲端大廠寧損保證金也要毀約，Kioxia 合資摩擦，殺至 5x 殘值" },
-          { name: "Bear (週期減速/產能釋放)", prob: 0.25, rev28: "$38.0B", multiple: "7.5x", targetPrice: 120.00, why: "2028 年 NAND 產能釋放，現貨疲弱，長協以底價執行毛利保底 75%，P/E 7.5x" },
-          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$58.0B", multiple: "12.0x", targetPrice: 260.00, why: "數據中心營收佔比破 60%，NBM 長協毛利穩守 80%+，FCF 破 200 億並激進回購" },
-          { name: "Bull (KV快取/HBF全面替代)", prob: 0.15, rev28: "$75.0B", multiple: "18.0x", targetPrice: 420.00, why: "HBF 混合鍵合低成本替代部分 HBM，eSSD 徹底淘汰機械硬碟，估值達 18x" }
+          { name: "Stress (合約違約/週期暴跌)", prob: 0.10, rev28: "$24.0B", multiple: "5.0x", targetPrice: 22.50, why: "現貨崩盤引發雲端大廠撕毀 NBM 放棄保證金，Kioxia 合資摩擦，拆分後目標價 $22.50 (Pre-split $180)" },
+          { name: "Bear (週期減速/產能釋放)", prob: 0.25, rev28: "$38.0B", multiple: "7.5x", targetPrice: 75.00, why: "2028 年 NAND 產能釋放，現貨疲弱，長協以底價執行毛利保底 70%，拆分後目標價 $75.00 (Pre-split $600)" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$58.0B", multiple: "12.0x", targetPrice: 195.00, why: "數據中心佔比破 55%，NBM 履約轉化 939 億，估值修復至 12x，拆分後目標價 $195.00 (Pre-split $1,560)" },
+          { name: "Bull (KV快取/HBF全面替代)", prob: 0.15, rev28: "$75.0B", multiple: "18.0x", targetPrice: 360.00, why: "HBF 混合鍵合奪取 HBM 份額，eSSD 淘汰機械硬碟，拆分後目標價 $360.00 (Pre-split $2,880)" }
         ],
         multibaggerConditions: "股價達 $250+ (分割後翻倍) 需要：數據中心營收佔比連續四季穩守 60% 以上，年度調整後 FCF 突破 200 億美元且 100% 返還股東完成 105 億回購，且單季毛利率在週期下行中絕不跌破 75%。",
         keyFailureRisks: "前段製造完全依賴日本 Kioxia 合資工廠單點故障；北美雲端巨頭強行毀約退出 NBM 合約；三星與海力士 300+ 層 QLC 價格戰。",
@@ -1471,10 +2055,10 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         businessPathAndMispricing: "最可能路徑：Firefly 商業安全授權成為大型企業唯一合規標配，企業工作流整合黏著度極高。市場錯判：將消費級生圖工具與專業端混為一談，忽略了每年近 80 億美元的自由現金流造血能力與積極庫藏股回購。",
         
         targets: [
-          { name: "Stress (席位永久侵蝕)", prob: 0.15, rev28: "$22.0B", multiple: "14x", targetPrice: 165.00, why: "低階設計師席位流失 25%，定價被迫大幅折扣" },
-          { name: "Bear (微幅增長無溢價)", prob: 0.30, rev28: "$24.5B", multiple: "17x", targetPrice: 215.00, why: "收入維持 5-7% 增長，但市場不再給予軟體溢價" },
-          { name: "Base (企業工作流穩固)", prob: 0.40, rev28: "$27.5B", multiple: "24x", targetPrice: 310.00, why: "Firefly 企業版變現順利，毛利維持 88%，回購支撐 EPS" },
-          { name: "Bull (AI創作核心中樞)", prob: 0.15, rev28: "$31.0B", multiple: "28x", targetPrice: 410.00, why: "3D、影片生成全面商業化，企業訂閱 ARPU 提升 20%" }
+          { name: "Stress (合規溢價喪失/雙殺)", prob: 0.15, rev28: "$25.0B", multiple: "8.0x P/FCF", targetPrice: 193.00, why: "Canva/開源解決版權爭議，Firefly 合規溢價喪失，FCF 萎縮至 $75 億，殺至 8x 殘值" },
+          { name: "Bear (AI成本拖累/增長停滯)", prob: 0.30, rev28: "$28.5B", multiple: "10.0x P/FCF", targetPrice: 290.00, why: "GPU 推論成本高昂侵蝕毛利跌穿 87%，Freemium 漏斗轉化失敗，維持 10x 估值" },
+          { name: "Base (C2PA標準/回購發威)", prob: 0.40, rev28: "$31.0B", multiple: "15.0x P/FCF", targetPrice: 532.00, why: "C2PA 成全球合規標配，回購使股本縮至 3.1 億股，FCF 達 110 億，修復至 15x" },
+          { name: "Bull (影片模型/API全面爆發)", prob: 0.15, rev28: "$34.0B", multiple: "20.0x P/FCF", targetPrice: 838.00, why: "Firefly Video 與 API 點數消耗指數級爆發，Semrush 奪走行銷份額，FCF 破 130 億" }
         ],
         multibaggerConditions: "Adobe 具備 1 倍（翻倍至 $500）的修復潛力：需要企業 Creative Cloud ARPU 恢復兩位數增長，且大額現金流持續註銷 5% 流通股數。",
         keyFailureRisks: "開放模型開源影片生成工具達到廣播級水準，且使用者介面門檻降至零，使 Adobe 工作流被徹底繞過。",
@@ -1484,6 +2068,15 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
 
     // --- 2. CURRENT IN-MEMORY QUOTES (Initial state: 10:27 EST Live Snapshot) ---
     let currentQuotes = {
+      ORCL: { symbol: "NYSE:ORCL", price: 123.73, prevClose: 126.20, change: "-1.96%", currency: "USD", time: "2026-11-04 16:03:40 EST" },
+      APP: { symbol: "NASDAQ:APP", price: 330.00, prevClose: 271.75, change: "+21.43%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      QCOM: { symbol: "NASDAQ:QCOM", price: 173.19, prevClose: 164.43, change: "+5.33%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      CRM: { symbol: "NYSE:CRM", price: 227.11, prevClose: 222.18, change: "+2.22%", currency: "USD", time: "2026-11-04 16:00:04 EST" },
+      TEAM: { symbol: "NASDAQ:TEAM", price: 189.88, prevClose: 191.05, change: "-0.61%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      OUST: { symbol: "NASDAQ:OUST", price: 33.54, prevClose: 28.98, change: "+15.73%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      NOW: { symbol: "NASDAQ:NOW", price: 108.81, prevClose: 109.17, change: "-0.33%", currency: "USD", time: "2026-11-04 16:00:06 EST" },
+      GOOG: { symbol: "NASDAQ:GOOG", price: 287.30, prevClose: 278.27, change: "+3.24%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      OSCR: { symbol: "NYSE:OSCR", price: 32.40, prevClose: 33.10, change: "-2.11%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
       NVDA: { symbol: "NASDAQ:NVDA", price: 200.13, prevClose: 206.69, change: "-3.17%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
       ACN: { symbol: "NYSE:ACN", price: 264.27, prevClose: 254.56, change: "+3.81%", currency: "USD", time: "2026-11-04 16:00:06 EST" },
       SNDK: { symbol: "NASDAQ:SNDK", price: 129.67, prevClose: 140.81, change: "-7.91%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
@@ -1590,7 +2183,134 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       renderStockCards();
       renderSheetTable();
 
+      recalculatePortfolioMetrics();
       showToast(`成功讀取試算表！ANET: $${currentQuotes.ANET.price.toFixed(2)} | BNTX: $${currentQuotes.BNTX.price.toFixed(2)}`);
+    }
+
+
+    // --- 3B. SHARED PORTFOLIO JSONP 引擎 (雙向讀取 1LDSj8aq7GpuuIX_11HzfoUXvNLAgzKNS1nhi3s2qnnE) ---
+    const PORTFOLIO_SHEET_ID = '1LDSj8aq7GpuuIX_11HzfoUXvNLAgzKNS1nhi3s2qnnE';
+    let currentPortfolioState = {
+      cash: 400000.00,
+      initialCash: 400000.00,
+      holdings: [],
+      investedUSD: 0.00,
+      totalEquity: 400000.00,
+      hwm: 400000.00
+    };
+
+    window.handlePortfolioJSONP = function(json) {
+      if (!json || json.status !== 'ok' || !json.table || !json.table.rows) {
+        console.warn("Portfolio JSONP 回傳非預期，採用本地安全預設 ($400,000)");
+        document.getElementById("portfolioSyncBadge").className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40";
+        document.getElementById("portfolioSyncBadge").textContent = "本地安全預設 (待開查看權限)";
+        return;
+      }
+      parsePortfolioGVizTable(json.table);
+    };
+
+    function parsePortfolioGVizTable(table) {
+      const rows = table.rows;
+      let cash = 400000.00;
+      let holdings = [];
+
+      // Row 5 is cash_usd (Portfolio!B6, 0-indexed index 4 or 5)
+      for (let i = 0; i < Math.min(10, rows.length); i++) {
+        const r = rows[i];
+        if (!r || !r.c) continue;
+        const fieldName = r.c[0] ? String(r.c[0].v || '').toLowerCase() : '';
+        if (fieldName.includes('cash_usd')) {
+          const val = r.c[1] ? parseFloat(r.c[1].v) : NaN;
+          if (!isNaN(val)) cash = val;
+        }
+      }
+
+      // Rows 12+ are Holdings (A13:B512)
+      for (let i = 11; i < rows.length; i++) {
+        const r = rows[i];
+        if (!r || !r.c || !r.c[0]) continue;
+        const sym = String(r.c[0].v || '').trim();
+        const qty = r.c[1] ? parseFloat(r.c[1].v) : 0;
+        if (sym && !isNaN(qty) && qty > 0) {
+          holdings.push({ symbol: sym, quantity: qty });
+        }
+      }
+
+      currentPortfolioState.cash = cash;
+      currentPortfolioState.holdings = holdings;
+      recalculatePortfolioMetrics();
+
+      const nowStr = new Date().toLocaleTimeString('zh-HK', { hour12: false });
+      const badge = document.getElementById("portfolioSyncBadge");
+      badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+      badge.textContent = `🟢 試算表實時連線 (${nowStr})`;
+      console.log("Portfolio 實時同步成功:", currentPortfolioState);
+    }
+
+    function recalculatePortfolioMetrics() {
+      let investedUSD = 0.00;
+      const holdingsContainer = document.getElementById("liveHoldingsContainer");
+      const holdingsList = document.getElementById("liveHoldingsList");
+
+      if (currentPortfolioState.holdings.length > 0) {
+        holdingsContainer.classList.remove("hidden");
+        holdingsList.innerHTML = "";
+
+        currentPortfolioState.holdings.forEach(h => {
+          const ticker = h.symbol.split(':').pop();
+          const q = currentQuotes[ticker];
+          let priceUSD = 0;
+          if (q) {
+            priceUSD = q.currency === 'EUR' ? (q.price * 1.08) : q.price;
+          }
+          const mktValue = h.quantity * priceUSD;
+          investedUSD += mktValue;
+
+          const rowDiv = document.createElement("div");
+          rowDiv.className = "flex items-center justify-between font-mono text-[11px] text-slate-300";
+          rowDiv.innerHTML = `<span><strong>${h.symbol}</strong> · ${h.quantity} 股</span><span class="text-emerald-400">$${mktValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+          holdingsList.appendChild(rowDiv);
+        });
+      } else {
+        holdingsContainer.classList.add("hidden");
+      }
+
+      currentPortfolioState.investedUSD = investedUSD;
+      const totalEquity = currentPortfolioState.cash + investedUSD;
+      currentPortfolioState.totalEquity = totalEquity;
+      if (totalEquity > currentPortfolioState.hwm) {
+        currentPortfolioState.hwm = totalEquity;
+      }
+
+      // Update DOM
+      document.getElementById("portfolioTotalEquity").textContent = '$' + totalEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById("portfolioAvailableCash").textContent = '$' + currentPortfolioState.cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById("portfolioInvestedAmount").textContent = '$' + investedUSD.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById("portfolioPositionsCount").textContent = `${currentPortfolioState.holdings.length} 檔實時持倉`;
+
+      const cashRatio = totalEquity > 0 ? ((currentPortfolioState.cash / totalEquity) * 100).toFixed(1) : "100.0";
+      document.getElementById("portfolioCashRatio").textContent = `${cashRatio}% 現金水位`;
+    }
+
+    function triggerLivePortfolioJSONPFetch() {
+      const oldScript = document.getElementById("portfolio-gviz-script-tag");
+      if (oldScript) oldScript.remove();
+
+      const script = document.createElement("script");
+      script.id = "portfolio-gviz-script-tag";
+      const nocache = Date.now();
+      script.src = `https://docs.google.com/spreadsheets/d/${PORTFOLIO_SHEET_ID}/gviz/tq?tqx=responseHandler:handlePortfolioJSONP&sheet=${encodeURIComponent('Portfolio')}&t=${nocache}`;
+
+      script.onerror = function() {
+        console.warn("無法存取持倉表 JSONP (可能未設公開共用)，維持安全預設");
+        const badge = document.getElementById("portfolioSyncBadge");
+        if (badge) {
+          badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40";
+          badge.textContent = "待開啟檢視權限 (以 $400k 運行)";
+        }
+      };
+
+      document.head.appendChild(script);
     }
 
     function triggerLiveJSONPFetch() {
@@ -1601,6 +2321,9 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       // Remove existing script tag if any
       const oldScript = document.getElementById("gviz-script-tag");
       if (oldScript) oldScript.remove();
+
+      // Also sync Portfolio Sheet!
+      triggerLivePortfolioJSONPFetch();
 
       // JSONP bypasses CORS completely!
       const script = document.createElement("script");
