@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V1.5 · 真實實時報價連動版</title>
+  <title>IROS Alpha V2.4 · 15檔機構級決策矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V1.5 實時直通</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V2.4 實時直通 (15檔核心)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -403,6 +403,399 @@
               </div>
             </div>
           </div>
+          <!-- CRDO (NEAR SCALE-IN ZONE) -->
+          <div class="p-3 rounded-xl bg-amber-950/20 border border-amber-500/30 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-amber-500/30 text-amber-300 font-bold text-[9px] px-2 py-0.5 rounded-bl border-b border-l border-amber-500/40">
+              接近試水區 ($115–$135)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:CRDO</span>
+                  <span class="text-xs text-slate-300">Credo Technology</span>
+                  <span class="text-xs font-mono font-bold text-amber-400">$136.50</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：AEC 互連壟斷；OmniConnect 解決記憶體牆；現價跌近買入區間 ($115–$135)
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-amber-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-amber-300">2.5% ($10,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">75 股 ($10,237)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">嚴格買入區間</span>
+                <span class="font-mono text-amber-400 font-bold">$115.0 – $135.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-300">毛利連兩季 <62% 或大客連兩季季減>25%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TSM (WAIT FOR RETRACEMENT) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:TSM</span>
+                  <span class="text-xs text-slate-400">台積電 ADR</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$395.75</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">定海神針·等待回踩</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：N2/A16 與 CoWoS 雙輪驅動，ASIC 完美對沖；惟海外廠成本高 90% 且 2026 CapEx 擠壓短期現金流
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-slate-400">0.0% (耐心等待)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3.5% ($14,000 / 43 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$315.0 – $330.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">毛利連兩季 <53% 或 CapEx>$65B增長<15%</span>
+              </div>
+            </div>
+          </div>
+                    <!-- AVGO (ACTIONABLE STAGE 1 ZONE) -->
+          <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded-bl">
+              落入首批試水區 ($310–$330)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:AVGO</span>
+                  <span class="text-xs text-slate-300">Broadcom Inc.</span>
+                  <span class="text-xs font-mono font-bold text-emerald-400">$325.48</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：客製化 ASIC 與 Tomahawk 乙太網雙霸主；FCF 轉換率 46%；現價自高位 $490 回調逾 33%，進入首批試水區間
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-emerald-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-emerald-300">3.75% ($15,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">48 股 ($15,623)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">試水買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$310.0 – $330.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-300">Non-GAAP 毛利連兩季 <73% 或 AI 營收連續兩季季減>5%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- VRT (IN ENTRY ZONE RIGHT NOW) -->
+          <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded-bl">
+              落入安全邊際試水區 ($205–$230)
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:VRT</span>
+                  <span class="text-xs text-slate-300">Vertiv Holdings Co.</span>
+                  <span class="text-xs font-mono font-bold text-emerald-400">$205.55</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：GB200 液冷機櫃 CDU 獨佔 70% 份額；收購 UIG 攻入電表後微電網；現價 $205.55 剛好殺進 Entry Zone
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-emerald-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-emerald-300">3.75% ($15,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">68 股 ($13,977)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">嚴格買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$205.0 – $230.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-300">Book-to-Bill 連兩季 <1.1x 或毛利 <34%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SKHY (VALUE RERATING WATCHLIST) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:SKHY</span>
+                  <span class="text-xs text-slate-400">SK Hynix (ADR)</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$143.07</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">低估修復·接近買入區</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：HBM4 結合台積電代工，Solidigm eSSD 爆發；遠期 P/E 僅 6x-8x 嚴重錯判；等待回調至 $115–$128
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-slate-400">0.0% (觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3.75% ($15,000 / 120 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$115.0 – $128.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">毛利連兩季 <50% 或 CXMT DRAM 市佔 >15%</span>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- BE (WAIT / SCANDIUM RISK) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:BE</span>
+                  <span class="text-xs text-slate-400">Bloom Energy</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$200.40</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">極度透支·斷料風險</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：90天極限供電套利；惟 5GW 產能需 200-300 噸氧化鈧 (全球僅產 80 噸)，合約資產積壓 FCF 負數
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (絕對禁買)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">2.5% ($10,000 / 62 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$140.0 – $165.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">產品毛利連兩季 <30% 或合約資產+應收帳佔 TTM 營收 >45%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AMD (WAIT / WARRANTS DILUTION) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:AMD</span>
+                  <span class="text-xs text-slate-400">AMD Inc.</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$488.78</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">極度亢奮·權證稀釋</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：EPYC 穩固 50% CPU，Helios 液冷機櫃交付；惟 OpenAI/Meta 3.2 億股權證超級稀釋，庫存 $114 億擠壓現金流
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (耐心觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">2.5% ($10,000 / 25 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$365.0 – $415.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">連兩季 FCF <$10億且庫存佔營收 >90% 或資料中心增長 <10%</span>
+              </div>
+            </div>
+          </div>
+          <!-- SNDK (VALUE RERATING / NEAR ENTRY) -->
+          <div class="p-3 rounded-xl bg-blue-950/20 border border-blue-500/30">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:SNDK</span>
+                  <span class="text-xs text-slate-300">SanDisk (WDC分拆)</span>
+                  <span class="text-xs font-mono font-bold text-blue-400">$129.67</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">低估修復·接近買入區</span>
+                </div>
+                <div class="text-xs text-slate-300 mt-1">
+                  入選理由：NBM 長約鎖定 939 億底價，客戶質押 165 億保證金；遠期 P/E 僅 8.5x 嚴重錯判；接近安全買入區 ($106–$118)
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-blue-500/20 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議首批倉位</span>
+                <span class="font-mono font-bold text-blue-300">2.5% ($10,000)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入股數</span>
+                <span class="font-mono font-bold text-white">80 股 ($10,373)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-blue-400 font-bold">$106.0 – $118.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-rose-300">RPO保證金連兩季減>10% 或毛利跌破65%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACN (WAIT FOR RETRACEMENT) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NYSE:ACN</span>
+                  <span class="text-xs text-slate-400">埃森哲 Accenture</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$264.27</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">防禦類債券·等待安全邊際</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：全球 IT 諮詢龍頭，FCF $116 億；惟 AI 通縮使有機增長僅剩 1%-3.5% 且受 DOGE 砍單影響；安全買入區 $195–$215
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-slate-400">0.0% (耐心觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3.0% ($12,000 / 55 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$195.0 – $215.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">託管 Book-to-Bill 連兩季 <1.05 或有機增長 <0%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- NVDA (WAIT FOR ENTRY ZONE) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:NVDA</span>
+                  <span class="text-xs text-slate-400">NVIDIA Corporation</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$200.13</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">極度亢奮·等待折舊牆</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：AI 算力壟斷霸主；惟現價透支且承擔 Neo-Cloud 25% 殘值擔保風險，電網交期 4-5 年引發部署真空；安全買入區 $85–$105
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (防禦等待)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">2.5% ($10,000 / 100 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$85.0 – $105.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">四大客營收連續兩季年減>15% 或毛利跌破68%</span>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- ASML (WAIT / OVERVALUED) -->
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white font-mono">NASDAQ:ASML</span>
+                  <span class="text-xs text-slate-400">ASML Holding N.V.</span>
+                  <span class="text-xs font-mono font-bold text-slate-300">$1,496.30</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">極度樂觀·耐心等待</span>
+                </div>
+                <div class="text-xs text-slate-400 mt-1">
+                  入選理由：全球唯一 EUV 微影設備霸主；惟現價遠期 P/E ~40x 缺乏安全邊際，台積電推遲 High-NA 至 2030 年全面採用
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div>
+                <span class="text-[10px] text-slate-400 block">當前配置</span>
+                <span class="font-mono font-bold text-rose-400">0.0% (耐心觀望)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">首批規劃</span>
+                <span class="font-mono text-slate-300">3.1% ($12,600 / 10 股)</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全買入區間</span>
+                <span class="font-mono text-emerald-400 font-bold">$1,150.0 – $1,280.0</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">證偽條件</span>
+                <span class="text-[11px] text-slate-400">High-NA 訂單連兩季 <5台 或 毛利 <52%</span>
+              </div>
+            </div>
+          </div>
+
 
           <!-- ANET (WAIT) -->
           <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
@@ -456,6 +849,21 @@
             <select id="txSymbol" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
               <option value="AMS:BESI" data-price="152.65" data-shares="72">AMS:BESI (72股 / €152.65)</option>
               <option value="NASDAQ:ADBE" data-price="254.69" data-shares="47">NASDAQ:ADBE (47股 / $254.69)</option>
+              <option value="NASDAQ:SNDK" data-price="129.67" data-shares="80">NASDAQ:SNDK (80股 / $129.67)</option>
+              <option value="NYSE:ACN" data-price="264.27" data-shares="55">NYSE:ACN (55股 / $264.27)</option>
+              <option value="NASDAQ:NVDA" data-price="200.13" data-shares="100">NASDAQ:NVDA (100股 / $200.13)</option>
+
+              <option value="NYSE:VRT" data-price="205.55" data-shares="68">NYSE:VRT (68股 / $205.55)</option>
+              <option value="NASDAQ:SKHY" data-price="143.07" data-shares="120">NASDAQ:SKHY (120股 / $143.07)</option>
+              <option value="NASDAQ:AVGO" data-price="325.48" data-shares="48">NASDAQ:AVGO (48股 / $325.48)</option>
+              <option value="NYSE:BE" data-price="200.40" data-shares="62">NYSE:BE (62股 / $200.40)</option>
+              <option value="NASDAQ:AMD" data-price="488.78" data-shares="25">NASDAQ:AMD (25股 / $488.78)</option>
+
+              <option value="NASDAQ:CRDO" data-price="136.50" data-shares="75">NASDAQ:CRDO (75股 / $136.50)</option>
+              <option value="NYSE:TSM" data-price="395.75" data-shares="43">NYSE:TSM (43股 / $395.75)</option>
+
+              <option value="NASDAQ:ASML" data-price="1496.30" data-shares="10">NASDAQ:ASML (10股 / $1,496.30)</option>
+
               <option value="NASDAQ:BNTX" data-price="88.91" data-shares="135">NASDAQ:BNTX (135股 / $88.91)</option>
               <option value="NYSE:ANET" data-price="186.11" data-shares="64">NYSE:ANET (64股 / $186.11)</option>
             </select>
@@ -748,6 +1156,303 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         keyFailureRisks: "ASMI 或 Kulicke & Soffa 等競爭者突破專利壁壘推出低價替代方案；半導體先進製程資本支出因總經衰退而急凍。",
         falsificationTriggers: "季度 Hybrid Bonding 新增訂單連續兩季下滑超過 20% 則暫停加碼。"
       },
+      NVDA: {
+        ticker: "NVDA",
+        name: "NVIDIA Corporation",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ AI算力絕對霸主",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 85.0,
+        targetPriceReentryMax: 105.0,
+        
+        marketExpectationScore: 4.2,
+        marketExpectationLabel: "高度亢奮 (4.2 / 5)",
+        marketExpectationWhy: "現價約 $200-$206，遠期 P/E 達 30x-35x，市場將其視為高 ARR 軟體股，假設 AI 資本支出至 2029 年無縫線性增長，容錯率極低。",
+        businessPathAndMispricing: "最可能路徑：實體 AI/機器人 (Jetson Thor) 與 NIM 企業推論微服務崛起，Spectrum-X 網絡攻佔 20% 交換機市場。市場盲點：忽視為新興雲端商 (CoreWeave 等) 提供高達 25% GPU 殘值擔保的影子銀行信用風險；低估雲端巨頭延長折舊年限所製造的『折舊牆』將在 2026-2027 年倒塌引發資本開支急凍；以及實體電網與高壓變壓器交期長達 4-5 年造成的『有卡無電』部署真空期。",
+        
+        targets: [
+          { name: "Stress (殘值違約/雙殺)", prob: 0.10, rev28: "$150.0B", multiple: "15x", targetPrice: 32.55, why: "新興雲端商租金跌破成本線連環違約引發擔保代償，巨頭折舊牆倒塌凍結採購" },
+          { name: "Bear (週期消化/ASIC侵蝕)", prob: 0.25, rev28: "$250.0B", multiple: "20x", targetPrice: 82.80, why: "Triton/PyTorch 使推論繞過 CUDA，自研 ASIC 奪走 30% 推論市佔，估值回歸 20x" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$320.0B", multiple: "30x", targetPrice: 179.10, why: "Vera Rubin 順利放量，Spectrum-X 網絡與主權 AI 訂單穩健，維持 30x 溢價" },
+          { name: "Bull (實體AI/NIM全面爆發)", prob: 0.15, rev28: "$450.0B", multiple: "35x", targetPrice: 326.55, why: "實體 AI 與機器人爆發，NIM 軟體 ARR 突破 250 億，真正轉型 PaaS 巨頭" }
+        ],
+        multibaggerConditions: "股價達 $280+ 需要：NIM 軟體 ARR 突破 250 億美元，機器人部門營收增長至 350 億，Spectrum-X 擊敗 UEC 網絡營收破 600 億，且回購實質縮減股本至 220 億股以下。",
+        keyFailureRisks: "新興雲端商 GPU 殘值擔保代償違約；四大客戶 (佔 61% 營收) 加速自研 ASIC；實體電網併網瓶頸阻礙晶片交付。",
+        falsificationTriggers: "前四大客戶採購營收佔比連續兩季 YoY 下滑 >15% 但巨頭總 CapEx 仍增長，或真實毛利率連續兩季跌破 68.0%，或 H100/B200 現貨租金連續三個月跌破 $2.00/hr。"
+      },
+
+      ACN: {
+        ticker: "ACN",
+        name: "Accenture plc",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ 全球IT諮詢巨頭",
+        researchPriority: "MEDIUM (防禦配置)",
+        targetPriceReentryMin: 195.0,
+        targetPriceReentryMax: 215.0,
+        
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "偏向樂觀 (3.5 / 5)",
+        marketExpectationWhy: "現價約 $254-$264，遠期 P/E 17.5x-18.5x，FCF Yield ~7.9%，市場視為具備防禦性的類債券資產，看重每年 115 億資本回報。",
+        businessPathAndMispricing: "最可能路徑：65% 新增訂單轉向固定價格與結果導向計費，併購 (每年 $50 億) 支撐無機增長。市場盲點：AI 通縮悖論使常規代碼工時縮減 30%-50%，導致扣除併購後的真實有機營收增長僅剩 1%-3.5%；且美國政府效率部 (DOGE) 大幅削減聯邦 IT 合約 (已終止 14.1 億美元合約)。",
+        
+        targets: [
+          { name: "Stress (DOGE砍單/估值雙殺)", prob: 0.10, rev28: "$71.2B", multiple: "12x", targetPrice: 144.00, why: "DOGE 擴大刪減 IT 合約，企業維運內部化，被迫降價搶單毛利跌破 13%" },
+          { name: "Bear (AI通縮/增長停滯)", prob: 0.25, rev28: "$77.1B", multiple: "14x", targetPrice: 203.00, why: "AI 吞噬效應使核心有機增長降至 0%，估值回歸 14x 歷史低檔" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$81.7B", multiple: "18x", targetPrice: 291.60, why: "維持 3% 有機 + 2% 併購增長，營業利益率 >16%，115 億 FCF 護航回購" },
+          { name: "Bull (AI全面重構爆發)", prob: 0.15, rev28: "$86.5B", multiple: "24x", targetPrice: 444.00, why: "企業由 PoC 邁入核心系統全面重構，Industry X 增長 >15%，估值修復至 24x" }
+        ],
+        multibaggerConditions: "股價翻倍至 $510+ 需要：生成式 AI 營收突破 150 億美元 (CAGR ~80%)，FCF 突破 180 億且毛利率破 35% 歷史天花板，收購展現綜效使 ROIC 躍升至 30%+。",
+        keyFailureRisks: "美國 DOGE 全面削減聯邦合約；AI 通縮侵蝕傳統 T&M 工時收入；微軟/AWS 自主 AI Agent 簡化整合繞過諮詢中介。",
+        falsificationTriggers: "託管服務 Book-to-Bill 連續兩季跌破 1.05，或剔除併購後的有機營收增長率 (Organic Revenue Growth) 連續兩季跌入負值 (<0%)。"
+      },
+
+      SNDK: {
+        ticker: "SNDK",
+        name: "SanDisk (Western Digital Spin-off)",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "rerating",
+        categoryLabel: "⚖️ 週期錯判修復·NBM長約",
+        researchPriority: "HIGH (高賠率修復)",
+        targetPriceReentryMin: 106.0,
+        targetPriceReentryMax: 118.0,
+        
+        marketExpectationScore: 2.5,
+        marketExpectationLabel: "偏向悲觀 (2.5 / 5)",
+        marketExpectationWhy: "現價約 $129 (分割後，Pre-split 約 $1,037)，遠期 P/E 僅 8.5x-9x，市場以傳統記憶體週期見頂論給予嚴重折價，忽視 939 億美元合約底價保障。",
+        businessPathAndMispricing: "最可能路徑：AI 推論 KV 快取 eSSD 爆發，BiCS8 CBA 混合鍵合成本優勢，NBM 長協模式收取百億保證金將週期大宗商品轉化為高毛利基礎設施收租。市場盲點：市場看空者將現貨價格波動生搬硬套於已被長約鎖定的資產，忽視客戶已質押 165 億美元實質擔保金的反身性履約約束力；但需高度警惕前段晶圓完全依賴日本鎧俠 (Kioxia) 合資工廠的單點故障風險。",
+        
+        targets: [
+          { name: "Stress (合約違約/週期暴跌)", prob: 0.10, rev28: "$24.0B", multiple: "5.0x", targetPrice: 55.00, why: "現貨崩盤引發雲端大廠寧損保證金也要毀約，Kioxia 合資摩擦，殺至 5x 殘值" },
+          { name: "Bear (週期減速/產能釋放)", prob: 0.25, rev28: "$38.0B", multiple: "7.5x", targetPrice: 120.00, why: "2028 年 NAND 產能釋放，現貨疲弱，長協以底價執行毛利保底 75%，P/E 7.5x" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$58.0B", multiple: "12.0x", targetPrice: 260.00, why: "數據中心營收佔比破 60%，NBM 長協毛利穩守 80%+，FCF 破 200 億並激進回購" },
+          { name: "Bull (KV快取/HBF全面替代)", prob: 0.15, rev28: "$75.0B", multiple: "18.0x", targetPrice: 420.00, why: "HBF 混合鍵合低成本替代部分 HBM，eSSD 徹底淘汰機械硬碟，估值達 18x" }
+        ],
+        multibaggerConditions: "股價達 $250+ (分割後翻倍) 需要：數據中心營收佔比連續四季穩守 60% 以上，年度調整後 FCF 突破 200 億美元且 100% 返還股東完成 105 億回購，且單季毛利率在週期下行中絕不跌破 75%。",
+        keyFailureRisks: "前段製造完全依賴日本 Kioxia 合資工廠單點故障；北美雲端巨頭強行毀約退出 NBM 合約；三星與海力士 300+ 層 QLC 價格戰。",
+        falsificationTriggers: "RPO 剩餘履約義務或金融保證金餘額連續兩季衰退 >10% (非交付正常抵扣)，或 Non-GAAP 毛利率單季跌破 65.0%。"
+      },
+
+      AVGO: {
+        ticker: "AVGO",
+        name: "Broadcom Inc.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ ASIC/網絡雙龍頭",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 310.0,
+        targetPriceReentryMax: 330.0,
+        
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "高度透支 (4.5 / 5)",
+        marketExpectationWhy: "現價約 $325-$350，隱含遠期 P/E 達 30x，市場假設 AI 營收在 2028 年翻倍至 2,300 億美元且 Tomahawk 完全壟斷，未反映非 AI 業務停滯。",
+        businessPathAndMispricing: "最可能路徑：推論端客製化 ASIC (Google TPU/Meta MTIA) 放量，Tomahawk 6 帶領超乙太網聯盟 (UEC) 逆襲 InfiniBand。市場盲點：忽視為核心客戶提供高達 290 億美元 AI 機櫃租賃擔保的巨大信用風險；低估 VMware 強行漲價 1500% 導致 2029 年高達 55% 客戶逃離的解約雪崩風險；以及硬體佔比提升對毛利率 (跌破 75%) 的結構性稀釋。",
+        
+        targets: [
+          { name: "Stress (客戶違約/雙殺)", prob: 0.10, rev28: "$130.0B", multiple: "15x", targetPrice: 195.00, why: "290 億擔保遭遇客戶違約，VMware 解約潮爆發，估值殺回 15x" },
+          { name: "Bear (AI支出放緩)", prob: 0.20, rev28: "$155.5B", multiple: "18x", targetPrice: 280.00, why: "AI 成長退坡，非 AI 部門持續萎縮，估值回歸中樞 18x" },
+          { name: "Base (合理基本盤達標)", prob: 0.55, rev28: "$242.2B", multiple: "25x", targetPrice: 605.00, why: "TPU 與客製晶片放量，UEC 乙太網市佔達 50%，FCF 突破 450 億" },
+          { name: "Bull (超預期全面爆發)", prob: 0.15, rev28: "$363.8B", multiple: "28x", targetPrice: 1018.00, why: "AI 營收破 2300 億，CPO 光學提前落地，UEC 徹底擊潰 InfiniBand" }
+        ],
+        multibaggerConditions: "股價達 $700+ 需要：AI 半導體營收突破 $1,800 億至 $2,300 億，UEC 網絡市佔率突破 60%，年度 FCF 突破 450 億美元且維持 40%+ 轉換率，並於 2027 年前實現 CPO 共同封裝光學商業化。",
+        keyFailureRisks: "290 億美元機櫃租賃擔保信用違約；VMware 企業客戶集體抗訴逃離；台積電 CoWoS 產能短缺與漲價侵蝕毛利。",
+        falsificationTriggers: "Non-GAAP 總毛利率連續兩季跌破 73.0%，或 AI 半導體單季營收連續兩季環比 (QoQ) 下滑超過 5%。"
+      },
+
+      BE: {
+        ticker: "BE",
+        name: "Bloom Energy Corporation",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "multibagger",
+        categoryLabel: "🚀 AI電力時間套利",
+        researchPriority: "HIGH (高賠率追蹤)",
+        targetPriceReentryMin: 140.0,
+        targetPriceReentryMax: 165.0,
+        
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "極度亢奮 (4.5 / 5)",
+        marketExpectationWhy: "現價約 $200-$210，遠期 P/E 高達 63x-65x，市場把燃料電池硬體製造商拔高至軟體 SaaS 倍數，假設 250 億融資將無阻礙轉化為訂單。",
+        businessPathAndMispricing: "最可能路徑：憑藉 90-120 天極限交付 (Time-to-Power) 繞過 4-7 年電網排隊，以 800VDC 原生直流耦合吃下資料中心微電網。市場盲點：極度致命的「氧化鈧 (Scandium)」物理天花板——5 GW 產能每年需 200-300 噸鈧，但全球年產量僅 80 噸且 80% 受中國出口管制；以及單季合約資產暴增 4.3 億美元導致 FCF 為負 (-$1.81 億) 的紙上富貴現金流陷阱。",
+        
+        targets: [
+          { name: "Stress (斷鈧/壞帳雙殺)", prob: 0.15, rev28: "$3.85B", multiple: "1.5x P/S", targetPrice: 45.00, why: "中國斷供氧化鈧使毛利跌破 15%，Oracle 專案延遲提列巨額壞帳" },
+          { name: "Bear (週期消化/SMR競爭)", prob: 0.25, rev28: "$6.50B", multiple: "25x", targetPrice: 100.00, why: "產能受制於鈧供應卡在 2 GW，燃氣輪機與核電 SMR 分流訂單" },
+          { name: "Base (專案順利交付)", prob: 0.45, rev28: "$10.50B", multiple: "35x", targetPrice: 301.00, why: "交付 Oracle/AEP 專案達 3 GW，鈦廢料提鈧部分緩解，毛利守住 32%" },
+          { name: "Bull (5GW突破/微電網霸主)", prob: 0.15, rev28: "$14.80B", multiple: "45x", targetPrice: 607.00, why: "突破鈧回收閉環擴產至 5 GW，800VDC 壟斷 NV AI 工廠載載電源" }
+        ],
+        multibaggerConditions: "股價達 $400+ 需要：簽署每年 150 噸以上非中國固定價格氧化鈧承購協議，年度 FCF 突破 12 億美元由負轉正，服務業務毛利率持續穩定在 25% 以上。",
+        keyFailureRisks: "氧化鈧斷供或成本飆升至 $3,000+/kg；Oracle Project Jupiter 因環評或天然氣管線延宕；22 億可轉債與 353 萬認股權證稀釋。",
+        falsificationTriggers: "Non-GAAP 產品毛利率連續兩季跌破 30.0%，或資產負債表中『合約資產 + 應收帳款』佔過去 12 個月營收比例超過 45%。"
+      },
+
+      VRT: {
+        ticker: "VRT",
+        name: "Vertiv Holdings Co.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🎯 液冷/散熱壟斷龍頭",
+        researchPriority: "TOP PRIORITY (高性價比)",
+        targetPriceReentryMin: 205.0,
+        targetPriceReentryMax: 230.0,
+        
+        marketExpectationScore: 4.2,
+        marketExpectationLabel: "溫和樂觀 (4.2 / 5)",
+        marketExpectationWhy: "現價約 $205-$232，前瞻 P/E 約 25x-32x，積壓訂單高達 150 億美元 (Book-to-Bill 2.9x)，反映液冷放量的高能見度。",
+        businessPathAndMispricing: "最可能路徑：CoolChip CDU 霸佔 GB200 液冷機櫃 70% 份額，收購 UIG 延伸至電表後微電網控制。市場盲點：市場將其視為一般機電製造廠，低估了 UIG 能源編排軟體帶來的溢價；但忽視高壓變壓器取向矽鋼 (GOES) 交期長達 48-60 個月可能導致 150 億訂單交付遞延的供應鏈瓶頸。",
+        
+        targets: [
+          { name: "Stress (資本停滯/變壓器斷鏈)", prob: 0.10, rev28: "$13.5B", multiple: "16x", targetPrice: 105.00, why: "AI 應用 ROI 不足使巨頭凍結 CapEx，變壓器斷鏈導致訂單大規模遞延" },
+          { name: "Bear (價格戰/增速放緩)", prob: 0.25, rev28: "$16.8B", multiple: "22x", targetPrice: 185.00, why: "Schneider/Eaton 價格戰瓜分液冷市場，營收增速降至個位數" },
+          { name: "Base (合理基本盤達標)", prob: 0.45, rev28: "$21.2B", multiple: "28x", targetPrice: 295.00, why: "150 億 Backlog 如期轉化，液冷滲透率達 40%，營業利潤率穩守 25%" },
+          { name: "Bull (800VDC/主權AI爆發)", prob: 0.20, rev28: "$25.0B", multiple: "35x", targetPrice: 435.00, why: "800V DC 平台成 1MW 機櫃標配，UIG 微電網服務佔比達 25%，毛利破 40%" }
+        ],
+        multibaggerConditions: "股價達 $465+ (翻倍) 需要：直接液冷 (DLC) 市佔率維持 >50%，800V DC 電源平台營收突破 30 億美元，微電網服務營收佔比突破 25%，年度 FCF 突破 45 億美元並每年回購 20 億美元註銷股本。",
+        keyFailureRisks: "上游取向矽鋼 (GOES) 與大型電源變壓器交期嚴重延遲；Schneider (Motivair) 與 Eaton 價格競爭；14.5 億收購 UIG 整合失敗未達 Earnout 認列商譽減值。",
+        falsificationTriggers: "Book-to-Bill 訂單出貨比連續兩季跌破 1.1x 且有機訂單年增 <15%，或毛利率連續兩季跌破 34.0%/營運利潤率跌破 21.0%。"
+      },
+
+      AMD: {
+        ticker: "AMD",
+        name: "Advanced Micro Devices, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ 資料中心/AI機櫃",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 365.0,
+        targetPriceReentryMax: 415.0,
+        
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "高度亢奮 (4.5 / 5)",
+        marketExpectationWhy: "現價約 $488-$520，TTM Non-GAAP P/E 超過 100x，市場要求 2028 年營收突破 1,100 億美元且資料中心佔 80%，容錯率為零。",
+        businessPathAndMispricing: "最可能路徑：EPYC Venice 穩固 50% 伺服器 CPU 市佔，收購 ZT Systems 交付 Helios 系統級液冷機櫃，吃下推論市場 15%-20%。市場盲點：極度致命的「認股權證 (Warrants) 稀釋陷阱」——為綁定 OpenAI/Meta 各簽訂 1.6 億股 (合計 3.2 億股，佔流通股近 20%！) 的 $0.01 認股權證，導致 GAAP 季報單季認列 11 億美元非現金虧損，且未來分母擴大至 19.5 億股大幅稀釋真實 EPS；且 Helios 機櫃墊資導致單季庫存飆升至 $114 億擠壓現金流。",
+        
+        targets: [
+          { name: "Stress (ASIC吞噬/機櫃瑕疵)", prob: 0.10, rev28: "$72.5B", multiple: "20x P/FCF", targetPrice: 104.00, why: "CSP 自研 ASIC 主導推論，UALink 聯盟失敗，Helios 機櫃液冷瑕疵" },
+          { name: "Bear (電網制約/稀釋顯現)", prob: 0.25, rev28: "$93.8B", multiple: "30x P/FCF", targetPrice: 259.50, why: "Helios 機櫃部署因電網不足延遲，台積電漲價侵蝕毛利，Warrant 稀釋 EPS" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$118.5B", multiple: "38x P/FCF", targetPrice: 507.68, why: "履行 OpenAI/Meta 6GW 訂單，EPYC 穩守 50% 份額，FCF 回升至 260 億" },
+          { name: "Bull (推論爆發/UALink勝出)", prob: 0.15, rev28: "$145.2B", multiple: "48x P/FCF", targetPrice: 893.28, why: "Agentic AI 推論算力外溢至 AMD，HBM4 取得定價權，毛利率突破 60%" }
+        ],
+        multibaggerConditions: "股價達 $1,000+ 需要：資料中心年營收突破 1,200 億美元，年度 FCF 突破 350 億美元由失血轉為造血，UALink 在萬卡叢集徹底打平 NVLink，且 EPYC 在 x86 伺服器市佔穩居 55% 以上。",
+        keyFailureRisks: "OpenAI/Meta 3.2 億股認股權證對 EPS 的毀滅性稀釋；超大客戶自研 ASIC 壓縮推論市場；Helios 系統墊資與庫存周轉停滯。",
+        falsificationTriggers: "連續兩季 FCF 低於 10 億美元且庫存佔單季營收比例超過 90%，或資料中心季營收增長率連續兩季 <10% 且毛利率跌破 52%。"
+      },
+
+      SKHY: {
+        ticker: "SKHY",
+        name: "SK Hynix Inc. (ADR)",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "rerating",
+        categoryLabel: "⚖️ 週期錯判修復·HBM4",
+        researchPriority: "HIGH (高賠率修復)",
+        targetPriceReentryMin: 115.0,
+        targetPriceReentryMax: 128.0,
+        
+        marketExpectationScore: 2.0,
+        marketExpectationLabel: "極度悲觀 (2.0 / 5)",
+        marketExpectationWhy: "現價約 $143-$147，遠期 P/E 僅 6x-8x！市場以傳統記憶體週期論認定 80% 營業利潤率已是頂峰，預設未來三年利潤將砍半，給予嚴重折價。",
+        businessPathAndMispricing: "最可能路徑：MR-MUF 封裝結合台積電 5nm/4nm Base Die 壟斷 HBM4/4E，Solidigm 61TB/122TB eSSD 吃下 AI 推論 KV 快取。市場盲點：嚴重低估「矽面積懲罰 (Wafer Penalty)」——HBM 消耗晶圓面積是標準 DDR5 的 3 倍，結構性排擠傳統 DRAM 產能，使記憶體短缺週期遠比市場預期漫長；但需警惕中國長鑫存儲 (CXMT) 4F² 架構對成熟 DDR5 的突襲價格戰。",
+        
+        targets: [
+          { name: "Disaster (無錫斷供/CXMT殺價)", prob: 0.15, rev28: "$85.0B", multiple: "7.0x", targetPrice: 70.00, why: "美國對無錫廠全面斷供，CXMT 4F² 傾銷標準 DRAM，Nvidia 轉單三星" },
+          { name: "Bear (估值回歸/週期減速)", prob: 0.25, rev28: "$110.0B", multiple: "9.0x", targetPrice: 115.00, why: "2028 年 HBM 供需趨衡，毛利回落至 45%，市場維持 9x 週期定價" },
+          { name: "Base (合理基本盤達標)", prob: 0.45, rev28: "$155.0B", multiple: "12.0x", targetPrice: 210.00, why: "14 家客戶長約順利執行，HBM4 良率達標，Solidigm 赴美上市解鎖價值" },
+          { name: "Bull (超預期戴維斯雙擊)", prob: 0.15, rev28: "$210.0B", multiple: "16.0x", targetPrice: 340.00, why: "推論引爆記憶體牆，矽面積懲罰使 DDR5 陷入 5 年大短缺，毛利企穩 70%" }
+        ],
+        multibaggerConditions: "股價達 $300+ 需要：HBM 市場市佔率維持在 55% 以上且 HBM4 良率突破 85%，年度 FCF 突破 350 億美元並落實 50% FCF 回購分紅，Solidigm eSSD 市佔破 35% 或成功以 1500 億估值在 Nasdaq IPO。",
+        keyFailureRisks: "美國撤銷 VEU 導致無錫廠設備斷供；CXMT 4F² 低價競爭；Nvidia 將 HBM4 訂單分散轉向三星/美光。",
+        falsificationTriggers: "整體毛利率連續兩季跌破 50.0%，或 HBM4 營收佔比在 2027 年 Q2 仍未達整體 HBM 營收 50%，或 CXMT 全球 DRAM 市佔率連續兩季突破 15%。"
+      },
+
+      TSM: {
+        ticker: "TSM",
+        name: "Taiwan Semiconductor Manufacturing Co.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ 龍頭定海神針",
+        researchPriority: "HIGH (核心資產)",
+        targetPriceReentryMin: 315.0,
+        targetPriceReentryMax: 330.0,
+        
+        marketExpectationScore: 4.0,
+        marketExpectationLabel: "高度亢奮 (4.0 / 5)",
+        marketExpectationWhy: "現價 ~$395-$405，前瞻 P/E 約 23x，市場假設 AI 資本支出超級週期無縫延續至 2028 年且維持 100% 先進 AI 市佔率，容錯率極低。",
+        businessPathAndMispricing: "最可能路徑：N2/A16 與 CoWoS 雙輪驅動，ASIC 崛起完美對沖 Nvidia 單一集中度。市場盲點：只見晶圓定價權，忽視亞利桑那海外廠成本高 90%、2026 年資本支出飆至 $520B-$640B 嚴重擠壓短期自由現金流，以及台灣碳費與綠電約束。",
+        
+        targets: [
+          { name: "Stress (泡沫破裂/地緣)", prob: 0.10, rev28: "$115.0B", multiple: "14x", targetPrice: 154.00, why: "AI 資本支出泡沫破裂，地緣關稅/封鎖，產能利用率暴跌至 70% 殺估值" },
+          { name: "Bear (週期均值回歸)", prob: 0.25, rev28: "$145.0B", multiple: "18x", targetPrice: 288.00, why: "AI 伺服器轉入平穩替換期，海外廠折舊侵蝕毛利，估值回歸 18x" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$185.0B", multiple: "22x", targetPrice: 484.00, why: "A16 SPR 如期放量，CoWoS 月產 26 萬片並提價 15%，維持 22x 溢價" },
+          { name: "Bull (超預期全面獨佔)", prob: 0.15, rev28: "$220.0B", multiple: "26x", targetPrice: 728.00, why: "Intel IFS 14A 潰敗，A14 提前量產，矽光子與 SoIC 囊括 100% 先進代工" }
+        ],
+        multibaggerConditions: "股價突破 $800+ (翻倍) 需要：先進封裝營收佔比破 15% 且毛利率 >65%，N2/A16 晶圓穩於 $30,000+，在 $60B CapEx 下年度 FCF 突破 300 億美元，且 Intel IFS 代工全面潰敗。",
+        keyFailureRisks: "美國/德國廠折舊毛利稀釋超預期；台灣缺水缺綠電與碳費侵蝕；客戶集中度高 (Nvidia 19%, Apple 17%)。",
+        falsificationTriggers: "連續兩季毛利率跌破 53.0%，或年度 CapEx > $650 億但美元營收 CAGR 指引 < 15%，或前三大客戶之一單季採購斷崖衰退 >20%。"
+      },
+
+      CRDO: {
+        ticker: "CRDO",
+        name: "Credo Technology Group Holding Ltd",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "multibagger",
+        categoryLabel: "🚀 高彈性傳輸龍頭",
+        researchPriority: "HIGH (高賠率追蹤)",
+        targetPriceReentryMin: 115.0,
+        targetPriceReentryMax: 135.0,
+        
+        marketExpectationScore: 4.2,
+        marketExpectationLabel: "高度透支 (4.2 / 5)",
+        marketExpectationWhy: "現價約 $136-$150，市值近 280 億美元，P/S > 15x，市場給予 2028 年前瞻 P/E 達 20x-30x，反映極高的線性外推預期。",
+        businessPathAndMispricing: "最可能路徑：224G AEC 主導機架內短距傳輸，向 1.6T ZeroFlap ALC 及 OmniConnect Weaver 記憶體架構突破。市場盲點：過度恐慌 LPO/CPO 淘汰電纜，忽視 ALC 具備隨插即用與 DSP 糾錯優勢；嚴重低估 OmniConnect 繞過台積電 CoWoS 解決記憶體牆的數十億美元 TAM；但需警惕單一客戶 (推測為 AWS) 佔比逾 43% 及股權激勵 (SBC 佔比 13.7%) 的實質稀釋。",
+        
+        targets: [
+          { name: "Stress (大客戶轉單/雙殺)", prob: 0.10, rev28: "$1.85B", multiple: "15x", targetPrice: 20.25, why: "最大客戶減資或轉向 Marvell/自研，LPO 淘汰 AEC，DustPhotonics 良率失控" },
+          { name: "Bear (AI支出放緩/價格戰)", prob: 0.25, rev28: "$2.80B", multiple: "20x", targetPrice: 68.20, why: "與 Broadcom/Coherent 價格戰，毛利率跌破 60%，估值回歸 20x" },
+          { name: "Base (ZeroFlap順利放量)", prob: 0.50, rev28: "$38.5B", multiple: "30x", targetPrice: 180.30, why: "ZeroFlap ALC 對接 1.6T 光學轉型，光學部門營收 > $8 億，AEC 維持壟斷" },
+          { name: "Bull (OmniConnect爆發)", prob: 0.15, rev28: "$5.50B", multiple: "35x", targetPrice: 328.65, why: "OmniConnect Weaver 獲 AMD/Google TPU 量產採用，成 3.2T 光子標竿" }
+        ],
+        multibaggerConditions: "股價達 $300+ 需要：非 AEC 營收 (ALC/DustPhotonics) 佔比突破 45% ($15 億+)，OmniConnect 至少獲 2 家主要晶片量產且年化 Run-rate 突破 5 億美元，累計 FCF > 20 億且 SBC 壓縮至 8% 以下。",
+        keyFailureRisks: "最大客戶斷崖式砍單；Broadcom/Marvell 價格戰侵蝕毛利；SBC 持續高額稀釋每股價值。",
+        falsificationTriggers: "Non-GAAP 毛利率連續兩季跌破 62.0%，或最大單一客戶營收連續兩季季減 >25% (QoQ < -25%) 且無新客戶補足。"
+      },
+
+      ASML: {
+        ticker: "ASML",
+        name: "ASML Holding N.V.",
+        currency: "USD",
+        researchDate: "2026-11-05",
+        category: "quality",
+        categoryLabel: "🛡️ 壟斷等待",
+        researchPriority: "HIGH (優先追蹤)",
+        targetPriceReentryMin: 1150.0,
+        targetPriceReentryMax: 1280.0,
+        
+        marketExpectationScore: 4.2,
+        marketExpectationLabel: "高度樂觀 (4.2 / 5)",
+        marketExpectationWhy: "現價約 $1,496-$1,510，隱含遠期 P/E 高達 39x-45x，市場預期 2028 年 EPS 達 €60 以上，隱含年複合成長 15%-20% 的線性完美預期，容錯率極低。",
+        businessPathAndMispricing: "最可能路徑：邏輯廠極限壓榨 Low-NA (0.33 NA) 支撐 N2/A16，DRAM (HBM4/4E) 於 2028 年跨入 High-NA，高毛利安裝基數服務 (IBM) 護航毛利率在 56% 以上。市場盲點：只見 EUV 全球壟斷，忽視 High-NA 視場減半 (Stitching) 導致台積電推遲全面採用至 2030 年，2027-2029 年面臨訂單真空期；且美國《MATCH Act》對中國 (佔 29% 營收) 售後服務阻斷將打擊高毛利維護收入。",
+        
+        targets: [
+          { name: "Stress (極限雙殺)", prob: 0.10, rev28: "€35.0B", multiple: "20x", targetPrice: 790.00, why: "台積電延後導入，MATCH Act 阻斷中國 DUV 售後服務，估值回歸 20x" },
+          { name: "Bear (週期減速)", prob: 0.30, rev28: "€43.0B", multiple: "26x", targetPrice: 1330.00, why: "先進邏輯支出放緩，High-NA 僅三星少量試用，估值回歸中樞 26x" },
+          { name: "Base (合理達標)", prob: 0.45, rev28: "€52.0B", multiple: "32x", targetPrice: 2040.00, why: "Low-NA 延壽多重曝光與 DRAM 導入順利，IBM 經常性收入穩健" },
+          { name: "Bull (爆發超前)", prob: 0.15, rev28: "€60.0B", multiple: "40x", targetPrice: 3160.00, why: "High-NA 出貨破 45 台，IBM 收入破 €130 億，毛利破 65%" }
+        ],
+        multibaggerConditions: "市值突破 1.2 兆美元 (目標價 $3,160+) 需要：2028 年 High-NA 確認營收超過 45 台 (佔系統營收 >30%)，IBM 經常性營收破 €130 億且毛利率 >65%，並鎖定 Hyper-NA (0.75 NA) 客戶聯合注資。",
+        keyFailureRisks: "蔡司光學單點故障；三大客戶 (TSMC/Intel/Samsung) 資本支出削減；MATCH Act 徹底切斷中國 DUV 零組件與軟體授權。",
+        falsificationTriggers: "若 High-NA 連續兩季新增訂單 < 5 台，或 IBM 服務營收連續兩季衰退/公司毛利率跌破 52%，立即下調評級。"
+      },
+
 
       ADBE: {
         ticker: "ADBE",
@@ -779,6 +1484,17 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
 
     // --- 2. CURRENT IN-MEMORY QUOTES (Initial state: 10:27 EST Live Snapshot) ---
     let currentQuotes = {
+      NVDA: { symbol: "NASDAQ:NVDA", price: 200.13, prevClose: 206.69, change: "-3.17%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      ACN: { symbol: "NYSE:ACN", price: 264.27, prevClose: 254.56, change: "+3.81%", currency: "USD", time: "2026-11-04 16:00:06 EST" },
+      SNDK: { symbol: "NASDAQ:SNDK", price: 129.67, prevClose: 140.81, change: "-7.91%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      AVGO: { symbol: "NASDAQ:AVGO", price: 325.48, prevClose: 332.13, change: "-2.00%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      BE: { symbol: "NYSE:BE", price: 200.40, prevClose: 214.01, change: "-6.36%", currency: "USD", time: "2026-11-04 16:00:05 EST" },
+      VRT: { symbol: "NYSE:VRT", price: 205.55, prevClose: 235.97, change: "-12.89%", currency: "USD", time: "2026-11-04 16:00:04 EST" },
+      AMD: { symbol: "NASDAQ:AMD", price: 488.78, prevClose: 483.90, change: "+1.01%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      SKHY: { symbol: "NASDAQ:SKHY", price: 143.07, prevClose: 150.79, change: "-5.12%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      TSM: { symbol: "NYSE:TSM", price: 395.75, prevClose: 404.76, change: "-2.23%", currency: "USD", time: "2026-11-04 16:00:03 EST" },
+      CRDO: { symbol: "NASDAQ:CRDO", price: 136.50, prevClose: 150.91, change: "-9.55%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      ASML: { symbol: "NASDAQ:ASML", price: 1496.30, prevClose: 1552.14, change: "-3.60%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
       ANET: { symbol: "NYSE:ANET", price: 186.11, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "2026-11-04 10:27:06 EST" },
       BNTX: { symbol: "NASDAQ:BNTX", price: 88.91, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "2026-11-04 10:24:46 EST" },
       BESI: { symbol: "AMS:BESI", price: 152.65, prevClose: 156.10, change: "-2.21%", currency: "EUR", time: "2026-11-04 16:10:06 UTC" },
