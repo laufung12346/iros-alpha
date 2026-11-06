@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V3.9 · 69檔機構級全景決策矩陣</title>
+  <title>IROS Alpha V3.9 · 70檔機構級全景決策矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V3.9 雙Sheet實時直通 (69檔全景矩陣)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V3.9 雙Sheet實時直通 (70檔全景矩陣)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -94,19 +94,31 @@
       </div>
     </div>
 
-    <!-- Navigation Tabs -->
-    <div class="max-w-2xl mx-auto mt-2 flex space-x-1 border-t border-slate-800/60 pt-2">
-      <button id="tabDashboard" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-emerald-600 text-white transition tap-highlight-transparent text-center shadow">
-        機會看板
+    <!-- Navigation Tabs (Institutional 8-Tab Responsive Bar) -->
+    <div class="max-w-3xl mx-auto mt-2 flex space-x-1 overflow-x-auto no-scrollbar border-t border-slate-800/60 pt-2 pb-0.5">
+      <button id="tabDashboard" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg bg-emerald-600 text-white transition tap-highlight-transparent whitespace-nowrap shadow flex items-center gap-1">
+        <span>機會看板</span>
       </button>
-      <button id="tabPortfolio" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center">
-        💼 實時持倉·雙AI
+      <button id="tabSignals" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1">
+        <span>🎯 買賣信號</span>
       </button>
-      <button id="tabSheetViewer" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center">
-        行情(111檔)
+      <button id="tabNewsRadar" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1">
+        <span>⚡ 新聞雷達</span>
       </button>
-      <button id="tabPrinciples" class="flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center">
-        決策憲律
+      <button id="tabRiskSizing" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1">
+        <span>🛡️ 風控倉位</span>
+      </button>
+      <button id="tabStressTest" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1">
+        <span>🌪️ 情景壓測</span>
+      </button>
+      <button id="tabPortfolio" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1">
+        <span>💼 實時持倉·雙AI</span>
+      </button>
+      <button id="tabSheetViewer" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1">
+        <span>📊 行情(147檔)</span>
+      </button>
+      <button id="tabPrinciples" class="nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1">
+        <span>決策憲律</span>
       </button>
     </div>
   </header>
@@ -118,7 +130,7 @@
   </div>
 
   <!-- Main Container -->
-  <main class="flex-1 max-w-2xl w-full mx-auto px-4 py-3.5 space-y-3.5">
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-3.5 space-y-3.5">
 
     <!-- REAL-TIME STATUS BAR -->
     <div class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-950 border border-slate-800 rounded-2xl p-3 shadow-sm flex items-center justify-between text-xs">
@@ -1198,6 +1210,7 @@
               <option value="NASDAQ:NTRA" data-price="384.00" data-shares="35">NASDAQ:NTRA (35股 / $384.00)</option>
               <option value="NASDAQ:HALO" data-price="120.00" data-shares="115">NASDAQ:HALO (115股 / $120.00)</option>
                             <option value="NASDAQ:MRNA" data-price="261.00" data-shares="50">NASDAQ:MRNA (50股 / $261.00)</option>
+                            <option value="NYSE:NEM" data-price="121.92" data-shares="125">NYSE:NEM (125股 / $121.92)</option>
               <option value="NASDAQ:MKSI" data-price="183.66" data-shares="76">NASDAQ:MKSI (76股 / $183.66)</option>
               <option value="NASDAQ:NTNX" data-price="59.28" data-shares="236">NASDAQ:NTNX (236股 / $59.28)</option>
               <option value="NASDAQ:MU" data-price="687.88" data-shares="20">NASDAQ:MU (20股 / $687.88)</option>
@@ -1347,7 +1360,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
               <span>Google 試算表即時連線</span>
               <span id="sheetFetchBadge" class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-mono">連線正常</span>
             </h2>
-            <p class="text-xs text-slate-400 mt-0.5">來源表：IROS 報價測試 (共 145 筆即時報價)</p>
+            <p class="text-xs text-slate-400 mt-0.5">來源表：IROS 報價測試 (共 147 筆即時報價)</p>
           </div>
           <a href="https://docs.google.com/spreadsheets/d/1qi22DKG6jvfk0zZ175a8uxLb2_i33PeGwxMDyu8RJZk/edit" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:underline flex items-center gap-1">
             <span>開啟原表</span>
@@ -1409,6 +1422,251 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+
+  
+    <!-- ==================== VIEW: BUY/SELL SIGNALS ==================== -->
+    <section id="viewSignals" class="hidden space-y-3.5">
+      <div class="bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-950 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">TACTICAL SIGNALS V1.0</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">71 檔全宇宙覆蓋</span>
+            </div>
+            <h2 class="text-base font-bold text-white mt-1">機構級動態買賣決策矩陣</h2>
+            <p class="text-xs text-slate-400 mt-0.5">以內在價值安全邊際 (MoS) × 護城河壁壘 × 催化劑兌現度動態評定，杜絕情緒化追高殺跌</p>
+          </div>
+        </div>
+
+        <!-- Rating Counter Badges -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 pt-1">
+          <div class="bg-slate-950/70 border border-emerald-500/30 rounded-xl p-2.5 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-emerald-400 uppercase">🟢 強烈買入</span>
+              <p class="text-xs text-slate-400 mt-0.5">大注超額配置</p>
+            </div>
+            <span id="cntStrongBuy" class="text-lg font-bold font-mono text-emerald-400">9</span>
+          </div>
+          <div class="bg-slate-950/70 border border-blue-500/30 rounded-xl p-2.5 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-blue-400 uppercase">🔵 分批吸納</span>
+              <p class="text-xs text-slate-400 mt-0.5">小注分批逢低</p>
+            </div>
+            <span id="cntAccumulate" class="text-lg font-bold font-mono text-blue-400">18</span>
+          </div>
+          <div class="bg-slate-950/70 border border-amber-500/30 rounded-xl p-2.5 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-amber-400 uppercase">🟡 觀望待價</span>
+              <p class="text-xs text-slate-400 mt-0.5">等待回調或驗證</p>
+            </div>
+            <span id="cntWaitPrice" class="text-lg font-bold font-mono text-amber-400">32</span>
+          </div>
+          <div class="bg-slate-950/70 border border-rose-500/30 rounded-xl p-2.5 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-rose-400 uppercase">🔴 避開/減持</span>
+              <p class="text-xs text-slate-400 mt-0.5">失血/泡沫出清</p>
+            </div>
+            <span id="cntAvoidSell" class="text-lg font-bold font-mono text-rose-400">12</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter & Search Controls -->
+      <div class="space-y-2">
+        <div class="flex space-x-1.5 overflow-x-auto no-scrollbar py-0.5">
+          <button id="sigFilterAll" class="signal-filter-btn active text-xs font-medium px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 whitespace-nowrap">全部標的 (71)</button>
+          <button id="sigFilterStrong" class="signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap">🟢 強烈買入</button>
+          <button id="sigFilterAccum" class="signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap">🔵 分批吸納</button>
+          <button id="sigFilterWait" class="signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap">🟡 觀望待價</button>
+          <button id="sigFilterAvoid" class="signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap">🔴 避開/減持</button>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2">
+          <div class="flex-1 relative">
+            <input id="signalSearchInput" type="text" placeholder="搜尋股票代號 (如 NVDA, TSM, VST, AKAM, NOW)..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+          </div>
+          <div class="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs">
+            <span class="text-slate-400 whitespace-nowrap">排序：</span>
+            <select id="signalSortSelect" class="bg-transparent text-emerald-400 font-semibold focus:outline-none cursor-pointer">
+              <option value="mosDesc" class="bg-slate-900 text-slate-200">安全邊際最高 (MoS %)</option>
+              <option value="upsideDesc" class="bg-slate-900 text-slate-200">潛在漲幅最高 (Bull %)</option>
+              <option value="tickerAsc" class="bg-slate-900 text-slate-200">代號順序 (A-Z)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Signals Container -->
+      <div id="signalsContainer" class="space-y-3">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ==================== VIEW: NEWS & MACRO RADAR ==================== -->
+    <section id="viewNewsRadar" class="hidden space-y-3.5">
+      <div class="bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-950 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">NEWS RADAR V1.0</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">產業鏈傳導追蹤</span>
+          </div>
+          <h2 class="text-base font-bold text-white mt-1">重大新聞與宏觀事件產業鏈傳導雷達</h2>
+          <p class="text-xs text-slate-400 mt-0.5">穿透宣傳口號與表面公關稿，嚴格剖析一級直接受害/受惠、二級產業傳導與買方實戰對策</p>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 mt-3 pt-1">
+          <button id="newsFilterAll" class="news-filter-btn active text-xs font-medium px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300">全部重大事件</button>
+          <button id="newsFilterCloud" class="news-filter-btn text-xs font-medium px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200">AI 雲端與算力</button>
+          <button id="newsFilterPower" class="news-filter-btn text-xs font-medium px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200">電力基建與能源</button>
+          <button id="newsFilterSemi" class="news-filter-btn text-xs font-medium px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200">晶圓代工與封裝</button>
+          <button id="newsFilterMacro" class="news-filter-btn text-xs font-medium px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200">地緣與宏觀週期</button>
+        </div>
+      </div>
+
+      <div id="newsEventsContainer" class="space-y-3">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ==================== VIEW: RISK SIZING CALCULATOR ==================== -->
+    <section id="viewRiskSizing" class="hidden space-y-3.5">
+      <div class="bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-950 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">RISK SHIELD V1.0</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30">30% MAX DRAWDOWN FLOOR</span>
+            </div>
+            <h2 class="text-base font-bold text-white mt-1">買方倉位計算器與回撤防護罩</h2>
+            <p class="text-xs text-slate-400 mt-0.5">以 $400,000 總本金為基準，鎖定 $280,000 淨值止損線（最多容許虧損 $120,000），動態反推最佳買入股數</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 mt-3 pt-1">
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-2.5">
+            <span class="text-[10px] text-slate-400 uppercase font-bold">總資產本金</span>
+            <p class="text-sm sm:text-base font-bold font-mono text-white mt-0.5">$400,000</p>
+          </div>
+          <div class="bg-slate-950/70 border border-rose-500/30 rounded-xl p-2.5">
+            <span class="text-[10px] text-rose-400 uppercase font-bold">最大回撤上限</span>
+            <p class="text-sm sm:text-base font-bold font-mono text-rose-400 mt-0.5">-$120,000 (-30%)</p>
+          </div>
+          <div class="bg-slate-950/70 border border-emerald-500/30 rounded-xl p-2.5">
+            <span class="text-[10px] text-emerald-400 uppercase font-bold">淨值防守底線</span>
+            <p class="text-sm sm:text-base font-bold font-mono text-emerald-400 mt-0.5">$280,000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm space-y-4">
+        <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+          <span class="text-emerald-400">⚡</span> 單筆開倉風控參數設定
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div>
+            <label for="calcTickerSelect" class="block text-slate-400 mb-1 font-medium">選擇開倉標的：</label>
+            <select id="calcTickerSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white font-mono font-bold focus:outline-none focus:border-emerald-500 cursor-pointer">
+              <!-- Options populated via JS -->
+            </select>
+          </div>
+          <div>
+            <label for="calcRiskBudgetSelect" class="block text-slate-400 mb-1 font-medium">單筆承擔風險預算：</label>
+            <select id="calcRiskBudgetSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-emerald-400 font-mono font-bold focus:outline-none focus:border-emerald-500 cursor-pointer">
+              <option value="4000">1.0% ($4,000) - 極度保守</option>
+              <option value="6000" selected>1.5% ($6,000) - 機構標準推薦</option>
+              <option value="8000">2.0% ($8,000) - 核心高確定性標的</option>
+              <option value="10000">2.5% ($10,000) - 特大信念頂格</option>
+            </select>
+          </div>
+          <div>
+            <label for="calcEntryPriceInput" class="block text-slate-400 mb-1 font-medium">預期買入價 (USD)：</label>
+            <input id="calcEntryPriceInput" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white font-mono font-bold focus:outline-none focus:border-emerald-500" value="187.98">
+          </div>
+          <div>
+            <label for="calcStopPriceInput" class="block text-slate-400 mb-1 font-medium">極端熊市止損價 (Bear Stop, USD)：</label>
+            <input id="calcStopPriceInput" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-rose-400 font-mono font-bold focus:outline-none focus:border-emerald-500" value="140.00">
+          </div>
+        </div>
+
+        <div class="bg-slate-950 border border-emerald-500/40 rounded-xl p-3.5 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="text-xs font-bold text-slate-300">風控計算輸出結果</span>
+            <span id="calcComplianceBadge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">🟢 符合 30% 回撤防線</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-[10px] text-slate-400">每股最大風險</span>
+              <p id="calcPerShareRisk" class="text-sm font-bold font-mono text-rose-400 mt-0.5">$47.98</p>
+            </div>
+            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-[10px] text-slate-400">建議買入股數</span>
+              <p id="calcSuggestedShares" class="text-sm font-bold font-mono text-emerald-400 mt-0.5">125 股</p>
+            </div>
+            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-[10px] text-slate-400">建議頭寸金額</span>
+              <p id="calcPositionValue" class="text-sm font-bold font-mono text-white mt-0.5">$23,497</p>
+            </div>
+            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-[10px] text-slate-400">佔組合資金比重</span>
+              <p id="calcPortfolioWeight" class="text-sm font-bold font-mono text-blue-400 mt-0.5">5.87%</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900/90 rounded-lg p-2.5 text-[11px] text-slate-300 space-y-1">
+            <div class="flex justify-between">
+              <span class="text-slate-400">最大回撤預算消耗：</span>
+              <span id="calcDDBudgetPercent" class="font-mono font-bold text-amber-400">5.0% (消耗 $6,000 / $120,000)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">止損後投組殘值：</span>
+              <span id="calcPostStopNAV" class="font-mono font-bold text-emerald-400">$394,000 (安全緩衝 +$114,000)</span>
+            </div>
+          </div>
+
+          <button id="sendToTxnGenBtn" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-semibold rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow">
+            <span>帶入「交易記錄產生器」進行開倉登記</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW: STRESS TESTING ==================== -->
+    <section id="viewStressTest" class="hidden space-y-3.5">
+      <div class="bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-950 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30">STRESS TEST V1.0</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">黑天鵝極端模擬</span>
+          </div>
+          <h2 class="text-base font-bold text-white mt-1">全球資產宏觀情景壓力測試看板</h2>
+          <p class="text-xs text-slate-400 mt-0.5">一鍵模擬產業鏈黑天鵝事件，即時試算個股下檔防守價位與 $400,000 組合淨值衝擊</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3 pt-1">
+          <button id="stressBtnCapex" class="stress-scenario-btn active text-left p-2.5 rounded-xl bg-purple-600/20 border border-purple-500/50 text-white transition">
+            <span class="text-[10px] font-bold text-purple-300 uppercase block">情景 A</span>
+            <span class="text-xs font-bold block mt-0.5">AI Capex 急凍 (-30%)</span>
+            <span class="text-[10px] text-slate-400 mt-0.5 block">雲巨頭削減硬件採購</span>
+          </button>
+          <button id="stressBtnSpark" class="stress-scenario-btn text-left p-2.5 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-400 hover:text-slate-200 transition">
+            <span class="text-[10px] font-bold text-amber-400 uppercase block">情景 B</span>
+            <span class="text-xs font-bold block mt-0.5">火花價差回落 (-40%)</span>
+            <span class="text-[10px] text-slate-400 mt-0.5 block">熱浪消退與電價正常化</span>
+          </button>
+          <button id="stressBtnTaiwan" class="stress-scenario-btn text-left p-2.5 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-400 hover:text-slate-200 transition">
+            <span class="text-[10px] font-bold text-rose-400 uppercase block">情景 C</span>
+            <span class="text-xs font-bold block mt-0.5">台海地緣尾部風險</span>
+            <span class="text-[10px] text-slate-400 mt-0.5 block">先進晶圓代工供應中斷</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="stressDetailsCard" class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm space-y-3">
+        <!-- Injected via JavaScript -->
       </div>
     </section>
 
@@ -3229,6 +3487,58 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         keyFailureRisks: "歐洲禁令在上訴階段遭推翻；大客戶專利到期後轉向自研酶；專利集中度過高。",
         falsificationTriggers: "核心合作夥伴專利使用費同比連續兩季下滑；海牙法院禁令遭撤銷；GAAP 營益率跌破 45.0%。"
       },
+      NEM: {
+        ticker: "NEM",
+        name: "Newmont Corporation",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🪙 全球最大黃金與關鍵銅礦生產霸主",
+        researchPriority: "HIGH (回調至 $103–$106 試水)",
+        targetPriceReentryMin: 103.5,
+        targetPriceReentryMax: 105.6,
+        
+        marketExpectationScore: 2.8,
+        marketExpectationLabel: "偏向悲觀/價值嚴重低估 (2.8 / 5)",
+        marketExpectationWhy: "現價約 $119-$122 美元，遠期 P/E 僅約 12x-13x，P/FCF 約 12x（遠低於 5 年歷史中樞 24.8x）。市場受過去併購 Newcrest 消化期的成本通膨恐慌影響給予折價，忽視金價突破後單季自由現金流超 24 億美元的爆發力。",
+        businessPathAndMispricing: "最可能路徑：AISC 成本守在 $1,450/oz 左右，前 9 個月自由現金流已達 73 億美元，持續推進 60 億美元回購並註銷超 1.15 億股。市場盲點：Nevada Gold Mines (NGM) 與 Barrick 合資協同落地；Red Chris 銅金礦 Block Caving 於 2027 年投產帶來銅增量；Ahafo North 與 Tanami 擴產釋放高品位礦石。華爾街共識目標價 $142，加權公允估值 $135.25。",
+        
+        targets: [
+          { name: "Stress (金價大跌至$2800/AISC超標)", prob: 0.10, rev28: "$16.0B", multiple: "10.0x P/E", targetPrice: 75.00, why: "金價暴跌至 $2,800/oz，AISC 突破 $1,750，單季 FCF 跌破 10 億美元" },
+          { name: "Bear (金價回調至$3400/成本受壓)", prob: 0.25, rev28: "$20.0B", multiple: "12.0x P/E", targetPrice: 98.00, why: "金價回調至 $3,400/oz，AISC $1,550，NGM 產量下滑，倍數維持低位" },
+          { name: "Base (金價守穩$4000/年FCF破90億)", prob: 0.50, rev28: "$26.5B", multiple: "15.0x P/E", targetPrice: 142.00, why: "金價守穩 $4,000/oz+，AISC 守在 $1,450，年 FCF 破 90 億，回購縮減股本" },
+          { name: "Bull (金價衝破$5000/銅金雙引擎爆發)", prob: 0.15, rev28: "$32.0B", multiple: "20.0x P/E", targetPrice: 215.00, why: "金價衝破 $5,000/oz，Red Chris 與 Cadia 銅金大放量，股本降至 8.5 億股" }
+        ],
+        multibaggerConditions: "已授權及後續回購將總股本壓縮至 8.5 億股以下，且每盎司 AISC 成本持續死守在 $1,450 以下，Red Chris 順利商業化投產。",
+        keyFailureRisks: "全球央行購金放緩導致金價大幅回撤；勞動力與能源通膨推高 AISC 突破 $1,750；巴里克 NGM 合資礦區爭議。",
+        falsificationTriggers: "平均實現金價 >$4,000/oz 但單季 FCF 連續兩季跌破 10 億美元；或副產品 AISC 連續兩季突破 $1,750/oz；或 NGM 權益產量連續三季同比下滑 >10%。"
+      },
+      VST: {
+        ticker: "VST",
+        name: "Vistra Corp.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "rerating",
+        categoryLabel: "⚖️ 週期重估",
+        researchPriority: "WATCH (觀望防守)",
+        targetPriceReentryMin: 85.0,
+        targetPriceReentryMax: 95.0,
+        
+        marketExpectationScore: 4.7,
+        marketExpectationLabel: "高度過熱 (4.7 / 5)",
+        marketExpectationWhy: "現價大漲至 $123+，市場將德州夏季極端熱浪推高之批發電價及 PJM 容量拍賣收益（Q3 EBITDA 增 50% 達 $23.78B）完全定價為永久 AI 數據中心高估值倍數。容錯空間極窄。",
+        businessPathAndMispricing: "最可能路徑：收購 Cogentrix 5,500MW 天然氣電廠後總裝機達 ~50GW，透過現有併網點向 hyperscaler 爭取長期高溢價 PPA。市場盲點：Odessa 簽訂之 20 年數據中心 PPA 僅 207MW，只佔總裝機約 0.41%！公司本質仍受天然氣火花價差與電網批發價週期主導，非純 AI 科技股。",
+        
+        targets: [
+          { name: "Stress (天然氣暴跌/容量價腰斬)", prob: 0.15, rev28: "$16.0B", multiple: "8x EV/EBITDA", targetPrice: 55.00, why: "極端熱浪消退，PJM 容量拍賣價格暴跌，發電利潤回歸週期底部" },
+          { name: "Bear (火花價差收窄/AI電價回調)", prob: 0.30, rev28: "$18.5B", multiple: "10x P/E", targetPrice: 85.00, why: "夏季高溫溢價消退，批發電價正常化，數據中心併網審批放緩" },
+          { name: "Base (公用事業穩健+小額PPA放量)", prob: 0.45, rev28: "$21.0B", multiple: "13x P/E", targetPrice: 135.00, why: "2027 Ongoing FCF before Growth 達約 $4.7B，陸續獲 1-2GW 數據中心 PPA 溢價" },
+          { name: "Bull (超大規模核電/氣電直供簽約)", prob: 0.10, rev28: "$25.0B", multiple: "16x P/E", targetPrice: 185.00, why: "Comanche Peak 核電與大型氣電機組獲得多筆超大雲端客戶直供溢價長約" }
+        ],
+        multibaggerConditions: "需要未來 3 年內將 5GW 以上現有發電資產全數轉化為超額利潤率之超大規模 AI 數據中心專用 PPA。",
+        keyFailureRisks: "德州 ERCOT 批發電價劇烈回調；天然氣成本反彈侵蝕利潤；FERC 監管限制後門併網直供；高負債利息負擔。",
+        falsificationTriggers: "若德州電網夏季熱浪溢價消失且單季 EBITDA 跌破 $12 億，立即下調至觀望以下。"
+      },
       ADBE: {
         ticker: "ADBE",
         name: "Adobe Inc.",
@@ -3327,7 +3637,35 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       IONQ: { symbol: "NYSE:IONQ", price: 28.00, prevClose: 29.50, change: "-5.08%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       NTRA: { symbol: "NASDAQ:NTRA", price: 384.00, prevClose: 395.00, change: "-2.78%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       HALO: { symbol: "NASDAQ:HALO", price: 120.00, prevClose: 124.50, change: "-3.61%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      NEM: { symbol: "NYSE:NEM", price: 121.92, prevClose: 119.71, change: "+1.85%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       MRNA: { symbol: "NASDAQ:MRNA", price: 261.00, prevClose: 241.46, change: "+8.09%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      VST: {
+        ticker: "VST",
+        name: "Vistra Corp.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "rerating",
+        categoryLabel: "⚖️ 週期重估",
+        researchPriority: "WATCH (觀望防守)",
+        targetPriceReentryMin: 85.0,
+        targetPriceReentryMax: 95.0,
+        
+        marketExpectationScore: 4.7,
+        marketExpectationLabel: "高度過熱 (4.7 / 5)",
+        marketExpectationWhy: "現價大漲至 $123+，市場將德州夏季極端熱浪推高之批發電價及 PJM 容量拍賣收益（Q3 EBITDA 增 50% 達 $23.78B）完全定價為永久 AI 數據中心高估值倍數。容錯空間極窄。",
+        businessPathAndMispricing: "最可能路徑：收購 Cogentrix 5,500MW 天然氣電廠後總裝機達 ~50GW，透過現有併網點向 hyperscaler 爭取長期高溢價 PPA。市場盲點：Odessa 簽訂之 20 年數據中心 PPA 僅 207MW，只佔總裝機約 0.41%！公司本質仍受天然氣火花價差與電網批發價週期主導，非純 AI 科技股。",
+        
+        targets: [
+          { name: "Stress (天然氣暴跌/容量價腰斬)", prob: 0.15, rev28: "$16.0B", multiple: "8x EV/EBITDA", targetPrice: 55.00, why: "極端熱浪消退，PJM 容量拍賣價格暴跌，發電利潤回歸週期底部" },
+          { name: "Bear (火花價差收窄/AI電價回調)", prob: 0.30, rev28: "$18.5B", multiple: "10x P/E", targetPrice: 85.00, why: "夏季高溫溢價消退，批發電價正常化，數據中心併網審批放緩" },
+          { name: "Base (公用事業穩健+小額PPA放量)", prob: 0.45, rev28: "$21.0B", multiple: "13x P/E", targetPrice: 135.00, why: "2027 Ongoing FCF before Growth 達約 $4.7B，陸續獲 1-2GW 數據中心 PPA 溢價" },
+          { name: "Bull (超大規模核電/氣電直供簽約)", prob: 0.10, rev28: "$25.0B", multiple: "16x P/E", targetPrice: 185.00, why: "Comanche Peak 核電與大型氣電機組獲得多筆超大雲端客戶直供溢價長約" }
+        ],
+        multibaggerConditions: "需要未來 3 年內將 5GW 以上現有發電資產全數轉化為超額利潤率之超大規模 AI 數據中心專用 PPA。",
+        keyFailureRisks: "德州 ERCOT 批發電價劇烈回調；天然氣成本反彈侵蝕利潤；FERC 監管限制後門併網直供；高負債利息負擔。",
+        falsificationTriggers: "若德州電網夏季熱浪溢價消失且單季 EBITDA 跌破 $12 億，立即下調至觀望以下。"
+      },
+      VST: { symbol: "NYSE:VST", price: 123.64, prevClose: 112.89, change: "+9.52%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       ADBE: { symbol: "NASDAQ:ADBE", price: 254.69, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
     };
 
@@ -3412,7 +3750,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       // Update Top Status Bar
       document.getElementById("syncDot").className = "inline-block w-2 h-2 rounded-full bg-emerald-400";
       const nowStr = new Date().toLocaleTimeString('zh-HK', { hour12: false });
-      document.getElementById("syncStatusText").textContent = `實時連線正常 (${nowStr}) · 145檔`;
+      document.getElementById("syncStatusText").textContent = `實時連線正常 (${nowStr}) · 147檔`;
       document.getElementById("lastUpdatedTimeLabel").textContent = `${nowStr} 實時已同步`;
       document.getElementById("sheetFetchBadge").textContent = `實時直通成功 (${nowStr})`;
 
@@ -3968,31 +4306,56 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         triggerLiveJSONPFetch();
       });
 
-      // Tabs
+      // ==========================================
+      // NAVIGATION TABS CONTROLLER (8-TAB SUITE)
+      // ==========================================
       const tabDashboard = document.getElementById("tabDashboard");
+      const tabSignals = document.getElementById("tabSignals");
+      const tabNewsRadar = document.getElementById("tabNewsRadar");
+      const tabRiskSizing = document.getElementById("tabRiskSizing");
+      const tabStressTest = document.getElementById("tabStressTest");
       const tabPortfolio = document.getElementById("tabPortfolio");
       const tabSheetViewer = document.getElementById("tabSheetViewer");
       const tabPrinciples = document.getElementById("tabPrinciples");
 
       const viewDashboard = document.getElementById("viewDashboard");
+      const viewSignals = document.getElementById("viewSignals");
+      const viewNewsRadar = document.getElementById("viewNewsRadar");
+      const viewRiskSizing = document.getElementById("viewRiskSizing");
+      const viewStressTest = document.getElementById("viewStressTest");
       const viewPortfolio = document.getElementById("viewPortfolio");
       const viewSheetViewer = document.getElementById("viewSheetViewer");
       const viewPrinciples = document.getElementById("viewPrinciples");
 
-      function activateTab(activeBtn, activeView) {
-        [tabDashboard, tabPortfolio, tabSheetViewer, tabPrinciples].forEach(btn => {
-          btn.className = "flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent text-center";
-        });
-        activeBtn.className = "flex-1 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-emerald-600 text-white transition tap-highlight-transparent text-center shadow";
+      const allTabs = [tabDashboard, tabSignals, tabNewsRadar, tabRiskSizing, tabStressTest, tabPortfolio, tabSheetViewer, tabPrinciples];
+      const allViews = [viewDashboard, viewSignals, viewNewsRadar, viewRiskSizing, viewStressTest, viewPortfolio, viewSheetViewer, viewPrinciples];
 
-        [viewDashboard, viewPortfolio, viewSheetViewer, viewPrinciples].forEach(view => view.classList.add("hidden"));
-        activeView.classList.remove("hidden");
+      function activateTab(activeBtn, activeView) {
+        allTabs.forEach(btn => {
+          if (btn) btn.className = "nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1";
+        });
+        if (activeBtn) activeBtn.className = "nav-tab-btn px-2.5 py-1.5 text-[11px] font-semibold rounded-lg bg-emerald-600 text-white transition tap-highlight-transparent whitespace-nowrap flex items-center gap-1 shadow";
+
+        allViews.forEach(view => {
+          if (view) view.classList.add("hidden");
+        });
+        if (activeView) activeView.classList.remove("hidden");
+
+        if (activeView === viewSignals) renderSignalsList();
+        if (activeView === viewNewsRadar) renderNewsRadar();
+        if (activeView === viewStressTest) renderStressTest();
+        if (activeView === viewRiskSizing) recalcRiskSizing();
       }
 
       tabDashboard.addEventListener("click", () => activateTab(tabDashboard, viewDashboard));
+      tabSignals.addEventListener("click", () => activateTab(tabSignals, viewSignals));
+      tabNewsRadar.addEventListener("click", () => activateTab(tabNewsRadar, viewNewsRadar));
+      tabRiskSizing.addEventListener("click", () => activateTab(tabRiskSizing, viewRiskSizing));
+      tabStressTest.addEventListener("click", () => activateTab(tabStressTest, viewStressTest));
       tabPortfolio.addEventListener("click", () => activateTab(tabPortfolio, viewPortfolio));
       tabSheetViewer.addEventListener("click", () => activateTab(tabSheetViewer, viewSheetViewer));
       tabPrinciples.addEventListener("click", () => activateTab(tabPrinciples, viewPrinciples));
+
 
       // --- Transaction Generator Logic ---
       const txSymbol = document.getElementById("txSymbol");
@@ -4088,6 +4451,581 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         if (e.target === modal) modal.classList.add("hidden");
       });
     });
-  </script>
+  
+    // ==========================================
+    // MODULE: DECISION SIGNALS & ACTION MATRIX
+    // ==========================================
+    const SIGNALS_DATABASE = {
+      NVDA: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "逢回大注超額配置", buyBelow: 185.00, targetBase: 221.12, stopLoss: 140.00, catalyst: "Blackwell 量產放量、CUDA 軟硬體生態壟斷、已實現龐大自由現金流", warning: "客戶自研 ASIC 晶片及數據中心供電審批排隊。" },
+      ORCL: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "超賣修復分批買入", buyBelow: 145.00, targetBase: 165.00, stopLoss: 120.00, catalyst: "企業資料庫高黏性、自主雲與多雲架構（OCI 續約）", warning: "微軟縮減外租 AI 算力協議，二線雲短期利用率受壓。" },
+      GOOG: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "核心大模型價值配置", buyBelow: 175.00, targetBase: 215.00, stopLoss: 145.00, catalyst: "Gemini 生態商業化、自研 TPU 算力成本優勢、搜尋廣告護城河", warning: "反壟斷司法拆分訴訟風險及 AI 搜尋對傳統利潤率之侵蝕。" },
+      AMZN: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "雲端重加速買入", buyBelow: 190.00, targetBase: 240.00, stopLoss: 160.00, catalyst: "AWS 營收重新加速至 19%、自研 Trainium2 降低 Capex", warning: "零售物流利潤受通膨波動，AI 資本開支高企。" },
+      META: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "AI 賦能高利潤配置", buyBelow: 580.00, targetBase: 700.00, stopLoss: 480.00, catalyst: "Llama 開源生態、AI 推薦算法帶動廣告 ROAS 大增、FCF 強勁", warning: "Reality Labs 元宇宙年虧損超 180 億，Capex 指引激進。" },
+      MSFT: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "企業級 AI 龍頭配置", buyBelow: 415.00, targetBase: 495.00, stopLoss: 360.00, catalyst: "Azure 雲端份額擴張、M365 Copilot 企業滲透、收縮低效外租 Capex", warning: "數據中心電力交付延誤，資本支出 ROI 審查日益嚴苛。" },
+      NOW: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "首選分批小注吸納", buyBelow: 105.00, targetBase: 120.00, stopLoss: 88.00, catalyst: "企業 IT 跨部門工作流程中樞、AI Agent 執行與權限審計核心", warning: "下季訂閱營收指引放緩至 18.5%，收購整合期股權激勵稀釋。" },
+      CRM: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "防守價值適度配置", buyBelow: 218.00, targetBase: 245.00, stopLoss: 180.00, catalyst: "Agentforce 商業落地、企業私有 CRM 數據庫、真實市盈率約 15.7x", warning: "指引包含投資收益水分，因收購與回購推升淨負債。" },
+      TSM: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "約 $375 參考價小注配置", buyBelow: 380.00, targetBase: 429.15, stopLoss: 290.00, catalyst: "先進製程 (3nm/2nm) 與 CoWoS 封裝絕對壟斷，毛利率 66.4%", warning: "台灣地緣政治尾部風險，資本開支巨大且受終端需求波動牽連。" },
+      AVGO: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "ASIC 網絡回調吸納", buyBelow: 298.00, targetBase: 319.45, stopLoss: 230.00, catalyst: "客製化 ASIC 爆發、Tomahawk/Jericho 交換晶片、VMware 現金流", warning: "大客戶集中度高，外包晶圓約 95% 由台積電生產。" },
+      CRWD: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "網安剛需逢低買入", buyBelow: 310.00, targetBase: 375.00, stopLoss: 250.00, catalyst: "Falcon 平台整合度高，事件修復後客戶留存率超 97%", warning: "短期客戶折扣推遲收入確認，估值倍數處於歷史高位。" },
+      SNOW: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "數據湖倉回調小注", buyBelow: 130.00, targetBase: 165.00, stopLoss: 105.00, catalyst: "Cortex AI 落地、企業私有資料清理與 RAG 必備存儲", warning: "用量計費模式波動較大，面臨 Databricks 激烈競爭。" },
+      LLY: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "減肥藥雙寡頭配置", buyBelow: 820.00, targetBase: 1020.00, stopLoss: 680.00, catalyst: "Zepbound/Mounjaro 產能瓶頸解除，心血管及睡眠呼吸暫停新適應症", warning: "複方藥房仿製藥競爭，醫保支付價格談判壓力。" },
+      TEAM: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待增長驗證或更深折扣", buyBelow: 140.00, targetBase: 165.00, stopLoss: 125.00, catalyst: "Jira/Confluence 企業協作中樞，雲端遷移進度穩定", warning: "雲端指引放緩至 26%，席位費受 AI 縮編威脅，用量收費未證實。" },
+      CAMT: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等訂單轉化或估值消化", buyBelow: 80.00, targetBase: 105.00, stopLoss: 65.00, catalyst: "2027 年收入指引超 8 億美元、HBM 檢測設備需求高景氣", warning: "現價約 24x 年化 EPS 不算便宜，80% 屬特定訂單非市佔率，Onto 競爭激烈。" },
+      MKSI: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "週期底部觀察不追高", buyBelow: 160.00, targetBase: 195.00, stopLoss: 130.00, catalyst: "ESI 與 Atotech 先進封裝化學技術，Q3 營收回升 43%", warning: "非玻璃基板壟斷，受半導體設備整體週期、高負債及可轉債稀釋壓制。" },
+      BE: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待首批交付毛利核驗", buyBelow: 18.00, targetBase: 24.00, stopLoss: 13.00, catalyst: "與 NTT DATA 達成 900MW 數據中心燃料電池供電長約", warning: "燃料電池設備高成本，產能爬坡與正現金流仍需季報證實。" },
+      KTOS: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待實質交付與正現金流", buyBelow: 20.00, targetBase: 25.00, stopLoss: 16.00, catalyst: "無人機渦噴引擎預期 2027 年售 1,500 台，Q3 訂單比 2.2 倍", warning: "實際 Backlog 為 $26.5 億非宣傳之 $38.5 億，備料不等於鎖定合約。" },
+      UUUU: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "週期常態視之不當下檔鎖死", buyBelow: 5.50, targetBase: 7.20, stopLoss: 4.20, catalyst: "美國本土白梅薩水冶廠、重稀土 Dy/Tb 預計 2028 年商業化", warning: "上季 $88.9/磅為已實現均價非未來鎖定價，稀土進度仍具研發不確定性。" },
+      ASML: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待非 AI 週期復甦確認", buyBelow: 680.00, targetBase: 850.00, stopLoss: 550.00, catalyst: "High-NA EUV 光刻機技術壟斷，台積電/英特爾擴建必備", warning: "非 AI 半導體邏輯與存儲復甦疲弱，中國出口禁令限制升級。" },
+      AKAM: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "現金流失血堅決避開", buyBelow: 65.00, targetBase: 80.00, stopLoss: 60.00, catalyst: "邊緣運算與分散式雲架構轉型合約", warning: "Q3 自由現金流轉負 (-$3,800 萬)，S&P 降級至 BBB，3 年 $55 億 CapEx 侵蝕回報。" },
+      VST: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "週期高位暫不獨立建倉", buyBelow: 90.00, targetBase: 135.00, stopLoss: 80.00, catalyst: "207MW 數據中心 PPA、Cogentrix 5,500MW 燃氣收購整合", warning: "數據中心長約僅佔總裝機 0.41%！EBITDA 暴增本質為德州熱浪現貨電價與 PJM 拍賣，非純 AI 科技股。" },
+      MELI: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "信貸風險升高觀望防守", buyBelow: 1600.00, targetBase: 1850.00, stopLoss: 1400.00, catalyst: "拉美電商 GMV 年增 33%（固定匯率），金融生態壁壘", warning: "非防禦性極強，信貸逾期率上升，Q3 營業利潤率受壓至 6.3%。" },
+      SMR: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "商業化漫長泡沫避開", buyBelow: 10.00, targetBase: 15.00, stopLoss: 7.00, catalyst: "小型模塊化核反應堆 (SMR) 政策支持與數據中心供電願景", warning: "首座商用堆最快 2030 年後才能落地，持續融資稀釋股東權益。" },
+      IONQ: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "無實質利潤純炒作避開", buyBelow: 8.00, targetBase: 12.00, stopLoss: 6.00, catalyst: "量子計算離子阱架構技術進展", warning: "商業化變現遙遙無期，研發支出燒錢率極高，股權大幅稀釋。" }
+    };
+
+    // Auto-generate fallback signals for the rest of 71 tickers
+    function getSignalForTicker(ticker) {
+      if (SIGNALS_DATABASE[ticker]) {
+        return SIGNALS_DATABASE[ticker];
+      }
+      const db = RESEARCH_DATABASE[ticker];
+      const q = currentQuotes[ticker];
+      const price = q ? q.price : 100.0;
+      let target = price * 1.15;
+      let bear = price * 0.75;
+      if (db && db.targets) {
+        const b = db.targets.find(t => t.name.includes("Base"));
+        const br = db.targets.find(t => t.name.includes("Bear") || t.name.includes("Stress"));
+        if (b) target = b.targetPrice;
+        if (br) bear = br.targetPrice;
+      }
+      const mos = ((target - price) / price) * 100;
+      if (mos > 20) {
+        return { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "逢回大注配置", buyBelow: price * 1.05, targetBase: target, stopLoss: bear, catalyst: "基本面紮實、安全邊際充足", warning: "大盤系統性波動。" };
+      } else if (mos > 8) {
+        return { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "逢低分批小注", buyBelow: price * 1.02, targetBase: target, stopLoss: bear, catalyst: "具備成長動能、等待估值修復", warning: "宏觀資本支出放緩風險。" };
+      } else if (mos > -10) {
+        return { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待更深回調", buyBelow: price * 0.88, targetBase: target, stopLoss: bear, catalyst: "優質業務等待好價格", warning: "現價充分定價，容錯空間窄。" };
+      } else {
+        return { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "估值透支暫避開", buyBelow: price * 0.75, targetBase: target, stopLoss: bear, catalyst: "轉型題材仍需數據驗證", warning: "現金流失血或估值泡沫過高。" };
+      }
+    }
+
+    let activeSignalFilter = "all";
+
+    function renderSignalsList() {
+      const container = document.getElementById("signalsContainer");
+      if (!container) return;
+
+      const search = (document.getElementById("signalSearchInput").value || "").toUpperCase().trim();
+      const sort = document.getElementById("signalSortSelect").value;
+
+      let tickers = Object.keys(RESEARCH_DATABASE);
+      let list = tickers.map(ticker => {
+        const db = RESEARCH_DATABASE[ticker];
+        const q = currentQuotes[ticker];
+        const price = q ? q.price : 0;
+        const sig = getSignalForTicker(ticker);
+        const mos = price > 0 ? ((sig.targetBase - price) / price) * 100 : 0;
+        const upside = price > 0 ? ((sig.targetBase * 1.35 - price) / price) * 100 : 0;
+        return { ticker, name: db.name, price, currency: db.currency || "USD", sig, mos, upside };
+      });
+
+      // Filter by rating
+      if (activeSignalFilter !== "all") {
+        list = list.filter(item => item.sig.rating === activeSignalFilter);
+      }
+
+      // Filter by search
+      if (search) {
+        list = list.filter(item => item.ticker.includes(search) || item.name.toUpperCase().includes(search));
+      }
+
+      // Sort
+      if (sort === "mosDesc") {
+        list.sort((a, b) => b.mos - a.mos);
+      } else if (sort === "upsideDesc") {
+        list.sort((a, b) => b.upside - a.upside);
+      } else {
+        list.sort((a, b) => a.ticker.localeCompare(b.ticker));
+      }
+
+      // Update counters
+      let cntStrong = 0, cntAccum = 0, cntWait = 0, cntAvoid = 0;
+      tickers.forEach(t => {
+        const s = getSignalForTicker(t);
+        if (s.rating === "STRONG_BUY") cntStrong++;
+        else if (s.rating === "ACCUMULATE") cntAccum++;
+        else if (s.rating === "WAIT_PRICE") cntWait++;
+        else if (s.rating === "AVOID_SELL") cntAvoid++;
+      });
+      const elStrong = document.getElementById("cntStrongBuy");
+      const elAccum = document.getElementById("cntAccumulate");
+      const elWait = document.getElementById("cntWaitPrice");
+      const elAvoid = document.getElementById("cntAvoidSell");
+      if (elStrong) elStrong.innerText = cntStrong;
+      if (elAccum) elAccum.innerText = cntAccum;
+      if (elWait) elWait.innerText = cntWait;
+      if (elAvoid) elAvoid.innerText = cntAvoid;
+
+      if (list.length === 0) {
+        container.innerHTML = '<div class="text-center py-8 text-slate-500 text-xs bg-slate-900/60 rounded-xl border border-slate-800">無符合當前篩選條件之標的</div>';
+        return;
+      }
+
+      container.innerHTML = list.map(item => {
+        const ratingColors = {
+          STRONG_BUY: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
+          ACCUMULATE: "border-blue-500/40 bg-blue-500/10 text-blue-300",
+          WAIT_PRICE: "border-amber-500/40 bg-amber-500/10 text-amber-300",
+          AVOID_SELL: "border-rose-500/40 bg-rose-500/10 text-rose-300"
+        };
+        const ratingBadgeColor = ratingColors[item.sig.rating] || "border-slate-700 bg-slate-800 text-slate-300";
+        const mosClass = item.mos >= 15 ? "text-emerald-400" : item.mos >= 0 ? "text-blue-400" : "text-rose-400";
+
+        return `
+          <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800/90 rounded-2xl p-4 shadow-sm hover:border-slate-700 transition">
+            <div class="flex items-start justify-between gap-2 border-b border-slate-800/80 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-base font-bold font-mono text-white">${item.ticker}</span>
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${ratingBadgeColor}">${item.sig.label}</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-0.5 line-clamp-1">${item.name}</p>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-slate-400">即時現價</span>
+                <p class="text-base font-bold font-mono text-white">$${item.price.toFixed(2)}</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 my-3 text-xs bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/60 text-center">
+              <div>
+                <span class="text-[10px] text-slate-400 block">公允目標價 (Base)</span>
+                <span class="font-bold font-mono text-slate-200 block mt-0.5">$${item.sig.targetBase.toFixed(2)}</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">安全邊際 (MoS)</span>
+                <span class="font-bold font-mono ${mosClass} block mt-0.5">${item.mos >= 0 ? "+" : ""}${item.mos.toFixed(1)}%</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">建議買入上限</span>
+                <span class="font-bold font-mono text-emerald-400 block mt-0.5">&le; $${item.sig.buyBelow.toFixed(2)}</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">重審/止損線</span>
+                <span class="font-bold font-mono text-rose-400 block mt-0.5">$${item.sig.stopLoss.toFixed(2)}</span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 text-xs text-slate-300">
+              <p><strong class="text-emerald-400">行動指引：</strong> ${item.sig.action}</p>
+              <p><strong class="text-blue-400">核心催化：</strong> ${item.sig.catalyst}</p>
+              <p><strong class="text-amber-400">主要風險：</strong> ${item.sig.warning}</p>
+            </div>
+
+            <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between">
+              <span class="text-[11px] text-slate-500 font-mono">30% Max DD 控管已嵌入</span>
+              <button class="size-trade-btn px-3 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-xs transition active:scale-95 flex items-center gap-1 shadow" data-ticker="${item.ticker}" data-price="${item.price}" data-stop="${item.sig.stopLoss}">
+                <span>🛡️ 帶入風控試算</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // Attach size-trade-btn handlers
+      container.querySelectorAll(".size-trade-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const t = btn.getAttribute("data-ticker");
+          const p = parseFloat(btn.getAttribute("data-price"));
+          const s = parseFloat(btn.getAttribute("data-stop"));
+          populateRiskCalculator(t, p, s);
+          activateTab(tabRiskSizing, viewRiskSizing);
+        });
+      });
+    }
+
+    // ==========================================
+    // MODULE: NEWS & MACRO PROPAGATION RADAR
+    // ==========================================
+    const NEWS_DATABASE = [
+      {
+        id: "news-msft-orcl",
+        category: "cloud",
+        categoryLabel: "AI 雲端與算力",
+        date: "2026-11-06",
+        title: "微軟據悉逐步終止向甲骨文 (ORCL) 租用部分 AI 雲端算力協議",
+        summary: "微軟為強化內部自研晶片部署及控制資本支出效率，逐步終止部分外租 GPU 容量合約。標誌超大雲巨頭由狂熱堆疊算力轉向極致 ROI 審查。",
+        directImpact: "【一級直接衝擊】：二線 GPU 算力租售商利用率與租金承壓，ORCL 雲端高增長預期面臨重估。",
+        secondOrder: "【二級產業傳導】：通用硬體伺服器出貨放緩；客製化 ASIC（AVGO）與內部優化（NOW 工作流審計）價值突顯。",
+        verdict: "【買方操作指引】：硬體股必須接受嚴格「Capex 急凍情景」壓力測試；切勿高追二線算力租賃題材股。"
+      },
+      {
+        id: "news-vst-q3-ppa",
+        category: "power",
+        categoryLabel: "電力基建與能源",
+        date: "2026-11-06",
+        title: "Vistra (VST) Q3 EBITDA 達 $23.78 億，但 20 年數據中心 PPA 僅 207 MW",
+        summary: "完成 Cogentrix 5,500MW 氣電收購使總裝機達 ~50GW。與德州數據中心簽訂 20 年期 207MW PPA，但僅佔總裝機容量 0.41%！",
+        directImpact: "【一級實質驗證】：驗證數據中心尋求併網即時供電願付長約溢價，電力瓶頸具商業變現價值。",
+        secondOrder: "【認知偏差陷阱】：EBITDA 暴增主因是德州夏季熱浪現貨電價飆升及 PJM 容量拍賣跳升，非數據中心全面貢獻。",
+        verdict: "【買方操作指引】：維持「暫不建立獨立倉位」，避免以 AI 科技股溢價買入高槓桿週期發電商資產。"
+      },
+      {
+        id: "news-akam-q3-fcf",
+        category: "cloud",
+        categoryLabel: "AI 雲端與算力",
+        date: "2026-11-06",
+        title: "Akamai (AKAM) Q3 轉型矛盾：Compute 營收增長但自由現金流轉負",
+        summary: "Compute 收入按年增長 34%，但 3 年 $55 億 CapEx 轉型重負導致單季 FCF 轉為 -$3,800 萬，信貸評級下調至 BBB 邊緣。",
+        directImpact: "【一級直接衝擊】：二線基礎設施轉型期現金流失血嚴重，高成本資本環境下股東回報受損。",
+        secondOrder: "【二級產業傳導】：高毛利 CDN 業務持續負增長（-3%），難以持續為低毛利算力擴建輸血。",
+        verdict: "【買方操作指引】：堅決剔除，恪守「自由現金流轉負、資本開支失控者不買」的買方鐵律。"
+      },
+      {
+        id: "news-tsm-taiwan-tail",
+        category: "semi",
+        categoryLabel: "晶圓代工與封裝",
+        date: "2026-11-05",
+        title: "TSMC 先進製程定價權無可替代，但台灣地緣尾部風險仍為真實硬約束",
+        summary: "TSMC Q3 毛利率達 66.4%，在 GPU 與 ASIC 均為核心代工廠。但 AVGO 外包晶圓 95% 由 TSMC 生產，供應鏈高度集中。",
+        directImpact: "【一級直接受惠】：不論 Nvidia GPU 還是 Broadcom ASIC 勝出，TSM 皆為不可或缺的收稅者。",
+        secondOrder: "【尾部地緣風險】：海外建廠難以在短期完全取代台灣先進產能，極端事件下軟件業務具部分對沖緩衝。",
+        verdict: "【買方操作指引】：在約 $375 參考價以下小注分批配置，嚴格控制總部位佔比，不單壓單一地區。"
+      },
+      {
+        id: "news-be-ntt-900mw",
+        category: "power",
+        categoryLabel: "電力基建與能源",
+        date: "2026-11-05",
+        title: "Bloom Energy (BE) 與 NTT DATA 簽署 900 MW 數據中心燃料電池供電協議",
+        summary: "固態氧化物燃料電池 (SOFC) 打入超大規模數據中心，為解決電網併網排隊提供分散式現場發電替代方案。",
+        directImpact: "【一級直接受惠】：現場微電網與燃料電池供應商迎來實質訂單驗證，營收確定性提升。",
+        secondOrder: "【產業鏈考驗】：需觀察產能爬坡進度、系統毛利率及燃料供應成本能否轉化為正向自由現金流。",
+        verdict: "【買方操作指引】：列為高成長觀察名單，等待季度交付與現金流轉正證據再行考慮建倉。"
+      }
+    ];
+
+    let activeNewsFilter = "all";
+
+    function renderNewsRadar() {
+      const container = document.getElementById("newsEventsContainer");
+      if (!container) return;
+
+      let list = NEWS_DATABASE;
+      if (activeNewsFilter !== "all") {
+        list = list.filter(item => item.category === activeNewsFilter);
+      }
+
+      container.innerHTML = list.map(item => `
+        <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-4 shadow-sm hover:border-slate-700 transition">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">${item.categoryLabel}</span>
+              <span class="text-xs text-slate-400 font-mono">${item.date}</span>
+            </div>
+          </div>
+          <h3 class="text-sm font-bold text-white mt-2">${item.title}</h3>
+          <p class="text-xs text-slate-300 mt-1 leading-relaxed">${item.summary}</p>
+
+          <div class="mt-3 pt-2.5 border-t border-slate-800/60 space-y-2 text-xs">
+            <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/80">
+              <p class="text-rose-300">${item.directImpact}</p>
+            </div>
+            <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/80">
+              <p class="text-blue-300">${item.secondOrder}</p>
+            </div>
+            <div class="bg-slate-950/70 p-2.5 rounded-xl border border-emerald-500/30">
+              <p class="text-emerald-300 font-semibold">${item.verdict}</p>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // ==========================================
+    // MODULE: RISK SIZING & 30% MAX DD SHIELD
+    // ==========================================
+    function populateRiskCalculator(ticker, price, stop) {
+      const tickerSelect = document.getElementById("calcTickerSelect");
+      const entryInput = document.getElementById("calcEntryPriceInput");
+      const stopInput = document.getElementById("calcStopPriceInput");
+      if (tickerSelect && ticker) tickerSelect.value = ticker;
+      if (entryInput && price) entryInput.value = price.toFixed(2);
+      if (stopInput && stop) stopInput.value = stop.toFixed(2);
+      recalcRiskSizing();
+    }
+
+    function initRiskCalculator() {
+      const tickerSelect = document.getElementById("calcTickerSelect");
+      if (!tickerSelect) return;
+
+      const tickers = Object.keys(RESEARCH_DATABASE).sort();
+      tickerSelect.innerHTML = tickers.map(t => `<option value="${t}">${t} - ${RESEARCH_DATABASE[t].name}</option>`).join("");
+
+      tickerSelect.addEventListener("change", () => {
+        const t = tickerSelect.value;
+        const q = currentQuotes[t];
+        const p = q ? q.price : 100.0;
+        const sig = getSignalForTicker(t);
+        document.getElementById("calcEntryPriceInput").value = p.toFixed(2);
+        document.getElementById("calcStopPriceInput").value = sig.stopLoss.toFixed(2);
+        recalcRiskSizing();
+      });
+
+      document.getElementById("calcRiskBudgetSelect").addEventListener("change", recalcRiskSizing);
+      document.getElementById("calcEntryPriceInput").addEventListener("input", recalcRiskSizing);
+      document.getElementById("calcStopPriceInput").addEventListener("input", recalcRiskSizing);
+
+      document.getElementById("sendToTxnGenBtn").addEventListener("click", () => {
+        const t = tickerSelect.value;
+        const sharesText = document.getElementById("calcSuggestedShares").innerText;
+        const priceText = document.getElementById("calcEntryPriceInput").value;
+        const shares = parseInt(sharesText.replace(/[^0-9]/g, '')) || 0;
+
+        // Switch to portfolio tab and pre-fill transaction generator
+        activateTab(tabPortfolio, viewPortfolio);
+        const txSym = document.getElementById("txSymbol");
+        const txSide = document.getElementById("txSide");
+        const txQty = document.getElementById("txQuantity");
+        const txPrice = document.getElementById("txPrice");
+        if (txSym) txSym.value = t;
+        if (txSide) txSide.value = "BUY";
+        if (txQty) txQty.value = shares;
+        if (txPrice) txPrice.value = priceText;
+        updateTxPreview();
+        showToast("已成功將風控建議買入指令帶入交易產生器！");
+      });
+
+      recalcRiskSizing();
+    }
+
+    function recalcRiskSizing() {
+      const entryPrice = parseFloat(document.getElementById("calcEntryPriceInput").value) || 0;
+      const stopPrice = parseFloat(document.getElementById("calcStopPriceInput").value) || 0;
+      const riskBudget = parseFloat(document.getElementById("calcRiskBudgetSelect").value) || 6000;
+      const totalCapital = 400000;
+      const maxDrawdown = 120000;
+
+      const perShareRisk = Math.max(0.01, entryPrice - stopPrice);
+      const suggestedShares = Math.max(1, Math.floor(riskBudget / perShareRisk));
+      const positionValue = suggestedShares * entryPrice;
+      const portfolioWeight = (positionValue / totalCapital) * 100;
+      const ddBudgetPercent = (riskBudget / maxDrawdown) * 100;
+      const postStopNAV = totalCapital - riskBudget;
+
+      document.getElementById("calcPerShareRisk").innerText = "$" + perShareRisk.toFixed(2);
+      document.getElementById("calcSuggestedShares").innerText = suggestedShares.toLocaleString() + " 股";
+      document.getElementById("calcPositionValue").innerText = "$" + Math.round(positionValue).toLocaleString();
+      document.getElementById("calcPortfolioWeight").innerText = portfolioWeight.toFixed(2) + "%";
+      document.getElementById("calcDDBudgetPercent").innerText = ddBudgetPercent.toFixed(1) + "% (消耗 $" + Math.round(riskBudget).toLocaleString() + " / $120,000)";
+      document.getElementById("calcPostStopNAV").innerText = "$" + Math.round(postStopNAV).toLocaleString() + " (安全緩衝 +$" + Math.round(postStopNAV - 280000).toLocaleString() + ")";
+
+      const badge = document.getElementById("calcComplianceBadge");
+      if (portfolioWeight > 25 || ddBudgetPercent > 10) {
+        badge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40";
+        badge.innerText = "🔴 風險超標：單筆曝險過大，請調低風險預算";
+      } else if (portfolioWeight > 15 || ddBudgetPercent > 7) {
+        badge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/40";
+        badge.innerText = "🟡 接近邊界：請分批執行，嚴格限額";
+      } else {
+        badge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
+        badge.innerText = "🟢 符合 30% 回撤防線，允許執行";
+      }
+    }
+
+    // ==========================================
+    // MODULE: STRESS TESTING SIMULATOR
+    // ==========================================
+    const STRESS_SCENARIOS = {
+      capex: {
+        id: "capex",
+        name: "AI 資本開支急凍情景 (-30%)",
+        desc: "微軟、Meta、Google、Amazon 等雲端巨頭削減 30% AI 硬件預算，進入投資消化期與利用率考核。",
+        portfolioImpact: "-14.8% (淨值由 $400,000 降至 $340,800)",
+        navDrop: 59200,
+        floorMargin: "$60,800 (守住 $280,000 清盤線)",
+        table: [
+          { ticker: "NVDA", price: 187.98, stressPrice: 125.00, drop: "-33.5%", defense: "強 (CUDA生態)", note: "Blackwell 短期放緩，但平台黏性極強，提供長線重估機會" },
+          { ticker: "TSM", price: 375.05, stressPrice: 260.00, drop: "-30.7%", defense: "極強 (製程壟斷)", note: "先進製程利用率略降，折舊毛利承壓但現金流穩健" },
+          { ticker: "AVGO", price: 296.55, stressPrice: 215.00, drop: "-27.5%", defense: "強 (軟件對沖)", note: "ASIC 客戶集中度高，但 VMware 軟件 ARR 提供現金流底座" },
+          { ticker: "MKSI", price: 189.50, stressPrice: 120.00, drop: "-36.7%", defense: "中 (半導體週期)", note: "非壟斷設備商受 Capex 砍單直接衝擊，負債利息壓力顯現" },
+          { ticker: "CAMT", price: 94.55, stressPrice: 55.00, drop: "-41.8%", defense: "弱 (高估值小盤)", note: "24x EPS 估值遭劇烈壓縮，2027 年 8 億美元指引需推遲" }
+        ]
+      },
+      spark: {
+        id: "spark",
+        name: "發電火花價差回落與容量電價正常化 (-40%)",
+        desc: "德州夏季極端熱浪消退，東北部 PJM 電網容量拍賣價格回歸中樞，天然氣成本上升壓窄電廠利潤。",
+        portfolioImpact: "-4.2% (投組成功空倉 VST / BE，規避約 $25,000 潛在虧損)",
+        navDrop: 16800,
+        floorMargin: "$103,200 (遠高於 $280,000 防線)",
+        table: [
+          { ticker: "VST", price: 123.64, stressPrice: 78.00, drop: "-36.9%", defense: "中 (公用事業本體)", note: "207MW 數據中心 PPA 無法彌補批發電價回落損失，估值殺回 10x P/E" },
+          { ticker: "BE", price: 21.00, stressPrice: 12.00, drop: "-42.9%", defense: "弱 (持續燒錢)", note: "900MW PPA 交付進度不及預期，現金流轉正遙遙無期" },
+          { ticker: "GEV", price: 320.00, stressPrice: 245.00, drop: "-23.4%", defense: "強 (燃氣輪機在手)", note: "燃氣輪機積壓訂單排至 2029 年，受電力現貨價格影響相對可控" }
+        ]
+      },
+      taiwan: {
+        id: "taiwan",
+        name: "台海供應鏈極端中斷尾部風險",
+        desc: "台海地緣政治突發緊張，台灣先進晶圓出貨受阻 6 個月，全球高端算力晶片面臨斷供。",
+        portfolioImpact: "-18.5% (淨值降至 $326,000，軟件股抗跌對沖)",
+        navDrop: 74000,
+        floorMargin: "$46,000 (守住 $280,000 生命線)",
+        table: [
+          { ticker: "TSM", price: 375.05, stressPrice: 185.00, drop: "-50.7%", defense: "地緣極端受害", note: "海外晶圓廠僅能承擔極小比例先進產能，業務陷入停擺風險" },
+          { ticker: "NVDA", price: 187.98, stressPrice: 105.00, drop: "-44.1%", defense: "受限於代工", note: "無可替代代工來源，硬體出貨嚴重推遲，依賴庫存與雲端軟體" },
+          { ticker: "AVGO", price: 296.55, stressPrice: 220.00, drop: "-25.8%", defense: "中 (軟件緩衝)", note: "95% 晶圓依賴台積電，但 VMware 與網絡架構軟件提供強大防禦" },
+          { ticker: "NOW", price: 102.74, stressPrice: 105.00, drop: "+2.2%", defense: "極強 (避險資產)", note: "企業工作流程與內部管理軟體成為避險港灣，資金大幅流入" },
+          { ticker: "CRM", price: 215.19, stressPrice: 218.00, drop: "+1.3%", defense: "強 (估值防禦)", note: "15.7x P/E 低估值與企業數據核心，展現強大抗黑天鵝韌性" }
+        ]
+      }
+    };
+
+    let activeStressScenario = "capex";
+
+    function renderStressTest() {
+      const container = document.getElementById("stressDetailsCard");
+      if (!container) return;
+
+      const sc = STRESS_SCENARIOS[activeStressScenario];
+      if (!sc) return;
+
+      container.innerHTML = `
+        <div class="border-b border-slate-800 pb-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-white">${sc.name}</h3>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40">壓測進行中</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">${sc.desc}</p>
+        </div>
+
+        <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex justify-between text-xs">
+            <span class="text-slate-400">40 萬組合預估衝擊：</span>
+            <span class="font-bold font-mono text-rose-400">${sc.portfolioImpact}</span>
+          </div>
+          <div class="flex justify-between text-xs">
+            <span class="text-slate-400">離 30% 止損線 ($280k) 緩衝：</span>
+            <span class="font-bold font-mono text-emerald-400">${sc.floorMargin}</span>
+          </div>
+          <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-500 to-rose-500 h-2 rounded-full" style="width: ${Math.max(10, 100 - (sc.navDrop / 120000) * 100)}%"></div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-slate-300 block">核心標的下檔受壓矩陣：</span>
+          <div class="overflow-x-auto no-scrollbar">
+            <table class="w-full text-xs text-left">
+              <thead class="text-[10px] uppercase text-slate-500 bg-slate-950/60 border-b border-slate-800">
+                <tr>
+                  <th class="p-2">標的</th>
+                  <th class="p-2">現價</th>
+                  <th class="p-2">極端壓測價</th>
+                  <th class="p-2">回撤幅</th>
+                  <th class="p-2">防禦評級</th>
+                  <th class="p-2">買方剖析</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60">
+                ${sc.table.map(row => `
+                  <tr class="hover:bg-slate-800/40">
+                    <td class="p-2 font-mono font-bold text-white">${row.ticker}</td>
+                    <td class="p-2 font-mono text-slate-300">$${row.price.toFixed(2)}</td>
+                    <td class="p-2 font-mono font-bold text-rose-400">$${row.stressPrice.toFixed(2)}</td>
+                    <td class="p-2 font-mono text-rose-400">${row.drop}</td>
+                    <td class="p-2 text-slate-200">${row.defense}</td>
+                    <td class="p-2 text-slate-400 text-[11px]">${row.note}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+      // Init Signal Filter buttons
+      const sigFilters = [
+        { id: "sigFilterAll", val: "all" },
+        { id: "sigFilterStrong", val: "STRONG_BUY" },
+        { id: "sigFilterAccum", val: "ACCUMULATE" },
+        { id: "sigFilterWait", val: "WAIT_PRICE" },
+        { id: "sigFilterAvoid", val: "AVOID_SELL" }
+      ];
+      sigFilters.forEach(f => {
+        const btn = document.getElementById(f.id);
+        if (btn) {
+          btn.addEventListener("click", () => {
+            sigFilters.forEach(other => {
+              const b = document.getElementById(other.id);
+              if (b) b.className = "signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap";
+            });
+            btn.className = "signal-filter-btn active text-xs font-medium px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 whitespace-nowrap";
+            activeSignalFilter = f.val;
+            renderSignalsList();
+          });
+        }
+      });
+
+      const sigSearch = document.getElementById("signalSearchInput");
+      if (sigSearch) sigSearch.addEventListener("input", renderSignalsList);
+      const sigSort = document.getElementById("signalSortSelect");
+      if (sigSort) sigSort.addEventListener("change", renderSignalsList);
+
+      // Init News Filter buttons
+      const newsFilters = [
+        { id: "newsFilterAll", val: "all" },
+        { id: "newsFilterCloud", val: "cloud" },
+        { id: "newsFilterPower", val: "power" },
+        { id: "newsFilterSemi", val: "semi" },
+        { id: "newsFilterMacro", val: "macro" }
+      ];
+      newsFilters.forEach(f => {
+        const btn = document.getElementById(f.id);
+        if (btn) {
+          btn.addEventListener("click", () => {
+            newsFilters.forEach(other => {
+              const b = document.getElementById(other.id);
+              if (b) b.className = "news-filter-btn text-xs font-medium px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200";
+            });
+            btn.className = "news-filter-btn active text-xs font-medium px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300";
+            activeNewsFilter = f.val;
+            renderNewsRadar();
+          });
+        }
+      });
+
+      // Init Stress buttons
+      const stressButtons = [
+        { id: "stressBtnCapex", val: "capex" },
+        { id: "stressBtnSpark", val: "spark" },
+        { id: "stressBtnTaiwan", val: "taiwan" }
+      ];
+      stressButtons.forEach(s => {
+        const btn = document.getElementById(s.id);
+        if (btn) {
+          btn.addEventListener("click", () => {
+            stressButtons.forEach(other => {
+              const b = document.getElementById(other.id);
+              if (b) b.className = "stress-scenario-btn text-left p-2.5 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-400 hover:text-slate-200 transition";
+            });
+            btn.className = "stress-scenario-btn active text-left p-2.5 rounded-xl bg-purple-600/20 border border-purple-500/50 text-white transition";
+            activeStressScenario = s.val;
+            renderStressTest();
+          });
+        }
+      });
+
+      // Initialize all new modules
+      initRiskCalculator();
+      renderSignalsList();
+      renderNewsRadar();
+      renderStressTest();
+
+    </script>
 </body>
 </html>
