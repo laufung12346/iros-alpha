@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V3.6 · 45檔機構級全景決策矩陣</title>
+  <title>IROS Alpha V3.9 · 69檔機構級全景決策矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V3.6 雙Sheet實時直通 (45檔全景矩陣)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V3.9 雙Sheet實時直通 (69檔全景矩陣)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -1178,7 +1178,32 @@
           <div>
             <label class="text-[10px] text-slate-400 block mb-1">交易股票</label>
             <select id="txSymbol" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-mono focus:border-emerald-500">
-                                                                                    <option value="NASDAQ:GTLB" data-price="49.95" data-shares="240">NASDAQ:GTLB (240股 / $49.95)</option>
+                                                                                                                <option value="NYSE:U" data-price="48.18" data-shares="290">NYSE:U (290股 / $48.18)</option>
+              <option value="NYSE:VEEV" data-price="309.34" data-shares="45">NYSE:VEEV (45股 / $309.34)</option>
+              <option value="NASDAQ:NTAP" data-price="172.40" data-shares="80">NASDAQ:NTAP (80股 / $172.40)</option>
+              <option value="NASDAQ:COHR" data-price="198.50" data-shares="70">NASDAQ:COHR (70股 / $198.50)</option>
+              <option value="NASDAQ:SNOW" data-price="265.00" data-shares="50">NASDAQ:SNOW (50股 / $265.00)</option>
+              <option value="NASDAQ:CRWD" data-price="257.00" data-shares="55">NASDAQ:CRWD (55股 / $257.00)</option>
+                            <option value="NASDAQ:IREN" data-price="41.50" data-shares="350">NASDAQ:IREN (350股 / $41.50)</option>
+              <option value="NASDAQ:KEEL" data-price="1.95" data-shares="5000">NASDAQ:KEEL (5000股 / $1.95)</option>
+              <option value="NYSE:SMR" data-price="4.85" data-shares="2000">NYSE:SMR (2000股 / $4.85)</option>
+              <option value="NYSEAMERICAN:UUUU" data-price="7.25" data-shares="1500">NYSEAMERICAN:UUUU (1500股 / $7.25)</option>
+              <option value="NYSE:NET" data-price="215.00" data-shares="65">NYSE:NET (65股 / $215.00)</option>
+              <option value="NASDAQ:AKAM" data-price="92.50" data-shares="150">NASDAQ:AKAM (150股 / $92.50)</option>
+              <option value="NASDAQ:FROG" data-price="33.50" data-shares="400">NASDAQ:FROG (400股 / $33.50)</option>
+              <option value="NASDAQ:KTOS" data-price="33.39" data-shares="400">NASDAQ:KTOS (400股 / $33.39)</option>
+              <option value="NYSE:MP" data-price="38.35" data-shares="350">NYSE:MP (350股 / $38.35)</option>
+              <option value="NYSE:TM" data-price="197.64" data-shares="70">NYSE:TM (70股 / $197.64)</option>
+              <option value="NYSE:IONQ" data-price="28.00" data-shares="500">NYSE:IONQ (500股 / $28.00)</option>
+              <option value="NASDAQ:NTRA" data-price="384.00" data-shares="35">NASDAQ:NTRA (35股 / $384.00)</option>
+              <option value="NASDAQ:HALO" data-price="120.00" data-shares="115">NASDAQ:HALO (115股 / $120.00)</option>
+                            <option value="NASDAQ:MRNA" data-price="261.00" data-shares="50">NASDAQ:MRNA (50股 / $261.00)</option>
+              <option value="NASDAQ:MKSI" data-price="183.66" data-shares="76">NASDAQ:MKSI (76股 / $183.66)</option>
+              <option value="NASDAQ:NTNX" data-price="59.28" data-shares="236">NASDAQ:NTNX (236股 / $59.28)</option>
+              <option value="NASDAQ:MU" data-price="687.88" data-shares="20">NASDAQ:MU (20股 / $687.88)</option>
+              <option value="NASDAQ:ZS" data-price="208.06" data-shares="65">NASDAQ:ZS (65股 / $208.06)</option>
+              <option value="NYSE:LLY" data-price="1388.54" data-shares="10">NYSE:LLY (10股 / $1,388.54)</option>
+              <option value="NASDAQ:GTLB" data-price="49.95" data-shares="240">NASDAQ:GTLB (240股 / $49.95)</option>
               <option value="NASDAQ:MELI" data-price="1523.50" data-shares="10">NASDAQ:MELI (10股 / $1,523.50)</option>
               <option value="NASDAQ:MSFT" data-price="542.45" data-shares="28">NASDAQ:MSFT (28股 / $542.45)</option>
               <option value="NYSE:EROC" data-price="7.90" data-shares="1770">NYSE:EROC (1770股 / $7.90)</option>
@@ -1222,7 +1247,7 @@
               <option value="NYSE:BE" data-price="200.40" data-shares="62">NYSE:BE (62股 / $200.40)</option>
               <option value="NASDAQ:AMD" data-price="488.78" data-shares="25">NASDAQ:AMD (25股 / $488.78)</option>
 
-              <option value="NASDAQ:CRDO" data-price="136.50" data-shares="75">NASDAQ:CRDO (75股 / $136.50)</option>
+              <option value="NASDAQ:CRDO" data-price="116.61" data-shares="100">NASDAQ:CRDO (75股 / $136.50)</option>
               <option value="NYSE:TSM" data-price="395.75" data-shares="43">NYSE:TSM (43股 / $395.75)</option>
 
               <option value="NASDAQ:ASML" data-price="1496.30" data-shares="10">NASDAQ:ASML (10股 / $1,496.30)</option>
@@ -1322,7 +1347,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
               <span>Google 試算表即時連線</span>
               <span id="sheetFetchBadge" class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-mono">連線正常</span>
             </h2>
-            <p class="text-xs text-slate-400 mt-0.5">來源表：IROS 報價測試 (共 111 筆即時報價)</p>
+            <p class="text-xs text-slate-400 mt-0.5">來源表：IROS 報價測試 (共 145 筆即時報價)</p>
           </div>
           <a href="https://docs.google.com/spreadsheets/d/1qi22DKG6jvfk0zZ175a8uxLb2_i33PeGwxMDyu8RJZk/edit" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:underline flex items-center gap-1">
             <span>開啟原表</span>
@@ -2009,27 +2034,27 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         ticker: "CRDO",
         name: "Credo Technology Group Holding Ltd",
         currency: "USD",
-        researchDate: "2026-11-05",
+        researchDate: "2026-11-06",
         category: "multibagger",
-        categoryLabel: "🚀 高彈性傳輸龍頭",
-        researchPriority: "HIGH (高賠率追蹤)",
-        targetPriceReentryMin: 115.0,
-        targetPriceReentryMax: 135.0,
+        categoryLabel: "🚀 高速互連與 1.6T 光學龍頭",
+        researchPriority: "HIGH (殺入深度價值買入區)",
+        targetPriceReentryMin: 100.0,
+        targetPriceReentryMax: 120.0,
         
-        marketExpectationScore: 4.2,
-        marketExpectationLabel: "高度透支 (4.2 / 5)",
-        marketExpectationWhy: "現價約 $136-$150，市值近 280 億美元，P/S > 15x，市場給予 2028 年前瞻 P/E 達 20x-30x，反映極高的線性外推預期。",
-        businessPathAndMispricing: "最可能路徑：224G AEC 主導機架內短距傳輸，向 1.6T ZeroFlap ALC 及 OmniConnect Weaver 記憶體架構突破。市場盲點：過度恐慌 LPO/CPO 淘汰電纜，忽視 ALC 具備隨插即用與 DSP 糾錯優勢；嚴重低估 OmniConnect 繞過台積電 CoWoS 解決記憶體牆的數十億美元 TAM；但需警惕單一客戶 (推測為 AWS) 佔比逾 43% 及股權激勵 (SBC 佔比 13.7%) 的實質稀釋。",
+        marketExpectationScore: 4.0,
+        marketExpectationLabel: "偏向亢奮接近透支 (4.0 / 5)",
+        marketExpectationWhy: "研報基準價約 $180 美元，但目前市價已深度回踩至 $116.61 美元，成功落入 $100–$120 深度價值安全試水區！",
+        businessPathAndMispricing: "最可能路徑：224G AEC 機架短距互連壟斷，DustPhotonics 矽光子整合對接 1.6T LPO/CPO 光學升級。市場盲點：前四大雲端巨頭貢獻 84% 營收（最大客戶佔比高達 33%-49%）；高管在 40-50x P/E 高位執行 10b5-1 減持；DustPhotonics 以色列團隊驗證壁壘。加權目標價 $184.40，相較現價 $116.61 期望空間高達 +58.1%！",
         
         targets: [
-          { name: "Stress (大客戶轉單/雙殺)", prob: 0.10, rev28: "$1.85B", multiple: "15x", targetPrice: 20.25, why: "最大客戶減資或轉向 Marvell/自研，LPO 淘汰 AEC，DustPhotonics 良率失控" },
-          { name: "Bear (AI支出放緩/價格戰)", prob: 0.25, rev28: "$2.80B", multiple: "20x", targetPrice: 68.20, why: "與 Broadcom/Coherent 價格戰，毛利率跌破 60%，估值回歸 20x" },
-          { name: "Base (ZeroFlap順利放量)", prob: 0.50, rev28: "$38.5B", multiple: "30x", targetPrice: 180.30, why: "ZeroFlap ALC 對接 1.6T 光學轉型，光學部門營收 > $8 億，AEC 維持壟斷" },
-          { name: "Bull (OmniConnect爆發)", prob: 0.15, rev28: "$5.50B", multiple: "35x", targetPrice: 328.65, why: "OmniConnect Weaver 獲 AMD/Google TPU 量產採用，成 3.2T 光子標竿" }
+          { name: "Stress (資本支出斷崖/AEC被替代)", prob: 0.10, rev28: "$1.80B", multiple: "15.0x P/E", targetPrice: 45.00, why: "雲端巨頭 CapEx 斷崖，AEC 被替代方案超越，光學業務持續虧損，估值倍數腰斬" },
+          { name: "Bear (競品價格戰/毛利降至58%)", prob: 0.20, rev28: "$2.60B", multiple: "25.0x P/E", targetPrice: 62.50, why: "Marvell/Astera Labs 價格競爭，毛利率降至 58-60%，EPS $2.50，倍數收縮" },
+          { name: "Base (224G統治/Dust貢獻5億)", prob: 0.45, rev28: "$4.45B", multiple: "35.0x P/E", targetPrice: 192.50, why: "壟斷 224G 機架互連，DustPhotonics 貢獻 5 億營收，毛利穩於 63%，EPS $5.50" },
+          { name: "Bull (1.6T光互連成業界標準)", prob: 0.25, rev28: "$5.40B", multiple: "45.0x P/E", targetPrice: 324.00, why: "1.6T LPO/CPO 互連爆發，成為 AI 網絡層標準，EPS 達到 $7.20" }
         ],
-        multibaggerConditions: "股價達 $300+ 需要：非 AEC 營收 (ALC/DustPhotonics) 佔比突破 45% ($15 億+)，OmniConnect 至少獲 2 家主要晶片量產且年化 Run-rate 突破 5 億美元，累計 FCF > 20 億且 SBC 壓縮至 8% 以下。",
-        keyFailureRisks: "最大客戶斷崖式砍單；Broadcom/Marvell 價格戰侵蝕毛利；SBC 持續高額稀釋每股價值。",
-        falsificationTriggers: "Non-GAAP 毛利率連續兩季跌破 62.0%，或最大單一客戶營收連續兩季季減 >25% (QoQ < -25%) 且無新客戶補足。"
+        multibaggerConditions: "DustPhotonics 光學模組年營收突破 8 億美元，非 AEC 營收佔比達 45% 以上，且前四大客戶以外市場拓展順利。",
+        keyFailureRisks: "四大客戶依賴度逾 84%；高管頻繁減持套現；DustPhotonics 整合與良率失敗；博通價格戰。",
+        falsificationTriggers: "前四大客戶佔比無法降至 70% 以下且單季營收季減 >10%；Non-GAAP 毛利率連續三季跌破 63.0% 或營益率跌破 35.0%。"
       },
 
       ASML: {
@@ -2606,6 +2631,604 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         keyFailureRisks: "AI-native IDE 繞過傳統 CI/CD 流程；GitHub 捆綁競爭；SBC 稀釋股東權益；極核合資公司出口管制合規風險。",
         falsificationTriggers: "Ultimate 席位 ARR 貢獻連續三季下滑且淨留存率 (GRR) <90%；Non-GAAP 毛利率連續兩季跌破 82.0%；總 RPO 年增率跌破 10.0%。"
       },
+      MU: {
+        ticker: "MU",
+        name: "Micron Technology, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "💾 存儲晶片與 HBM 雙雄",
+        researchPriority: "HIGH (高位週期性/等待深度安全邊際)",
+        targetPriceReentryMin: 380.0,
+        targetPriceReentryMax: 450.0,
+        
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "極度亢奮過度透支 (4.5 / 5)",
+        marketExpectationWhy: "現價約 $687 美元（高位曾達 $1,000+），市場過度外推 HBM 超級週期為無週期成長股，忽視大宗 DRAM/NAND 週期反噬與 128 億美元合約保證金負債的潛在減值風險。",
+        businessPathAndMispricing: "最可能路徑：HBM3E/HBM4 與台積電 CoWoS 深度綁定，維持高頻寬記憶體雙寡頭地位。市場盲點：晶圓懲罰效應（Wafer Penalty）是一把雙刃劍，若 HBM 毛利無法死守 60% 將引發嚴重的營運槓桿反噬；照約付款（Take-or-Pay）合約在下行週期脆弱；非流動客戶合約保證金負債高達 128.95 億美元。加權目標價 $722.00，現價期望回報僅 +5.0%，缺乏安全邊際。",
+        
+        targets: [
+          { name: "Stress (AI冷卻/存儲過剩/溢價破滅)", prob: 0.15, rev28: "$70.0B", multiple: "12.0x P/E", targetPrice: 190.00, why: "AI CapEx 凍結，DRAM/NAND 嚴重供過於求，HBM 溢價消失，利潤腰斬" },
+          { name: "Bear (三星良率追趕/倍數均值回歸)", prob: 0.25, rev28: "$105.0B", multiple: "10.0x P/E", targetPrice: 380.00, why: "三星 HBM 良率追平引發價格戰，晶圓轉移優勢減弱，倍數回歸週期中樞 10x" },
+          { name: "Base (HBM雙雄穩固/長約順利執行)", prob: 0.45, rev28: "$145.0B", multiple: "13.5x P/E", targetPrice: 810.00, why: "維持 HBM 雙寡頭市佔，長約履約良好，DRAM ASP 溫和擴張，EPS 達 $60" },
+          { name: "Bull (HBM4份額破35%/淨利破千億)", prob: 0.15, rev28: "$190.0B", multiple: "15.0x P/E", targetPrice: 1560.00, why: "HBM4/4E 市佔率突破 35%，16-High 良率超預期，淨利潤破 1,150 億，EPS 破 $100" }
+        ],
+        multibaggerConditions: "HBM4 世代市佔率超越 40%，且在產能擴張下整體綜合毛利率依然穩定高於 58%。",
+        keyFailureRisks: "存儲晶片下行週期反噬；三星 HBM 通過認證發動價格戰；長約客戶解約退款；天量 CapEx 拖累現金流。",
+        falsificationTriggers: "非流動客戶合約保證金負債連續兩季季減 >15%（跌破 93 億美元）；綜合毛利率連續兩季跌破 60.0%；與台積電 CoWoS/Nvidia 供應鏈脫節或 HBM4 良率嚴重延誤。"
+      },
+      ZS: {
+        ticker: "ZS",
+        name: "Zscaler, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🛡️ 零信任安全與 AI 代理防禦",
+        researchPriority: "MEDIUM (SBC高企/等待安全邊際)",
+        targetPriceReentryMin: 135.0,
+        targetPriceReentryMax: 150.0,
+        
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "偏向亢奮與透支 (3.5 / 5)",
+        marketExpectationWhy: "現價約 $208 美元，市場追捧其為不可或缺的零信任 AI 安全中介，忽視高達營收 25% 的股權激勵 (SBC) 對真實自由現金流的嚴重稀釋。",
+        businessPathAndMispricing: "最可能路徑：ZIA/ZPA 穩固 Fortune 500 滲透，AI Agent 流量爆發帶動 AI Broker 模組變現。市場盲點：雲算力維護成本增速超越營收增速侵蝕毛利；遞延營收年增率連續兩季落後總營收年增率逾 300 bps，顯示前瞻動能放緩；未經 GAAP 調整的 FCF 存在嚴重虛高。加權目標價 $198.75，現價隱含 -4.5% 負期望回報。",
+        
+        targets: [
+          { name: "Stress (宏觀衰退/安全漏洞重創)", prob: 0.10, rev28: "$4.05B", multiple: "15.0x P/FCF", targetPrice: 60.00, why: "宏觀衰退 IT 預算凍結，發生重大零信任安全漏洞或多日宕機，估值腰斬" },
+          { name: "Bear (AI模組轉化緩慢/SBC反噬)", prob: 0.30, rev28: "$4.35B", multiple: "22.0x P/FCF", targetPrice: 125.00, why: "AI Agent 變現遲緩，FCF 利潤率壓縮至 20%，市場對 25% SBC 失去耐心" },
+          { name: "Base (Fortune500滲透/AI模組放量)", prob: 0.45, rev28: "$4.65B", multiple: "30.0x P/FCF", targetPrice: 215.00, why: "核心模組穩健滲透，AI 安全模組增量貢獻，FCF 利潤率維持 24% ($11.1億 FCF)" },
+          { name: "Bull (機器流量爆發/AI Broker成標準)", prob: 0.15, rev28: "$5.10B", multiple: "45.0x P/FCF", targetPrice: 390.00, why: "Agentic AI 驅動 M2M 流量指數爆發，AI Broker 成全球標準，FCF 利潤率破 28%" }
+        ],
+        multibaggerConditions: "AI Security 模組 ARR 佔比突破 35%，SBC 佔營收比例壓縮至 12% 以下，且 GAAP 淨利潤全面轉正。",
+        keyFailureRisks: "高達 25% 的高額 SBC 稀釋每股價值；算力維持成本暴增；Palo Alto Networks 平台化捆綁競爭。",
+        falsificationTriggers: "Non-GAAP 毛利率連續兩季跌破 75.0% 或 CapEx/營收 >8%；算力維護成本增速超過總營收增速；遞延營收年增率連續兩季落後總營收年增逾 300 bps。"
+      },
+      MKSI: {
+        ticker: "MKSI",
+        name: "MKS Instruments, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "🔬 射頻真空控制與玻璃基板 TGV 鑽孔",
+        researchPriority: "HIGH (現價殺入第一階段試水區)",
+        targetPriceReentryMin: 182.0,
+        targetPriceReentryMax: 188.0,
+        
+        marketExpectationScore: 2.5,
+        marketExpectationLabel: "中度悲觀至合理交界 (2.5 / 5)",
+        marketExpectationWhy: "現價約 $183.66 美元，市場將其誤判為高負債且受制於 WFE 景氣的傳統硬體廠，忽視特種化學耗材高毛利護城河與剝離 Ophir 釋放的去槓桿彈性。",
+        businessPathAndMispricing: "最可能路徑：半導體前道真空/射頻控制雙寡頭壟斷；先進封裝玻璃基板 (Glass Substrates) / TGV 激光鑽孔與專用化學電鍍形成排他性閉環。市場盲點：Atotech 併購債務即將隨 Ophir 資產剝離大幅償還；檳城新廠投產將釋放營運槓桿。加權目標價 $275.72，現價 $183.66 恰好殺入 $182–$188 試水區，期望空間高達 +50.1%！",
+        
+        targets: [
+          { name: "Stress (AI基建退潮/WFE跌破900億)", prob: 0.15, rev28: "$3.85B", multiple: "10.0x P/E", targetPrice: 85.00, why: "AI 基建退潮，全球 WFE 跌破 900 億，檳城廠折舊侵蝕毛利跌破 43%，EPS $8.50" },
+          { name: "Bear (成熟製程停滯/設備延遲拉貨)", prob: 0.25, rev28: "$4.80B", multiple: "13.0x P/E", targetPrice: 175.50, why: "成熟製程復甦停滯，Lam/AMAT 延遲拉貨，核心業務平淡，EPS $13.50" },
+          { name: "Base (先進封裝爆發/Ophir還債)", prob: 0.45, rev28: "$5.85B", multiple: "16.0x P/E", targetPrice: 307.20, why: "AI 驅動先進封裝與 3D NAND 升級，WFE 破 1,300 億，資產出售順利去槓桿，EPS $19.20" },
+          { name: "Bull (玻璃基板壟斷/激光化學雙閉環)", prob: 0.15, rev28: "$6.50B", multiple: "22.0x P/E", targetPrice: 539.00, why: "玻璃芯基板/TGV 全面商用，MKSI 壟斷激光+電鍍閉環，毛利破 51%，進入淨現金狀態" }
+        ],
+        multibaggerConditions: "TGV 玻璃基板激光與特種化學解決方案年營收突破 10 億美元，且淨負債 / EBITDA 降至 1.0x 以下。",
+        keyFailureRisks: "WFE 設備支出推遲；檳城廠產能利用率不足；Ophir 剝離交易延遲；高槓桿債務利息負擔。",
+        falsificationTriggers: "淨負債 / EBITDA 連續兩季高於 3.5x；特種化學耗材年增率連續兩季落後設備年增率逾 10 個百分點。"
+      },
+      LLY: {
+        ticker: "LLY",
+        name: "Eli Lilly and Company",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "💉 減肥藥 GLP-1 與代謝疾病霸主",
+        researchPriority: "HIGH (極度亢奮/零安全邊際/耐心等待)",
+        targetPriceReentryMin: 1050.0,
+        targetPriceReentryMax: 1180.0,
+        
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "極度亢奮與完美定價 (4.5 / 5)",
+        marketExpectationWhy: "現價高達 $1,388 美元，市場將其定價為無摩擦壟斷全球減肥市場的超級平台，完全忽視 12 個月高達 50%-60% 的真實停藥率與產能巨額 CapEx 負擔。",
+        businessPathAndMispricing: "最可能路徑：Tirzepatide（Zepbound/Mounjaro）持續放量，口服小分子 Orforglipron 與三靶點 Retatrutide 推進。市場盲點：自費市場飽和且醫保報銷限制加劇；安進（Amgen MariTide）等競品價格戰；產能擴建 CapEx 沉重。加權目標價 $1,325.41，現價期望回報為負 (-4.5%)，極度缺乏安全邊際！",
+        
+        targets: [
+          { name: "Stress (Retatrutide毒性終止/安進價格戰)", prob: 0.10, rev28: "$85.0B", multiple: "18.0x P/E", targetPrice: 412.20, why: "三靶點三期因肝/心臟毒性終止，停藥率破 60%，安進引發價格戰，估值重挫" },
+          { name: "Bear (口服副反應受限/醫保覆蓋緊縮)", prob: 0.25, rev28: "$108.0B", multiple: "26.0x P/E", targetPrice: 881.40, why: "Orforglipron 腸胃副反應限制份額，雇主保險覆蓋縮減，P/E 跌破 PEG 1.0" },
+          { name: "Base (適應症擴張穩健/醫保放量達標)", prob: 0.45, rev28: "$121.5B", multiple: "32.0x P/E", targetPrice: 1395.20, why: "睡眠呼吸暫停 (OSA) 適應症放量，Medicare 逐步打開，Orforglipron 順利獲批" },
+          { name: "Bull (競品研發失敗/Retatrutide全勝)", prob: 0.20, rev28: "$138.5B", multiple: "40.0x P/E", targetPrice: 2180.00, why: "競品三期相繼失敗，Retatrutide 減重 30% 且安全性乾淨，神經退行管線超預期" }
+        ],
+        multibaggerConditions: "Retatrutide 年峰值銷售突破 300 億美元，且口服 GLP-1 成功將 12 個月患者留存率提升至 70% 以上。",
+        keyFailureRisks: "後續三靶點或口服管線出現臨床安全性問題；醫保強制價格談判；安進等每月注射競品分流份額。",
+        falsificationTriggers: "Non-GAAP 毛利率季減 >1.5 個百分點連兩季（跌破 78%）；美國週處方量 (TRx) 季增率跌破 3%；LillyDirect 單劑小瓶收入連兩季持平或下滑。"
+      },
+      NTNX: {
+        ticker: "NTNX",
+        name: "Nutanix, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "🌐 混合多雲與超融合 HCI 霸主",
+        researchPriority: "HIGH (現價殺入第一階段試水區)",
+        targetPriceReentryMin: 58.0,
+        targetPriceReentryMax: 63.0,
+        
+        marketExpectationScore: 3.8,
+        marketExpectationLabel: "已透支部分 VMware 紅利 (3.8 / 5)",
+        marketExpectationWhy: "現價約 $59.28 美元，市場看好其接收博通收購後的 VMware 遷移客戶，但忽視了從 ESXi 遷移至 AHV 的 18–24 個月漫長技術摩擦及博通的降價防守。",
+        businessPathAndMispricing: "最可能路徑：穩步承接不滿博通漲價的 VMware 企業客戶，與思科 (Cisco) 及 Dell OEM 合作放量；自由現金流利潤率突破 25%。市場盲點：大企業常將 Nutanix 報價作為向博通壓價的談判籌碼；硬體依賴美超微 (Supermicro) 伺服器出貨節奏。加權目標價 $83.40，現價 $59.28 恰好殺入 $58–$63 試水區，期望空間高達 +40.7%！",
+        
+        targets: [
+          { name: "Stress (博通血拼價格/美超微斷供雙殺)", prob: 0.15, rev28: "$2.15B", multiple: "18.0x P/FCF", targetPrice: 42.00, why: "博通針對核心帳戶大幅降價，遷移率低於預期，美超微節點出貨受阻，估值腰斬" },
+          { name: "Bear (遷移週期拉長/NRR降至102%)", prob: 0.20, rev28: "$2.60B", multiple: "25.0x P/FCF", targetPrice: 62.50, why: "企業 IT 支出收縮，虛擬機遷移進度遲緩，淨收入留存率 (NRR) 降至 102%–104%" },
+          { name: "Base (VMware份額穩固/思科OEM達標)", prob: 0.45, rev28: "$3.05B", multiple: "35.0x P/FCF", targetPrice: 88.00, why: "穩步瓜分 VMware 核心客戶，思科 OEM 合作達標，FCF 穩健擴張，進入高造血期" },
+          { name: "Bull (全面倒戈AHV/GPT-in-a-Box爆發)", prob: 0.20, rev28: "$3.50B", multiple: "45.0x P/FCF", targetPrice: 125.00, why: "大企業排隊全面遷移至 AHV，企業私有化 AI 部署激增，FCF 利潤率突破 25%" }
+        ],
+        multibaggerConditions: "年化 FCF 突破 8 億美元，且 AHV 虛擬化平台在財富 500 強市佔率突破 35%。",
+        keyFailureRisks: "博通發動針對性價格戰防守核心客戶；企業系統遷移摩擦高於預期；美超微供應鏈延遲；微軟 Azure 混合雲捆綁競爭。",
+        falsificationTriggers: "淨收入留存率 (NRR) 連續兩季跌破 102%；Non-GAAP 毛利率連續兩季跌破 84.0%；RPO 年增率落後季度營收增長逾 5 個百分點連兩季，或美超微出貨延遲逾 1 季。"
+      },
+      U: {
+        ticker: "U",
+        name: "Unity Software Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "🎮 3D 遊戲引擎與廣告演算法復甦",
+        researchPriority: "HIGH (極度悲觀反轉/高賠率)",
+        targetPriceReentryMin: 17.5,
+        targetPriceReentryMax: 19.8,
+        
+        marketExpectationScore: 1.8,
+        marketExpectationLabel: "極度悲觀/市場厭惡 (1.8 / 5)",
+        marketExpectationWhy: "市場此前將其誤判為被 AppLovin 擊潰的垂死遊戲引擎，極度忽視 Vector 廣告演算法升級帶來的 ROAS 提升，以及 Unity 6 提價 5% 與 SBC 費用大幅削減的營運槓桿。",
+        businessPathAndMispricing: "最可能路徑：Vector 廣告引擎恢復 ~22% 複合增長，Unity 6 提價 5% 順利推行，SBC 股權激勵控制在每季 7,500 萬美元以內。市場盲點：高額可轉債即將面臨再融資；移動廣告與 AppLovin MAX 激烈競爭；開發者對收費模式的反彈。加權目標價 $63.28，相對低位翻倍爆發，相對現價 $48.18 仍有 +31.3% 上行空間。",
+        
+        targets: [
+          { name: "Stress (Vector升級失敗/資金斷裂)", prob: 0.10, rev28: "$2.10B", multiple: "8x EV/EBITDA", targetPrice: 6.20, why: "Vector 升級失敗，開發者流失至 AppLovin 與 Unreal，Silver Lake 併購破局" },
+          { name: "Bear (非遊戲拓展受阻/倍數收縮)", prob: 0.25, rev28: "$2.85B", multiple: "20x EV/EBITDA", targetPrice: 38.50, why: "非遊戲廣告拓展受阻，AI 工具不及預期，手遊廣告放緩，估值倍數回落" },
+          { name: "Base (Vector穩健放量/Unity6提價)", prob: 0.50, rev28: "$3.58B", multiple: "26x EV/EBITDA", targetPrice: 69.50, why: "Vector 維持 22% 複合增長，Unity 6 提價順暢，SBC 費用受控，EBITDA 達標" },
+          { name: "Bull (攻入非遊戲電商/利潤率爆發)", prob: 0.15, rev28: "$4.45B", multiple: "35x EV/EBITDA", targetPrice: 122.00, why: "成功打入非遊戲電商廣告，利潤率向 AppLovin 看齊爆發，ARPU 翻倍" }
+        ],
+        multibaggerConditions: "Vector 廣告演算法使非遊戲客戶營收佔比突破 35%，且季度 SBC 費用壓降至 6,000 萬美元以內。",
+        keyFailureRisks: "Vector ROAS 表現不及 AppLovin MAX；可轉債再融資條款惡化；開發者對新收費機制集體抗議。",
+        falsificationTriggers: "Vector ROAS 表現連續兩季不及 AppLovin MAX；單季 SBC 超過 9,000 萬美元；Grow 業務營收年增率跌破 5.0%。"
+      },
+      VEEV: {
+        ticker: "VEEV",
+        name: "Veeva Systems Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "💊 生命科學 CRM 與 Vault R&D 霸主",
+        researchPriority: "MEDIUM (50x PE過度透支/等待安全邊際)",
+        targetPriceReentryMin: 175.0,
+        targetPriceReentryMax: 190.0,
+        
+        marketExpectationScore: 4.2,
+        marketExpectationLabel: "過度透支與極度樂觀 (4.2 / 5)",
+        marketExpectationWhy: "現價高達 $309 美元，市值近 510 億美元，市場定價隱含其為牢不可破的 50x P/E 壟斷者，忽視從 Salesforce 遷移至自研 Vault CRM 的執行風險與 AI 導致的席位通縮。",
+        businessPathAndMispricing: "最可能路徑：前 20 大藥廠中 14 家順利遷移至 Vault CRM，R&D 業務維持 15% 增長，AI 用量計費彌補席位通縮。市場盲點：前 20 大客戶營收集中；AI Agent 自動化導致藥廠減少採購席位（Seat Deflation）；Salesforce 生命科學雲發動反擊；高額 SBC 股權激勵稀釋。加權目標價 $208.25，相較現價 $309 隱含 -32.7% 嚴重負期望回報！",
+        
+        targets: [
+          { name: "Stress (Vault遷移故障/Salesforce奪單)", prob: 0.15, rev28: "$3.65B", multiple: "22x P/E", targetPrice: 115.00, why: "Vault CRM 遷移嚴重故障，Salesforce 搶走 30% 客戶，AI 席位銳減" },
+          { name: "Bear (席位通縮/估值由50x殺至30x)", prob: 0.35, rev28: "$4.10B", multiple: "30x P/E", targetPrice: 172.00, why: "遷移順利但席位通縮拖累 R&D 增長跌破 10%，估值由 50x 殺至 30x" },
+          { name: "Base (遷移14家頂級藥廠/R&D增長15%)", prob: 0.40, rev28: "$4.60B", multiple: "38x P/E", targetPrice: 245.00, why: "順利遷移 14 家頂級藥廠，R&D 維持 15% 增長，AI 計費彌補席位" },
+          { name: "Bull (100%完美遷移/臨床AI爆發)", prob: 0.10, rev28: "$5.20B", multiple: "45x P/E", targetPrice: 328.00, why: "100% 完美遷移，臨床 AI 工具成不可或缺基建，ARPU 提升 50%" }
+        ],
+        multibaggerConditions: "Vault CRM 成功拿下全球前 50 大藥廠中 45 家，且臨床 AI Agent 帶動的用量計費收入佔總 ARR 逾 25%。",
+        keyFailureRisks: "頂級藥廠放棄 Vault 轉投 Salesforce；AI 席位通縮嚴重侵蝕 ARR；SBC 稀釋每股盈餘。",
+        falsificationTriggers: "前 20 大藥廠中有超過 2 家放棄 Vault CRM 轉投 Salesforce；單季訂閱營收年增率跌破 12.0%；Non-GAAP 營益率連續兩季下滑逾 200 bps。"
+      },
+      NTAP: {
+        ticker: "NTAP",
+        name: "NetApp, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "💾 混合雲存儲與全閃存 AFA 陣列",
+        researchPriority: "HIGH (回踩逼近安全試水區間)",
+        targetPriceReentryMin: 155.0,
+        targetPriceReentryMax: 172.0,
+        
+        marketExpectationScore: 4.6,
+        marketExpectationLabel: "極度樂觀與完美定價 (4.6 / 5)",
+        marketExpectationWhy: "研報基準價約 $200–$224 美元，市場給予其 AI 純存儲受益股的高倍數，但忽略了原廠 NAND Flash 漲價對硬體毛利率的侵蝕及企業存儲更新週期。目前市價回調至 $172.40，正逼近安全邊際！",
+        businessPathAndMispricing: "最可能路徑：全閃存陣列 (AFA) 與公有雲存儲 (AWS FSx, Azure NetApp Files) 維持 8%–10% 穩健增長，FCF 殖利率維持健康。市場盲點：NAND Flash 零組件價格飆升侵蝕產品毛利；企業 IT 支出向 GPU 傾斜導致存儲採購遞延；Pure Storage (PSTG) 激烈競爭。加權目標價 $185.10–$196.10，相較現價 $172.40 具備 +7.4%–+13.7% 修復空間。",
+        
+        targets: [
+          { name: "Stress (NAND通膨侵蝕/AFA停滯)", prob: 0.15, rev28: "$6.20B", multiple: "11.0x P/E", targetPrice: 108.00, why: "NAND 嚴重通膨無法轉嫁，產品毛利跌穿 50%，AFA 增長停滯" },
+          { name: "Bear (CapEx轉向GPU/倍數回歸中樞)", prob: 0.35, rev28: "$6.60B", multiple: "15.0x P/E", targetPrice: 152.00, why: "企業 CapEx 轉向 GPU 擠壓存儲，硬體毛利率承壓，倍數回歸中樞 15x" },
+          { name: "Base (AFA與公有雲保持8-10%增長)", prob: 0.40, rev28: "$7.10B", multiple: "18.5x P/E", targetPrice: 218.00, why: "AFA 與公有雲保持 8%-10% 增長，自由現金流殖利率穩定達標" },
+          { name: "Bull (企業AI數據湖爆發/超預期放量)", prob: 0.10, rev28: "$7.80B", multiple: "22.0x P/E", targetPrice: 285.00, why: "企業 AI 數據湖爆發加速混合雲 AFA 採納，營收與利潤超預期放量" }
+        ],
+        multibaggerConditions: "Public Cloud 存儲 ARR 突破 15 億美元，且全閃存 AFA 在大型企業市佔率突破 40%。",
+        keyFailureRisks: "NAND Flash 晶片價格失控暴漲；企業 IT 存儲升級推遲；Pure Storage 價格競爭。",
+        falsificationTriggers: "產品毛利率跌破 50.0% 或綜合毛利率跌破 67.5%；全閃存陣列 (AFA) 年化營收連續兩季同比下滑；公有雲部門營收年增率連續兩季跌破 10.0%。"
+      },
+      COHR: {
+        ticker: "COHR",
+        name: "Coherent Corp.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "⚡ 800G/1.6T 磷化銦 InP 光模組龍頭",
+        researchPriority: "HIGH (營運效率反轉/觀察回調)",
+        targetPriceReentryMin: 165.0,
+        targetPriceReentryMax: 185.0,
+        
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "樂觀偏熟但未極度透支 (3.5 / 5)",
+        marketExpectationWhy: "現價約 $198.50 美元，市場低估其在 800G/1.6T 磷化銦 (InP) 光收發模組與 6 吋 InP 晶圓垂直製造的壁壘，新 CEO Jim Anderson 帶領營運轉型將推動毛利率向 45% 擴張。",
+        businessPathAndMispricing: "最可能路徑：800G/1.6T 光模組順利放量，6 吋 InP 晶圓過渡降低製造成本，數據中心與通訊業務高增長。市場盲點：Finisar 併購帶來的長期債務與利息負擔；矽光子 (SiPh) 與 CPO 長期架構替代威脅；6 吋 InP 擴產良率挑戰。加權目標價 $275.00，期望空間約 +38.5%！",
+        
+        targets: [
+          { name: "Stress (AI基建驟降/InP價格戰雙殺)", prob: 0.10, rev28: "$9.5B", multiple: "12.0x P/E", targetPrice: 68.40, why: "AI 資本支出驟降，InP 價格戰爆發，良率受挫，EPS $5.70" },
+          { name: "Bear (矽光子侵蝕/Lumentum激烈競爭)", prob: 0.25, rev28: "$12.0B", multiple: "15.0x P/E", targetPrice: 135.00, why: "矽光子侵蝕份額，Lumentum/中際旭創競爭加劇，EPS $9.00" },
+          { name: "Base (800G/1.6T放量/毛利率向45%擴張)", prob: 0.50, rev28: "$14.7B", multiple: "22.0x P/E", targetPrice: 307.12, why: "800G/1.6T 穩健放量，毛利率向 45% 擴張，EPS 達 $13.96" },
+          { name: "Bull (1.6T近乎壟斷/6吋InP成本破頂)", prob: 0.15, rev28: "$17.5B", multiple: "28.0x P/E", targetPrice: 539.00, why: "1.6T/3.2T 形成近乎壟斷，6吋 InP 成本優勢超預期，EPS 破 $19.25" }
+        ],
+        multibaggerConditions: "數據中心 1.6T/3.2T 光模組市佔率突破 45%，且公司淨負債在 2028 年前降低 70% 以上。",
+        keyFailureRisks: "高槓桿債務利息負擔；矽光子 CPO 加速替代磷化銦；6 吋 InP 晶圓良率爬坡受阻。",
+        falsificationTriggers: "毛利率連續兩季跌破 38.0%；數據中心與通訊 (D&C) 營收非季節性季減 >10% 或訂單出貨比 (B/B) <1.0；存貨季增率 >1.5x 營收增速且絕對存貨 >$32 億。"
+      },
+      SNOW: {
+        ticker: "SNOW",
+        name: "Snowflake Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "❄️ 企業雲端數據倉庫與 AI 數據雲",
+        researchPriority: "MEDIUM (透支完美預期/等待安全邊際)",
+        targetPriceReentryMin: 185.0,
+        targetPriceReentryMax: 215.0,
+        
+        marketExpectationScore: 4.0,
+        marketExpectationLabel: "亢奮區間/透支完美預期 (4.0 / 5)",
+        marketExpectationWhy: "現價約 $265 美元，市場給予前瞻 P/S 14x–17x 及 P/E >100x 的極高估值，但忽視了企業雲端成本優化對用量計費的壓制，以及 Apache Iceberg 開源格式解綁對數據鎖定護城河的削弱。",
+        businessPathAndMispricing: "最可能路徑：企業數據上雲與 AI 分析維持 ~30% 穩健增長，Cortex AI 模組落地。市場盲點：淨收入留存率 (NRR) 自歷史 >150% 結構性放緩至 ~125%；高達營收 40% 以上的股票薪酬 (SBC) 造成嚴重實質股權稀釋；Databricks 與雲端巨頭 (BigQuery/Redshift) 價格戰。加權目標價 $238.25，現價隱含 -10.1% 負期望回報！",
+        
+        targets: [
+          { name: "Stress (NRR跌破110%/Iceberg解耦)", prob: 0.10, rev28: "$7.8B", multiple: "20x P/FCF", targetPrice: 85.00, why: "NRR <110%, 企業大幅削減用量，Iceberg 完全解耦計算存儲" },
+          { name: "Bear (增長放緩至25%/倍數收縮)", prob: 0.25, rev28: "$9.2B", multiple: "30x P/FCF", targetPrice: 135.00, why: "NRR 115%, 增長放緩至 25%，估值倍數向成熟軟體均值 30x 收縮" },
+          { name: "Base (營收年增32%/CortexAI落地)", prob: 0.50, rev28: "$10.8B", multiple: "45x P/FCF", targetPrice: 260.00, why: "NRR 125%, 營收年增 ~32%，Cortex AI 工具帶動穩健增長" },
+          { name: "Bull (成企業AI數據操作系統/利潤超標)", prob: 0.15, rev28: "$13.5B", multiple: "65x P/FCF", targetPrice: 440.00, why: "NRR >135%, 成為企業 AI 數據操作系統，FCF 利潤率突破 30%" }
+        ],
+        multibaggerConditions: "Cortex AI 與 Snowpark 營收佔比突破 35%，且 GAAP 營業利益率成功轉正並達到 15% 以上。",
+        keyFailureRisks: "Apache Iceberg 瓦解專有存儲壁壘；Databricks 激進競爭；SBC 稀釋每股現金流。",
+        falsificationTriggers: "淨收入留存率 (NRR) 連續兩季跌破 115%；單季百萬美元 ARR 大型客戶數季增為零或為逆；SBC 佔營收比例連續三季上升且 GAAP 虧損惡化。"
+      },
+      CRWD: {
+        ticker: "CRWD",
+        name: "CrowdStrike Holdings, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🦅 雲端終端安全與 Falcon 平台霸主",
+        researchPriority: "MEDIUM (估值極度亢奮/等待安全邊際)",
+        targetPriceReentryMin: 175.0,
+        targetPriceReentryMax: 190.0,
+        
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "極度亢奮過度透支 (4.5 / 5)",
+        marketExpectationWhy: "現價約 $257 美元，估值高達 ~172x EV/FCF，市場定價隱含零失誤無縫增長，低估了 2024 年 7 月全球大宕機後 CISO 信任侵蝕的長期滯後效應，以及客戶補償包 (CCP) 免費折扣到期後的續約懸崖。",
+        businessPathAndMispricing: "最可能路徑：Falcon 平台模組整合（身分安全與雲安全）維持 ~22% ARR 增長，FCF 利潤率達 30%。市場盲點：短期 cRPO 年增率落後總營收年增率（死叉隱患）；客戶毛留存率 (GRR) 面臨跌破 95% 風險；SBC 佔營收逾 27% 稀釋真實現金流；微軟 Defender 低價捆綁競爭。加權目標價 $263.50，現價期望空間僅 +2.5%，盈虧比不佳。",
+        
+        targets: [
+          { name: "Stress (宕機後遺症客戶流失/利潤腰斬)", prob: 0.10, rev28: "$7.2B", multiple: "25x EV/FCF", targetPrice: 85.00, why: "3年複合增長 <8%, 宕機後遺症客戶大舉流失，FCF 利潤率降至 15%" },
+          { name: "Bear (折扣到期續約受阻/微軟搶客)", prob: 0.25, rev28: "$8.5B", multiple: "35x EV/FCF", targetPrice: 160.00, why: "複合增長 ~13%, 折扣到期續約受阻，微軟 Defender 搶客，倍數收縮" },
+          { name: "Base (平台模組化穩步推進/FCF率30%)", prob: 0.50, rev28: "$10.5B", multiple: "50x EV/FCF", targetPrice: 295.00, why: "複合增長 ~22%, 平台模組化整合穩步推進，FCF 利潤率達 30%" },
+          { name: "Bull (CharlotteAI爆發/模組採用超標)", prob: 0.15, rev28: "$12.0B", multiple: "65x EV/FCF", targetPrice: 450.00, why: "Charlotte AI 爆發，新模組採用率破 70%，FCF 利潤率衝上 36%" }
+        ],
+        multibaggerConditions: "下一代身分安全與雲安全 ARR 突破 50 億美元，且客戶毛留存率 (GRR) 重新穩固在 98% 以上。",
+        keyFailureRisks: "全球宕機訴訟賠償與聲譽受損；微軟 Defender 捆綁競爭；SBC 佔比過高；折扣期滿後客戶叛逃。",
+        falsificationTriggers: "cRPO 年增率落後總營收年增率超過 300 bps (3.0%) 連續兩季；客戶毛留存率 (GRR) 跌破 95.0%。"
+      },
+      IREN: {
+        ticker: "IREN",
+        name: "Iris Energy",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "⚡ AI 算力雲與高密度電力資產",
+        researchPriority: "HIGH (電力即護城河/回調試水)",
+        targetPriceReentryMin: 38.0,
+        targetPriceReentryMax: 42.0,
+        marketExpectationScore: 3.8,
+        marketExpectationLabel: "偏樂觀/定價部分電力溢價 (3.8 / 5)",
+        marketExpectationWhy: "現價約 $41.50 美元，市場開始定價其向 AI HPC 數據中心轉型的潛力，已簽約 $1B ARR 及超過 $20B 訂單積壓，但電力並網壁壘帶來的長期定價權仍被低估。",
+        businessPathAndMispricing: "最可能路徑：5 年期長約以 $22M/MW/年（客戶預付 90% GPU CapEx）順利交付，短約以 $40M/MW/年放量，AI 雲毛利率維持 80%+。市場盲點：短期擴張 CapEx 巨大導致自由現金流為負。加權目標價 $58.00，相較現價具備 +39.8% 空間。",
+        targets: [
+          { name: "Stress (融資中斷/算力租金腰斬)", prob: 0.10, rev28: "$1.2B", multiple: "12x EV/EBITDA", targetPrice: 15.00, why: "融資中斷，電力並網推遲，算力租賃價格戰爆發" },
+          { name: "Bear (客戶擴產放緩/CapEx承壓)", prob: 0.25, rev28: "$2.0B", multiple: "18x EV/EBITDA", targetPrice: 30.00, why: "AI 算力擴產節奏放緩，電力改造成本超標，倍數回落" },
+          { name: "Base (20B訂單順利交付/毛利80%)", prob: 0.50, rev28: "$3.5B", multiple: "25x EV/EBITDA", targetPrice: 65.00, why: "長約履約順利，單 MW 租金達標，AI 雲利潤爆發" },
+          { name: "Bull (GW級電力全面變現/成AI雲巨頭)", prob: 0.15, rev28: "$5.0B", multiple: "35x EV/EBITDA", targetPrice: 110.00, why: "GW 級電力全面被雲巨頭包銷，利潤與現金流超預期爆發" }
+        ],
+        multibaggerConditions: "AI HPC 總簽約容量突破 1.5 GW，且年度自由現金流全面轉正超 8 億美元。",
+        keyFailureRisks: "高息環境下融資稀釋股權；電網互聯批准推遲；超大規模客戶違約退款。",
+        falsificationTriggers: "AI Cloud 毛利率連續兩季跌破 70.0%；已簽約客戶解約退款超 10%；新站點並網審批延誤超 12 個月。"
+      },
+      KEEL: {
+        ticker: "KEEL",
+        name: "Keel Infrastructure Corp",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "🔌 帶電土地與電網互聯產權",
+        researchPriority: "HIGH (深度破淨/非對稱高賠率)",
+        targetPriceReentryMin: 1.80,
+        targetPriceReentryMax: 2.10,
+        marketExpectationScore: 1.5,
+        marketExpectationLabel: "極度悲觀/市場唾棄 (1.5 / 5)",
+        marketExpectationWhy: "現價僅約 $1.95 美元，市場因停掉比特幣挖礦導致短期營收暴跌 59% 而拋售，忽視其 478 MW 近期交付帶電資產與 1,928 MW 總儲備的巨大價值，零負債且現金充裕。",
+        businessPathAndMispricing: "最可能路徑：Moses Lake 等站點以 $2M/MW/年順利簽約超大規模雲巨頭，釋放高毛利租賃現金流。市場盲點：過渡期虧損擴大。加權目標價 $4.75，相較現價隱含 +143.6% 翻倍潛力！",
+        targets: [
+          { name: "Stress (站點招商受阻/現金耗盡)", prob: 0.10, rev28: "$80M", multiple: "10x EV/EBITDA", targetPrice: 1.00, why: "超大規模客戶無意簽約，站點改造停滯，現金消耗殆盡" },
+          { name: "Bear (簽約延遲至2028/折價出租)", prob: 0.30, rev28: "$180M", multiple: "15x EV/EBITDA", targetPrice: 3.00, why: "簽約進度拖延，租金降至 $1.5M/MW/年，估值緩慢修復" },
+          { name: "Base (478MW滿載出租/每MW租金2M)", prob: 0.50, rev28: "$380M", multiple: "22x EV/EBITDA", targetPrice: 5.50, why: "478 MW 核心容量順利包銷，EBITDA 利潤率突破 65%" },
+          { name: "Bull (1.9GW全面獲超大規模巨頭包銷)", prob: 0.10, rev28: "$650M", multiple: "30x EV/EBITDA", targetPrice: 10.00, why: "1.9 GW 儲備全獲認購，成北美稀缺電力基礎設施壟斷者" }
+        ],
+        multibaggerConditions: "首批 478 MW 電力容量全部簽署 10 年以上不可撤銷 HPC 租賃合約。",
+        keyFailureRisks: "電力並網審批被當地電網拒絕；超大規模客戶選擇其他自建站點；過渡期 SG&A 費用失控。",
+        falsificationTriggers: "Moses Lake 項目商業交付推遲至 2028 年後；帳面無限制現金跌破 3 億美元；未能在 12 個月內簽署首個 >50 MW 商業租賃協議。"
+      },
+      SMR: {
+        ticker: "SMR",
+        name: "NuScale Power",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "☢️ 小型模組化核反應堆 (SMR) 拓荒者",
+        researchPriority: "MEDIUM (監管與交付週期較長/耐心觀察)",
+        targetPriceReentryMin: 4.00,
+        targetPriceReentryMax: 4.80,
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "中性偏樂觀 (3.5 / 5)",
+        marketExpectationWhy: "現價約 $4.85 美元，市場看好其為唯一獲美國 NRC 標準設計審批 (SDA) 的 SMR，但商業化首堆交付仍需數年，當前處於純研發與製造爬坡期。",
+        businessPathAndMispricing: "最可能路徑：與斗山能源模組製造推進順利，透過 ENTRA1 獨家開發協議鎖定數據中心大型 PPA。加權目標價 $7.90，期望回報 +62.9%。",
+        targets: [
+          { name: "Stress (NRC審批卡關/客戶取消首堆)", prob: 0.15, rev28: "$120M", multiple: "15x P/FCF", targetPrice: 2.00, why: "監管安全爭議引發審批倒退，首堆項目夭折，面臨再融資危機" },
+          { name: "Bear (首堆交付推遲至2031/燒錢加劇)", prob: 0.35, rev28: "$350M", multiple: "25x P/FCF", targetPrice: 4.00, why: "供應鏈瓶頸導致交付延遲，研發開支居高不下，倍數收縮" },
+          { name: "Base (斗山製造交付/鎖定雲巨頭PPA)", prob: 0.40, rev28: "$850M", multiple: "35x P/FCF", targetPrice: 10.50, why: "模組製造順利，ENTRA1 落地首批 3 個商業數據中心核反應堆" },
+          { name: "Bull (成AI綠色基載標準/全球訂單爆發)", prob: 0.10, rev28: "$1.5B", multiple: "50x P/FCF", targetPrice: 20.00, why: "全球科技巨頭排隊採購 SMR，各國監管全面開綠燈，訂單破百億" }
+        ],
+        multibaggerConditions: "取得首座商業數據中心 SMR 施工許可並完成首批模組製造交付。",
+        keyFailureRisks: "核能監管審批延誤；資本金消耗過快引發股本稀釋；地緣政治對核材料出口限制。",
+        falsificationTriggers: "美國 NRC 撤銷或重審 77 MWe 設計批准；現有流動性儲備跌破 5 億美元且無新融資方案；ENTRA1 合作協議終止。"
+      },
+      UUUU: {
+        ticker: "UUUU",
+        name: "Energy Fuels",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "⛏️ 鈾礦復興、重稀土與醫療同位素",
+        researchPriority: "HIGH (現價處於深度價值試水區)",
+        targetPriceReentryMin: 7.00,
+        targetPriceReentryMax: 7.50,
+        marketExpectationScore: 2.2,
+        marketExpectationLabel: "偏向悲觀/嚴重低估 (2.2 / 5)",
+        marketExpectationWhy: "現價約 $7.25 美元，剛好落在 $7.00–$7.50 機構核心買入區！市場忽視其在 White Mesa 磨礦廠的重稀土分離與醫療同位素 Actinium-225 的非對稱期權價值。",
+        businessPathAndMispricing: "最可能路徑：核電長約以 $88+/磅鎖定高利潤，重稀土商業化分離放量，成為西方擺脫中國依賴的關鍵樞紐。加權目標價 $19.15，相較現價具備 +164.1% 巨大非對稱上行空間！",
+        targets: [
+          { name: "Stress (鈾價暴跌至$50/稀土良率不達標)", prob: 0.10, rev28: "$120M", multiple: "12x P/E", targetPrice: 4.50, why: "全球核能重啟放緩，鈾現貨暴跌，稀土工廠良率受挫" },
+          { name: "Bear (鈾長約履約平穩/稀土進展緩慢)", prob: 0.20, rev28: "$220M", multiple: "16x P/E", targetPrice: 6.50, why: "鈾礦業務穩健但缺乏超預期催化，稀土分離僅處於試產階段" },
+          { name: "Base (鈾長約放量/重稀土Tb/Dy放量)", prob: 0.50, rev28: "$450M", multiple: "26x P/E", targetPrice: 22.00, why: "年產 500 萬磅鈾以 $88+ 交付，White Mesa 稀土與同位素全面貢獻利潤" },
+          { name: "Bull (成西方戰略資源樞紐/同位素爆發)", prob: 0.20, rev28: "$700M", multiple: "35x P/E", targetPrice: 32.00, why: "美國國防部大舉採購重稀土，醫用同位素供不應求，EPS 突破 $1.00" }
+        ],
+        multibaggerConditions: "White Mesa 分離廠商業化產出高純度鏑/鋱（Dy/Tb），且醫療同位素進入大型藥企商業供應鏈。",
+        keyFailureRisks: "現貨鈾價跌破 $60/磅；環保法規延誤礦山開採許可；放射性廢棄物處理爭議。",
+        falsificationTriggers: "天然鈾年化產量連續兩年未達 150 萬磅；White Mesa 稀土分離產線建設中止；淨營運資金跌破 3 億美元。"
+      },
+      NET: {
+        ticker: "NET",
+        name: "Cloudflare, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🌐 邊緣網絡、Zero Trust 與 Workers AI",
+        researchPriority: "MEDIUM (估值透支完美預期/等待安全邊際)",
+        targetPriceReentryMin: 175.0,
+        targetPriceReentryMax: 185.0,
+        marketExpectationScore: 4.4,
+        marketExpectationLabel: "亢奮透支/完美定價 (4.4 / 5)",
+        marketExpectationWhy: "現價約 $215 美元，市場給予其極高的 EV/Sales 溢價，定價已透支至 2027 年，且高達營收 22.2% 的股權激勵 (SBC) 使得真實自由現金流仍為負數。",
+        businessPathAndMispricing: "最可能路徑：企業網絡安全與 Workers AI 邊緣推理維持 ~35% 高增長，大客戶持續淨增。市場盲點：SBC 實質稀釋股權。加權目標價 $265.00，空間僅 +23.3%，盈虧比缺乏足夠安全邊際。",
+        targets: [
+          { name: "Stress (SaaS支出凍結/SBC反噬股權)", prob: 0.10, rev28: "$3.5B", multiple: "45x P/FCF", targetPrice: 110.00, why: "IT 支出放緩，Workers AI 變現乏力，SBC 高企引發估值戴維斯雙殺" },
+          { name: "Bear (增長放緩至22%/倍數向均值回歸)", prob: 0.20, rev28: "$4.2B", multiple: "60x P/FCF", targetPrice: 165.00, why: "大客戶拓展開發遭遇阻力，估值倍數自百倍向 60x 均值收縮" },
+          { name: "Base (Workers AI穩健落地/安全份額擴張)", prob: 0.50, rev28: "$5.2B", multiple: "85x P/FCF", targetPrice: 290.00, why: "零信任市佔穩步擴大，Workers AI 成為主流邊緣推理基建，FCF 率 20%" },
+          { name: "Bull (成邊緣AI超級平台/利潤率大爆發)", prob: 0.20, rev28: "$6.5B", multiple: "110x P/FCF", targetPrice: 380.00, why: "邊緣 AI 推理爆發超越中心雲，FCF 利潤率突破 28%，淨利破 15 億" }
+        ],
+        multibaggerConditions: "年化自由現金流突破 15 億美元，且 SBC 佔營收比例壓縮至 10% 以下。",
+        keyFailureRisks: "超高估值對宏觀利率高度敏感；微軟與 AWS 低價捆綁網絡安全；SBC 稀釋每股現金流。",
+        falsificationTriggers: "淨收入留存率 (NRR) 連續兩季跌破 115%；單季 >10 萬美元客戶淨增數連續兩季同比下滑；SBC 佔營收比例連續三季上升。"
+      },
+      AKAM: {
+        ticker: "AKAM",
+        name: "Akamai Technologies, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🛡️ 雲端計算轉型與企業邊緣安全",
+        researchPriority: "LOW (重資產轉型/避開重資本摩擦)",
+        targetPriceReentryMin: 80.0,
+        targetPriceReentryMax: 85.0,
+        marketExpectationScore: 3.0,
+        marketExpectationLabel: "中性觀望 (3.0 / 5)",
+        marketExpectationWhy: "現價約 $92.50 美元，運算與安全業務雖保持增長，但傳統 CDN 營收結構性下滑 (-3%)，且雲轉型 CapEx 高達 55 億美元導致 FCF 轉負與信用評級降至 BBB。",
+        businessPathAndMispricing: "最可能路徑：運算與安全業務佔比突破 75%，但轉型期間自由現金流嚴重承壓。加權目標價 $108.00，空間僅 +16.8%。",
+        targets: [
+          { name: "Stress (CDN加速崩塌/雲計算毛利崩潰)", prob: 0.10, rev28: "$4.2B", multiple: "9.0x P/E", targetPrice: 65.00, why: "CDN 收入斷崖，雲端運算價格戰加劇，債務負擔侵蝕利潤" },
+          { name: "Bear (轉型 CapEx 沉重/增長僅4-6%)", prob: 0.20, rev28: "$4.6B", multiple: "12.0x P/E", targetPrice: 80.00, why: "運算與安全增長被 CDN 下滑抵消，自由現金流持續承壓" },
+          { name: "Base (運算增長30%/安全佔比超50%)", prob: 0.50, rev28: "$5.3B", multiple: "16.0x P/E", targetPrice: 118.00, why: "邊緣運算穩步放量，非 CDN 營收佔比達 75%，利潤率回升" },
+          { name: "Bull (雲端轉型全面成功/自由現金流反彈)", prob: 0.20, rev28: "$6.0B", multiple: "20.0x P/E", targetPrice: 150.00, why: "成為性價比第一的分散式雲計算平台，FCF 突破 12 億美元" }
+        ],
+        multibaggerConditions: "運算業務年化營收突破 20 億美元且綜合毛利率重新回升至 65% 以上。",
+        keyFailureRisks: "高達 55 億美元的 CapEx 轉化率低於預期；信用評級遭進一步降級；公有雲價格戰。",
+        falsificationTriggers: "綜合毛利率連續兩季跌破 55.0%；運算業務 (Compute) 營收年增率跌破 15.0%；季度自由現金流連續四季為負。"
+      },
+      FROG: {
+        ticker: "FROG",
+        name: "JFrog Ltd.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🐸 DevOps/DevSecOps 與 AI 模型註冊表",
+        researchPriority: "HIGH (37% FCF 利潤率/優質細分白馬)",
+        targetPriceReentryMin: 28.0,
+        targetPriceReentryMax: 31.0,
+        marketExpectationScore: 3.2,
+        marketExpectationLabel: "合理偏低/被忽視的造血標的 (3.2 / 5)",
+        marketExpectationWhy: "現價約 $33.50 美元，Q3 營收年增 31% 超預期，FCF 利潤率高達 37.1%，NRR 達 124%，在企業開源大模型管線治理中卡位深厚，具備優質造血能力。",
+        businessPathAndMispricing: "最可能路徑：Cloud ARR 佔比持續超越 60%，Artifactory 成為企業 AI 模型註冊表標配，自由現金流強勁複合增長。加權目標價 $45.00，期望回報 +34.3%。",
+        targets: [
+          { name: "Stress (開源替代侵蝕/微軟GitHub降價)", prob: 0.10, rev28: "$550M", multiple: "20x P/FCF", targetPrice: 18.00, why: "微軟 GitHub 免費策略搶單，中小客戶流失，NRR 跌破 110%" },
+          { name: "Bear (雲端遷移放緩/倍數收縮至25x)", prob: 0.20, rev28: "$680M", multiple: "30x P/FCF", targetPrice: 28.00, why: "企業 IT 支出嚴審，混合雲向公有雲遷移進度推遲，倍數收縮" },
+          { name: "Base (Cloud ARR佔比超60%/FCF率35%)", prob: 0.50, rev28: "$880M", multiple: "45x P/FCF", targetPrice: 48.00, why: "AI 模型治理工具普及，雲端訂閱維持 30%+ 增長，年造血 3 億美元" },
+          { name: "Bull (成AI軟體供應鏈安全唯一標準)", prob: 0.20, rev28: "$1.1B", multiple: "60x P/FCF", targetPrice: 68.00, why: "企業全面強制採用二進制模型治理，ARPU 暴增，FCF 率達 40%" }
+        ],
+        multibaggerConditions: "年化自由現金流突破 4 億美元，且 Cloud ARR 在總營收佔比超過 75%。",
+        keyFailureRisks: "微軟 GitHub 與 GitLab 開源軟體包管理捆綁競爭；宏觀 IT 預算凍結。",
+        falsificationTriggers: "雲端業務 (Cloud Revenue) 年增率跌破 25.0%；淨收入留存率 (NRR) 連續兩季跌破 115%；毛留存率 (GRR) 跌破 95.0% 。"
+      },
+      KTOS: {
+        ticker: "KTOS",
+        name: "Kratos Defense & Security",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "🛩️ 忠誠僚機無人作戰系統與渦輪發動機",
+        researchPriority: "HIGH (訂單出貨比 1.42x / 超級軍工週期)",
+        targetPriceReentryMin: 30.0,
+        targetPriceReentryMax: 34.0,
+        marketExpectationScore: 3.4,
+        marketExpectationLabel: "中性偏樂觀/未完全定價產能放量 (3.4 / 5)",
+        marketExpectationWhy: "現價約 $33.39 美元，剛好落在 $30.00–$34.00 機構安全試水區！未完成訂單積壓高達 38.5 億美元（Book-to-Bill 達 1.42x），XQ-58A Valkyrie 忠誠僚機產能滿載，迎來量產放量拐點。",
+        businessPathAndMispricing: "最可能路徑：美軍 CCA（協同作戰飛機）計劃大批採購落地，戰術無人機交付年化翻倍，營收年增率向 35%+ 提速。加權目標價 $77.70，相較現價隱含 +132.7% 翻倍空間！",
+        targets: [
+          { name: "Stress (五角大樓預算削減/競標落敗)", prob: 0.10, rev28: "$1.4B", multiple: "15x P/E", targetPrice: 22.00, why: "國防預算削減，CCA 競標份額被波音/安杜里爾搶奪，訂單停滯" },
+          { name: "Bear (發動機產能瓶頸/量產毛利率受壓)", prob: 0.25, rev28: "$1.8B", multiple: "20x P/E", targetPrice: 35.00, why: "渦輪發動機良率爬坡緩慢，通膨侵蝕固定價格合約利潤" },
+          { name: "Base (CCA批量採購/渦輪發動機放量)", prob: 0.50, rev28: "$2.6B", multiple: "35x P/E", targetPrice: 90.00, why: "Valkyrie 成為美軍標配僚機，無人機機隊年產突破 200 架，EPS $2.5" },
+          { name: "Bull (全球盟友排隊訂購/高超音速突破)", prob: 0.15, rev28: "$3.5B", multiple: "45x P/E", targetPrice: 145.00, why: "北約及印太盟友全面下單，高超音速防禦系統大獲全勝，EPS $3.2" }
+        ],
+        multibaggerConditions: "贏得美國空軍 CCA 第二階段主要量產合約，且未完成訂單突破 60 億美元。",
+        keyFailureRisks: "美國國防預算授權法案延遲；無人機量產供應鏈瓶頸；通用原子與安杜里爾激烈競爭。",
+        falsificationTriggers: "訂單出貨比 (Book-to-Bill) 連續兩季跌破 1.05x；無人機系統部門 (Unmanned Systems) 營收年增率轉負；未能入選美國空軍核心無人裝備採購名錄。"
+      },
+      MP: {
+        ticker: "MP",
+        name: "MP Materials Corp.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "🧲 美國本土 NdFeB 稀土磁鐵全產業鏈",
+        researchPriority: "HIGH (戰略國防定價保護/價值修復)",
+        targetPriceReentryMin: 32.0,
+        targetPriceReentryMax: 36.0,
+        marketExpectationScore: 2.8,
+        marketExpectationLabel: "偏向悲觀/週期底部反轉 (2.8 / 5)",
+        marketExpectationWhy: "現價約 $38.35 美元，市場受中國稀土價格低迷影響給予較低估值，忽視了德州沃斯堡磁鐵工廠即將邁向 1,000 噸商業產能，以及美國國防部採購補貼構築的定價底線。",
+        businessPathAndMispricing: "最可能路徑：NdPr 產量年增 68%，重稀土 Dy/Tb 分離純度達 99.9%，完成採礦至磁鐵成品的一體化垂直整合。加權目標價 $59.75，相較現價具備 +55.8% 空間。",
+        targets: [
+          { name: "Stress (稀土價格戰/磁鐵工廠良率嚴重受阻)", prob: 0.10, rev28: "$350M", multiple: "15x P/E", targetPrice: 20.00, why: "外部稀土大舉傾銷，磁鐵工廠廢品率超 30%，毛利率跌破 10%" },
+          { name: "Bear (週期底部拉長/國防補貼不及預期)", prob: 0.25, rev28: "$550M", multiple: "20x P/E", targetPrice: 32.00, why: "稀土價格維持低位，沃斯堡工廠產能爬坡遲緩，倍數受制" },
+          { name: "Base (沃斯堡滿產/重稀土全分離達標)", prob: 0.50, rev28: "$950M", multiple: "32x P/E", targetPrice: 71.00, why: "年產 1,000 噸磁鐵全面供應通用汽車與國防部，毛利率達 38%" },
+          { name: "Bull (成西方稀土唯一霸主/定價權全面移轉)", prob: 0.15, rev28: "$1.4B", multiple: "42x P/E", targetPrice: 95.00, why: "西方全面禁止非合規稀土，磁鐵供不應求，享有 50% 國防溢價" }
+        ],
+        multibaggerConditions: "德州沃斯堡磁鐵工廠達到年產 1,000 噸磁鐵商業化滿載產能，且成品良率高於 88%。",
+        keyFailureRisks: "中國大幅放寬稀土出口配額壓低價格；磁鐵製造良率爬坡失敗；汽車客戶轉向無稀土馬達。",
+        falsificationTriggers: "釹鐠 (NdPr) 氧化物綜合生產成本超過市場售價連續兩季；沃斯堡磁鐵工廠投產再度延誤超 6 個月；失去美國國防部一級供應商資格。"
+      },
+      TM: {
+        ticker: "TM",
+        name: "Toyota Motor Corp.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🚗 全球汽車霸主、油電混動與固態電池",
+        researchPriority: "MEDIUM (防守型核心資產/穩健現金牛)",
+        targetPriceReentryMin: 170.0,
+        targetPriceReentryMax: 185.0,
+        marketExpectationScore: 3.6,
+        marketExpectationLabel: "穩健合理 (3.6 / 5)",
+        marketExpectationWhy: "現價約 $197.64 美元，全球純電車需求放緩凸顯了豐田混動 (HEV) 的巨大現金流優勢，電動化滲透率達 39.5%，帳面持有近 9.5 兆日圓充沛現金，正推進 Arene OS 與全固態電池量產。",
+        businessPathAndMispricing: "最可能路徑：混動車型高利潤率持續釋放，固態電池中試線良率達 72%，平穩過渡至軟體定義汽車。加權目標價 $215.00，空間約 +8.8%。",
+        targets: [
+          { name: "Stress (日圓暴力升值/中國市場價格戰失血)", prob: 0.10, rev28: "¥45T", multiple: "6.5x P/E", targetPrice: 140.00, why: "日圓大幅升值重創出口利潤，中國市場份額遭本土電車腰斬" },
+          { name: "Bear (北美混動補貼退坡/固態電池延誤)", prob: 0.25, rev28: "¥50T", multiple: "8.0x P/E", targetPrice: 170.00, why: "混動增長放緩，電池研發費用高企，營益率壓縮至 7%" },
+          { name: "Base (混動全球份額穩固/Arene OS落地)", prob: 0.50, rev28: "¥58T", multiple: "10.0x P/E", targetPrice: 230.00, why: "年銷量破 1,150 萬輛，混動利潤豐厚，固態電池 2028 順利上市" },
+          { name: "Bull (固態電池全面領先/軟體變現超預期)", prob: 0.15, rev28: "¥65T", multiple: "12.5x P/E", targetPrice: 290.00, why: "固態電池形成技術代差碾壓競品，軟體生態貢獻數千億日圓高毛利" }
+        ],
+        multibaggerConditions: "固態電池電動車實現 10 萬輛規模化量產，且 Arene OS 軟體服務年營收突破 5,000 億日圓。",
+        keyFailureRisks: "日圓劇烈升值壓縮營業利益；中國合資公司持續萎縮；純電智能化追趕不及。",
+        falsificationTriggers: "季度營益率跌破 6.5%；全球單季銷量同比下滑超過 10%；固態電池商業化量產時間表推遲至 2030 年後。"
+      },
+      IONQ: {
+        ticker: "IONQ",
+        name: "IonQ, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "multibagger",
+        categoryLabel: "⚛️ 離子阱量子計算與光學互聯網絡",
+        researchPriority: "HIGH (Q3 營收暴增 336% / 前沿高賠率)",
+        targetPriceReentryMin: 22.0,
+        targetPriceReentryMax: 25.0,
+        marketExpectationScore: 3.5,
+        marketExpectationLabel: "樂觀偏熟 (3.5 / 5)",
+        marketExpectationWhy: "現價約 $28.00 美元，併購 SkyWater 後 Q3 營收暴增 336% 達 1.74 億美元，RPO 達 12 億美元，雙量子比特保真度突破 99.99%，Superion 256 晶片算力預售至 2027 年。",
+        businessPathAndMispricing: "最可能路徑：在糾錯量子計算突破 Breakeven 點，成為企業與政府量子演算法首選平台。市場盲點：短期收購整合拉低毛利率。加權目標價 $44.10，相較現價具備 +57.5% 上行空間。",
+        targets: [
+          { name: "Stress (技術卡關/併購整合現金消耗加劇)", prob: 0.10, rev28: "$280M", multiple: "12x EV/Sales", targetPrice: 10.00, why: "光學互聯拓撲失敗，量子退相干問題未決，現金消耗殆盡" },
+          { name: "Bear (量子寒冬/企業削減前沿研發預算)", prob: 0.20, rev28: "$450M", multiple: "18x EV/Sales", targetPrice: 18.00, why: "商業化落後於預期，超導量子路線發起反撲，估值倍數收縮" },
+          { name: "Base (Superion256量產/RPO順利轉化)", prob: 0.50, rev28: "$850M", multiple: "30x EV/Sales", targetPrice: 48.00, why: "12 億美元 RPO 轉化率達標，商業算力租賃與晶片銷售爆發" },
+          { name: "Bull (量子霸權全面商業化/AI大模型融合)", prob: 0.20, rev28: "$1.4B", multiple: "45x EV/Sales", targetPrice: 85.00, why: "解決 AI 算力瓶頸，光量子互聯成全球網絡標準，市值衝擊兩百億" }
+        ],
+        multibaggerConditions: "實現包含 1,000 個邏輯量子比特（Logical Qubits）的容錯量子系統並實現商業雲端租賃。",
+        keyFailureRisks: "超導與中性原子路線技術超越；晶圓代工整合成本超標；商業客戶預訂額取消。",
+        falsificationTriggers: "演算法量子比特 (#AQ) 進展停滯超 12 個月；季度商業預訂額 (Bookings) 連續兩季季減 >30%；現金儲備跌破 2.5 億美元。"
+      },
+      NTRA: {
+        ticker: "NTRA",
+        name: "Natera, Inc.",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "🧬 Signatera 腫瘤 MRD 液體活檢霸主",
+        researchPriority: "MEDIUM (97% 固態瘤 MRD 市佔/等待回踩)",
+        targetPriceReentryMin: 320.0,
+        targetPriceReentryMax: 350.0,
+        marketExpectationScore: 4.2,
+        marketExpectationLabel: "偏向亢奮/透支完美增長 (4.2 / 5)",
+        marketExpectationWhy: "現價約 $384.00 美元，Q3 營收年增 34% 達 7.94 億美元，Signatera 檢測量暴增 56%，在美國固體瘤 MRD 檢測擁有 97% 絕對壟斷，CMS 報銷價格上調至 $3,920，但現價已充分反映該利多。",
+        businessPathAndMispricing: "最可能路徑：Signatera 成為全球腫瘤術後照護金標準，無組織 Latitude 泛癌種面板放量。加權目標價 $436.00，空間約 +13.5%，建議等待回調至 $320–$350 區間。",
+        targets: [
+          { name: "Stress (CMS下調報銷標準/專利訴訟失利)", prob: 0.10, rev28: "$2.2B", multiple: "18x P/FCF", targetPrice: 220.00, why: "醫保大幅砍價，Guardant 專利訴訟升級，MRD 滲透率停滯" },
+          { name: "Bear (競爭加劇/產前篩檢業務放緩)", prob: 0.20, rev28: "$2.8B", multiple: "26x P/FCF", targetPrice: 320.00, why: "女性健康篩檢遭遇低價競爭，腫瘤檢測增速放緩至 20%" },
+          { name: "Base (Signatera全球滲透/毛利率維持65%)", prob: 0.50, rev28: "$3.6B", multiple: "35x P/FCF", targetPrice: 460.00, why: "Signatera 成為術後金標準，年檢測超 200 萬次，年 FCF 破 8 億" },
+          { name: "Bull (早篩泛癌種突破/納入全球各國醫保)", prob: 0.20, rev28: "$4.5B", multiple: "45x P/FCF", targetPrice: 550.00, why: "Latitude 泛癌早篩被 NCCN 全面納入指南，年檢測破 400 萬次" }
+        ],
+        multibaggerConditions: "年化檢測量突破 500 萬次，且國際市場營收佔比自目前的低單位數提升至 25% 以上。",
+        keyFailureRisks: "CMS 降低 CPT 0340U 報銷價格；侵權訴訟賠償金額擴大；Guardant Health 技術追平。",
+        falsificationTriggers: "Signatera 季度檢測量同比增速跌破 25.0%；綜合毛利率連續兩季跌破 58.0%；CMS 報銷平均單價 (ASP) 跌破 $1,000。"
+      },
+      HALO: {
+        ticker: "HALO",
+        name: "Halozyme Therapeutics",
+        currency: "USD",
+        researchDate: "2026-11-06",
+        category: "quality",
+        categoryLabel: "💉 ENHANZE 皮下注射酵素與專利護城河",
+        researchPriority: "MEDIUM (歐洲訴訟大勝確認專利至2032/穩定現金流)",
+        targetPriceReentryMin: 100.0,
+        targetPriceReentryMax: 112.0,
+        marketExpectationScore: 3.4,
+        marketExpectationLabel: "中性偏低/專利恐慌消除 (3.4 / 5)",
+        marketExpectationWhy: "現價約 $120.00 美元，Q3 特許權使用費年增 44% 達 3.41 億美元，海牙法院剛對默沙東 Keytruda SC 頒布跨國禁令，確認 ENHANZE 專利至 2032 年有效，徹底消除了先前的專利懸崖恐慌。",
+        businessPathAndMispricing: "最可能路徑：強生 Darzalex SC 與 argenx Vyvgart SC 持續滲透，收購 Surf Bio 拓展高濃度自注射器生態。加權目標價 $136.50，空間約 +13.7%，安全試水區設於 $100–$112。",
+        targets: [
+          { name: "Stress (專利無效訴訟翻盤/重磅藥提前斷崖)", prob: 0.10, rev28: "$1.2B", multiple: "10x P/E", targetPrice: 65.00, why: "歐洲或美國法院推翻專利保護，生物類似藥提前蜂擁而入" },
+          { name: "Bear (合作藥品銷售放緩/新授權轉化不及預期)", prob: 0.20, rev28: "$1.5B", multiple: "14x P/E", targetPrice: 95.00, why: "Darzalex 增速見頂，新管線皮下轉化率低於預期，倍數收縮" },
+          { name: "Base (核心合作穩健增長/專利保護至2032)", prob: 0.50, rev28: "$2.0B", multiple: "18x P/E", targetPrice: 150.00, why: "各大藥企皮下注射轉換順暢，高利潤特許權費持續釋放，EPS $8.5" },
+          { name: "Bull (自注射器生態大獲全勝/成皮下給藥標配)", prob: 0.20, rev28: "$2.6B", multiple: "24x P/E", targetPrice: 180.00, why: "Hypercon 與自動注射器覆蓋超過 30 款重磅抗體藥，淨利破 15 億" }
+        ],
+        multibaggerConditions: "年化特許權使用費 (Royalty Revenue) 突破 15 億美元，且新簽署至少 5 款年銷售額 >$50 億的大型抗體藥物授權。",
+        keyFailureRisks: "歐洲禁令在上訴階段遭推翻；大客戶專利到期後轉向自研酶；專利集中度過高。",
+        falsificationTriggers: "核心合作夥伴專利使用費同比連續兩季下滑；海牙法院禁令遭撤銷；GAAP 營益率跌破 45.0%。"
+      },
       ADBE: {
         ticker: "ADBE",
         name: "Adobe Inc.",
@@ -2654,7 +3277,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       AMD: { symbol: "NASDAQ:AMD", price: 488.78, prevClose: 483.90, change: "+1.01%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
       SKHY: { symbol: "NASDAQ:SKHY", price: 143.07, prevClose: 150.79, change: "-5.12%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
       TSM: { symbol: "NYSE:TSM", price: 395.75, prevClose: 404.76, change: "-2.23%", currency: "USD", time: "2026-11-04 16:00:03 EST" },
-      CRDO: { symbol: "NASDAQ:CRDO", price: 136.50, prevClose: 150.91, change: "-9.55%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      CRDO: { symbol: "NASDAQ:CRDO", price: 116.61, prevClose: 150.91, change: "-9.55%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
       ASML: { symbol: "NASDAQ:ASML", price: 1496.30, prevClose: 1552.14, change: "-3.60%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
       ANET: { symbol: "NYSE:ANET", price: 186.11, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "2026-11-04 10:27:06 EST" },
       BNTX: { symbol: "NASDAQ:BNTX", price: 88.91, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "2026-11-04 10:24:46 EST" },
@@ -2680,6 +3303,31 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       MELI: { symbol: "NASDAQ:MELI", price: 1523.50, prevClose: 1550.00, change: "-1.71%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       MSFT: { symbol: "NASDAQ:MSFT", price: 542.45, prevClose: 548.20, change: "-1.05%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       GTLB: { symbol: "NASDAQ:GTLB", price: 49.95, prevClose: 51.10, change: "-2.25%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MU: { symbol: "NASDAQ:MU", price: 687.88, prevClose: 715.00, change: "-3.79%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      ZS: { symbol: "NASDAQ:ZS", price: 208.06, prevClose: 214.50, change: "-3.00%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MKSI: { symbol: "NASDAQ:MKSI", price: 183.66, prevClose: 188.20, change: "-2.41%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      LLY: { symbol: "NYSE:LLY", price: 1388.54, prevClose: 1420.00, change: "-2.22%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      NTNX: { symbol: "NASDAQ:NTNX", price: 59.28, prevClose: 61.50, change: "-3.61%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      U: { symbol: "NYSE:U", price: 48.18, prevClose: 49.50, change: "-2.67%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      VEEV: { symbol: "NYSE:VEEV", price: 309.34, prevClose: 315.00, change: "-1.80%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      NTAP: { symbol: "NASDAQ:NTAP", price: 172.40, prevClose: 176.80, change: "-2.49%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      COHR: { symbol: "NASDAQ:COHR", price: 198.50, prevClose: 205.00, change: "-3.17%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      SNOW: { symbol: "NASDAQ:SNOW", price: 265.00, prevClose: 275.00, change: "-3.64%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      CRWD: { symbol: "NASDAQ:CRWD", price: 257.00, prevClose: 265.50, change: "-3.20%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      IREN: { symbol: "NASDAQ:IREN", price: 41.50, prevClose: 43.20, change: "-3.94%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      KEEL: { symbol: "NASDAQ:KEEL", price: 1.95, prevClose: 2.15, change: "-9.30%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      SMR: { symbol: "NYSE:SMR", price: 4.85, prevClose: 5.10, change: "-4.90%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      UUUU: { symbol: "NYSEAMERICAN:UUUU", price: 7.25, prevClose: 7.45, change: "-2.68%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      NET: { symbol: "NYSE:NET", price: 215.00, prevClose: 222.00, change: "-3.15%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      AKAM: { symbol: "NASDAQ:AKAM", price: 92.50, prevClose: 94.80, change: "-2.43%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      FROG: { symbol: "NASDAQ:FROG", price: 33.50, prevClose: 34.80, change: "-3.74%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      KTOS: { symbol: "NASDAQ:KTOS", price: 33.39, prevClose: 34.50, change: "-3.22%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      MP: { symbol: "NYSE:MP", price: 38.35, prevClose: 39.80, change: "-3.64%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      TM: { symbol: "NYSE:TM", price: 197.64, prevClose: 202.00, change: "-2.16%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      IONQ: { symbol: "NYSE:IONQ", price: 28.00, prevClose: 29.50, change: "-5.08%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      NTRA: { symbol: "NASDAQ:NTRA", price: 384.00, prevClose: 395.00, change: "-2.78%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      HALO: { symbol: "NASDAQ:HALO", price: 120.00, prevClose: 124.50, change: "-3.61%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      MRNA: { symbol: "NASDAQ:MRNA", price: 261.00, prevClose: 241.46, change: "+8.09%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       ADBE: { symbol: "NASDAQ:ADBE", price: 254.69, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
     };
 
@@ -2764,7 +3412,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       // Update Top Status Bar
       document.getElementById("syncDot").className = "inline-block w-2 h-2 rounded-full bg-emerald-400";
       const nowStr = new Date().toLocaleTimeString('zh-HK', { hour12: false });
-      document.getElementById("syncStatusText").textContent = `實時連線正常 (${nowStr}) · 111檔`;
+      document.getElementById("syncStatusText").textContent = `實時連線正常 (${nowStr}) · 145檔`;
       document.getElementById("lastUpdatedTimeLabel").textContent = `${nowStr} 實時已同步`;
       document.getElementById("sheetFetchBadge").textContent = `實時直通成功 (${nowStr})`;
 
