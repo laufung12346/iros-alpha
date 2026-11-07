@@ -5237,201 +5237,7 @@ let currentQuotes = {
       HALO: { symbol: "NASDAQ:HALO", price: 103.63, prevClose: 124.50, change: "-3.61%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       NEM: { symbol: "NYSE:NEM", price: 120.91, prevClose: 119.71, change: "+1.85%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       MRNA: { symbol: "NASDAQ:MRNA", price: 261.00, prevClose: 241.46, change: "+8.09%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      VST: {
-        ticker: "VST",
-        name: "Vistra Corp.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 週期重估",
-        researchPriority: "WATCH (觀望防守)",
-        targetPriceReentryMin: 105.0,
-        targetPriceReentryMax: 115.0,
-        
-        marketExpectationScore: 4.2,
-        marketExpectationLabel: "高度過熱 (4.7 / 5)",
-        marketExpectationWhy: "現價大漲至 $123+，市場將德州夏季極端熱浪推高之批發電價及 PJM 容量拍賣收益（Q3 EBITDA 增 50% 達 $23.78B）完全定價為永久 AI 數據中心高估值倍數。容錯空間極窄。",
-        businessPathAndMispricing: "最可能路徑：收購 Cogentrix 5,500MW 天然氣電廠後總裝機達 ~50GW，透過現有併網點向 hyperscaler 爭取長期高溢價 PPA。市場盲點：Odessa 簽訂之 20 年數據中心 PPA 僅 207MW，只佔總裝機約 0.41%！公司本質仍受天然氣火花價差與電網批發價週期主導，非純 AI 科技股。",
-        
-        targets: [
-          { name: "Stress (天然氣暴跌/容量價腰斬)", prob: 0.15, rev28: "$16.0B", multiple: "8x EV/EBITDA", targetPrice: 32.00, why: "極端熱浪消退，PJM 容量拍賣價格暴跌，發電利潤回歸週期底部" },
-          { name: "Bear (火花價差收窄/AI電價回調)", prob: 0.30, rev28: "$18.5B", multiple: "10x P/E", targetPrice: 79.50, why: "夏季高溫溢價消退，批發電價正常化，數據中心併網審批放緩" },
-          { name: "Base (公用事業穩健+小額PPA放量)", prob: 0.45, rev28: "$21.0B", multiple: "13x P/E", targetPrice: 172.80, why: "2027 Ongoing FCF before Growth 達約 $4.7B，陸續獲 1-2GW 數據中心 PPA 溢價" },
-          { name: "Bull (超大規模核電/氣電直供簽約)", prob: 0.10, rev28: "$25.0B", multiple: "16x P/E", targetPrice: 367.20, why: "Comanche Peak 核電與大型氣電機組獲得多筆超大雲端客戶直供溢價長約" }
-        ],
-        multibaggerConditions: "需要未來 3 年內將 5GW 以上現有發電資產全數轉化為超額利潤率之超大規模 AI 數據中心專用 PPA。",
-        keyFailureRisks: "德州 ERCOT 批發電價劇烈回調；天然氣成本反彈侵蝕利潤；FERC 監管限制後門併網直供；高負債利息負擔。",
-        falsificationTriggers: "若德州電網夏季熱浪溢價消失且單季 EBITDA 跌破 $12 億，立即下調至觀望以下。"
-      },
       VST: { symbol: "NYSE:VST", price: 124.80, prevClose: 112.89, change: "+9.52%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      DDOG: {
-        ticker: "DDOG",
-        name: "Datadog, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ 卓越等待",
-        researchPriority: "HIGH (核心等待)",
-        targetPriceReentryMin: 88.5,
-        targetPriceReentryMax: 95.0,
-        marketExpectationScore: 3.8,
-        marketExpectationLabel: "樂觀定價 (3.8 / 5)",
-        marketExpectationWhy: "現價充分定價可觀測性龍頭地位，但要求 2027-2029 營收 CAGR 達 24% 且終值 P/FCF 達 45x。容錯邊界需防範日誌過濾與 OpenTelemetry 分流。",
-        businessPathAndMispricing: "最可能路徑：單一代理人整合 APM、日誌與雲網安，隨 AI 應用爆發帶動機器遙測數據倍增。市場盲點：企業採用 Cribl 等工具在發送前過濾清洗日誌，抑制按量計費；真實扣除 SBC 後 Rule of 40 僅 38.5（非表面的 52）。",
-        targets: [
-          { name: "Stress (宏觀衰退/OpenTelemetry替代)", prob: 0.10, rev28: "$4.15B", multiple: "22x P/FCF", targetPrice: 46.90, why: "IT 支出凍結，NRR 跌破 105%，多模組採用停滯" },
-          { name: "Bear (用量優化常態/估值降溫)", prob: 0.25, rev28: "$4.70B", multiple: "30x P/FCF", targetPrice: 88.60, why: "雲端優化常態化，營收 CAGR 降至 14%，倍數回歸" },
-          { name: "Base (穩健滲透/AI監控落地)", prob: 0.45, rev28: "$5.40B", multiple: "42x P/FCF", targetPrice: 168.40, why: "NRR 維持 115%，雲網安與 LLM 監控貢獻增強，FCF Margin 達 26%" },
-          { name: "Bull (Agentic AI數據爆發)", prob: 0.20, rev28: "$6.35B", multiple: "58x P/FCF", targetPrice: 326.20, why: "AI Agent 引發機器數據幾何級膨脹，網安 ARR 突破 12 億美元" }
-        ],
-        multibaggerConditions: "6+ 模組客戶佔比自 25% 翻倍至 >45%，雲網安 ARR 突破 12 億美元，Real Rule of 40 >55。",
-        keyFailureRisks: "Cribl 日誌清洗分流；OpenTelemetry 開源解耦；AWS 等雲廠原生監控競爭。",
-        falsificationTriggers: "NRR 連續兩季跌破 110%，或 Non-GAAP 毛利率連續兩季跌破 78.5% 則停損退出。"
-      },
-      PANW: {
-        ticker: "PANW",
-        name: "Palo Alto Networks",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ 卓越等待",
-        researchPriority: "HIGH (分批吸納)",
-        targetPriceReentryMin: 280.0,
-        targetPriceReentryMax: 310.0,
-        marketExpectationScore: 3.8,
-        marketExpectationLabel: "溫和樂觀 (3.8 / 5)",
-        marketExpectationWhy: "市場預期 FY28 營收維持 14%-16% CAGR，FCF margin 維持在 38%-40% 高位，估值倍數給予 36.7x P/FCF。",
-        businessPathAndMispricing: "最可能路徑：訂閱轉型超過 80%，Prisma SASE 與 Cortex XSIAM 替代傳統 SIEM 與邊界防火牆。市場盲點：忽視平台化（Platformization）前期免費試用對短期現金流之摩擦，且 Precision AI 更多是防守性防流失工具而非獨立高價產品。",
-        targets: [
-          { name: "Stress (平台化轉化失敗/重大漏洞)", prob: 0.15, rev28: "$10.92B", multiple: "20x P/FCF", targetPrice: 182.62, why: "IT 支出凍結，平台化轉化停滯，國家級安全漏洞衝擊聲譽" },
-          { name: "Bear (微軟E5競爭/價格戰)", prob: 0.25, rev28: "$12.19B", multiple: "28x P/FCF", targetPrice: 326.04, why: "微軟 E5 綑綁擠壓，同業降價競爭，AI 貢獻延遲" },
-          { name: "Base (平台化穩步擴張)", prob: 0.45, rev28: "$13.56B", multiple: "38x P/FCF", targetPrice: 569.21, why: "平均模組數增至 4-5 個，XSIAM 成功替代傳統 SIEM，FCF 達 50 億" },
-          { name: "Bull (全球地緣網安威脅爆發)", prob: 0.15, rev28: "$16.10B", multiple: "52x P/FCF", targetPrice: 999.82, why: "全球零信任標準統一，XSIAM 累計在手訂單超 30 億美元" }
-        ],
-        multibaggerConditions: "FY28 營收超 161 億美元，FCF margin 突破 40%（年 FCF >60 億），Cortex XSIAM 訂單超 30 億。",
-        keyFailureRisks: "微軟 E5 安全套件低價競爭；大客戶合約審批週期延長；免費試用轉化率不及預期。",
-        falsificationTriggers: "NGS ARR 年增率連續兩季跌破 15%，或 TTM FCF margin 連續兩季跌破 30% 則清倉退出。"
-      },
-      ESTC: {
-        ticker: "ESTC",
-        name: "Elastic N.V.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 逆向價值",
-        researchPriority: "HIGH (高賠率反轉)",
-        targetPriceReentryMin: 65.0,
-        targetPriceReentryMax: 70.0,
-        marketExpectationScore: 2.0,
-        marketExpectationLabel: "極度悲觀 (2.0 / 5)",
-        marketExpectationWhy: "市場將 Elastic 定位為增長放緩的傳統搜尋日誌工具，給予 4.0x-4.5x EV/Sales 低估值，對 GenAI 向量檢索 (Vector RAG) 的期權定價幾乎為零。",
-        businessPathAndMispricing: "最可能路徑：Elastic Cloud 佔比突破 65%，BM25 詞法搜尋與 ELSER 向量搜尋混合架構成為企業級 RAG 必備底座。市場盲點：忽視數十萬開源開發者生態帶來的低 CAC 獲客與寵大數據引力遷移成本。",
-        targets: [
-          { name: "Stress (OpenSearch替代/衰退)", prob: 0.15, rev28: "$1.75B", multiple: "12x P/FCF", targetPrice: 20.00, why: "AWS OpenSearch 完全同質化侵蝕，NRR 跌破 100%" },
-          { name: "Bear (增長放緩/雲遷移受阻)", prob: 0.25, rev28: "$2.02B", multiple: "16x P/FCF", targetPrice: 46.17, why: "企業本地部署轉雲端進度慢，AI 向量採用率不及預期" },
-          { name: "Base (Cloud與RAG平穩放量)", prob: 0.45, rev28: "$2.45B", multiple: "22x P/FCF", targetPrice: 102.66, why: "Cloud 營收年增 25%+，FCF Margin 達 20%，生成式 AI 客戶穩步擴張" },
-          { name: "Bull (企業RAG檢索核心標準)", prob: 0.15, rev28: "$3.10B", multiple: "32x P/FCF", targetPrice: 236.19, why: "向量搜尋客戶突破 35%，NRR 超 125%，Cloud 營收加速至 30%+" }
-        ],
-        multibaggerConditions: "Elastic Cloud 佔比超 65% 且年增 >30%，AI 向量檢索客戶佔比超 35%，FCF Margin 突破 25%。",
-        keyFailureRisks: "AWS OpenSearch Serverless 價格戰；開源替代方案成熟；非雲端自託管授權收入衰退過快。",
-        falsificationTriggers: "Elastic Cloud 年增速連續兩季跌破 15%，或整體 NRR 跌破 105%，或毛利率跌破 73% 則認賠出場。"
-      },
-      ETN: {
-        ticker: "ETN",
-        name: "Eaton Corporation plc",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ 卓越等待",
-        researchPriority: "WATCH (估值透支等好價)",
-        targetPriceReentryMin: 220.0,
-        targetPriceReentryMax: 260.0,
-        marketExpectationScore: 4.2,
-        marketExpectationLabel: "高度過熱 (4.2 / 5)",
-        marketExpectationWhy: "現價約 $330，對應 30x-33x 預期 P/E，市場將傳統電氣設備當成高增長軟體股定價，忽視電網併網審批延誤與週期性均值回歸風險。",
-        businessPathAndMispricing: "最可能路徑：美洲電氣受惠 AI 數據中心 100kW+ 液冷機櫃高密度配電、電網升級與製造業回流。市場盲點：電氣設備只佔數據中心 CapEx 10-15%，雖具高可靠性定價權，但製造週期股歷史中樞估值約 18x-22x，現價幾乎沒有安全邊際。",
-        targets: [
-          { name: "Stress (製造業衰退/週期見頂)", prob: 0.15, rev28: "$26.5B", multiple: "16x P/E", targetPrice: 117.19, why: "數據中心建設暫緩，美洲訂單負增長，估值回歸 16x" },
-          { name: "Bear (電網併網延誤/利潤回落)", prob: 0.25, rev28: "$30.0B", multiple: "22x P/E", targetPrice: 223.87, why: "變壓器取貨週期縮短，暴利溢價消退，倍數降至 22x" },
-          { name: "Base (電氣基建穩步推進)", prob: 0.45, rev28: "$35.5B", multiple: "28x P/E", targetPrice: 387.11, why: "美洲電氣維持 8%-10% 複合增長，淨利率達 15.5%，FCF 轉換率 85%" },
-          { name: "Bull (微電網與超級週期大爆發)", prob: 0.15, rev28: "$42.0B", multiple: "34x P/E", targetPrice: 627.89, why: "數據中心全面轉向現場微電網與儲能配電，營收年增 15%+" }
-        ],
-        multibaggerConditions: "2028 年營收突破 510 億美元（需大型併購），淨利潤突破 82 億美元，變壓器維持 40%+ 超額定價。",
-        keyFailureRisks: "美洲電氣訂單積壓連續兩季下降（B/B < 1.0）；GOES 矽鋼原物料成本暴漲；電網審批排隊推遲交貨。",
-        falsificationTriggers: "美洲電氣在手訂單環比連續兩季萎縮，或該部門營益率跌破 20% 則強制清倉。"
-      },
-      DT: {
-        ticker: "DT",
-        name: "Dynatrace, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ 穩健配置",
-        researchPriority: "MEDIUM (逢低配置)",
-        targetPriceReentryMin: 44.5,
-        targetPriceReentryMax: 48.5,
-        marketExpectationScore: 3.2,
-        marketExpectationLabel: "理性中性 (3.2 / 5)",
-        marketExpectationWhy: "市場給予 14%-16% ARR 增長預期，重視其穩定 FCF 與 Global 2000 客戶黏性，但質疑能否從 Datadog 口中奪得更多用量份額。",
-        businessPathAndMispricing: "最可能路徑：Grail 無索引數據湖架構大幅降低日誌成本，Davis 因果 AI 提供確定性故障定位。市場盲點：低估其高達 83%-85% 的訂閱毛利率與低於 DDOG 的獲客成本（OneAgent 自動發現降低實施成本）。",
-        targets: [
-          { name: "Stress (宏觀IT凍結/競爭侵蝕)", prob: 0.10, rev28: "$2.15B", multiple: "20x P/FCF", targetPrice: 32.42, why: "企業雲端支出凍結，Datadog 價格戰擠壓溢價" },
-          { name: "Bear (雲優化拖延/增長放緩)", prob: 0.25, rev28: "$2.38B", multiple: "25x P/FCF", targetPrice: 52.67, why: "Grail 與安全模組推廣不及預期，倍數降至價值股水準" },
-          { name: "Base (大企業替換與Grail放量)", prob: 0.50, rev28: "$2.75B", multiple: "32x P/FCF", targetPrice: 86.55, why: "ARR 維持 16% 增長，替代傳統 Splunk，FCF Margin 達 30%" },
-          { name: "Bull (因果AI爆發/加速替代)", prob: 0.15, rev28: "$3.20B", multiple: "42x P/FCF", targetPrice: 149.82, why: "AI 生成代碼故障率飆升倒逼全棧監控，Grail ARR 破 5 億美元" }
-        ],
-        multibaggerConditions: "NRR 連續四季回升至 120%+，Grail 相關 ARR 突破 5 億美元，達到 Rule of 50（20% 增長 + 30% FCF）。",
-        keyFailureRisks: "訂閱毛利率跌破 80%；大客戶被 OpenTelemetry 與雲原生工具侵蝕；銷售團隊重組陣痛。",
-        falsificationTriggers: "訂閱毛利率連續兩季低於 80%，或 NRR 跌破 108% 且 RPO 年增率落後 ARR 超過 400 bps 則停損。"
-      },
-      TER: {
-        ticker: "TER",
-        name: "Teradyne, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 週期重估",
-        researchPriority: "HIGH (分批吸納)",
-        targetPriceReentryMin: 85.0,
-        targetPriceReentryMax: 98.0,
-        marketExpectationScore: 3.2,
-        marketExpectationLabel: "分化中性 (3.2 / 5)",
-        marketExpectationWhy: "同業愛德萬 (Advantest) 因 Nvidia GPU/HBM 測試大漲，而 Teradyne 因手機晶片與工業自動化疲弱而享有估值折讓（22x-25x P/E）。",
-        businessPathAndMispricing: "最可能路徑：半導體轉向 2.5D/3D 先進封裝與 Chiplet 異質整合，測試覆蓋度與測試時間幾何級增長。市場盲點：市場只看短期手機與汽車 MCU 週期底部，忽視 IG-XL 軟體生態雙寡頭壟斷與邊緣 AI 帶來的系統級測試 (SLT) 翻倍需求。",
-        targets: [
-          { name: "Stress (全球深度衰退/手機週期拉長)", prob: 0.10, rev28: "$2.35B", multiple: "14x P/E", targetPrice: 35.00, why: "換機週期拉長至 4.5 年，蘋果訂單削減 30%，機器人業務毛利跌穿 40%" },
-          { name: "Bear (L型復甦/ASIC競爭落後)", prob: 0.20, rev28: "$2.85B", multiple: "18x P/E", targetPrice: 68.40, why: "測試設備復甦緩慢，工業自動化增長停滯在 5% 以下" },
-          { name: "Base (先進封裝放量/自動化復甦)", prob: 0.55, rev28: "$3.65B", multiple: "24x P/E", targetPrice: 148.80, why: "端側 AI 帶動測試時長增 15%，工業機器人年增 15%+，毛利率維持 59%" },
-          { name: "Bull (雲端ASIC推論測試壟斷)", prob: 0.15, rev28: "$4.40B", multiple: "30x P/E", targetPrice: 255.00, why: "奪得 70%+ 客製化 ASIC 測試份額，3D 封裝使測試機台需求倍增" }
-        ],
-        multibaggerConditions: "2.5D/3D 先進封裝測試佔比自 15% 升至 >35%，工業自動化營收跨過 10 億美元且營業利潤率 >20%，年 FCF 超 15 億。",
-        keyFailureRisks: "Non-GAAP 毛利率跌破 55%；愛德萬在高階 SoC 與 ASIC 測試插槽取得超過 60% 份額；機器人業務增長停滯。",
-        falsificationTriggers: "Non-GAAP 毛利率連續兩季跌破 55%，或工業自動化營收連續兩季負增長則立即止損退出。"
-      },
-      PLTR: {
-        ticker: "PLTR",
-        name: "Palantir Technologies",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "multibagger",
-        categoryLabel: "🚀 倍升候選",
-        researchPriority: "HIGH (期權防禦/回調大買)",
-        targetPriceReentryMin: 42.0,
-        targetPriceReentryMax: 48.0,
-        marketExpectationScore: 4.6,
-        marketExpectationLabel: "極度亢奮 (4.6 / 5)",
-        marketExpectationWhy: "現價大漲對應 80x-100x+ EV/FCF 超高倍數，市場完全定價其為 AI 應用層唯一純標的，容錯空間極窄。",
-        businessPathAndMispricing: "最可能路徑：AIP Bootcamp 將銷售週期由 3-6 個月壓縮至 1-5 天，Operational Ontology（操作本體）成為企業與國防決策神經中樞。市場盲點：市場仍將其與傳統 IT 諮詢公司比較，忽視其由 Apollo 自動化交付推動的邊際零成本分發與極致造血能力（Rule of 40 達 60%+）。",
-        targets: [
-          { name: "Stress (AI ROI證偽/政府延期)", prob: 0.15, rev28: "$4.20B", multiple: "30x P/FCF", targetPrice: 28.00, why: "企業 AI 投資回報不及預期，國防採購推遲，估值腰斬" },
-          { name: "Bear (倍數消化/增長減速)", prob: 0.25, rev28: "$5.20B", multiple: "45x P/FCF", targetPrice: 52.00, why: "商業增長降至 20%，估值倍數逐步壓縮消化" },
-          { name: "Base (AIP常規擴張/防務穩健)", prob: 0.45, rev28: "$6.80B", multiple: "65x P/FCF", targetPrice: 98.00, why: "美國商業營收 CAGR 達 30%+，國防穩步增長，FCF Margin 達 35%" },
-          { name: "Bull (西方國防標準與全自主AI)", prob: 0.15, rev28: "$9.00B", multiple: "85x P/FCF", targetPrice: 175.00, why: "成為美軍與盟友 CJADC2 唯一標準，AIP 演化為自主 AI 代理生態" }
-        ],
-        multibaggerConditions: "美國商業營收維持 >35% CAGR，AIP 成為全行業決策本體標準，SBC 佔比持續降至 10% 以下。",
-        keyFailureRisks: "美國商業營收增速連續兩季跌破 25%；淨收入留存率 (NDR) 跌破 110%；SBC 股權稀釋再度抬頭。",
-        falsificationTriggers: "美國商業營收年增率跌破 25% 且大客戶淨增停滯，或 NDR 跌破 110% 則強制大幅減持。"
-      },
       DDOG: { symbol: "NASDAQ:DDOG", price: 179.04, prevClose: 121.80, change: "+2.96%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       PANW: { symbol: "NASDAQ:PANW", price: 313.84, prevClose: 338.20, change: "+1.27%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       ESTC: { symbol: "NASDAQ:ESTC", price: 86.08, prevClose: 69.80, change: "+2.01%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
@@ -5439,182 +5245,14 @@ let currentQuotes = {
       DT: { symbol: "NYSE:DT", price: 43.44, prevClose: 51.90, change: "+1.73%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       TER: { symbol: "NASDAQ:TER", price: 218.22, prevClose: 115.40, change: "+2.77%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       PLTR: { symbol: "NASDAQ:PLTR", price: 160.38, prevClose: 55.40, change: "+5.05%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      OKTA: {
-        ticker: "OKTA",
-        name: "Okta, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 逆向價值",
-        researchPriority: "HIGH (修復分批吸納)",
-        targetPriceReentryMin: 72.0,
-        targetPriceReentryMax: 78.0,
-        marketExpectationScore: 2.4,
-        marketExpectationLabel: "過度悲觀 (2.4 / 5)",
-        marketExpectationWhy: "市場擔憂微軟 Entra ID 綑綁侵蝕份額及先前安全事件，將其定價為增長停滯的單點工具，忽略中立身份路由器的不可替代性與 FCF 轉正拐點。",
-        businessPathAndMispricing: "最可能路徑：7,500+ OIN 預構建集成生態建立極深護城河，多雲企業拒絕微軟全家桶鎖定；OIG（治理）與 OPA（特權訪問）模組將單客價值翻倍。市場盲點：SBC 佔營收比例由 41.5% 大幅壓縮至 27.4%，GAAP 營業利潤即將轉正，正迎來由 EV/Sales 轉向 P/FCF 的估值重估。",
-        targets: [
-          { name: "Stress (宏觀IT凍結/微軟侵蝕)", prob: 0.20, rev28: "$3.15B", multiple: "14x EV/FCF", targetPrice: 52.00, why: "企業席位審計持續縮編，NRR 跌破 100%，微軟 E5 替代加速" },
-          { name: "Bear (增長放緩至個位數)", prob: 0.25, rev28: "$3.50B", multiple: "18x EV/FCF", targetPrice: 72.50, why: "WIC 增長放緩，新產品 OIG/OPA 滲透慢於預期，倍數回歸" },
-          { name: "Base (軟著陸/OIG放量/SBC壓制)", prob: 0.40, rev28: "$4.10B", multiple: "24x EV/FCF", targetPrice: 115.00, why: "營收維持 12%-14% 增長，NRR 穩定於 112%，FCF Margin 達 24%" },
-          { name: "Bull (AI Agent機器身份爆發/M&A)", prob: 0.15, rev28: "$4.80B", multiple: "35x EV/FCF", targetPrice: 185.00, why: "AI Agent 非人身份認證爆發，按 API 調用收費，或獲思科/PANW 溢價併購" }
-        ],
-        multibaggerConditions: "SBC 佔比降至 <12% 帶動 GAAP 淨利率連續四季 >5%，OIG/OPA 合併 ARR 突破 4 億美元，奪得 AI M2M 身份認證主導權。",
-        keyFailureRisks: "發生毀滅性主密鑰安全洩漏；NRR 連續兩季跌破 102%；管理層重啟大規模股權激勵稀釋。",
-        falsificationTriggers: "NRR 連續兩季跌破 102%，或真實扣除 SBC 後的 FCF margin 跌破 15% 則立即止損退出。"
-      },
       OKTA: { symbol: "NASDAQ:OKTA", price: 168.69, prevClose: 74.80, change: "+2.27%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      AAPL: {
-        ticker: "AAPL",
-        name: "Apple Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ 數位稅現金流巨頭",
-        researchPriority: "WATCH (估值透支等好價)",
-        targetPriceReentryMin: 154.0,
-        targetPriceReentryMax: 185.0,
-        marketExpectationScore: 4.5,
-        marketExpectationLabel: "極度亢奮過度透支 (4.5 / 5)",
-        marketExpectationWhy: "現價 ~$232.50，NTM P/E 達 28.5x 以上，估值完全透支 AI 換機超級週期預期，容錯空間極低。",
-        businessPathAndMispricing: "最可能路徑：封閉生態系抽取高利潤數位服務稅，FCF 年超千億。市場盲點：服務業務 74% 高毛利高度依賴每年約 200 億美元的 Google TAC 協議，正面臨司法部反壟斷拆解裁決風險；若無顛覆性平價 AR 普及，翻倍已在數學上被證偽。",
-        targets: [
-          { name: "Stress (TAC終止/成本失控)", prob: 0.15, rev28: "$375.0B", multiple: "17.5x P/E", targetPrice: 90.12, why: "Google TAC 終止致利潤永久損失 160 億，台積電 N2 漲價無法轉嫁，大中華區份額跌破 11%" },
-          { name: "Bear (換機週期拉長/估值回歸)", prob: 0.30, rev28: "$432.0B", multiple: "22.0x P/E", targetPrice: 157.28, why: "Apple Intelligence 缺乏殺手級應用，換機週期拉長，P/E 回歸歷史均值 22x" },
-          { name: "Base (合理達標/服務穩健)", prob: 0.40, rev28: "$492.0B", multiple: "28.5x P/E", targetPrice: 254.77, why: "iPhone 穩步增長，服務業務維持雙位數，年 FCF 逾千億支持回購" },
-          { name: "Bull (端側AI爆發/穿戴突破)", prob: 0.15, rev28: "$568.0B", multiple: "34.0x P/E", targetPrice: 383.52, why: "端側 AI 代理引發超級換機潮，淨利率擴張至 28.2%，EPS 達 $11.28" }
-        ],
-        multibaggerConditions: "需在 142 億股基礎上淨利潤突破 2,358 億美元（營收需達 9,070 億美元），數學邏輯上已被證偽。",
-        keyFailureRisks: "服務業務毛利率跌穿 70%（TAC終止）；產品毛利率跌破 35.5%；大中華區單季營收連續三季年減 >15%。",
-        falsificationTriggers: "服務業務毛利率連續兩季跌穿 70%，或產品業務毛利率跌破 35.5% 則立即清倉。"
-      },
-      FTNT: {
-        ticker: "FTNT",
-        name: "Fortinet, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ ASIC專用網安白馬",
-        researchPriority: "HIGH (分批吸納)",
-        targetPriceReentryMin: 68.0,
-        targetPriceReentryMax: 75.0,
-        marketExpectationScore: 3.5,
-        marketExpectationLabel: "審慎樂觀 (3.5 / 5)",
-        marketExpectationWhy: "現價 ~$118，市場審慎樂觀看待企業硬體消化週期，但需防範 SASE 轉型期合約金額與收入確認背離。",
-        businessPathAndMispricing: "最可能路徑：自研 SPU ASIC 晶片構建刀片+剃鬚刀模式，Universal SASE 與 SecOps 訂閱佔比突破 70%，毛利率維持 76%-78%。市場盲點：市場低估其自研 ASIC 在混合網安部署中的極致成本優勢與 OT 關鍵基礎設施安全壟斷地位。",
-        targets: [
-          { name: "Stress (硬體失速/SASE轉型挫敗)", prob: 0.10, rev28: "$6.80B", multiple: "15x P/FCF", targetPrice: 34.00, why: "硬體毛利跌破 58%，SASE 份額遭純雲端廠商蠶食，合約金額與營收背離" },
-          { name: "Bear (週期消化慢/增長個位數)", prob: 0.25, rev28: "$7.80B", multiple: "20x P/FCF", targetPrice: 62.40, why: "企業防火牆換代推遲，SASE 年增速降至 15% 以下，倍數回歸 20x" },
-          { name: "Base (Universal SASE與OT放量)", prob: 0.45, rev28: "$9.25B", multiple: "26x P/FCF", targetPrice: 108.80, why: "SASE ARR 維持 25%+ 增長，FCF margin 穩定於 34%，年 FCF 達 31.4 億美元" },
-          { name: "Bull (SP5晶片代差/OT壟斷)", prob: 0.20, rev28: "$11.00B", multiple: "32x P/FCF", targetPrice: 183.00, why: "新一代 ASIC 帶動產品毛利破 65%，OT 安全份額超 50%，FCF 突破 42 億美元" }
-        ],
-        multibaggerConditions: "Universal SASE ARR 維持 >30% CAGR，新一代 ASIC 推動綜合毛利率趨向 80%，OT 安全份額超 50%。",
-        keyFailureRisks: "產品毛利率跌破 58%；SASE ARR 年增率連續三季低於 15%；合約金額（Billings）增速落後營收 >8%。",
-        falsificationTriggers: "產品毛利率連續兩季低於 58%，或 SASE ARR 增速連續三季低於 15% 則立即止損退出。"
-      },
-      ZBRA: {
-        ticker: "ZBRA",
-        name: "Zebra Technologies",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 供應鏈資產智慧修復",
-        researchPriority: "HIGH (左側價值配置)",
-        targetPriceReentryMin: 210.0,
-        targetPriceReentryMax: 230.0,
-        marketExpectationScore: 2.6,
-        marketExpectationLabel: "中度偏冷 (2.6 / 5)",
-        marketExpectationWhy: "現價 ~$322，市場對傳統零售物流硬體週期過度悲觀，給予較低估值，忽視條碼與 RFID 耗材高黏性剃刀模式與機器視覺反轉潛力。",
-        businessPathAndMispricing: "最可能路徑：企業資產智慧化中樞，EVM 強固型行動終端與 AIT 條碼/RFID 耗材雙輪驅動，機器視覺與自主移動機器人 (AMR) 拓展新增長。市場盲點：忽視其只有 2%-3% 的極低 CapEx 負擔，非 GAAP 毛利達 44%-47%，自由現金流轉化極為充沛。",
-        targets: [
-          { name: "Stress (物流零售資本開支深度凍結)", prob: 0.10, rev28: "$4.15B", multiple: "12x P/FCF", targetPrice: 135.00, why: "全球物流去庫存持續，EVM 業務負增長，倍數降至 12x 週期底" },
-          { name: "Bear (復甦L型/硬體毛利受壓)", prob: 0.25, rev28: "$4.70B", multiple: "16x P/FCF", targetPrice: 215.00, why: "供應鏈自動化資本開支平淡，軟體服務收入佔比停滯在 12% 以下" },
-          { name: "Base (週期復甦/RFID放量)", prob: 0.50, rev28: "$5.85B", multiple: "22x P/FCF", targetPrice: 385.00, why: "終端換代週期重啟，年增長 5.5%，年 FCF 達 10 億美元，回購註銷股本" },
-          { name: "Bull (機器視覺與AMR全面爆發)", prob: 0.15, rev28: "$6.60B", multiple: "28x P/FCF", targetPrice: 560.00, why: "Matrox 視覺與 Fetch 機器人營收突破 10 億美元，軟體服務佔比超 25%" }
-        ],
-        multibaggerConditions: "軟體服務收入佔比超 25% 且年增 >15%，機器視覺與 AMR 營收破 10 億美元，年 FCF 超 13 億美元且回購註銷 >10% 股本。",
-        keyFailureRisks: "Non-GAAP 毛利率跌破 43.5%；軟體與服務佔比跌破 12% 且遞延收入連續兩季環比下滑。",
-        falsificationTriggers: "Non-GAAP 毛利率連續兩季跌破 43.5%，或日收盤價跌破 $135.00 則強制止損出場。"
-      },
-      INTC: {
-        ticker: "INTC",
-        name: "Intel Corporation",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 晶圓製造生死轉型",
-        researchPriority: "WATCH (極端左側觀察)",
-        targetPriceReentryMin: 19.5,
-        targetPriceReentryMax: 23.5,
-        marketExpectationScore: 1.5,
-        marketExpectationLabel: "極度悲觀絕望區 (1.5 / 5)",
-        marketExpectationWhy: "現價 ~$56（反彈後），市場先前在 $20 附近陷入絕望拋售，定價其晶圓代工巨虧與 PC/伺服器份額被 AMD/ARM 永久蠶食。",
-        businessPathAndMispricing: "最可能路徑：IDM 2.0 組織架構拆分，產品端自負盈虧，18A 製程力爭 2026 年底量產以贏得外部客戶。市場盲點：市場將 IFS 早期數十億折舊虧損視為永久失血，忽視美國晶片法案補貼、地緣國防專用晶圓溢價與實質資產重置價值底座。",
-        targets: [
-          { name: "Stress (18A研發失敗/代工徹底爛尾)", prob: 0.15, rev28: "$46.0B", multiple: "12x P/E", targetPrice: 10.27, why: "18A 良率未達標被迫延期，IFS 失去所有大客戶，毛利率跌破 35%" },
-          { name: "Bear (產品線被蠶食/代工僅供內部)", prob: 0.35, rev28: "$52.5B", multiple: "14x P/E", targetPrice: 18.80, why: "伺服器份額持續流失至 AMD，第三方代工收入不及預期，倍數壓制於 14x" },
-          { name: "Base (18A如期投產/現金流轉正)", prob: 0.35, rev28: "$64.0B", multiple: "18x P/E", targetPrice: 40.19, why: "18A 順利量產，外部代工年收破 30 億，全公司毛利率回升至 45%，EPS 達 $2.23" },
-          { name: "Bull (重回製程王座/獲超級客戶)", prob: 0.15, rev28: "$78.0B", multiple: "22x P/E", targetPrice: 75.82, why: "18A 奪得兩家以上全球前十晶片巨頭大單，代工外包營收超 50 億，EPS 達 $3.45" }
-        ],
-        multibaggerConditions: "第三方代工年營收突破 50 億美元，Non-GAAP 毛利率連續四季維持在 45%+，DCAI 季營收回升至 50 億美元。",
-        keyFailureRisks: "18A 製程量產延期超過一季；Non-GAAP 毛利率跌破 35%；2026 年中前未能獲得前十大 Fabless 客戶實質訂單。",
-        falsificationTriggers: "18A 量產重大延誤，或 Non-GAAP 毛利率連續兩季低於 35% 則立即認賠清倉。"
-      },
-      ARXS: {
-        ticker: "ARXS",
-        name: "ArriVent Biopharma",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "multibagger",
-        categoryLabel: "🚀 單資產驅動型非小細胞肺癌創新藥",
-        researchPriority: "HIGH (高賠率臨床催化)",
-        targetPriceReentryMin: 12.5,
-        targetPriceReentryMax: 14.5,
-        marketExpectationScore: 3.2,
-        marketExpectationLabel: "結構性認知錯配 (3.2 / 5)",
-        marketExpectationWhy: "現價 ~$49.90（受三期進展激勵大漲），市場先前將伏美替尼誤判為同質化 EGFR 抑制劑，未充分定價其 Exon 20 插入突變的高選擇性與腦轉移穿透優勢。",
-        businessPathAndMispricing: "最可能路徑：核心資產伏美替尼 (Furmonertinib) 三期 FURVENT 試驗成功並申報 NDA，成為非典型 EGFR 突變一線標準治療。市場盲點：忽視其小分子口服極低製造成本（毛利高達 80%-85%）與大型藥企（如 AZ 專利懸崖）潛在翻倍溢價收購期權。",
-        targets: [
-          { name: "Stress (三期數據不及預期/嚴重毒性)", prob: 0.15, rev28: "$35M", multiple: "2.5x P/S", targetPrice: 2.20, why: "三期 mPFS 未達統計學顯著或出現黑框肝毒性，股價跌至清算淨現金" },
-          { name: "Bear (強生Rybrevant皮下針搶佔一線)", prob: 0.30, rev28: "$90M", multiple: "3.5x P/S", targetPrice: 7.75, why: "強生雙抗皮下劑型奪得一線多數份額，伏美替尼淪為二線腦轉移用藥" },
-          { name: "Base (三期達標獲批/奪得25%份額)", prob: 0.40, rev28: "$185M", multiple: "5.0x P/S", targetPrice: 21.50, why: "三期顯著改善 mPFS，Exon 20 適應症獲 FDA 批准，年營收突破 1.8 億" },
-          { name: "Bull (PACC突變加速獲批/溢價併購)", prob: 0.15, rev28: "$320M", multiple: "7.5x P/S", targetPrice: 56.60, why: "PACC 突變獲突破性療法認證，峰值銷售額超 10 億美元，觸發跨國藥企全額併購" }
-        ],
-        multibaggerConditions: "FURVENT 三期 mPFS 超過 16.5 個月（對照組 7-9 個月），PACC 適應症獲突破性療法，峰值銷售超 10 億美元或獲 100%+ 溢價併購。",
-        keyFailureRisks: "三期臨床 p 值未達顯著；強生雙抗全面壓制；現金跑道不足 12 個月引發骨折增發。",
-        falsificationTriggers: "三期 FURVENT 主要終點未達統計學顯著，或三級以上間質性肺炎/肝損傷率超 8% 則立即 100% 清倉。"
-      },
-      TEM: {
-        ticker: "TEM",
-        name: "Tempus AI, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "multibagger",
-        categoryLabel: "🚀 醫療多模態多層數據收稅平台",
-        researchPriority: "HIGH (回調吸納)",
-        targetPriceReentryMin: 32.0,
-        targetPriceReentryMax: 38.5,
-        marketExpectationScore: 3.8,
-        marketExpectationLabel: "高亢奮增長外推 (3.8 / 5)",
-        marketExpectationWhy: "現價 ~$76.05，市場受生成式 AI 醫療狂熱推動，估值給予高倍數溢價，要求 Data & AI 業務以 40%+ 爆發增長，容錯空間窄。",
-        businessPathAndMispricing: "最可能路徑：剃刀與刀片模式——以重資產低毛利基因測序（剃刀）滲透醫院 EHR 系統，獲取多模態縱向臨床數據並清洗為高毛利 AI 演算法（刀片）向跨國藥企授權。市場盲點：低估其數據飛輪與專有臨床網絡效應，隨著軟體與數據佔比突破 45%，盈利槓桿將幾何級釋放。",
-        targets: [
-          { name: "Stress (監管收緊/藥企縮減預算)", prob: 0.15, rev28: "$1.05B", multiple: "2.0x EV/Sales", targetPrice: 11.35, why: "跨國藥企縮減研發數據授權，FDA 政策收緊，倍數壓縮至 2.0x" },
-          { name: "Bear (數據變現緩慢/持續燒錢)", prob: 0.25, rev28: "$1.25B", multiple: "3.5x EV/Sales", targetPrice: 23.64, why: "測序業務拖累利潤率，Data & AI 增速降至 18%，倍數回歸" },
-          { name: "Base (藥企授權穩健/FCF轉正)", prob: 0.45, rev28: "$1.48B", multiple: "5.5x EV/Sales", targetPrice: 44.00, why: "Data & AI 營收年增 28%，綜合毛利率達 48%，自由現金流轉正" },
-          { name: "Bull (演算法獲CMS專屬代碼/爆發)", prob: 0.15, rev28: "$1.85B", multiple: "9.0x EV/Sales", targetPrice: 90.00, why: "多個 AI 演算法獲 FDA 批准並取得 CMS 專屬醫保報銷代碼，TTM FCF 逾 1.5 億" }
-        ],
-        multibaggerConditions: "Data & AI 業務營收突破 8.5 億美元（佔比 >45%），TTM 自由現金流突破 +1.5 億美元，至少 3 個核心演算法獲 CMS 專屬報銷代碼。",
-        keyFailureRisks: "Data & AI 年增率連續兩季跌破 20%；綜合毛利率跌破 42%；NRR 跌破 105% 或藥企大單流失。",
-        falsificationTriggers: "Data & AI 業務年增速連續兩季跌破 20%，或綜合毛利率連續兩季低於 42% 則強制清倉止損。"
-      },
       AAPL: { symbol: "NASDAQ:AAPL", price: 342.37, prevClose: 344.17, change: "-0.52%", currency: "USD", time: "2026-11-06 16:00:01 EST" },
       FTNT: { symbol: "NASDAQ:FTNT", price: 118.84, prevClose: 122.51, change: "-3.00%", currency: "USD", time: "2026-11-06 16:00:01 EST" },
       ZBRA: { symbol: "NASDAQ:ZBRA", price: 322.02, prevClose: 321.64, change: "+0.12%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       INTC: { symbol: "NASDAQ:INTC", price: 56.28, prevClose: 52.25, change: "+7.71%", currency: "USD", time: "2026-11-06 16:00:01 EST" },
       ARXS: { symbol: "NASDAQ:ARXS", price: 49.90, prevClose: 48.52, change: "+2.84%", currency: "USD", time: "2026-11-06 16:00:01 EST" },
       TEM: { symbol: "NASDAQ:TEM", price: 76.05, prevClose: 70.43, change: "+7.98%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      ADBE: { symbol: "NASDAQ:ADBE", price: 239.30, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
+      ADBE: { symbol: "NASDAQ:ADBE", price: 239.30, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" },
     };
 
     let allSheetRows = [
@@ -6453,7 +6091,7 @@ let currentQuotes = {
       const q = currentQuotes[ticker];
       const price = q ? q.price : 100.0;
       if (!db) {
-        return { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "載入中", buyBelow: price, expTarget: price, bearTarget: price * 0.7, stopLoss: price * 0.7, mosExp: 0, mosBase: 0, score: 3.0, assetClass: getAssetClass(ticker, 'quality'), tradeAction: "NO_ACTION_REQUIRED", dynamicCagr: 0 };
+        return { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "載入中", catalyst: "資料載入中", warning: "無", buyBelow: price, expTarget: price, bearTarget: price * 0.7, stopLoss: price * 0.7, mosExp: 0, mosBase: 0, score: 3.0, assetClass: getAssetClass(ticker, 'quality'), tradeAction: "NO_ACTION_REQUIRED", dynamicCagr: 0 };
       }
 
       const assetClass = getAssetClass(ticker, db.category);
@@ -6492,7 +6130,7 @@ let currentQuotes = {
       // 動態真實年化 (以 2028-12-31 為目標日，785天)
       const dynamicCagr = (price > 0 && expTarget > 0) ? (Math.pow(expTarget / price, 1.0 / horizonYears) - 1.0) * 100 : 0;
 
-      // 4. Strict Institutional 4-Gate Decision (嚴格防禦過度樂觀，堅守 6 檔優質強烈買入!)
+      // 4. Strict Institutional 4-Gate Decision (嚴格防禦過度樂觀，堅守優質強烈買入!)
       let rating = "WAIT_PRICE";
       let label = "🟡 觀望待價";
       let action = `現價 ($${price.toFixed(2)}) 未入防禦擊球點，耐心等待回調至悲觀底線 ($${bear.toFixed(2)})`;
@@ -6513,7 +6151,7 @@ let currentQuotes = {
         label = "⚪ 極度折價(凍結)";
         action = `跌破極限壓力估值 ($${stress.toFixed(2)})！強制凍結買入權限，需人工覆核破產/永久損壞風險`;
         tradeAction = "HALTED_NEEDS_REVIEW";
-      }
+      } 
       // 優先序 3: 估值透支攔截
       else if (price > buyBelow * 1.15 || mosExp < 0 || price >= bull * 0.85) {
         rating = "AVOID_SELL";
@@ -6539,14 +6177,19 @@ let currentQuotes = {
       else {
         rating = "WAIT_PRICE";
         label = "🟡 觀望待價";
-        action = veto ? veto.reason : `現價高於建議上限 $${buyBelow.toFixed(2)}，缺乏足夠安全邊際，耐心等待回調`;
+        action = veto ? veto.reason : `現價高於建議上限 $${buyBelow.toFixed(2)}，缺乏足夠安全邊際，耐心等待回調至悲觀底線 $${bear.toFixed(2)}`;
         tradeAction = "NO_ACTION_REQUIRED";
       }
+
+      const catalyst = db.businessPathAndMispricing || "核心業務路徑穩健推進";
+      const warning = db.keyFailureRisks || db.falsificationTriggers || "若基本面連續兩季不及預期則停損退出";
 
       return {
         rating: rating,
         label: label,
         action: action,
+        catalyst: catalyst,
+        warning: warning,
         buyBelow: buyBelow,
         expTarget: expTarget,
         bearTarget: bear,
@@ -6594,6 +6237,7 @@ let currentQuotes = {
           name: db.name,
           price,
           currency: db.currency || "USD",
+          db,
           sig,
           mos: sig.mosExp,
           upside: sig.mosBase
@@ -6688,8 +6332,8 @@ let currentQuotes = {
 
             <div class="space-y-1.5 text-xs text-slate-300">
               <p><strong class="text-emerald-400">買方決策：</strong> ${item.sig.action}</p>
-              <p class="line-clamp-2"><strong class="text-blue-400">業務與盲點：</strong> ${item.sig.catalyst}</p>
-              <p class="line-clamp-2"><strong class="text-rose-400">證偽與風險：</strong> ${item.sig.warning}</p>
+              <p class="line-clamp-2"><strong class="text-blue-400">業務與盲點：</strong> ${item.sig.catalyst || item.db?.businessPathAndMispricing || "核心業務路徑穩健推進"}</p>
+              <p class="line-clamp-2"><strong class="text-rose-400">證偽與風險：</strong> ${item.sig.warning || item.db?.keyFailureRisks || item.db?.falsificationTriggers || "若基本面連續兩季不及預期則停損退出"}</p>
             </div>
 
             <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between">
@@ -7145,3 +6789,4 @@ let currentQuotes = {
     </script>
 </body>
 </html>
+
