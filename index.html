@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V7.4 全庫85檔雙軌全景定價·真實曆日 2.15年·實質風控版 (PV現值/FV目標價精確對稱)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V7.4 全庫85檔雙軌全景定價·動態曆日年化·實質風控版 (PV現值/FV目標價精確對稱)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -1775,39 +1775,38 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         target_date: "2028-12-31",
         exact_days: 785,
         horizon_years: 2.1492,
-        wacc: 0.105,
-        terminal_roic: 0.2,
-        terminal_multiple: 11.5,
+        wacc: 0.095,
+        terminal_roic: 0.28,
+        terminal_multiple: 14.0,
         multiple_metric: "EV_TO_NOPAT_FWD",
-        implied_terminal_g: 0.0319,
-        targetPriceReentryMin: 199.14,
-        targetPriceReentryMax: 213.81,
-        stopLoss: 140.29,
-        marketExpectationScore: 3.6,
-        marketExpectationLabel: "嚴格審定 (3.6/5)",
-        marketExpectationWhy: "現價 $268.75，2028 加權目標價 $298.45，動態 CAGR +5.0%",
-        businessPathAndMispricing: "最可能路徑：超大雲端客戶 (Meta/MSFT) 加速部署 1.6T 交換機，以 UEC 乙太網替代 InfiniBand。市場盲點：只見 AI 硬體爆發，忽視資本支出週期過峰後『業務達標但殺估值』(倍數由 34x 降至 24x 虧損達 12%) 的收縮風險。",
-        pv_expected_value: 240.81,
-        fv_expected_target: 298.45,
-        dynamic_cagr: 5.0,
-        mos_exp: -11.6,
-        target_upside: 11.1,
-        rating: "WAIT_PRICE",
-        label: "🟡 觀望待價",
+        implied_terminal_g: 0.0285,
+        targetPriceReentryMin: 137.75,
+        targetPriceReentryMax: 147.90,
+        stopLoss: 94.50,
+        marketExpectationScore: 4.5,
+        marketExpectationLabel: "嚴格審定 (4.5/5)",
+        marketExpectationWhy: "現價 $186.11 (昨收 $169.91 +9.53%)，2028 加權目標價 $205.75，動態年化 +4.8%",
+        businessPathAndMispricing: "最可能路徑：Q3 2026 營收達 36.6 億美元 (年增 58.5%)，超大雲端大廠 (Meta/MSFT) 加速部署 800G/1.6T 乙太網替代 InfiniBand。市場盲點：4 拆 1 拆股後當前估值已透支 2027 年 180 億營收預期，高位追高容錯空間窄。",
+        pv_expected_value: 169.17,
+        fv_expected_target: 205.75,
+        dynamic_cagr: 4.8,
+        mos_exp: -9.1,
+        target_upside: 10.6,
+        rating: "AVOID_SELL",
+        label: "🔴 估值透支/避開",
         trade_action_status: "NO_ACTION_REQUIRED",
-        action: "現價 ($ 268.75) 高於安全買入上限 $ 213.81，耐心等待回調至悲觀底線 $ 209.62",
+        action: "現價 ($186.11) 超出建議買入上限 ($147.90) 逾 15%，估值透支，嚴禁追高",
         targets: [
-          { name: "Stress (極限生存/下行壓力)", prob: 0.1, targetPrice: 155.88, pvValue: 125.78, why: "Arista Networks, Inc. 極端悲觀與壓力測試情境" },
-          { name: "Bear (週期減速/防守支撐)", prob: 0.25, targetPrice: 209.62, pvValue: 169.14, why: "Arista Networks, Inc. 宏觀週期放緩與估值回調情境" },
-          { name: "Base (核心業務達標)", prob: 0.5, targetPrice: 335.94, pvValue: 271.06, why: "Arista Networks, Inc. 核心戰略穩步落地與常態化收益情境" },
-          { name: "Bull (技術壁壘超預期放量)", prob: 0.15, targetPrice: 416.56, pvValue: 336.11, why: "Arista Networks, Inc. 競爭優勢擴張與超預期變現情境" },
+          { name: "Stress (極限生存/下行壓力)", prob: 0.1, targetPrice: 105.00, pvValue: 86.33, why: "超大客戶白牌自研替代加速，採購承諾爆發庫存減值，倍數降至 16x" },
+          { name: "Bear (週期減速/防守支撐)", prob: 0.25, targetPrice: 145.00, pvValue: 119.22, why: "雲端巨頭進入算力消化期，CapEx 增長放緩，倍數回歸 22x" },
+          { name: "Base (核心業務達標)", prob: 0.5, targetPrice: 225.00, pvValue: 185.00, why: "1.6T 乙太網如期放量，Scale-out 市佔率穩固，2028 營收達 170 億美元" },
+          { name: "Bull (技術壁壘超預期放量)", prob: 0.15, targetPrice: 310.00, pvValue: 254.89, why: "UALink 成功攻入伺服器機櫃內 Scale-up，打破 NVLink 封閉壟斷" }
         ],
-        multibaggerConditions: "倍升需要 2028 年營收突破 300 億美元，且成功侵入 Nvidia NVLink 的伺服器內部 Scale-up 領地，營收佔比達 20% 以上。",
-        keyFailureRisks: "微軟推動開源 SONiC 白盒化；兩大客戶集中度逾 42%；光學與 CPO 過渡期毛利跌破 62%。",
-        falsificationTriggers: "若股價跌至 $164 且營收動能無虞則觸發 SCALE-IN BUY；若連續兩季毛利率跌破 62% 則徹底下調評級。"
+        multibaggerConditions: "2028 年營收突破 200 億美元且成功侵入機櫃內 Scale-up 網絡領地。",
+        keyFailureRisks: "超大雲端客戶轉向自研開源 NOS；博通交換機晶片交付延遲；園區網絡思科價格防守。",
+        falsificationTriggers: "超大雲客戶合約季度環比首次出現負增長，或 Non-GAAP 毛利率跌破 60% 則強制清倉退出。"
       },
-      BNTX: {
-        ticker: "BNTX",
+      ticker: "BNTX",
         name: "BioNTech SE",
         currency: "USD",
         category: "multibagger",
@@ -5272,7 +5271,7 @@ let currentQuotes = {
       TSM: { symbol: "NYSE:TSM", price: 375.44, prevClose: 404.76, change: "-2.23%", currency: "USD", time: "2026-11-04 16:00:03 EST" },
       CRDO: { symbol: "NASDAQ:CRDO", price: 120.51, prevClose: 150.91, change: "-9.55%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
       ASML: { symbol: "NASDAQ:ASML", price: 1424.75, prevClose: 1552.14, change: "-3.60%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      ANET: { symbol: "NYSE:ANET", price: 268.75, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "2026-11-04 10:27:06 EST" },
+      ANET: { symbol: "NYSE:ANET", price: 186.11, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "2026-11-04 10:27:06 EST" },
       BNTX: { symbol: "NASDAQ:BNTX", price: 87.51, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "2026-11-04 10:24:46 EST" },
       BESI: { symbol: "AMS:BESI", price: 143.40, prevClose: 156.10, change: "-2.21%", currency: "EUR", time: "2026-11-04 16:10:06 UTC" },
       MXL: { symbol: "NASDAQ:MXL", price: 49.18, prevClose: 59.20, change: "-3.97%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
@@ -5342,6 +5341,7 @@ let currentQuotes = {
 
     let allSheetRows = [
       { symbol: "NYSE:ANET", price: 186.11, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "10:27 EST" },
+      { symbol: "NYSE:NET", price: 215.00, prevClose: 222.00, change: "-3.15%", currency: "USD", time: "16:00 EST" },
       { symbol: "NASDAQ:BNTX", price: 88.91, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "10:24 EST" },
       { symbol: "AMS:BESI", price: 152.65, prevClose: 156.10, change: "-2.21%", currency: "EUR", time: "16:10 UTC" },
       { symbol: "NASDAQ:ADBE", price: 254.69, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "10:27 EST" },
@@ -5805,7 +5805,7 @@ let currentQuotes = {
 
           <div class="grid grid-cols-3 gap-2 mt-2.5 pt-2 border-t border-slate-800/80 text-center">
             <div class="bg-slate-950/40 rounded-lg py-1 px-1">
-              <span class="text-[10px] text-slate-500 block">2.15年動態CAGR</span>
+              <span class="text-[10px] text-slate-500 block">動態年化(至2028)</span>
               <span class="text-xs font-bold font-mono ${stock.annualizedReturn.startsWith('+') ? 'text-emerald-400' : 'text-slate-400'}">${stock.annualizedReturn}</span>
             </div>
             <div class="bg-slate-950/40 rounded-lg py-1 px-1">
@@ -6384,7 +6384,7 @@ let currentQuotes = {
                 </div>
                 <div class="flex items-center space-x-2 mt-1">
                   <p class="text-xs text-slate-300 font-medium line-clamp-1">${item.name}</p>
-                  <span class="text-[10px] font-mono text-slate-500">| 跨度: 785天 (2.15年)</span>
+                  <span class="text-[10px] font-mono text-slate-500">| 目標週期: 至2028年末</span>
                 </div>
               </div>
               <div class="text-right">
@@ -6404,7 +6404,7 @@ let currentQuotes = {
                 <span class="font-bold text-white block mt-0.5">$${item.sig.expTarget.toFixed(2)}</span>
               </div>
               <div class="bg-slate-900/40 p-2 rounded-lg border border-slate-800/40">
-                <span class="text-[10px] text-emerald-400/90 block font-sans">2.15年動態CAGR</span>
+                <span class="text-[10px] text-emerald-400/90 block font-sans">動態年化(至2028)</span>
                 <span class="font-bold ${cagrClass} block mt-0.5">${item.sig.dynamicCagr >= 0 ? '+' : ''}${item.sig.dynamicCagr.toFixed(1)}%</span>
               </div>
               <div class="bg-slate-900/40 p-2 rounded-lg border border-slate-800/40">
