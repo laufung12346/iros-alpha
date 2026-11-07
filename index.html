@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V4.3 · 18檔核心決策 · 147檔實時報價全景矩陣</title>
+  <title>IROS Alpha V4.3 · 79檔機構級全景決策 · 147檔實時報價矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V4.3 雙Sheet實時直通 (18檔核心決策 · 147檔實時報價)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V4.3 雙Sheet實時直通 (79檔深度研究決策 · 147檔實時報價)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -198,7 +198,7 @@
       <div class="space-y-2">
         <div class="flex items-center justify-between text-xs text-slate-400 px-0.5">
           <span class="font-medium text-slate-300">股票機會排序</span>
-          <span id="stockCountBadge" class="text-[11px] text-slate-500">顯示 24 檔核心標的</span>
+          <span id="stockCountBadge" class="text-[11px] text-slate-500">顯示 79 檔深度研究標的</span>
         </div>
 
         <div class="flex space-x-1.5 overflow-x-auto no-scrollbar py-0.5">
@@ -1439,7 +1439,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
           <div>
             <div class="flex items-center gap-2">
               <span class="text-xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">TACTICAL SIGNALS V1.0</span>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">71 檔全宇宙覆蓋</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">79 檔全宇宙覆蓋</span>
             </div>
             <h2 class="text-base font-bold text-white mt-1">機構級動態買賣決策矩陣</h2>
             <p class="text-xs text-slate-400 mt-0.5">以內在價值安全邊際 (MoS) × 護城河壁壘 × 催化劑兌現度動態評定，杜絕情緒化追高殺跌</p>
@@ -1482,7 +1482,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       <!-- Filter & Search Controls -->
       <div class="space-y-2">
         <div class="flex space-x-1.5 overflow-x-auto no-scrollbar py-0.5">
-          <button id="sigFilterAll" class="signal-filter-btn active text-xs font-medium px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 whitespace-nowrap">全部標的 (71)</button>
+          <button id="sigFilterAll" class="signal-filter-btn active text-xs font-medium px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 whitespace-nowrap">全部標的 (79)</button>
           <button id="sigFilterStrong" class="signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap">🟢 強烈買入</button>
           <button id="sigFilterAccum" class="signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap">🔵 分批吸納</button>
           <button id="sigFilterWait" class="signal-filter-btn text-xs font-medium px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 whitespace-nowrap">🟡 觀望待價</button>
