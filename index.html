@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V4.5 · 85檔機構級全景決策 · 147檔實時報價矩陣</title>
+  <title>IROS Alpha V4.6 · 85檔機構級全景決策 · 147檔實時報價矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V4.5 雙批調研全景整合 (85檔深度研究決策 · 147檔實時報價)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V4.6 全庫85檔統一口徑版 (85檔深度研究決策 · 147檔實時報價)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -1434,7 +1434,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       <div class="bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-950 border border-emerald-500/40 rounded-2xl p-4 shadow-xl space-y-3">
         <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
           <div>
-            <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">MANDATORY AI GUARDRAILS V4.4</span>
+            <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">MANDATORY AI GUARDRAILS V4.6</span>
             <h2 class="text-sm font-bold text-white mt-1">AI 協作防呆與買方審核鐵律（可直接複製貼入對話）</h2>
           </div>
           <button id="copyGuardrailPromptBtn" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-semibold text-xs transition shadow flex items-center gap-1">
@@ -3994,7 +3994,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       MELI: { symbol: "NASDAQ:MELI", price: 1510.00, prevClose: 1550.00, change: "-1.71%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       MSFT: { symbol: "NASDAQ:MSFT", price: 530.61, prevClose: 548.20, change: "-1.05%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       GTLB: { symbol: "NASDAQ:GTLB", price: 48.09, prevClose: 51.10, change: "-2.25%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      MU: { symbol: "NASDAQ:MU", price: 51.49, prevClose: 715.00, change: "-3.79%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MU: { symbol: "NASDAQ:MU", price: 690.00, prevClose: 715.00, change: "-3.79%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       ZS: { symbol: "NASDAQ:ZS", price: 197.66, prevClose: 214.50, change: "-3.00%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       MKSI: { symbol: "NASDAQ:MKSI", price: 192.27, prevClose: 188.20, change: "-2.41%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       LLY: { symbol: "NYSE:LLY", price: 1354.00, prevClose: 1420.00, change: "-2.22%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
@@ -4397,7 +4397,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       INTC: { symbol: "NASDAQ:INTC", price: 56.28, prevClose: 52.25, change: "+7.71%", currency: "USD", time: "2026-11-06 16:00:01 EST" },
       ARXS: { symbol: "NASDAQ:ARXS", price: 49.90, prevClose: 48.52, change: "+2.84%", currency: "USD", time: "2026-11-06 16:00:01 EST" },
       TEM: { symbol: "NASDAQ:TEM", price: 76.05, prevClose: 70.43, change: "+7.98%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      ADBE: { symbol: "NASDAQ:ADBE", price: 173.24, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
+      ADBE: { symbol: "NASDAQ:ADBE", price: 239.30, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
     };
 
     let allSheetRows = [
@@ -5184,209 +5184,76 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
     });
   
     // ==========================================
-    // MODULE: DECISION SIGNALS & 4-GATE INSTITUTIONAL ENGINE
+    // MODULE: DECISION SIGNALS & STANDARDIZED 4-GATE ENGINE (V4.6 OVERHAUL)
     // ==========================================
-    // Fundamental Risk Vetoes & Consensus Alignment Overrides
+
+    // Asset Classification Function
+    function getAssetClass(ticker, dbCategory) {
+      if (['ARXS', 'TEM', 'SMR', 'IONQ', 'KEEL', 'AIP', 'QMCO'].includes(ticker)) {
+        return { type: 'BINARY_OPTION', label: '高波動期權型', badge: 'bg-purple-500/20 text-purple-300 border-purple-500/40', maxPortfolioWeight: '1.5% - 2.5%' };
+      }
+      if (['ADBE', 'ESTC', 'OKTA', 'GTLB', 'SKHY', 'DT', 'TER', 'ZBRA', 'INTC', 'FROG'].includes(ticker)) {
+        return { type: 'RERATING_VALUE', label: '逆向價值修復型', badge: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40', maxPortfolioWeight: '2.5% - 3.5%' };
+      }
+      return { type: 'CORE_COMPOUNDER', label: '複利核心資產型', badge: 'bg-blue-500/20 text-blue-300 border-blue-500/40', maxPortfolioWeight: '3.5% - 5.0%' };
+    }
+
+    // Fundamental Vetoes (Strict Buy-Side Risk Overrides)
     const FUNDAMENTAL_VETOS = {
       AKAM: { maxRating: "AVOID_SELL", reason: "Q3 自由現金流轉負 (-$3,800 萬)，3 年 $55 億 CapEx 嚴重侵蝕回報，S&P 降級至 BBB，觸發現金流一票否決紅線" },
-      VST: { maxRating: "WAIT_PRICE", reason: "207MW 數據中心 PPA 僅佔 50GW 總裝機 0.41%，EBITDA 暴增來自德州熱浪電價與 PJM 拍賣，非純 AI 標的，暫不獨立建倉" },
-      TEAM: { maxRating: "WAIT_PRICE", reason: "雲業務下季指引放緩至 26%，AI 用量收費能否抵消席位壓力仍待驗證，等待估值進一步吸引再考慮小注" },
-      AAPL: {
-        ticker: "AAPL",
-        name: "Apple Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ 數位稅現金流巨頭",
-        researchPriority: "WATCH (估值透支等好價)",
-        targetPriceReentryMin: 154.0,
-        targetPriceReentryMax: 185.0,
-        marketExpectationScore: 4.5,
-        marketExpectationLabel: "極度亢奮過度透支 (4.5 / 5)",
-        marketExpectationWhy: "現價 ~$232.50，NTM P/E 達 28.5x 以上，估值完全透支 AI 換機超級週期預期，容錯空間極低。",
-        businessPathAndMispricing: "最可能路徑：封閉生態系抽取高利潤數位服務稅，FCF 年超千億。市場盲點：服務業務 74% 高毛利高度依賴每年約 200 億美元的 Google TAC 協議，正面臨司法部反壟斷拆解裁決風險；若無顛覆性平價 AR 普及，翻倍已在數學上被證偽。",
-        targets: [
-          { name: "Stress (TAC終止/成本失控)", prob: 0.15, rev28: "$375.0B", multiple: "17.5x P/E", targetPrice: 90.12, why: "Google TAC 終止致利潤永久損失 160 億，台積電 N2 漲價無法轉嫁，大中華區份額跌破 11%" },
-          { name: "Bear (換機週期拉長/估值回歸)", prob: 0.30, rev28: "$432.0B", multiple: "22.0x P/E", targetPrice: 157.28, why: "Apple Intelligence 缺乏殺手級應用，換機週期拉長，P/E 回歸歷史均值 22x" },
-          { name: "Base (合理達標/服務穩健)", prob: 0.40, rev28: "$492.0B", multiple: "28.5x P/E", targetPrice: 254.77, why: "iPhone 穩步增長，服務業務維持雙位數，年 FCF 逾千億支持回購" },
-          { name: "Bull (端側AI爆發/穿戴突破)", prob: 0.15, rev28: "$568.0B", multiple: "34.0x P/E", targetPrice: 383.52, why: "端側 AI 代理引發超級換機潮，淨利率擴張至 28.2%，EPS 達 $11.28" }
-        ],
-        multibaggerConditions: "需在 142 億股基礎上淨利潤突破 2,358 億美元（營收需達 9,070 億美元），數學邏輯上已被證偽。",
-        keyFailureRisks: "服務業務毛利率跌穿 70%（TAC終止）；產品毛利率跌破 35.5%；大中華區單季營收連續三季年減 >15%。",
-        falsificationTriggers: "服務業務毛利率連續兩季跌穿 70%，或產品業務毛利率跌破 35.5% 則立即清倉。"
-      },
-      FTNT: {
-        ticker: "FTNT",
-        name: "Fortinet, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "quality",
-        categoryLabel: "🛡️ ASIC專用網安白馬",
-        researchPriority: "HIGH (分批吸納)",
-        targetPriceReentryMin: 68.0,
-        targetPriceReentryMax: 75.0,
-        marketExpectationScore: 3.5,
-        marketExpectationLabel: "審慎樂觀 (3.5 / 5)",
-        marketExpectationWhy: "現價 ~$118，市場審慎樂觀看待企業硬體消化週期，但需防範 SASE 轉型期合約金額與收入確認背離。",
-        businessPathAndMispricing: "最可能路徑：自研 SPU ASIC 晶片構建刀片+剃鬚刀模式，Universal SASE 與 SecOps 訂閱佔比突破 70%，毛利率維持 76%-78%。市場盲點：市場低估其自研 ASIC 在混合網安部署中的極致成本優勢與 OT 關鍵基礎設施安全壟斷地位。",
-        targets: [
-          { name: "Stress (硬體失速/SASE轉型挫敗)", prob: 0.10, rev28: "$6.80B", multiple: "15x P/FCF", targetPrice: 34.00, why: "硬體毛利跌破 58%，SASE 份額遭純雲端廠商蠶食，合約金額與營收背離" },
-          { name: "Bear (週期消化慢/增長個位數)", prob: 0.25, rev28: "$7.80B", multiple: "20x P/FCF", targetPrice: 62.40, why: "企業防火牆換代推遲，SASE 年增速降至 15% 以下，倍數回歸 20x" },
-          { name: "Base (Universal SASE與OT放量)", prob: 0.45, rev28: "$9.25B", multiple: "26x P/FCF", targetPrice: 108.80, why: "SASE ARR 維持 25%+ 增長，FCF margin 穩定於 34%，年 FCF 達 31.4 億美元" },
-          { name: "Bull (SP5晶片代差/OT壟斷)", prob: 0.20, rev28: "$11.00B", multiple: "32x P/FCF", targetPrice: 183.00, why: "新一代 ASIC 帶動產品毛利破 65%，OT 安全份額超 50%，FCF 突破 42 億美元" }
-        ],
-        multibaggerConditions: "Universal SASE ARR 維持 >30% CAGR，新一代 ASIC 推動綜合毛利率趨向 80%，OT 安全份額超 50%。",
-        keyFailureRisks: "產品毛利率跌破 58%；SASE ARR 年增率連續三季低於 15%；合約金額（Billings）增速落後營收 >8%。",
-        falsificationTriggers: "產品毛利率連續兩季低於 58%，或 SASE ARR 增速連續三季低於 15% 則立即止損退出。"
-      },
-      ZBRA: {
-        ticker: "ZBRA",
-        name: "Zebra Technologies",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 供應鏈資產智慧修復",
-        researchPriority: "HIGH (左側價值配置)",
-        targetPriceReentryMin: 210.0,
-        targetPriceReentryMax: 230.0,
-        marketExpectationScore: 2.6,
-        marketExpectationLabel: "中度偏冷 (2.6 / 5)",
-        marketExpectationWhy: "現價 ~$322，市場對傳統零售物流硬體週期過度悲觀，給予較低估值，忽視條碼與 RFID 耗材高黏性剃刀模式與機器視覺反轉潛力。",
-        businessPathAndMispricing: "最可能路徑：企業資產智慧化中樞，EVM 強固型行動終端與 AIT 條碼/RFID 耗材雙輪驅動，機器視覺與自主移動機器人 (AMR) 拓展新增長。市場盲點：忽視其只有 2%-3% 的極低 CapEx 負擔，非 GAAP 毛利達 44%-47%，自由現金流轉化極為充沛。",
-        targets: [
-          { name: "Stress (物流零售資本開支深度凍結)", prob: 0.10, rev28: "$4.15B", multiple: "12x P/FCF", targetPrice: 135.00, why: "全球物流去庫存持續，EVM 業務負增長，倍數降至 12x 週期底" },
-          { name: "Bear (復甦L型/硬體毛利受壓)", prob: 0.25, rev28: "$4.70B", multiple: "16x P/FCF", targetPrice: 215.00, why: "供應鏈自動化資本開支平淡，軟體服務收入佔比停滯在 12% 以下" },
-          { name: "Base (週期復甦/RFID放量)", prob: 0.50, rev28: "$5.85B", multiple: "22x P/FCF", targetPrice: 385.00, why: "終端換代週期重啟，年增長 5.5%，年 FCF 達 10 億美元，回購註銷股本" },
-          { name: "Bull (機器視覺與AMR全面爆發)", prob: 0.15, rev28: "$6.60B", multiple: "28x P/FCF", targetPrice: 560.00, why: "Matrox 視覺與 Fetch 機器人營收突破 10 億美元，軟體服務佔比超 25%" }
-        ],
-        multibaggerConditions: "軟體服務收入佔比超 25% 且年增 >15%，機器視覺與 AMR 營收破 10 億美元，年 FCF 超 13 億美元且回購註銷 >10% 股本。",
-        keyFailureRisks: "Non-GAAP 毛利率跌破 43.5%；軟體與服務佔比跌破 12% 且遞延收入連續兩季環比下滑。",
-        falsificationTriggers: "Non-GAAP 毛利率連續兩季跌破 43.5%，或日收盤價跌破 $135.00 則強制止損出場。"
-      },
-      INTC: {
-        ticker: "INTC",
-        name: "Intel Corporation",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "rerating",
-        categoryLabel: "⚖️ 晶圓製造生死轉型",
-        researchPriority: "WATCH (極端左側觀察)",
-        targetPriceReentryMin: 19.5,
-        targetPriceReentryMax: 23.5,
-        marketExpectationScore: 1.5,
-        marketExpectationLabel: "極度悲觀絕望區 (1.5 / 5)",
-        marketExpectationWhy: "現價 ~$56（反彈後），市場先前在 $20 附近陷入絕望拋售，定價其晶圓代工巨虧與 PC/伺服器份額被 AMD/ARM 永久蠶食。",
-        businessPathAndMispricing: "最可能路徑：IDM 2.0 組織架構拆分，產品端自負盈虧，18A 製程力爭 2026 年底量產以贏得外部客戶。市場盲點：市場將 IFS 早期數十億折舊虧損視為永久失血，忽視美國晶片法案補貼、地緣國防專用晶圓溢價與實質資產重置價值底座。",
-        targets: [
-          { name: "Stress (18A研發失敗/代工徹底爛尾)", prob: 0.15, rev28: "$46.0B", multiple: "12x P/E", targetPrice: 10.27, why: "18A 良率未達標被迫延期，IFS 失去所有大客戶，毛利率跌破 35%" },
-          { name: "Bear (產品線被蠶食/代工僅供內部)", prob: 0.35, rev28: "$52.5B", multiple: "14x P/E", targetPrice: 18.80, why: "伺服器份額持續流失至 AMD，第三方代工收入不及預期，倍數壓制於 14x" },
-          { name: "Base (18A如期投產/現金流轉正)", prob: 0.35, rev28: "$64.0B", multiple: "18x P/E", targetPrice: 40.19, why: "18A 順利量產，外部代工年收破 30 億，全公司毛利率回升至 45%，EPS 達 $2.23" },
-          { name: "Bull (重回製程王座/獲超級客戶)", prob: 0.15, rev28: "$78.0B", multiple: "22x P/E", targetPrice: 75.82, why: "18A 奪得兩家以上全球前十晶片巨頭大單，代工外包營收超 50 億，EPS 達 $3.45" }
-        ],
-        multibaggerConditions: "第三方代工年營收突破 50 億美元，Non-GAAP 毛利率連續四季維持在 45%+，DCAI 季營收回升至 50 億美元。",
-        keyFailureRisks: "18A 製程量產延期超過一季；Non-GAAP 毛利率跌破 35%；2026 年中前未能獲得前十大 Fabless 客戶實質訂單。",
-        falsificationTriggers: "18A 量產重大延誤，或 Non-GAAP 毛利率連續兩季低於 35% 則立即認賠清倉。"
-      },
-      ARXS: {
-        ticker: "ARXS",
-        name: "ArriVent Biopharma",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "multibagger",
-        categoryLabel: "🚀 單資產驅動型非小細胞肺癌創新藥",
-        researchPriority: "HIGH (高賠率臨床催化)",
-        targetPriceReentryMin: 12.5,
-        targetPriceReentryMax: 14.5,
-        marketExpectationScore: 3.2,
-        marketExpectationLabel: "結構性認知錯配 (3.2 / 5)",
-        marketExpectationWhy: "現價 ~$49.90（受三期進展激勵大漲），市場先前將伏美替尼誤判為同質化 EGFR 抑制劑，未充分定價其 Exon 20 插入突變的高選擇性與腦轉移穿透優勢。",
-        businessPathAndMispricing: "最可能路徑：核心資產伏美替尼 (Furmonertinib) 三期 FURVENT 試驗成功並申報 NDA，成為非典型 EGFR 突變一線標準治療。市場盲點：忽視其小分子口服極低製造成本（毛利高達 80%-85%）與大型藥企（如 AZ 專利懸崖）潛在翻倍溢價收購期權。",
-        targets: [
-          { name: "Stress (三期數據不及預期/嚴重毒性)", prob: 0.15, rev28: "$35M", multiple: "2.5x P/S", targetPrice: 2.20, why: "三期 mPFS 未達統計學顯著或出現黑框肝毒性，股價跌至清算淨現金" },
-          { name: "Bear (強生Rybrevant皮下針搶佔一線)", prob: 0.30, rev28: "$90M", multiple: "3.5x P/S", targetPrice: 7.75, why: "強生雙抗皮下劑型奪得一線多數份額，伏美替尼淪為二線腦轉移用藥" },
-          { name: "Base (三期達標獲批/奪得25%份額)", prob: 0.40, rev28: "$185M", multiple: "5.0x P/S", targetPrice: 21.50, why: "三期顯著改善 mPFS，Exon 20 適應症獲 FDA 批准，年營收突破 1.8 億" },
-          { name: "Bull (PACC突變加速獲批/溢價併購)", prob: 0.15, rev28: "$320M", multiple: "7.5x P/S", targetPrice: 56.60, why: "PACC 突變獲突破性療法認證，峰值銷售額超 10 億美元，觸發跨國藥企全額併購" }
-        ],
-        multibaggerConditions: "FURVENT 三期 mPFS 超過 16.5 個月（對照組 7-9 個月），PACC 適應症獲突破性療法，峰值銷售超 10 億美元或獲 100%+ 溢價併購。",
-        keyFailureRisks: "三期臨床 p 值未達顯著；強生雙抗全面壓制；現金跑道不足 12 個月引發骨折增發。",
-        falsificationTriggers: "三期 FURVENT 主要終點未達統計學顯著，或三級以上間質性肺炎/肝損傷率超 8% 則立即 100% 清倉。"
-      },
-      TEM: {
-        ticker: "TEM",
-        name: "Tempus AI, Inc.",
-        currency: "USD",
-        researchDate: "2026-11-06",
-        category: "multibagger",
-        categoryLabel: "🚀 醫療多模態多層數據收稅平台",
-        researchPriority: "HIGH (回調吸納)",
-        targetPriceReentryMin: 32.0,
-        targetPriceReentryMax: 38.5,
-        marketExpectationScore: 3.8,
-        marketExpectationLabel: "高亢奮增長外推 (3.8 / 5)",
-        marketExpectationWhy: "現價 ~$76.05，市場受生成式 AI 醫療狂熱推動，估值給予高倍數溢價，要求 Data & AI 業務以 40%+ 爆發增長，容錯空間窄。",
-        businessPathAndMispricing: "最可能路徑：剃刀與刀片模式——以重資產低毛利基因測序（剃刀）滲透醫院 EHR 系統，獲取多模態縱向臨床數據並清洗為高毛利 AI 演算法（刀片）向跨國藥企授權。市場盲點：低估其數據飛輪與專有臨床網絡效應，隨著軟體與數據佔比突破 45%，盈利槓桿將幾何級釋放。",
-        targets: [
-          { name: "Stress (監管收緊/藥企縮減預算)", prob: 0.15, rev28: "$1.05B", multiple: "2.0x EV/Sales", targetPrice: 11.35, why: "跨國藥企縮減研發數據授權，FDA 政策收緊，倍數壓縮至 2.0x" },
-          { name: "Bear (數據變現緩慢/持續燒錢)", prob: 0.25, rev28: "$1.25B", multiple: "3.5x EV/Sales", targetPrice: 23.64, why: "測序業務拖累利潤率，Data & AI 增速降至 18%，倍數回歸" },
-          { name: "Base (藥企授權穩健/FCF轉正)", prob: 0.45, rev28: "$1.48B", multiple: "5.5x EV/Sales", targetPrice: 44.00, why: "Data & AI 營收年增 28%，綜合毛利率達 48%，自由現金流轉正" },
-          { name: "Bull (演算法獲CMS專屬代碼/爆發)", prob: 0.15, rev28: "$1.85B", multiple: "9.0x EV/Sales", targetPrice: 90.00, why: "多個 AI 演算法獲 FDA 批准並取得 CMS 專屬醫保報銷代碼，TTM FCF 逾 1.5 億" }
-        ],
-        multibaggerConditions: "Data & AI 業務營收突破 8.5 億美元（佔比 >45%），TTM 自由現金流突破 +1.5 億美元，至少 3 個核心演算法獲 CMS 專屬報銷代碼。",
-        keyFailureRisks: "Data & AI 年增率連續兩季跌破 20%；綜合毛利率跌破 42%；NRR 跌破 105% 或藥企大單流失。",
-        falsificationTriggers: "Data & AI 業務年增速連續兩季跌破 20%，或綜合毛利率連續兩季低於 42% 則強制清倉止損。"
-      },
-      ADBE: { maxRating: "ACCUMULATE", reason: "雖具 18x P/E 低估值與強勁現金流，但 AI 生成工具對創作流程與定價權有直接挑戰，定位為逆向價值小倉而非強烈大買" },
-      EROC: { maxRating: "ACCUMULATE", reason: "天然氣壓縮服務具高股息現金流，但屬傳統能源中游重資產，列為收益型適度配置而非倍升重倉" },
-      SMR: { maxRating: "AVOID_SELL", reason: "首座商用模組化核反應堆最快 2030 年後落地，持續融資稀釋股東權益，缺乏實質自由現金流" },
+      SMR: { maxRating: "AVOID_SELL", reason: "首座商用堆最快 2030 年後落地，持續融資稀釋股東權益，缺乏實質自由現金流" },
       IONQ: { maxRating: "AVOID_SELL", reason: "量子計算商業化變現遙遙無期，研發支出燒錢率極高，股權大幅稀釋" },
       QMCO: { maxRating: "AVOID_SELL", reason: "傳統磁帶存儲結構性衰退，高負債財務槓桿且缺乏持續正向自由現金流" },
-      KEEL: { maxRating: "WAIT_PRICE", reason: "微型市值 ($1.87) 算力基建轉型期，流動性與並網資本開支風險極高，僅列戰術觀察" },
-      UUUU: { maxRating: "WAIT_PRICE", reason: "$88.9/磅僅為單季實現均價非未來鎖定價，重稀土商業化要待 2028 年，不當下檔鎖死" },
-      KTOS: { maxRating: "WAIT_PRICE", reason: "實際在手訂單 $26.5 億非 $38.5 億，渦噴引擎備料不等於量產合約，先看實際交付與現金流" },
+      VST: { maxRating: "WAIT_PRICE", reason: "207MW 數據中心 PPA 僅佔 50GW 總裝機 0.41%，EBITDA 暴增來自德州熱浪電價與 PJM 拍賣，非純 AI 標的，暫不獨立建倉" },
+      TEAM: { maxRating: "WAIT_PRICE", reason: "雲業務下季指引放緩至 26%，AI 用量收費能否抵消席位壓力仍待驗證，等待估值進一步吸引再考慮小注" },
       BE: { maxRating: "WAIT_PRICE", reason: "雖簽署 900MW 數據中心協議，但現價 $173+ 已大幅反映預期，需等待交付毛利率與現金流驗證" },
       IREN: { maxRating: "WAIT_PRICE", reason: "AI Cloud 收入雖急增，但同期仍有重大資本開支與融資稀釋需求，等待自由現金流轉正" },
+      UUUU: { maxRating: "WAIT_PRICE", reason: "$88.9/磅僅為單季實現均價非未來鎖定價，重稀土商業化要待 2028 年，不當下檔鎖死" },
+      KTOS: { maxRating: "WAIT_PRICE", reason: "實際在手訂單 $26.5 億非 $38.5 億，渦噴引擎備料不等於量產合約，先看實際交付與現金流" },
       MELI: { maxRating: "WAIT_PRICE", reason: "信貸組合擴張伴隨逾期壓力，Q3 營益率降至 6.3%，非防禦性極強，等待回調至 $1,450 以下" }
     };
 
-    // Unified 4-Gate Institutional Evaluation Function
+    // Unified 4-Gate Institutional Decision Algorithm
     function evaluateStockSignal(ticker) {
       const db = RESEARCH_DATABASE[ticker];
       const q = currentQuotes[ticker];
       const price = q ? q.price : 100.0;
       if (!db) {
-        return { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "數據載入中", buyBelow: price * 0.85, targetBase: price, expTarget: price, bearTarget: price * 0.7, stopLoss: price * 0.7, mosBase: 0, mosExp: 0, score: 3.0, catalyst: "-", warning: "-" };
+        return { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "載入中", buyBelow: price, expTarget: price, bearTarget: price * 0.7, stopLoss: price * 0.7, mosExp: 0, mosBase: 0, score: 3.0, assetClass: getAssetClass(ticker, 'quality') };
       }
 
-      // 1. Extract 4-Scenario Targets & Calculate Probability-Weighted Expected Value (ExpTarget)
-      let stressTarget = price * 0.5, bearTarget = price * 0.75, baseTarget = price * 1.15, bullTarget = price * 1.5;
+      const assetClass = getAssetClass(ticker, db.category);
+
+      // 1. Calculate Probability-Weighted Expected Target (ExpTarget)
+      let stress = price * 0.5, bear = price * 0.75, base = price * 1.15, bull = price * 1.5;
       let expTarget = 0;
       if (db.targets && db.targets.length > 0) {
         db.targets.forEach(t => {
           const prob = typeof t.prob === "number" ? t.prob : 0.25;
           expTarget += prob * t.targetPrice;
-          if (t.name.includes("Stress")) stressTarget = t.targetPrice;
-          else if (t.name.includes("Bear")) bearTarget = t.targetPrice;
-          else if (t.name.includes("Base")) baseTarget = t.targetPrice;
-          else if (t.name.includes("Bull")) bullTarget = t.targetPrice;
+          if (t.name.includes("Stress")) stress = t.targetPrice;
+          else if (t.name.includes("Bear")) bear = t.targetPrice;
+          else if (t.name.includes("Base")) base = t.targetPrice;
+          else if (t.name.includes("Bull")) bull = t.targetPrice;
         });
       } else {
-        expTarget = baseTarget;
+        expTarget = base;
       }
 
-      // 2. Establish Strict Buy-Below Ceiling (targetPriceReentryMax) & Review Stop-Loss
-      const buyBelow = db.targetPriceReentryMax || Number((baseTarget * 0.78).toFixed(2));
-      const reentryMin = db.targetPriceReentryMin || Number((bearTarget * 0.95).toFixed(2));
-      const stopLoss = Number(Math.min(bearTarget * 0.92, reentryMin * 0.90).toFixed(2));
+      // 2. Safe Entry Max & Stop Loss Lines
+      const buyBelow = db.targetPriceReentryMax || Number((base * 0.78).toFixed(2));
+      const reentryMin = db.targetPriceReentryMin || Number((bear * 0.95).toFixed(2));
+      const stopLoss = Number(Math.min(bear * 0.92, reentryMin * 0.90).toFixed(2));
 
-      // 3. Calculate Margin of Safety against Probability-Weighted Expected Value (mosExp) and Base (mosBase)
+      // 3. Margin of Safety Metrics
       const mosExp = price > 0 ? ((expTarget - price) / price) * 100 : 0;
-      const mosBase = price > 0 ? ((baseTarget - price) / price) * 100 : 0;
+      const mosBase = price > 0 ? ((base - price) / price) * 100 : 0;
       const score = db.marketExpectationScore || 3.5;
 
-      // 4. Apply 4-Gate Institutional Classification
+      // 4. Apply Standardized 4 Gates Across All 85 Stocks
       let rating = "WAIT_PRICE";
       let label = "🟡 觀望待價";
-      let action = `等待回調至買入上限 $${buyBelow.toFixed(2)} 以下`;
+      let action = `基本面良好，現價 ($${price.toFixed(2)}) 高於安全上限 ($${buyBelow.toFixed(2)})，耐心等待回調`;
 
       const veto = FUNDAMENTAL_VETOS[ticker];
 
@@ -5394,30 +5261,24 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         rating = "AVOID_SELL";
         label = "🔴 避開/減持";
         action = veto.reason;
-      } else if (price > buyBelow * 1.20 || mosExp < 0) {
+      } else if (price > buyBelow * 1.15 || mosExp < 0) {
         rating = "AVOID_SELL";
         label = "🔴 估值透支/減持";
-        action = `現價 $${price.toFixed(2)} 嚴重透支期望值 ($${expTarget.toFixed(2)}) 或超買入上限逾 20%，嚴禁追高`;
-      } else if (price <= buyBelow && price <= bearTarget * 1.02 && mosExp >= 50 && score <= 3.2) {
+        action = `現價 $${price.toFixed(2)} 超買入上限逾 15% 或期望回報為負 (${mosExp.toFixed(1)}%)，嚴禁追高`;
+      } else if (price <= buyBelow && price <= bear * 1.03 && mosExp >= 40 && score <= 3.2) {
         rating = "STRONG_BUY";
         label = "🟢 強烈買入";
-        action = `四重門檻全數通過！現價跌穿熊市支撐 ($${bearTarget.toFixed(2)}) 且期望安全邊際達 +${mosExp.toFixed(1)}%，首選建立核心倉位`;
-      } else if (price <= buyBelow * 1.02 && (mosExp >= 15 || mosBase >= 8.5) && score <= 4.2) {
+        action = `四重鐵門全過！現價跌破熊市支撐 ($${bear.toFixed(2)}) 且期望回報達 +${mosExp.toFixed(1)}%，建倉首選`;
+      } else if (price <= buyBelow * 1.02 && (mosExp >= 15 || mosBase >= 10) && score <= 4.2) {
         rating = "ACCUMULATE";
         label = "🔵 分批吸納";
-        action = `現價處於安全買入上限 ($${buyBelow.toFixed(2)}) 內，期望回報空間 +${mosExp.toFixed(1)}%，建議分 2-3 批逢低配置`;
+        action = `現價處於安全買入區間內，期望回報 +${mosExp.toFixed(1)}%，建議分批逢低吸納（上限 ${assetClass.maxPortfolioWeight}）`;
       } else {
         rating = "WAIT_PRICE";
         label = "🟡 觀望待價";
-        action = `基本面優質但現價 ($${price.toFixed(2)}) 高於買入上限 ($${buyBelow.toFixed(2)})，耐心等待回調好價`;
+        action = `現價高於建議上限 $${buyBelow.toFixed(2)}，耐心等待更好擊球點`;
       }
 
-      // Enforce Veto Caps (ACCUMULATE or WAIT_PRICE)
-      if (veto && veto.maxRating === "ACCUMULATE" && rating === "STRONG_BUY") {
-        rating = "ACCUMULATE";
-        label = "🔵 分批吸納";
-        action = veto.reason;
-      }
       if (veto && veto.maxRating === "WAIT_PRICE" && (rating === "STRONG_BUY" || rating === "ACCUMULATE")) {
         rating = "WAIT_PRICE";
         label = "🟡 觀望待價";
@@ -5430,13 +5291,14 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         action,
         buyBelow,
         reentryMin,
-        targetBase: baseTarget,
+        targetBase: base,
         expTarget,
-        bearTarget,
+        bearTarget: bear,
         stopLoss,
         mosBase,
         mosExp,
         score,
+        assetClass,
         catalyst: db.businessPathAndMispricing || db.multibaggerConditions || "核心業務護城河穩固",
         warning: (veto ? veto.reason : null) || db.keyFailureRisks || db.falsificationTriggers || "留意宏觀週期與估值壓縮風險"
       };
@@ -5529,9 +5391,10 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
           <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800/90 rounded-2xl p-4 shadow-sm hover:border-slate-700 transition">
             <div class="flex items-start justify-between gap-2 border-b border-slate-800/80 pb-3">
               <div>
-                <div class="flex items-center gap-2 flex-wrap">
+                <div class="flex items-center gap-1.5 flex-wrap">
                   <span class="text-base font-bold font-mono text-white">${item.ticker}</span>
                   <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${ratingBadgeColor}">${item.sig.label}</span>
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded border ${item.sig.assetClass.badge}">${item.sig.assetClass.label}</span>
                   <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">情緒 ${item.sig.score}/5.0</span>
                 </div>
                 <p class="text-xs text-slate-400 mt-0.5 line-clamp-1">${item.name}</p>
@@ -5572,7 +5435,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
             </div>
 
             <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between">
-              <span class="text-[10px] text-slate-500 font-mono">Base: $${item.sig.targetBase.toFixed(2)} | 嚴格四重門檻審核</span>
+              <span class="text-[10px] text-slate-500 font-mono">上限配置建議: ${item.sig.assetClass.maxPortfolioWeight}</span>
               <button class="size-trade-btn px-3 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-xs transition active:scale-95 flex items-center gap-1 shadow" data-ticker="${item.ticker}" data-price="${item.price}" data-stop="${item.sig.stopLoss}">
                 <span>🛡️ 帶入風控試算</span>
               </button>
@@ -5592,8 +5455,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         });
       });
     }
-
-    // ==========================================
+// ==========================================
     // MODULE: NEWS & MACRO PROPAGATION RADAR
     // ==========================================
     const NEWS_DATABASE = [
