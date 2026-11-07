@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IROS Alpha V4.3 · 79檔機構級全景決策 · 147檔實時報價矩陣</title>
+  <title>IROS Alpha V4.4 · 79檔機構級全景決策 · 147檔實時報價矩陣</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -67,7 +67,7 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-bold tracking-tight text-white">IROS Alpha</h1>
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V4.3 雙Sheet實時直通 (79檔深度研究決策 · 147檔實時報價)</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">V4.4 嚴格四重風控直通 (79檔深度研究決策 · 147檔實時報價)</span>
           </div>
           <p class="text-[10px] text-slate-400 flex items-center gap-1.5">
             <span id="syncDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -1453,28 +1453,28 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
               <span class="text-[10px] font-bold text-emerald-400 uppercase">🟢 強烈買入</span>
               <p class="text-xs text-slate-400 mt-0.5">大注超額配置</p>
             </div>
-            <span id="cntStrongBuy" class="text-lg font-bold font-mono text-emerald-400">9</span>
+            <span id="cntStrongBuy" class="text-lg font-bold font-mono text-emerald-400">3</span>
           </div>
           <div class="bg-slate-950/70 border border-blue-500/30 rounded-xl p-2.5 flex items-center justify-between">
             <div>
               <span class="text-[10px] font-bold text-blue-400 uppercase">🔵 分批吸納</span>
               <p class="text-xs text-slate-400 mt-0.5">小注分批逢低</p>
             </div>
-            <span id="cntAccumulate" class="text-lg font-bold font-mono text-blue-400">18</span>
+            <span id="cntAccumulate" class="text-lg font-bold font-mono text-blue-400">23</span>
           </div>
           <div class="bg-slate-950/70 border border-amber-500/30 rounded-xl p-2.5 flex items-center justify-between">
             <div>
               <span class="text-[10px] font-bold text-amber-400 uppercase">🟡 觀望待價</span>
               <p class="text-xs text-slate-400 mt-0.5">等待回調或驗證</p>
             </div>
-            <span id="cntWaitPrice" class="text-lg font-bold font-mono text-amber-400">32</span>
+            <span id="cntWaitPrice" class="text-lg font-bold font-mono text-amber-400">21</span>
           </div>
           <div class="bg-slate-950/70 border border-rose-500/30 rounded-xl p-2.5 flex items-center justify-between">
             <div>
               <span class="text-[10px] font-bold text-rose-400 uppercase">🔴 避開/減持</span>
               <p class="text-xs text-slate-400 mt-0.5">失血/泡沫出清</p>
             </div>
-            <span id="cntAvoidSell" class="text-lg font-bold font-mono text-rose-400">12</span>
+            <span id="cntAvoidSell" class="text-lg font-bold font-mono text-rose-400">32</span>
           </div>
         </div>
       </div>
@@ -2059,19 +2059,19 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         category: "quality",
         categoryLabel: "🛡️ AI算力絕對霸主",
         researchPriority: "HIGH (優先追蹤)",
-        targetPriceReentryMin: 85.0,
-        targetPriceReentryMax: 105.0,
+        targetPriceReentryMin: 165.0,
+        targetPriceReentryMax: 188.0,
         
-        marketExpectationScore: 4.2,
+        marketExpectationScore: 3.8,
         marketExpectationLabel: "高度亢奮 (4.2 / 5)",
         marketExpectationWhy: "現價約 $200-$206，遠期 P/E 達 30x-35x，市場將其視為高 ARR 軟體股，假設 AI 資本支出至 2029 年無縫線性增長，容錯率極低。",
         businessPathAndMispricing: "最可能路徑：實體 AI/機器人 (Jetson Thor) 與 NIM 企業推論微服務崛起，Spectrum-X 網絡攻佔 20% 交換機市場。市場盲點：忽視為新興雲端商 (CoreWeave 等) 提供高達 25% GPU 殘值擔保的影子銀行信用風險；低估雲端巨頭延長折舊年限所製造的『折舊牆』將在 2026-2027 年倒塌引發資本開支急凍；以及實體電網與高壓變壓器交期長達 4-5 年造成的『有卡無電』部署真空期。",
         
         targets: [
           { name: "Stress (殘值違約/雙殺)", prob: 0.10, rev28: "$150.0B", multiple: "15x", targetPrice: 32.55, why: "新興雲端商租金跌破成本線連環違約引發擔保代償，巨頭折舊牆倒塌凍結採購" },
-          { name: "Bear (週期消化/ASIC侵蝕)", prob: 0.25, rev28: "$250.0B", multiple: "20x", targetPrice: 82.80, why: "Triton/PyTorch 使推論繞過 CUDA，自研 ASIC 奪走 30% 推論市佔，估值回歸 20x" },
-          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$320.0B", multiple: "30x", targetPrice: 179.10, why: "Vera Rubin 順利放量，Spectrum-X 網絡與主權 AI 訂單穩健，維持 30x 溢價" },
-          { name: "Bull (實體AI/NIM全面爆發)", prob: 0.15, rev28: "$450.0B", multiple: "35x", targetPrice: 326.55, why: "實體 AI 與機器人爆發，NIM 軟體 ARR 突破 250 億，真正轉型 PaaS 巨頭" }
+          { name: "Bear (週期消化/ASIC侵蝕)", prob: 0.25, rev28: "$250.0B", multiple: "20x", targetPrice: 140.00, why: "Triton/PyTorch 使推論繞過 CUDA，自研 ASIC 奪走 30% 推論市佔，估值回歸 20x" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$320.0B", multiple: "30x", targetPrice: 221.12, why: "Vera Rubin 順利放量，Spectrum-X 網絡與主權 AI 訂單穩健，維持 30x 溢價" },
+          { name: "Bull (實體AI/NIM全面爆發)", prob: 0.15, rev28: "$450.0B", multiple: "35x", targetPrice: 285.00, why: "實體 AI 與機器人爆發，NIM 軟體 ARR 突破 250 億，真正轉型 PaaS 巨頭" }
         ],
         multibaggerConditions: "股價達 $280+ 需要：NIM 軟體 ARR 突破 250 億美元，機器人部門營收增長至 350 億，Spectrum-X 擊敗 UEC 網絡營收破 600 億，且回購實質縮減股本至 220 億股以下。",
         keyFailureRisks: "新興雲端商 GPU 殘值擔保代償違約；四大客戶 (佔 61% 營收) 加速自研 ASIC；實體電網併網瓶頸阻礙晶片交付。",
@@ -2140,10 +2140,10 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         category: "quality",
         categoryLabel: "🛡️ ASIC/網絡雙龍頭",
         researchPriority: "HIGH (優先追蹤)",
-        targetPriceReentryMin: 310.0,
-        targetPriceReentryMax: 330.0,
+        targetPriceReentryMin: 275.0,
+        targetPriceReentryMax: 298.0,
         
-        marketExpectationScore: 4.5,
+        marketExpectationScore: 3.9,
         marketExpectationLabel: "高度透支 (4.5 / 5)",
         marketExpectationWhy: "現價約 $325-$350，隱含遠期 P/E 達 30x，市場假設 AI 營收在 2028 年翻倍至 2,300 億美元且 Tomahawk 完全壟斷，未反映非 AI 業務停滯。",
         businessPathAndMispricing: "最可能路徑：推論端客製化 ASIC (Google TPU/Meta MTIA) 放量，Tomahawk 6 帶領超乙太網聯盟 (UEC) 逆襲 InfiniBand。市場盲點：忽視為核心客戶提供高達 290 億美元 AI 機櫃租賃擔保的巨大信用風險；低估 VMware 強行漲價 1500% 導致 2029 年高達 55% 客戶逃離的解約雪崩風險；以及硬體佔比提升對毛利率 (跌破 75%) 的結構性稀釋。",
@@ -2151,7 +2151,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         targets: [
           { name: "Stress (客戶違約/雙殺)", prob: 0.10, rev28: "$130.0B", multiple: "15x", targetPrice: 195.00, why: "290 億擔保遭遇客戶違約，VMware 解約潮爆發，估值殺回 15x" },
           { name: "Bear (AI支出放緩)", prob: 0.20, rev28: "$155.5B", multiple: "18x", targetPrice: 280.00, why: "AI 成長退坡，非 AI 部門持續萎縮，估值回歸中樞 18x" },
-          { name: "Base (合理基本盤達標)", prob: 0.55, rev28: "$242.2B", multiple: "25x", targetPrice: 605.00, why: "TPU 與客製晶片放量，UEC 乙太網市佔達 50%，FCF 突破 450 億" },
+          { name: "Base (合理基本盤達標)", prob: 0.55, rev28: "$242.2B", multiple: "25x", targetPrice: 319.45, why: "TPU 與客製晶片放量，UEC 乙太網市佔達 50%，FCF 突破 450 億" },
           { name: "Bull (超預期全面爆發)", prob: 0.15, rev28: "$363.8B", multiple: "28x", targetPrice: 1018.00, why: "AI 營收破 2300 億，CPO 光學提前落地，UEC 徹底擊潰 InfiniBand" }
         ],
         multibaggerConditions: "股價達 $700+ 需要：AI 半導體營收突破 $1,800 億至 $2,300 億，UEC 網絡市佔率突破 60%，年度 FCF 突破 450 億美元且維持 40%+ 轉換率，並於 2027 年前實現 CPO 共同封裝光學商業化。",
@@ -2275,10 +2275,10 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         category: "quality",
         categoryLabel: "🛡️ 龍頭定海神針",
         researchPriority: "HIGH (核心資產)",
-        targetPriceReentryMin: 315.0,
-        targetPriceReentryMax: 330.0,
+        targetPriceReentryMin: 350.0,
+        targetPriceReentryMax: 380.0,
         
-        marketExpectationScore: 4.0,
+        marketExpectationScore: 3.8,
         marketExpectationLabel: "高度亢奮 (4.0 / 5)",
         marketExpectationWhy: "現價 ~$395-$405，前瞻 P/E 約 23x，市場假設 AI 資本支出超級週期無縫延續至 2028 年且維持 100% 先進 AI 市佔率，容錯率極低。",
         businessPathAndMispricing: "最可能路徑：N2/A16 與 CoWoS 雙輪驅動，ASIC 崛起完美對沖 Nvidia 單一集中度。市場盲點：只見晶圓定價權，忽視亞利桑那海外廠成本高 90%、2026 年資本支出飆至 $520B-$640B 嚴重擠壓短期自由現金流，以及台灣碳費與綠電約束。",
@@ -2286,7 +2286,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         targets: [
           { name: "Stress (泡沫破裂/地緣)", prob: 0.10, rev28: "$115.0B", multiple: "14x", targetPrice: 154.00, why: "AI 資本支出泡沫破裂，地緣關稅/封鎖，產能利用率暴跌至 70% 殺估值" },
           { name: "Bear (週期均值回歸)", prob: 0.25, rev28: "$145.0B", multiple: "18x", targetPrice: 288.00, why: "AI 伺服器轉入平穩替換期，海外廠折舊侵蝕毛利，估值回歸 18x" },
-          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$185.0B", multiple: "22x", targetPrice: 484.00, why: "A16 SPR 如期放量，CoWoS 月產 26 萬片並提價 15%，維持 22x 溢價" },
+          { name: "Base (合理基本盤達標)", prob: 0.50, rev28: "$185.0B", multiple: "22x", targetPrice: 429.15, why: "A16 SPR 如期放量，CoWoS 月產 26 萬片並提價 15%，維持 22x 溢價" },
           { name: "Bull (超預期全面獨佔)", prob: 0.15, rev28: "$220.0B", multiple: "26x", targetPrice: 728.00, why: "Intel IFS 14A 潰敗，A14 提前量產，矽光子與 SoIC 囊括 100% 先進代工" }
         ],
         multibaggerConditions: "股價突破 $800+ (翻倍) 需要：先進封裝營收佔比破 15% 且毛利率 >65%，N2/A16 晶圓穩於 $30,000+，在 $60B CapEx 下年度 FCF 突破 300 億美元，且 Intel IFS 代工全面潰敗。",
@@ -3767,75 +3767,75 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
 
     // --- 2. CURRENT IN-MEMORY QUOTES (Initial state: 10:27 EST Live Snapshot) ---
     let currentQuotes = {
-      ORCL: { symbol: "NYSE:ORCL", price: 123.73, prevClose: 126.20, change: "-1.96%", currency: "USD", time: "2026-11-04 16:03:40 EST" },
-      APP: { symbol: "NASDAQ:APP", price: 330.00, prevClose: 271.75, change: "+21.43%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      QCOM: { symbol: "NASDAQ:QCOM", price: 173.19, prevClose: 164.43, change: "+5.33%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      CRM: { symbol: "NYSE:CRM", price: 227.11, prevClose: 222.18, change: "+2.22%", currency: "USD", time: "2026-11-04 16:00:04 EST" },
-      TEAM: { symbol: "NASDAQ:TEAM", price: 189.88, prevClose: 191.05, change: "-0.61%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      OUST: { symbol: "NASDAQ:OUST", price: 33.54, prevClose: 28.98, change: "+15.73%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      NOW: { symbol: "NASDAQ:NOW", price: 108.81, prevClose: 109.17, change: "-0.33%", currency: "USD", time: "2026-11-04 16:00:06 EST" },
-      GOOG: { symbol: "NASDAQ:GOOG", price: 287.30, prevClose: 278.27, change: "+3.24%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      OSCR: { symbol: "NYSE:OSCR", price: 32.40, prevClose: 33.10, change: "-2.11%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      NVDA: { symbol: "NASDAQ:NVDA", price: 200.13, prevClose: 206.69, change: "-3.17%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      ACN: { symbol: "NYSE:ACN", price: 264.27, prevClose: 254.56, change: "+3.81%", currency: "USD", time: "2026-11-04 16:00:06 EST" },
-      SNDK: { symbol: "NASDAQ:SNDK", price: 129.67, prevClose: 140.81, change: "-7.91%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      AVGO: { symbol: "NASDAQ:AVGO", price: 325.48, prevClose: 332.13, change: "-2.00%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      BE: { symbol: "NYSE:BE", price: 200.40, prevClose: 214.01, change: "-6.36%", currency: "USD", time: "2026-11-04 16:00:05 EST" },
-      VRT: { symbol: "NYSE:VRT", price: 205.55, prevClose: 235.97, change: "-12.89%", currency: "USD", time: "2026-11-04 16:00:04 EST" },
-      AMD: { symbol: "NASDAQ:AMD", price: 488.78, prevClose: 483.90, change: "+1.01%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      SKHY: { symbol: "NASDAQ:SKHY", price: 143.07, prevClose: 150.79, change: "-5.12%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      TSM: { symbol: "NYSE:TSM", price: 395.75, prevClose: 404.76, change: "-2.23%", currency: "USD", time: "2026-11-04 16:00:03 EST" },
-      CRDO: { symbol: "NASDAQ:CRDO", price: 116.61, prevClose: 150.91, change: "-9.55%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      ASML: { symbol: "NASDAQ:ASML", price: 1496.30, prevClose: 1552.14, change: "-3.60%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
-      ANET: { symbol: "NYSE:ANET", price: 186.11, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "2026-11-04 10:27:06 EST" },
-      BNTX: { symbol: "NASDAQ:BNTX", price: 88.91, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "2026-11-04 10:24:46 EST" },
-      BESI: { symbol: "AMS:BESI", price: 152.65, prevClose: 156.10, change: "-2.21%", currency: "EUR", time: "2026-11-04 16:10:06 UTC" },
-      MXL: { symbol: "NASDAQ:MXL", price: 56.85, prevClose: 59.20, change: "-3.97%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      PENG: { symbol: "NASDAQ:PENG", price: 50.15, prevClose: 48.90, change: "+2.56%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      AEHR: { symbol: "NASDAQ:AEHR", price: 61.20, prevClose: 58.75, change: "+4.17%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
-      ALAB: { symbol: "NASDAQ:ALAB", price: 286.00, prevClose: 292.50, change: "-2.22%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      COHU: { symbol: "NASDAQ:COHU", price: 48.20, prevClose: 47.10, change: "+2.34%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      ASX: { symbol: "NYSE:ASX", price: 40.00, prevClose: 41.20, change: "-2.91%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      SMTC: { symbol: "NASDAQ:SMTC", price: 127.00, prevClose: 124.50, change: "+2.01%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      QMCO: { symbol: "NASDAQ:QMCO", price: 17.50, prevClose: 17.80, change: "-1.69%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      NBIS: { symbol: "NASDAQ:NBIS", price: 158.00, prevClose: 164.20, change: "-3.78%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      AMZN: { symbol: "NASDAQ:AMZN", price: 258.50, prevClose: 262.10, change: "-1.37%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      META: { symbol: "NASDAQ:META", price: 685.00, prevClose: 695.40, change: "-1.50%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      MRVL: { symbol: "NASDAQ:MRVL", price: 240.00, prevClose: 248.50, change: "-3.42%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      EROC: { symbol: "NYSE:EROC", price: 7.90, prevClose: 8.30, change: "-4.82%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      GEV: { symbol: "NASDAQ:GEV", price: 875.00, prevClose: 890.00, change: "-1.69%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      DELL: { symbol: "NYSE:DELL", price: 316.91, prevClose: 372.36, change: "-14.89%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      AAOI: { symbol: "NASDAQ:AAOI", price: 64.50, prevClose: 68.20, change: "-5.43%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      ORCL: { symbol: "NYSE:ORCL", price: 116.10, prevClose: 126.20, change: "-1.96%", currency: "USD", time: "2026-11-04 16:03:40 EST" },
+      APP: { symbol: "NASDAQ:APP", price: 391.22, prevClose: 271.75, change: "+21.43%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      QCOM: { symbol: "NASDAQ:QCOM", price: 165.41, prevClose: 164.43, change: "+5.33%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      CRM: { symbol: "NYSE:CRM", price: 213.65, prevClose: 222.18, change: "+2.22%", currency: "USD", time: "2026-11-04 16:00:04 EST" },
+      TEAM: { symbol: "NASDAQ:TEAM", price: 153.68, prevClose: 191.05, change: "-0.61%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      OUST: { symbol: "NASDAQ:OUST", price: 34.80, prevClose: 28.98, change: "+15.73%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      NOW: { symbol: "NASDAQ:NOW", price: 101.97, prevClose: 109.17, change: "-0.33%", currency: "USD", time: "2026-11-04 16:00:06 EST" },
+      GOOG: { symbol: "NASDAQ:GOOG", price: 283.93, prevClose: 278.27, change: "+3.24%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      OSCR: { symbol: "NYSE:OSCR", price: 30.65, prevClose: 33.10, change: "-2.11%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      NVDA: { symbol: "NASDAQ:NVDA", price: 186.64, prevClose: 206.69, change: "-3.17%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      ACN: { symbol: "NYSE:ACN", price: 260.50, prevClose: 254.56, change: "+3.81%", currency: "USD", time: "2026-11-04 16:00:06 EST" },
+      SNDK: { symbol: "NASDAQ:SNDK", price: 835.06, prevClose: 140.81, change: "-7.91%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      AVGO: { symbol: "NASDAQ:AVGO", price: 293.69, prevClose: 332.13, change: "-2.00%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      BE: { symbol: "NYSE:BE", price: 173.24, prevClose: 214.01, change: "-6.36%", currency: "USD", time: "2026-11-04 16:00:05 EST" },
+      VRT: { symbol: "NYSE:VRT", price: 182.86, prevClose: 235.97, change: "-12.89%", currency: "USD", time: "2026-11-04 16:00:04 EST" },
+      AMD: { symbol: "NASDAQ:AMD", price: 449.04, prevClose: 483.90, change: "+1.01%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      SKHY: { symbol: "NASDAQ:SKHY", price: 127.34, prevClose: 150.79, change: "-5.12%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      TSM: { symbol: "NYSE:TSM", price: 375.44, prevClose: 404.76, change: "-2.23%", currency: "USD", time: "2026-11-04 16:00:03 EST" },
+      CRDO: { symbol: "NASDAQ:CRDO", price: 120.51, prevClose: 150.91, change: "-9.55%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      ASML: { symbol: "NASDAQ:ASML", price: 1424.75, prevClose: 1552.14, change: "-3.60%", currency: "USD", time: "2026-11-04 16:00:01 EST" },
+      ANET: { symbol: "NYSE:ANET", price: 268.75, prevClose: 169.91, change: "+9.53%", currency: "USD", time: "2026-11-04 10:27:06 EST" },
+      BNTX: { symbol: "NASDAQ:BNTX", price: 87.51, prevClose: 86.92, change: "+2.29%", currency: "USD", time: "2026-11-04 10:24:46 EST" },
+      BESI: { symbol: "AMS:BESI", price: 143.40, prevClose: 156.10, change: "-2.21%", currency: "EUR", time: "2026-11-04 16:10:06 UTC" },
+      MXL: { symbol: "NASDAQ:MXL", price: 49.18, prevClose: 59.20, change: "-3.97%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      PENG: { symbol: "NASDAQ:PENG", price: 41.83, prevClose: 48.90, change: "+2.56%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      AEHR: { symbol: "NASDAQ:AEHR", price: 53.57, prevClose: 58.75, change: "+4.17%", currency: "USD", time: "2026-11-04 16:00:00 EST" },
+      ALAB: { symbol: "NASDAQ:ALAB", price: 190.71, prevClose: 292.50, change: "-2.22%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      COHU: { symbol: "NASDAQ:COHU", price: 38.49, prevClose: 47.10, change: "+2.34%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      ASX: { symbol: "NYSE:ASX", price: 31.63, prevClose: 41.20, change: "-2.91%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      SMTC: { symbol: "NASDAQ:SMTC", price: 103.21, prevClose: 124.50, change: "+2.01%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      QMCO: { symbol: "NASDAQ:QMCO", price: 14.47, prevClose: 17.80, change: "-1.69%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      NBIS: { symbol: "NASDAQ:NBIS", price: 129.49, prevClose: 164.20, change: "-3.78%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      AMZN: { symbol: "NASDAQ:AMZN", price: 259.30, prevClose: 262.10, change: "-1.37%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      META: { symbol: "NASDAQ:META", price: 610.15, prevClose: 695.40, change: "-1.50%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MRVL: { symbol: "NASDAQ:MRVL", price: 141.20, prevClose: 248.50, change: "-3.42%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      EROC: { symbol: "NYSE:EROC", price: 7.12, prevClose: 8.30, change: "-4.82%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      GEV: { symbol: "NASDAQ:GEV", price: 774.11, prevClose: 890.00, change: "-1.69%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      DELL: { symbol: "NYSE:DELL", price: 328.53, prevClose: 372.36, change: "-14.89%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      AAOI: { symbol: "NASDAQ:AAOI", price: 50.13, prevClose: 68.20, change: "-5.43%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
       ARM: { symbol: "NASDAQ:ARM", price: 174.62, prevClose: 208.50, change: "-4.08%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      AIP: { symbol: "NASDAQ:AIP", price: 7.90, prevClose: 8.15, change: "-3.07%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      MELI: { symbol: "NASDAQ:MELI", price: 1523.50, prevClose: 1550.00, change: "-1.71%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      MSFT: { symbol: "NASDAQ:MSFT", price: 542.45, prevClose: 548.20, change: "-1.05%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      GTLB: { symbol: "NASDAQ:GTLB", price: 49.95, prevClose: 51.10, change: "-2.25%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      MU: { symbol: "NASDAQ:MU", price: 687.88, prevClose: 715.00, change: "-3.79%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      ZS: { symbol: "NASDAQ:ZS", price: 208.06, prevClose: 214.50, change: "-3.00%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      MKSI: { symbol: "NASDAQ:MKSI", price: 183.66, prevClose: 188.20, change: "-2.41%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      LLY: { symbol: "NYSE:LLY", price: 1388.54, prevClose: 1420.00, change: "-2.22%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      NTNX: { symbol: "NASDAQ:NTNX", price: 59.28, prevClose: 61.50, change: "-3.61%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      U: { symbol: "NYSE:U", price: 48.18, prevClose: 49.50, change: "-2.67%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      VEEV: { symbol: "NYSE:VEEV", price: 309.34, prevClose: 315.00, change: "-1.80%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      NTAP: { symbol: "NASDAQ:NTAP", price: 172.40, prevClose: 176.80, change: "-2.49%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      COHR: { symbol: "NASDAQ:COHR", price: 198.50, prevClose: 205.00, change: "-3.17%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      SNOW: { symbol: "NASDAQ:SNOW", price: 265.00, prevClose: 275.00, change: "-3.64%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      CRWD: { symbol: "NASDAQ:CRWD", price: 257.00, prevClose: 265.50, change: "-3.20%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
-      IREN: { symbol: "NASDAQ:IREN", price: 41.50, prevClose: 43.20, change: "-3.94%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      KEEL: { symbol: "NASDAQ:KEEL", price: 1.95, prevClose: 2.15, change: "-9.30%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      SMR: { symbol: "NYSE:SMR", price: 4.85, prevClose: 5.10, change: "-4.90%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      UUUU: { symbol: "NYSEAMERICAN:UUUU", price: 7.25, prevClose: 7.45, change: "-2.68%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      NET: { symbol: "NYSE:NET", price: 215.00, prevClose: 222.00, change: "-3.15%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      AKAM: { symbol: "NASDAQ:AKAM", price: 92.50, prevClose: 94.80, change: "-2.43%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      FROG: { symbol: "NASDAQ:FROG", price: 33.50, prevClose: 34.80, change: "-3.74%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      KTOS: { symbol: "NASDAQ:KTOS", price: 33.39, prevClose: 34.50, change: "-3.22%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      MP: { symbol: "NYSE:MP", price: 38.35, prevClose: 39.80, change: "-3.64%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      TM: { symbol: "NYSE:TM", price: 197.64, prevClose: 202.00, change: "-2.16%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      IONQ: { symbol: "NYSE:IONQ", price: 28.00, prevClose: 29.50, change: "-5.08%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      NTRA: { symbol: "NASDAQ:NTRA", price: 384.00, prevClose: 395.00, change: "-2.78%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      HALO: { symbol: "NASDAQ:HALO", price: 120.00, prevClose: 124.50, change: "-3.61%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      NEM: { symbol: "NYSE:NEM", price: 121.92, prevClose: 119.71, change: "+1.85%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      AIP: { symbol: "NASDAQ:AIP", price: 17.80, prevClose: 8.15, change: "-3.07%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MELI: { symbol: "NASDAQ:MELI", price: 1510.00, prevClose: 1550.00, change: "-1.71%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MSFT: { symbol: "NASDAQ:MSFT", price: 530.61, prevClose: 548.20, change: "-1.05%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      GTLB: { symbol: "NASDAQ:GTLB", price: 48.09, prevClose: 51.10, change: "-2.25%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MU: { symbol: "NASDAQ:MU", price: 51.49, prevClose: 715.00, change: "-3.79%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      ZS: { symbol: "NASDAQ:ZS", price: 197.66, prevClose: 214.50, change: "-3.00%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      MKSI: { symbol: "NASDAQ:MKSI", price: 192.27, prevClose: 188.20, change: "-2.41%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      LLY: { symbol: "NYSE:LLY", price: 1354.00, prevClose: 1420.00, change: "-2.22%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      NTNX: { symbol: "NASDAQ:NTNX", price: 58.37, prevClose: 61.50, change: "-3.61%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      U: { symbol: "NYSE:U", price: 51.49, prevClose: 49.50, change: "-2.67%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      VEEV: { symbol: "NYSE:VEEV", price: 303.73, prevClose: 315.00, change: "-1.80%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      NTAP: { symbol: "NASDAQ:NTAP", price: 169.19, prevClose: 176.80, change: "-2.49%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      COHR: { symbol: "NASDAQ:COHR", price: 192.81, prevClose: 205.00, change: "-3.17%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      SNOW: { symbol: "NASDAQ:SNOW", price: 275.88, prevClose: 275.00, change: "-3.64%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      CRWD: { symbol: "NASDAQ:CRWD", price: 216.90, prevClose: 265.50, change: "-3.20%", currency: "USD", time: "2026-11-05 16:00:00 EST" },
+      IREN: { symbol: "NASDAQ:IREN", price: 21.64, prevClose: 43.20, change: "-3.94%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      KEEL: { symbol: "NASDAQ:KEEL", price: 1.87, prevClose: 2.15, change: "-9.30%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      SMR: { symbol: "NYSE:SMR", price: 5.08, prevClose: 5.10, change: "-4.90%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      UUUU: { symbol: "NYSEAMERICAN:UUUU", price: 6.70, prevClose: 7.45, change: "-2.68%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      NET: { symbol: "NYSE:NET", price: 268.75, prevClose: 222.00, change: "-3.15%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      AKAM: { symbol: "NASDAQ:AKAM", price: 83.09, prevClose: 94.80, change: "-2.43%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      FROG: { symbol: "NASDAQ:FROG", price: 100.98, prevClose: 34.80, change: "-3.74%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      KTOS: { symbol: "NASDAQ:KTOS", price: 35.10, prevClose: 34.50, change: "-3.22%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      MP: { symbol: "NYSE:MP", price: 35.41, prevClose: 39.80, change: "-3.64%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      TM: { symbol: "NYSE:TM", price: 216.19, prevClose: 202.00, change: "-2.16%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      IONQ: { symbol: "NYSE:IONQ", price: 32.62, prevClose: 29.50, change: "-5.08%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      NTRA: { symbol: "NASDAQ:NTRA", price: 310.67, prevClose: 395.00, change: "-2.78%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      HALO: { symbol: "NASDAQ:HALO", price: 103.63, prevClose: 124.50, change: "-3.61%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
+      NEM: { symbol: "NYSE:NEM", price: 120.91, prevClose: 119.71, change: "+1.85%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       MRNA: { symbol: "NASDAQ:MRNA", price: 261.00, prevClose: 241.46, change: "+8.09%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
       VST: {
         ticker: "VST",
@@ -3845,19 +3845,19 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         category: "rerating",
         categoryLabel: "⚖️ 週期重估",
         researchPriority: "WATCH (觀望防守)",
-        targetPriceReentryMin: 85.0,
-        targetPriceReentryMax: 95.0,
+        targetPriceReentryMin: 275.0,
+        targetPriceReentryMax: 298.0,
         
-        marketExpectationScore: 4.7,
+        marketExpectationScore: 3.9,
         marketExpectationLabel: "高度過熱 (4.7 / 5)",
         marketExpectationWhy: "現價大漲至 $123+，市場將德州夏季極端熱浪推高之批發電價及 PJM 容量拍賣收益（Q3 EBITDA 增 50% 達 $23.78B）完全定價為永久 AI 數據中心高估值倍數。容錯空間極窄。",
         businessPathAndMispricing: "最可能路徑：收購 Cogentrix 5,500MW 天然氣電廠後總裝機達 ~50GW，透過現有併網點向 hyperscaler 爭取長期高溢價 PPA。市場盲點：Odessa 簽訂之 20 年數據中心 PPA 僅 207MW，只佔總裝機約 0.41%！公司本質仍受天然氣火花價差與電網批發價週期主導，非純 AI 科技股。",
         
         targets: [
           { name: "Stress (天然氣暴跌/容量價腰斬)", prob: 0.15, rev28: "$16.0B", multiple: "8x EV/EBITDA", targetPrice: 55.00, why: "極端熱浪消退，PJM 容量拍賣價格暴跌，發電利潤回歸週期底部" },
-          { name: "Bear (火花價差收窄/AI電價回調)", prob: 0.30, rev28: "$18.5B", multiple: "10x P/E", targetPrice: 85.00, why: "夏季高溫溢價消退，批發電價正常化，數據中心併網審批放緩" },
-          { name: "Base (公用事業穩健+小額PPA放量)", prob: 0.45, rev28: "$21.0B", multiple: "13x P/E", targetPrice: 135.00, why: "2027 Ongoing FCF before Growth 達約 $4.7B，陸續獲 1-2GW 數據中心 PPA 溢價" },
-          { name: "Bull (超大規模核電/氣電直供簽約)", prob: 0.10, rev28: "$25.0B", multiple: "16x P/E", targetPrice: 185.00, why: "Comanche Peak 核電與大型氣電機組獲得多筆超大雲端客戶直供溢價長約" }
+          { name: "Bear (火花價差收窄/AI電價回調)", prob: 0.30, rev28: "$18.5B", multiple: "10x P/E", targetPrice: 140.00, why: "夏季高溫溢價消退，批發電價正常化，數據中心併網審批放緩" },
+          { name: "Base (公用事業穩健+小額PPA放量)", prob: 0.45, rev28: "$21.0B", multiple: "13x P/E", targetPrice: 319.45, why: "2027 Ongoing FCF before Growth 達約 $4.7B，陸續獲 1-2GW 數據中心 PPA 溢價" },
+          { name: "Bull (超大規模核電/氣電直供簽約)", prob: 0.10, rev28: "$25.0B", multiple: "16x P/E", targetPrice: 285.00, why: "Comanche Peak 核電與大型氣電機組獲得多筆超大雲端客戶直供溢價長約" }
         ],
         multibaggerConditions: "需要未來 3 年內將 5GW 以上現有發電資產全數轉化為超額利潤率之超大規模 AI 數據中心專用 PPA。",
         keyFailureRisks: "德州 ERCOT 批發電價劇烈回調；天然氣成本反彈侵蝕利潤；FERC 監管限制後門併網直供；高負債利息負擔。",
@@ -4064,7 +4064,7 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         falsificationTriggers: "NRR 連續兩季跌破 102%，或真實扣除 SBC 後的 FCF margin 跌破 15% 則立即止損退出。"
       },
       OKTA: { symbol: "NASDAQ:OKTA", price: 168.69, prevClose: 74.80, change: "+2.27%", currency: "USD", time: "2026-11-06 16:00:00 EST" },
-      ADBE: { symbol: "NASDAQ:ADBE", price: 254.69, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
+      ADBE: { symbol: "NASDAQ:ADBE", price: 173.24, prevClose: 246.14, change: "+3.47%", currency: "USD", time: "2026-11-04 10:27:04 EST" }
     };
 
     let allSheetRows = [
@@ -4851,70 +4851,122 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
     });
   
     // ==========================================
-    // MODULE: DECISION SIGNALS & ACTION MATRIX
+    // MODULE: DECISION SIGNALS & 4-GATE INSTITUTIONAL ENGINE
     // ==========================================
-    const SIGNALS_DATABASE = {
-      DDOG: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待回調至 $95 以下安全區", buyBelow: 95.00, targetBase: 168.40, stopLoss: 78.00, catalyst: "日誌引力、單一代理人整合 APM 與網安、AI/LLM 遙測數據爆發", warning: "Cribl 日誌清洗分流、OpenTelemetry 開源解耦、SBC 稀釋後真實 Rule of 40 僅 38.5。" },
-      PANW: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "首注 $330-$340，重注等 $310", buyBelow: 340.00, targetBase: 569.21, stopLoss: 275.00, catalyst: "平台化推進加速、Prisma SASE 與 Cortex XSIAM 替代傳統 SIEM、FCF margin 近 40%", warning: "微軟 E5 綑綁擠壓，前期免費試用對短期現金流產生摩擦。" },
-      ESTC: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "非對稱高賠率逆向買入", buyBelow: 72.00, targetBase: 102.66, stopLoss: 55.00, catalyst: "Elastic Cloud 佔比突破 65%、向量搜尋與 RAG 混合檢索架構、極低估值倍數 (4.2x EV/Sales)", warning: "AWS OpenSearch 價格戰，開源自託管授權收入衰退。" },
-      ETN: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "30x+ 估值透支，等待週期降溫", buyBelow: 260.00, targetBase: 387.11, stopLoss: 220.00, catalyst: "AI 數據中心 100kW+ 液冷機櫃高密度配電、電網升級與 IRA 法案", warning: "製造業週期股享受 30x+ 科技倍數，電網併網排隊延誤交貨，下檔至 Bear (-32%) 風險極大。" },
-      DT: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "優質確定性穩健配置", buyBelow: 50.00, targetBase: 86.55, stopLoss: 42.00, catalyst: "Grail 無索引數據湖架構降本、Davis 因果 AI 確定性除錯、85% 超高毛利率與低獲客成本", warning: "大企業 IT 支出預算優化，面對 Datadog 的市場競爭。" },
-      TER: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "先進封裝測試週期反轉買入", buyBelow: 110.00, targetBase: 148.80, stopLoss: 85.00, catalyst: "2.5D/3D 與 Chiplet 異質整合使測試時長倍增、IG-XL 軟體生態壁壘、相較愛德萬享估值折讓", warning: "手機晶片與汽車 MCU 復甦遲緩，工業機器人業務利潤偏低。" },
-      PLTR: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "極致護城河但估值極高，建議賣 Put 或等深調", buyBelow: 48.00, targetBase: 98.00, stopLoss: 38.00, catalyst: "AIP Bootcamp 病毒式傳播、Operational Ontology 決策本體壁壘、Apollo 自動化邊際零成本交付", warning: "現價 80x-100x+ EV/FCF 極度亢奮，任何政府合約延期或季度增速低於 25% 將引發劇烈殺估值。" },
-      OKTA: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "SBC 壓縮與自由現金流轉正拐點，分批吸納", buyBelow: 80.00, targetBase: 115.00, stopLoss: 62.00, catalyst: "7,500+ OIN 生態護城河、OIG/OPA 模組擴客、SBC 佔比降至 27%、GAAP 淨利轉正拐點", warning: "微軟 Entra ID 綑綁威脅，企業席位審計縮編壓力。" },
-      NVDA: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "逢回大注超額配置", buyBelow: 185.00, targetBase: 221.12, stopLoss: 140.00, catalyst: "Blackwell 量產放量、CUDA 軟硬體生態壟斷、已實現龐大自由現金流", warning: "客戶自研 ASIC 晶片及數據中心供電審批排隊。" },
-      ORCL: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "超賣修復分批買入", buyBelow: 145.00, targetBase: 165.00, stopLoss: 120.00, catalyst: "企業資料庫高黏性、自主雲與多雲架構（OCI 續約）", warning: "微軟縮減外租 AI 算力協議，二線雲短期利用率受壓。" },
-      GOOG: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "核心大模型價值配置", buyBelow: 175.00, targetBase: 215.00, stopLoss: 145.00, catalyst: "Gemini 生態商業化、自研 TPU 算力成本優勢、搜尋廣告護城河", warning: "反壟斷司法拆分訴訟風險及 AI 搜尋對傳統利潤率之侵蝕。" },
-      AMZN: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "雲端重加速買入", buyBelow: 190.00, targetBase: 240.00, stopLoss: 160.00, catalyst: "AWS 營收重新加速至 19%、自研 Trainium2 降低 Capex", warning: "零售物流利潤受通膨波動，AI 資本開支高企。" },
-      META: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "AI 賦能高利潤配置", buyBelow: 580.00, targetBase: 700.00, stopLoss: 480.00, catalyst: "Llama 開源生態、AI 推薦算法帶動廣告 ROAS 大增、FCF 強勁", warning: "Reality Labs 元宇宙年虧損超 180 億，Capex 指引激進。" },
-      MSFT: { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "企業級 AI 龍頭配置", buyBelow: 415.00, targetBase: 495.00, stopLoss: 360.00, catalyst: "Azure 雲端份額擴張、M365 Copilot 企業滲透、收縮低效外租 Capex", warning: "數據中心電力交付延誤，資本支出 ROI 審查日益嚴苛。" },
-      NOW: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "首選分批小注吸納", buyBelow: 105.00, targetBase: 120.00, stopLoss: 88.00, catalyst: "企業 IT 跨部門工作流程中樞、AI Agent 執行與權限審計核心", warning: "下季訂閱營收指引放緩至 18.5%，收購整合期股權激勵稀釋。" },
-      CRM: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "防守價值適度配置", buyBelow: 218.00, targetBase: 245.00, stopLoss: 180.00, catalyst: "Agentforce 商業落地、企業私有 CRM 數據庫、真實市盈率約 15.7x", warning: "指引包含投資收益水分，因收購與回購推升淨負債。" },
-      TSM: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "約 $375 參考價小注配置", buyBelow: 380.00, targetBase: 429.15, stopLoss: 290.00, catalyst: "先進製程 (3nm/2nm) 與 CoWoS 封裝絕對壟斷，毛利率 66.4%", warning: "台灣地緣政治尾部風險，資本開支巨大且受終端需求波動牽連。" },
-      AVGO: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "ASIC 網絡回調吸納", buyBelow: 298.00, targetBase: 319.45, stopLoss: 230.00, catalyst: "客製化 ASIC 爆發、Tomahawk/Jericho 交換晶片、VMware 現金流", warning: "大客戶集中度高，外包晶圓約 95% 由台積電生產。" },
-      CRWD: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "網安剛需逢低買入", buyBelow: 310.00, targetBase: 375.00, stopLoss: 250.00, catalyst: "Falcon 平台整合度高，事件修復後客戶留存率超 97%", warning: "短期客戶折扣推遲收入確認，估值倍數處於歷史高位。" },
-      SNOW: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "數據湖倉回調小注", buyBelow: 130.00, targetBase: 165.00, stopLoss: 105.00, catalyst: "Cortex AI 落地、企業私有資料清理與 RAG 必備存儲", warning: "用量計費模式波動較大，面臨 Databricks 激烈競爭。" },
-      LLY: { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "減肥藥雙寡頭配置", buyBelow: 820.00, targetBase: 1020.00, stopLoss: 680.00, catalyst: "Zepbound/Mounjaro 產能瓶頸解除，心血管及睡眠呼吸暫停新適應症", warning: "複方藥房仿製藥競爭，醫保支付價格談判壓力。" },
-      TEAM: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待增長驗證或更深折扣", buyBelow: 140.00, targetBase: 165.00, stopLoss: 125.00, catalyst: "Jira/Confluence 企業協作中樞，雲端遷移進度穩定", warning: "雲端指引放緩至 26%，席位費受 AI 縮編威脅，用量收費未證實。" },
-      CAMT: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等訂單轉化或估值消化", buyBelow: 80.00, targetBase: 105.00, stopLoss: 65.00, catalyst: "2027 年收入指引超 8 億美元、HBM 檢測設備需求高景氣", warning: "現價約 24x 年化 EPS 不算便宜，80% 屬特定訂單非市佔率，Onto 競爭激烈。" },
-      MKSI: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "週期底部觀察不追高", buyBelow: 160.00, targetBase: 195.00, stopLoss: 130.00, catalyst: "ESI 與 Atotech 先進封裝化學技術，Q3 營收回升 43%", warning: "非玻璃基板壟斷，受半導體設備整體週期、高負債及可轉債稀釋壓制。" },
-      BE: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待首批交付毛利核驗", buyBelow: 18.00, targetBase: 24.00, stopLoss: 13.00, catalyst: "與 NTT DATA 達成 900MW 數據中心燃料電池供電長約", warning: "燃料電池設備高成本，產能爬坡與正現金流仍需季報證實。" },
-      KTOS: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待實質交付與正現金流", buyBelow: 20.00, targetBase: 25.00, stopLoss: 16.00, catalyst: "無人機渦噴引擎預期 2027 年售 1,500 台，Q3 訂單比 2.2 倍", warning: "實際 Backlog 為 $26.5 億非宣傳之 $38.5 億，備料不等於鎖定合約。" },
-      UUUU: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "週期常態視之不當下檔鎖死", buyBelow: 5.50, targetBase: 7.20, stopLoss: 4.20, catalyst: "美國本土白梅薩水冶廠、重稀土 Dy/Tb 預計 2028 年商業化", warning: "上季 $88.9/磅為已實現均價非未來鎖定價，稀土進度仍具研發不確定性。" },
-      ASML: { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待非 AI 週期復甦確認", buyBelow: 680.00, targetBase: 850.00, stopLoss: 550.00, catalyst: "High-NA EUV 光刻機技術壟斷，台積電/英特爾擴建必備", warning: "非 AI 半導體邏輯與存儲復甦疲弱，中國出口禁令限制升級。" },
-      AKAM: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "現金流失血堅決避開", buyBelow: 65.00, targetBase: 80.00, stopLoss: 60.00, catalyst: "邊緣運算與分散式雲架構轉型合約", warning: "Q3 自由現金流轉負 (-$3,800 萬)，S&P 降級至 BBB，3 年 $55 億 CapEx 侵蝕回報。" },
-      VST: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "週期高位暫不獨立建倉", buyBelow: 90.00, targetBase: 135.00, stopLoss: 80.00, catalyst: "207MW 數據中心 PPA、Cogentrix 5,500MW 燃氣收購整合", warning: "數據中心長約僅佔總裝機 0.41%！EBITDA 暴增本質為德州熱浪現貨電價與 PJM 拍賣，非純 AI 科技股。" },
-      MELI: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "信貸風險升高觀望防守", buyBelow: 1600.00, targetBase: 1850.00, stopLoss: 1400.00, catalyst: "拉美電商 GMV 年增 33%（固定匯率），金融生態壁壘", warning: "非防禦性極強，信貸逾期率上升，Q3 營業利潤率受壓至 6.3%。" },
-      SMR: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "商業化漫長泡沫避開", buyBelow: 10.00, targetBase: 15.00, stopLoss: 7.00, catalyst: "小型模塊化核反應堆 (SMR) 政策支持與數據中心供電願景", warning: "首座商用堆最快 2030 年後才能落地，持續融資稀釋股東權益。" },
-      IONQ: { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "無實質利潤純炒作避開", buyBelow: 8.00, targetBase: 12.00, stopLoss: 6.00, catalyst: "量子計算離子阱架構技術進展", warning: "商業化變現遙遙無期，研發支出燒錢率極高，股權大幅稀釋。" }
+    // Fundamental Risk Vetoes & Consensus Alignment Overrides
+    const FUNDAMENTAL_VETOS = {
+      AKAM: { maxRating: "AVOID_SELL", reason: "Q3 自由現金流轉負 (-$3,800 萬)，3 年 $55 億 CapEx 嚴重侵蝕回報，S&P 降級至 BBB，觸發現金流一票否決紅線" },
+      VST: { maxRating: "WAIT_PRICE", reason: "207MW 數據中心 PPA 僅佔 50GW 總裝機 0.41%，EBITDA 暴增來自德州熱浪電價與 PJM 拍賣，非純 AI 標的，暫不獨立建倉" },
+      TEAM: { maxRating: "WAIT_PRICE", reason: "雲業務下季指引放緩至 26%，AI 用量收費能否抵消席位壓力仍待驗證，等待估值進一步吸引再考慮小注" },
+      ADBE: { maxRating: "ACCUMULATE", reason: "雖具 18x P/E 低估值與強勁現金流，但 AI 生成工具對創作流程與定價權有直接挑戰，定位為逆向價值小倉而非強烈大買" },
+      EROC: { maxRating: "ACCUMULATE", reason: "天然氣壓縮服務具高股息現金流，但屬傳統能源中游重資產，列為收益型適度配置而非倍升重倉" },
+      SMR: { maxRating: "AVOID_SELL", reason: "首座商用模組化核反應堆最快 2030 年後落地，持續融資稀釋股東權益，缺乏實質自由現金流" },
+      IONQ: { maxRating: "AVOID_SELL", reason: "量子計算商業化變現遙遙無期，研發支出燒錢率極高，股權大幅稀釋" },
+      QMCO: { maxRating: "AVOID_SELL", reason: "傳統磁帶存儲結構性衰退，高負債財務槓桿且缺乏持續正向自由現金流" },
+      KEEL: { maxRating: "WAIT_PRICE", reason: "微型市值 ($1.87) 算力基建轉型期，流動性與並網資本開支風險極高，僅列戰術觀察" },
+      UUUU: { maxRating: "WAIT_PRICE", reason: "$88.9/磅僅為單季實現均價非未來鎖定價，重稀土商業化要待 2028 年，不當下檔鎖死" },
+      KTOS: { maxRating: "WAIT_PRICE", reason: "實際在手訂單 $26.5 億非 $38.5 億，渦噴引擎備料不等於量產合約，先看實際交付與現金流" },
+      BE: { maxRating: "WAIT_PRICE", reason: "雖簽署 900MW 數據中心協議，但現價 $173+ 已大幅反映預期，需等待交付毛利率與現金流驗證" },
+      IREN: { maxRating: "WAIT_PRICE", reason: "AI Cloud 收入雖急增，但同期仍有重大資本開支與融資稀釋需求，等待自由現金流轉正" },
+      MELI: { maxRating: "WAIT_PRICE", reason: "信貸組合擴張伴隨逾期壓力，Q3 營益率降至 6.3%，非防禦性極強，等待回調至 $1,450 以下" }
     };
 
-    // Auto-generate fallback signals for the rest of 71 tickers
-    function getSignalForTicker(ticker) {
-      if (SIGNALS_DATABASE[ticker]) {
-        return SIGNALS_DATABASE[ticker];
-      }
+    // Unified 4-Gate Institutional Evaluation Function
+    function evaluateStockSignal(ticker) {
       const db = RESEARCH_DATABASE[ticker];
       const q = currentQuotes[ticker];
       const price = q ? q.price : 100.0;
-      let target = price * 1.15;
-      let bear = price * 0.75;
-      if (db && db.targets) {
-        const b = db.targets.find(t => t.name.includes("Base"));
-        const br = db.targets.find(t => t.name.includes("Bear") || t.name.includes("Stress"));
-        if (b) target = b.targetPrice;
-        if (br) bear = br.targetPrice;
+      if (!db) {
+        return { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "數據載入中", buyBelow: price * 0.85, targetBase: price, expTarget: price, bearTarget: price * 0.7, stopLoss: price * 0.7, mosBase: 0, mosExp: 0, score: 3.0, catalyst: "-", warning: "-" };
       }
-      const mos = ((target - price) / price) * 100;
-      if (mos > 20) {
-        return { rating: "STRONG_BUY", label: "🟢 強烈買入", action: "逢回大注配置", buyBelow: price * 1.05, targetBase: target, stopLoss: bear, catalyst: "基本面紮實、安全邊際充足", warning: "大盤系統性波動。" };
-      } else if (mos > 8) {
-        return { rating: "ACCUMULATE", label: "🔵 分批吸納", action: "逢低分批小注", buyBelow: price * 1.02, targetBase: target, stopLoss: bear, catalyst: "具備成長動能、等待估值修復", warning: "宏觀資本支出放緩風險。" };
-      } else if (mos > -10) {
-        return { rating: "WAIT_PRICE", label: "🟡 觀望待價", action: "等待更深回調", buyBelow: price * 0.88, targetBase: target, stopLoss: bear, catalyst: "優質業務等待好價格", warning: "現價充分定價，容錯空間窄。" };
+
+      // 1. Extract 4-Scenario Targets & Calculate Probability-Weighted Expected Value (ExpTarget)
+      let stressTarget = price * 0.5, bearTarget = price * 0.75, baseTarget = price * 1.15, bullTarget = price * 1.5;
+      let expTarget = 0;
+      if (db.targets && db.targets.length > 0) {
+        db.targets.forEach(t => {
+          const prob = typeof t.prob === "number" ? t.prob : 0.25;
+          expTarget += prob * t.targetPrice;
+          if (t.name.includes("Stress")) stressTarget = t.targetPrice;
+          else if (t.name.includes("Bear")) bearTarget = t.targetPrice;
+          else if (t.name.includes("Base")) baseTarget = t.targetPrice;
+          else if (t.name.includes("Bull")) bullTarget = t.targetPrice;
+        });
       } else {
-        return { rating: "AVOID_SELL", label: "🔴 避開/減持", action: "估值透支暫避開", buyBelow: price * 0.75, targetBase: target, stopLoss: bear, catalyst: "轉型題材仍需數據驗證", warning: "現金流失血或估值泡沫過高。" };
+        expTarget = baseTarget;
       }
+
+      // 2. Establish Strict Buy-Below Ceiling (targetPriceReentryMax) & Review Stop-Loss
+      const buyBelow = db.targetPriceReentryMax || Number((baseTarget * 0.78).toFixed(2));
+      const reentryMin = db.targetPriceReentryMin || Number((bearTarget * 0.95).toFixed(2));
+      const stopLoss = Number(Math.min(bearTarget * 0.92, reentryMin * 0.90).toFixed(2));
+
+      // 3. Calculate Margin of Safety against Probability-Weighted Expected Value (mosExp) and Base (mosBase)
+      const mosExp = price > 0 ? ((expTarget - price) / price) * 100 : 0;
+      const mosBase = price > 0 ? ((baseTarget - price) / price) * 100 : 0;
+      const score = db.marketExpectationScore || 3.5;
+
+      // 4. Apply 4-Gate Institutional Classification
+      let rating = "WAIT_PRICE";
+      let label = "🟡 觀望待價";
+      let action = `等待回調至買入上限 $${buyBelow.toFixed(2)} 以下`;
+
+      const veto = FUNDAMENTAL_VETOS[ticker];
+
+      if (veto && veto.maxRating === "AVOID_SELL") {
+        rating = "AVOID_SELL";
+        label = "🔴 避開/減持";
+        action = veto.reason;
+      } else if (price > buyBelow * 1.20 || mosExp < 0) {
+        rating = "AVOID_SELL";
+        label = "🔴 估值透支/減持";
+        action = `現價 $${price.toFixed(2)} 嚴重透支期望值 ($${expTarget.toFixed(2)}) 或超買入上限逾 20%，嚴禁追高`;
+      } else if (price <= buyBelow && price <= bearTarget * 1.02 && mosExp >= 50 && score <= 3.2) {
+        rating = "STRONG_BUY";
+        label = "🟢 強烈買入";
+        action = `四重門檻全數通過！現價跌穿熊市支撐 ($${bearTarget.toFixed(2)}) 且期望安全邊際達 +${mosExp.toFixed(1)}%，首選建立核心倉位`;
+      } else if (price <= buyBelow * 1.02 && (mosExp >= 15 || mosBase >= 8.5) && score <= 4.2) {
+        rating = "ACCUMULATE";
+        label = "🔵 分批吸納";
+        action = `現價處於安全買入上限 ($${buyBelow.toFixed(2)}) 內，期望回報空間 +${mosExp.toFixed(1)}%，建議分 2-3 批逢低配置`;
+      } else {
+        rating = "WAIT_PRICE";
+        label = "🟡 觀望待價";
+        action = `基本面優質但現價 ($${price.toFixed(2)}) 高於買入上限 ($${buyBelow.toFixed(2)})，耐心等待回調好價`;
+      }
+
+      // Enforce Veto Caps (ACCUMULATE or WAIT_PRICE)
+      if (veto && veto.maxRating === "ACCUMULATE" && rating === "STRONG_BUY") {
+        rating = "ACCUMULATE";
+        label = "🔵 分批吸納";
+        action = veto.reason;
+      }
+      if (veto && veto.maxRating === "WAIT_PRICE" && (rating === "STRONG_BUY" || rating === "ACCUMULATE")) {
+        rating = "WAIT_PRICE";
+        label = "🟡 觀望待價";
+        action = veto.reason;
+      }
+
+      return {
+        rating,
+        label,
+        action,
+        buyBelow,
+        reentryMin,
+        targetBase: baseTarget,
+        expTarget,
+        bearTarget,
+        stopLoss,
+        mosBase,
+        mosExp,
+        score,
+        catalyst: db.businessPathAndMispricing || db.multibaggerConditions || "核心業務護城河穩固",
+        warning: (veto ? veto.reason : null) || db.keyFailureRisks || db.falsificationTriggers || "留意宏觀週期與估值壓縮風險"
+      };
+    }
+
+    function getSignalForTicker(ticker) {
+      return evaluateStockSignal(ticker);
     }
 
     let activeSignalFilter = "all";
@@ -4926,44 +4978,47 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
       const search = (document.getElementById("signalSearchInput").value || "").toUpperCase().trim();
       const sort = document.getElementById("signalSortSelect").value;
 
-      let tickers = Object.keys(RESEARCH_DATABASE);
+      const tickers = Object.keys(RESEARCH_DATABASE);
+      let cntStrong = 0, cntAccum = 0, cntWait = 0, cntAvoid = 0;
+
       let list = tickers.map(ticker => {
         const db = RESEARCH_DATABASE[ticker];
         const q = currentQuotes[ticker];
         const price = q ? q.price : 0;
-        const sig = getSignalForTicker(ticker);
-        const mos = price > 0 ? ((sig.targetBase - price) / price) * 100 : 0;
-      // DYNAMIC RATING OVERRIDE based on live Google Sheet Price:
-      let dynamicRating = sig.rating;
-      let dynamicLabel = sig.label;
-      let dynamicAction = sig.action;
-      if (price > sig.buyBelow * 1.15 || mos < -10) {
-        dynamicRating = "AVOID_SELL";
-        dynamicLabel = "🔴 估值透支/減持";
-        dynamicAction = "現價已超買入上限，切忌追高，逢高減持或等待深度回踩";
-      } else if (price > sig.buyBelow || (mos >= -10 && mos < 10)) {
-        dynamicRating = "WAIT_PRICE";
-        dynamicLabel = "🟡 觀望待價";
-        dynamicAction = "現價已高於建議買入上限，等待回調至安全區間";
-      } else if (mos >= 20) {
-        dynamicRating = "STRONG_BUY";
-        dynamicLabel = "🟢 強烈買入";
-        dynamicAction = "安全邊際充足，逢回超額配置";
-      } else if (mos >= 8) {
-        dynamicRating = "ACCUMULATE";
-        dynamicLabel = "🔵 分批吸納";
-        dynamicAction = "具備防守邊際，分批逢低配置";
-      }
-        const upside = price > 0 ? ((sig.targetBase * 1.35 - price) / price) * 100 : 0;
-        return { ticker, name: db.name, price, currency: db.currency || "USD", sig, mos, upside };
+        const sig = evaluateStockSignal(ticker);
+
+        if (sig.rating === "STRONG_BUY") cntStrong++;
+        else if (sig.rating === "ACCUMULATE") cntAccum++;
+        else if (sig.rating === "WAIT_PRICE") cntWait++;
+        else if (sig.rating === "AVOID_SELL") cntAvoid++;
+
+        return {
+          ticker,
+          name: db.name,
+          price,
+          currency: db.currency || "USD",
+          sig,
+          mos: sig.mosExp,
+          upside: sig.mosBase
+        };
       });
+
+      // Update Top Summary Counters dynamically
+      const elStrong = document.getElementById("cntStrongBuy");
+      const elAccum = document.getElementById("cntAccumulate");
+      const elWait = document.getElementById("cntWaitPrice");
+      const elAvoid = document.getElementById("cntAvoidSell");
+      if (elStrong) elStrong.innerText = cntStrong;
+      if (elAccum) elAccum.innerText = cntAccum;
+      if (elWait) elWait.innerText = cntWait;
+      if (elAvoid) elAvoid.innerText = cntAvoid;
 
       // Filter by rating
       if (activeSignalFilter !== "all") {
-        list = list.filter(item => (item.dynamicRating || item.sig.rating) === activeSignalFilter);
+        list = list.filter(item => item.sig.rating === activeSignalFilter);
       }
 
-      // Filter by search
+      // Filter by search query
       if (search) {
         list = list.filter(item => item.ticker.includes(search) || item.name.toUpperCase().includes(search));
       }
@@ -4977,24 +5032,6 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
         list.sort((a, b) => a.ticker.localeCompare(b.ticker));
       }
 
-      // Update counters
-      let cntStrong = 0, cntAccum = 0, cntWait = 0, cntAvoid = 0;
-      tickers.forEach(t => {
-        const s = getSignalForTicker(t);
-        if (s.rating === "STRONG_BUY") cntStrong++;
-        else if (s.rating === "ACCUMULATE") cntAccum++;
-        else if (s.rating === "WAIT_PRICE") cntWait++;
-        else if (s.rating === "AVOID_SELL") cntAvoid++;
-      });
-      const elStrong = document.getElementById("cntStrongBuy");
-      const elAccum = document.getElementById("cntAccumulate");
-      const elWait = document.getElementById("cntWaitPrice");
-      const elAvoid = document.getElementById("cntAvoidSell");
-      if (elStrong) elStrong.innerText = cntStrong;
-      if (elAccum) elAccum.innerText = cntAccum;
-      if (elWait) elWait.innerText = cntWait;
-      if (elAvoid) elAvoid.innerText = cntAvoid;
-
       if (list.length === 0) {
         container.innerHTML = '<div class="text-center py-8 text-slate-500 text-xs bg-slate-900/60 rounded-xl border border-slate-800">無符合當前篩選條件之標的</div>';
         return;
@@ -5002,57 +5039,63 @@ TXN-1730777400000	2026-11-05T03:30:00Z	AMS:BESI	BUY	72	152.65	1.00	GEMINI
 
       container.innerHTML = list.map(item => {
         const ratingColors = {
-          STRONG_BUY: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
-          ACCUMULATE: "border-blue-500/40 bg-blue-500/10 text-blue-300",
-          WAIT_PRICE: "border-amber-500/40 bg-amber-500/10 text-amber-300",
-          AVOID_SELL: "border-rose-500/40 bg-rose-500/10 text-rose-300"
+          STRONG_BUY: "border-emerald-500/50 bg-emerald-500/15 text-emerald-300",
+          ACCUMULATE: "border-blue-500/50 bg-blue-500/15 text-blue-300",
+          WAIT_PRICE: "border-amber-500/50 bg-amber-500/15 text-amber-300",
+          AVOID_SELL: "border-rose-500/50 bg-rose-500/15 text-rose-300"
         };
-        const ratingBadgeColor = ratingColors[item.dynamicRating || item.sig.rating] || "border-slate-700 bg-slate-800 text-slate-300";
-        const mosClass = item.mos >= 15 ? "text-emerald-400" : item.mos >= 0 ? "text-blue-400" : "text-rose-400";
+        const ratingBadgeColor = ratingColors[item.sig.rating] || "border-slate-700 bg-slate-800 text-slate-300";
+        const mosClass = item.mos >= 25 ? "text-emerald-400" : item.mos >= 0 ? "text-blue-400" : "text-rose-400";
+        const priceVsBuyClass = item.price <= item.sig.buyBelow ? "text-emerald-400" : "text-amber-400";
 
         return `
           <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800/90 rounded-2xl p-4 shadow-sm hover:border-slate-700 transition">
             <div class="flex items-start justify-between gap-2 border-b border-slate-800/80 pb-3">
               <div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 flex-wrap">
                   <span class="text-base font-bold font-mono text-white">${item.ticker}</span>
-                  <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${ratingBadgeColor}">${item.dynamicLabel || item.sig.label}</span>
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${ratingBadgeColor}">${item.sig.label}</span>
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">情緒 ${item.sig.score}/5.0</span>
                 </div>
                 <p class="text-xs text-slate-400 mt-0.5 line-clamp-1">${item.name}</p>
               </div>
               <div class="text-right">
-                <span class="text-xs text-slate-400">即時現價</span>
-                <p class="text-base font-bold font-mono text-white">$${item.price.toFixed(2)}</p>
+                <span class="text-[10px] text-slate-400 block">試算表即時現價</span>
+                <p class="text-base font-bold font-mono ${priceVsBuyClass}">$${item.price.toFixed(2)}</p>
               </div>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 my-3 text-xs bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/60 text-center">
-              <div>
-                <span class="text-[10px] text-slate-400 block">公允目標價 (Base)</span>
-                <span class="font-bold font-mono text-slate-200 block mt-0.5">$${item.sig.targetBase.toFixed(2)}</span>
-              </div>
-              <div>
-                <span class="text-[10px] text-slate-400 block">安全邊際 (MoS)</span>
-                <span class="font-bold font-mono ${mosClass} block mt-0.5">${item.mos >= 0 ? "+" : ""}${item.mos.toFixed(1)}%</span>
-              </div>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 my-3 text-xs bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/60 text-center">
               <div>
                 <span class="text-[10px] text-slate-400 block">建議買入上限</span>
                 <span class="font-bold font-mono text-emerald-400 block mt-0.5">&le; $${item.sig.buyBelow.toFixed(2)}</span>
               </div>
               <div>
-                <span class="text-[10px] text-slate-400 block">重審/止損線</span>
+                <span class="text-[10px] text-slate-400 block">2028 熊市支撐</span>
+                <span class="font-bold font-mono text-amber-300 block mt-0.5">$${item.sig.bearTarget.toFixed(2)}</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">加權期望目標</span>
+                <span class="font-bold font-mono text-white block mt-0.5">$${item.sig.expTarget.toFixed(2)}</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-400 block">期望安全邊際</span>
+                <span class="font-bold font-mono ${mosClass} block mt-0.5">${item.mos >= 0 ? "+" : ""}${item.mos.toFixed(1)}%</span>
+              </div>
+              <div class="col-span-2 sm:col-span-1">
+                <span class="text-[10px] text-slate-400 block">破面止損線</span>
                 <span class="font-bold font-mono text-rose-400 block mt-0.5">$${item.sig.stopLoss.toFixed(2)}</span>
               </div>
             </div>
 
             <div class="space-y-1.5 text-xs text-slate-300">
-              <p><strong class="text-emerald-400">行動指引：</strong> ${item.dynamicAction || item.sig.action}</p>
-              <p><strong class="text-blue-400">核心催化：</strong> ${item.sig.catalyst}</p>
-              <p><strong class="text-amber-400">主要風險：</strong> ${item.sig.warning}</p>
+              <p><strong class="text-emerald-400">買方決策：</strong> ${item.sig.action}</p>
+              <p class="line-clamp-2"><strong class="text-blue-400">業務與盲點：</strong> ${item.sig.catalyst}</p>
+              <p class="line-clamp-2"><strong class="text-rose-400">證偽與風險：</strong> ${item.sig.warning}</p>
             </div>
 
             <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between">
-              <span class="text-[11px] text-slate-500 font-mono">30% Max DD 控管已嵌入</span>
+              <span class="text-[10px] text-slate-500 font-mono">Base: $${item.sig.targetBase.toFixed(2)} | 嚴格四重門檻審核</span>
               <button class="size-trade-btn px-3 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-xs transition active:scale-95 flex items-center gap-1 shadow" data-ticker="${item.ticker}" data-price="${item.price}" data-stop="${item.sig.stopLoss}">
                 <span>🛡️ 帶入風控試算</span>
               </button>
