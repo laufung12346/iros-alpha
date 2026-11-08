@@ -6480,44 +6480,54 @@ let currentQuotes = {
       let tradeAction = "NO_ACTION_REQUIRED";
 
       const veto = FUNDAMENTAL_VETOS[ticker];
+      const isSpeculative = (assetClass.type === "BINARY_OPTION" || ['SMR', 'IONQ', 'KEEL', 'AIP', 'QMCO'].includes(ticker));
+      const isProvenCompounder = (assetClass.type === "CORE_COMPOUNDER" || ['NVDA', 'TSM', 'AVGO', 'AAPL', 'MSFT', 'GOOG', 'AMZN', 'META'].includes(ticker));
 
       if (veto && veto.maxRating === "AVOID_SELL") {
         rating = "AVOID_SELL";
         label = "🔴 避開/減持";
         actionBuyer = veto.reason;
-        actionHolder = "基本面存在不可逆否決風險，持倉者建議清倉避險";
+        actionHolder = "基本面觸發重大否決紅線，建議逢高清倉避險";
         tradeAction = "NO_ACTION_REQUIRED";
       } else if (price <= stress) {
         rating = "STRONG_BUY";
-        label = "⚪ 極度折價(凍結)";
-        actionBuyer = `跌破極限壓力估值 ($${stress.toFixed(2)})！強制凍結買入權限，需人工覆核破產/永久損壞風險`;
-        actionHolder = `跌破破面線 ($${stress.toFixed(2)})，檢查破產清算風險，嚴格執行防守`;
+        label = "⚪ 極度折價(需覆核)";
+        actionBuyer = `跌破極限壓力估值 ($${stress.toFixed(2)})！暫停自動買入，需人工覆核黑天鵝風險`;
+        actionHolder = `跌破破面線 ($${stress.toFixed(2)})，嚴格執行防守`;
         tradeAction = "HALTED_NEEDS_REVIEW";
-      } else if (targetUpside <= 0 || dynamicCagr < 4.0 || price >= bull * 0.90) {
-        rating = "AVOID_SELL";
-        label = "🔴 估值透支/減持";
-        actionBuyer = `現價 ($${price.toFixed(2)}) 預期年化回報 (${dynamicCagr.toFixed(1)}%) 低於無風險利率或已透支至樂觀上限，新資金嚴禁追高`;
-        actionHolder = `目標收益已充分兌現，建議逢高分批獲利了結（移動止盈線 $${trailingStop.toFixed(2)}）`;
-        tradeAction = "NO_ACTION_REQUIRED";
-      } else if (price <= buyBelow && (trueMos >= 15 || targetUpside >= 30) && dynamicCagr >= 12.0 && score <= 3.5 && (!veto || veto.maxRating !== "WAIT_PRICE")) {
+      } else if (price <= buyBelow && (trueMos >= 12 || targetUpside >= 25) && dynamicCagr >= 11.0 && score <= 3.6 && !isSpeculative) {
         rating = "STRONG_BUY";
         label = "🟢 強烈買入";
-        actionBuyer = `四重鐵門全過！現價 ($${price.toFixed(2)}) 進入甜蜜擊球區，安全邊際 +${trueMos.toFixed(1)}%，2028目標 $${fvTarget.toFixed(2)} (年化 +${dynamicCagr.toFixed(1)}%)，建倉首選`;
+        actionBuyer = `四重鐵門全過！現價 ($${price.toFixed(2)}) 進入極佳擊球區，安全邊際 +${trueMos.toFixed(1)}%，2028加權目標 $${fvTarget.toFixed(2)} (年化 +${dynamicCagr.toFixed(1)}%)，建倉首選`;
         actionHolder = `極度低估，堅定持有享受複利（防守底線 $${stopLoss.toFixed(2)}）`;
         tradeAction = "APPROVED";
-      } else if (price <= buyBelow * 1.08 && (targetUpside >= 15 || trueMos >= 5 || dynamicCagr >= 9.0) && score <= 4.2 && (!veto || veto.maxRating !== "WAIT_PRICE")) {
+      } else if (price <= buyBelow * 1.08 && (targetUpside >= 15 || trueMos >= 5 || dynamicCagr >= 9.0) && score <= 4.2 && !isSpeculative) {
         rating = "ACCUMULATE";
         label = "🔵 分批吸納";
         const gapPct = ((price - buyBelow) / buyBelow * 100);
         actionBuyer = `現價處於安全吸納區（離買入上限僅差 ${gapPct > 0 ? '+' : ''}${gapPct.toFixed(1)}%），動態年化 +${dynamicCagr.toFixed(1)}%，建議建立 20%-50% 分批試探倉（上限 ${assetClass.maxPortfolioWeight}）`;
         actionHolder = `趨勢向好，讓利潤奔跑（動態移動止盈 $${trailingStop.toFixed(2)}）`;
         tradeAction = "APPROVED";
+      } else if (isProvenCompounder && (targetUpside <= 5 || dynamicCagr < 4.0 || price >= bull * 0.90)) {
+        rating = "WAIT_PRICE";
+        label = "🟠 核心溢價(持股/等好價)";
+        actionBuyer = `全球壟斷核心資產，現價 ($${price.toFixed(2)}) 已充分定價未來預期（年化 ${dynamicCagr.toFixed(1)}%），新資金切勿盲目追高，耐心等待大盤回調`;
+        actionHolder = `核心護城河極深，現有持倉無需恐慌減持！設好移動止盈線 ($${trailingStop.toFixed(2)}) 繼續享受長期複利`;
+        tradeAction = "NO_ACTION_REQUIRED";
+      } else if (targetUpside <= 0 || dynamicCagr < 3.0 || price >= bull * 0.95) {
+        rating = "AVOID_SELL";
+        label = "🔴 估值透支/減持";
+        actionBuyer = `現價 ($${price.toFixed(2)}) 預期年化回報 (${dynamicCagr.toFixed(1)}%) 低於無風險利率或已逼近泡沫極限，新資金嚴禁追高`;
+        actionHolder = `估值透支嚴重，建議逢高分批落袋為安（移動止盈線 $${trailingStop.toFixed(2)}）`;
+        tradeAction = "NO_ACTION_REQUIRED";
       } else {
         rating = "WAIT_PRICE";
-        label = "🟡 觀望待價";
+        label = isSpeculative ? "🟡 高波動期權(等深跌)" : "🟡 觀望待價";
         const pullbackNeeded = ((price - buyBelow) / price * 100).toFixed(1);
-        actionBuyer = veto ? veto.reason : `現價 ($${price.toFixed(2)}) 略高於安全擊球點 ($${buyBelow.toFixed(2)})，預期年化 +${dynamicCagr.toFixed(1)}%，耐心等待回調 ${pullbackNeeded}% 再行進場`;
-        actionHolder = `基本面穩健，現有持倉無需賤賣，設好移動止盈 $${trailingStop.toFixed(2)} 繼續持有`;
+        actionBuyer = isSpeculative 
+          ? `高波動題材資產，現價 ($${price.toFixed(2)}) 缺乏足夠安全邊際，嚴禁 FOMO 追高，需回調 ${pullbackNeeded}% 至極端防守位才考慮小注`
+          : `現價 ($${price.toFixed(2)}) 略高於建議買入上限 ($${buyBelow.toFixed(2)})，預期年化 +${dynamicCagr.toFixed(1)}%，耐心等待回調 ${pullbackNeeded}%`;
+        actionHolder = `基本面良好，現有持倉無需賤賣，設好移動止盈 $${trailingStop.toFixed(2)} 繼續持有`;
         tradeAction = "NO_ACTION_REQUIRED";
       }
 
